@@ -1,0 +1,8 @@
+<environment>
+   <use name=boost>
+   <use name=root>
+</environment>
+
+<bin file=LucieAnalysis.cc>
+   <use name=UserCode/lucieg/LucieAnalysis>
+</bin>
