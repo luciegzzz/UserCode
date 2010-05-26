@@ -1,0 +1,8 @@
+<environment>
+   <use name=boost>
+   <use name=root>
+</environment>
+
+<bin file=myTemplateAnalysis.cc>
+   <use name=PFAnalyses/myTemplateAnalysis>
+</bin>
