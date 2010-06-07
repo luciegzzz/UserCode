@@ -8,7 +8,7 @@ import FWCore.ParameterSet.Config as cms
 process = cms.Process('PROD')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(100)
+    input = cms.untracked.int32(-1)
 )
 
 #generation
@@ -71,17 +71,17 @@ process.p1 = cms.Path(
 process.load('FastSimulation.Configuration.EventContent_cff')
 process.aod = cms.OutputModule("PoolOutputModule",
                                process.AODSIMEventContent,
-                               fileName = cms.untracked.string('ttbarPU_0.root')
+                               fileName = cms.untracked.string('ttbarPU0.root')
                                )
 ###from QCD cfg
-process.load("RecoParticleFlow.Configuration.Display_EventContent_cff")
-process.display = cms.OutputModule("PoolOutputModule",
-    process.DisplayEventContent,
-    fileName = cms.untracked.string('display.root')
-)
+## process.load("RecoParticleFlow.Configuration.Display_EventContent_cff")
+## process.display = cms.OutputModule("PoolOutputModule",
+##     process.DisplayEventContent,
+##     fileName = cms.untracked.string('display.root')
+## )
 
 #process.outpath = cms.EndPath(process.aod + process.reco + process.display)
-process.outpath = cms.EndPath(process.aod+process.display)
+process.outpath = cms.EndPath(process.aod)#+process.display)
 
 #Message logger
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
@@ -107,5 +107,5 @@ process.options = cms.untracked.PSet(
         'FatalRootError', 
         'NotFound')
 )
-process.MessageLogger.cerr.FwkReport.reportEvery = 20
+process.MessageLogger.cerr.FwkReport.reportEvery = 1000
 #
