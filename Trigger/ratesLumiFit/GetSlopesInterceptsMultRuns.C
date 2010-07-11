@@ -162,9 +162,9 @@ void GetSlopesInterceptsMultRuns( vector<int> runNr,  vector<int> prescaleL1_124
   }
 
   TString sDS = TString(DS);
-  TString filename_eps ="RatesPerLumi136100_err"+sDS+".eps";
+  TString filename_eps ="RatesPerLumi_err"+sDS+".eps";
   RatesPerLumi->SaveAs(filename_eps);
-  TString filename_png ="RatesPerLumi136100_err"+sDS+".png";
+  TString filename_png ="RatesPerLumi_err"+sDS+".png";
   RatesPerLumi->SaveAs(filename_png);
 	
   fitsParameters.close();
