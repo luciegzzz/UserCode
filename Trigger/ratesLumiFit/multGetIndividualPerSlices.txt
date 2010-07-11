@@ -1,0 +1,13 @@
+
+TCanvas c("c","c",0,100,500,500)
+runNr = 138921
+.L GetIndividualPerLSSlices.C+
+.x GetIndividualPerLSSlices.C+(runNr,"Mu")
+.x GetIndividualPerLSSlices.C+(runNr,"EG")
+.x GetIndividualPerLSSlices.C+(runNr,"JMT")
+.x GetIndividualPerLSSlices.C+(runNr,"EGMon")
+.x GetIndividualPerLSSlices.C+(runNr,"JMTMon")
+.x GetIndividualPerLSSlices.C+(runNr,"Comm")
+
+.x GetIndividualPerLSSlices.C+(runNr,"MuMon")
+
