@@ -1,4 +1,3 @@
-.x ~/prettifyPlots.C
 
 TCanvas c("c","c",0,100,500,500)
 vector<int> runNr
