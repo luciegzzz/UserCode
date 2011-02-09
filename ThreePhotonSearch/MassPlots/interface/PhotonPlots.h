@@ -65,10 +65,9 @@ class PhotonPlots : public edm::EDAnalyzer {
   TH1F    *h_photonInvMass;
   TH1F    *h_photonInvMassWithPixelCut;
   TH1F    *h_photonInvMassWithPixelSeed;
-  TH1F    *h_photonInvMassWithPixelSeedAll;
   TH1F    *h_photonInvMassPtCut ;
   TH1F    *h_photonInvMassPtIsoCut;
-  TH1F    *h_photonInvMassPtIsodRCut ;
+  TH1F    *h_photonInvMassWithPixelCutdR;
   TH1F    *h_photon0Pt;
   TH1F    *h_photon1Pt;
   TH1F    *h_photon2Pt;
