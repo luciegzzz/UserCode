@@ -13,47 +13,18 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id$
+// $Id: METsAnalyzer.cc,v 1.1 2011/02/11 09:47:22 lucieg Exp $
 //
 //
 
 
-// system include files
-#include <memory>
 
 // user include files
-#include "FWCore/Framework/interface/Frameworkfwd.h"
-#include "FWCore/Framework/interface/EDAnalyzer.h"
+#include "METsWithPU/METsAnalyzer/plugins/METsAnalyzer.h"
 
-#include "FWCore/Framework/interface/Event.h"
-#include "FWCore/Framework/interface/MakerMacros.h"
-
-#include "FWCore/ParameterSet/interface/ParameterSet.h"
-//
-// class declaration
-//
-
-class METsAnalyzer : public edm::EDAnalyzer {
-   public:
-      explicit METsAnalyzer(const edm::ParameterSet&);
-      ~METsAnalyzer();
-
-
-   private:
-      virtual void beginJob() ;
-      virtual void analyze(const edm::Event&, const edm::EventSetup&);
-      virtual void endJob() ;
-
-      // ----------member data ---------------------------
-};
-
-//
-// constants, enums and typedefs
-//
-
-//
-// static data member definitions
-//
+using namespace std;
+using namespace edm;
+using namespace reco;
 
 //
 // constructors and destructor
@@ -61,8 +32,16 @@ class METsAnalyzer : public edm::EDAnalyzer {
 METsAnalyzer::METsAnalyzer(const edm::ParameterSet& iConfig)
 
 {
-   //now do what ever initialization is needed
+  fOutputFileName = iConfig.getUntrackedParameter<string>("HistOutFile");
+  
+  inputTagCaloMET_ 
+    = iConfig.getParameter<InputTag>("calomet");
 
+  inputTagPFMET_
+    = iConfig.getParameter<InputTag>("pfmet");
+
+  inputTagTcMET_
+    = iConfig.getParameter<InputTag>("tcmet");
 }
 
 
@@ -83,19 +62,32 @@ METsAnalyzer::~METsAnalyzer()
 void
 METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-   using namespace edm;
+
+  Handle<CaloMETCollection> caloMetColl;
+  iEvent.getByLabel(inputTagCaloMET_, caloMetColl);
+  CaloMETCollection::const_iterator caloMet = caloMetColl -> begin();
+
+  Handle<PFMETCollection> pfMetColl;
+  iEvent.getByLabel(inputTagPFMET_, pfMetColl);
+  PFMETCollection::const_iterator pfMet = pfMetColl -> begin();
+  
+  Handle<METCollection> tcMetColl;
+  iEvent.getByLabel(inputTagTcMET_, tcMetColl);
+  METCollection::const_iterator tcMet = tcMetColl -> begin();
+    
+  //Handle<GenMETCollection> genMet;
+  //iEvent.getByLabel(inputTagGenMET_, genMet);
+
+  h_CaloMETPt -> Fill(caloMet->pt());
+  h_pfMETPt   -> Fill(pfMet->pt());
+  h_tcMETPt   -> Fill(tcMet->pt());
+
+
+//   ESHandle<SetupData> pSetup;
+   //iSetup.get<SetupRecord>().get(pSetup);
 
 
 
-#ifdef THIS_IS_AN_EVENT_EXAMPLE
-   Handle<ExampleData> pIn;
-   iEvent.getByLabel("example",pIn);
-#endif
-   
-#ifdef THIS_IS_AN_EVENTSETUP_EXAMPLE
-   ESHandle<SetupData> pSetup;
-   iSetup.get<SetupRecord>().get(pSetup);
-#endif
 }
 
 
@@ -103,11 +95,23 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 void 
 METsAnalyzer::beginJob()
 {
+  //Create output file                                                                                                                                                     
+  hOutputFile = new TFile( fOutputFileName.c_str(), "RECREATE" );
+
+  //histograms definition                                                                                                                                                  
+  h_CaloMETPt                 = new TH1F("h_CaloMETPt","CaloMET Pt(GeV)",150,0,1500);
+  h_pfMETPt                   = new TH1F("h_pfMETPt","PFMET Pt(GeV)",150,0,1500);
+  h_tcMETPt                   = new TH1F("h_tcMETPt","TCMET Pt(GeV)",150,0,1500);
 }
 
 // ------------ method called once each job just after ending the event loop  ------------
 void 
 METsAnalyzer::endJob() {
+  hOutputFile->cd();
+  h_CaloMETPt -> Write();
+  h_pfMETPt   -> Write();
+  h_tcMETPt   -> Write();
+
 }
 
 //define this as a plug-in
