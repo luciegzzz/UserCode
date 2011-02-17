@@ -45,9 +45,10 @@ PhotonPlots::beginJob()
   h_photon0Pt                     = new TH1F("h_photon0Pt","Photon Pt(GeV)",100,0,1000);
   h_photon1Pt                     = new TH1F("h_photon1Pt","Photon Pt(GeV)",100,0,1000);
   h_photon2Pt                     = new TH1F("h_photon2Pt","Photon Pt(GeV)",100,0,1000);
-  h_sumPt3Photons                 = new TH1F(" h_sumPt3Photons","vector sum 3 Photon Pt(GeV) (Loose Iso, Pt cut, dR cut)",300,0,3000);
-  h_sumPt2Photons1Fo              = new TH1F("h_sumPt2Photons1Fo","vector sum 2Photon Pt + 1 FO(GeV)",300,0,3000);
-
+  h_sumPt3Photons                 = new TH1F("h_sumPt3Photons","vector sum 3 Photon Pt(GeV) (Loose Iso, Pt cut, dR cut)",75,0,750);
+  h_sumPt2Photons1Fo              = new TH1F("h_sumPt2Photons1Fo","vector sum 2Photon Pt + 1 FO(GeV)",75,0,750);
+  h_photonInvMassIsodRSumPtgt50   = new TH1F("h_photonInvMassIsodRSumPtgt50","DiPhoton Inv Mass(GeV),Pt>20GeV, Iso,  Pixel cut, dR>0.4, sumPt > 50GeV",100,0,1000);
+ 
 }
 
 // ------------ method called to for each event  ------------
@@ -164,6 +165,7 @@ PhotonPlots::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	//sumPt loose-loose-bad                                                                                                                                                   
 	if(TrkIso0 && TrkIso1 && !TrkIso2){
 	  if (phoIt0 == pho.begin() && phoIt1 == (pho.begin()+1)){
+	    sumPt+=sqrt(sumPx*sumPx+sumPy*sumPy);
 	    h_sumPt2Photons1Fo->Fill(sumPt);
 	  }
 	}
@@ -173,21 +175,26 @@ PhotonPlots::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	h_photonInvMassPtIsoCut ->Fill(mass);  //should have some Z bkg + sig
 
 	if (PhoLike0 && PhoLike1 && PhoLike2) {//if 3 loose photons
+
+	  h_photonInvMassWithPixelCut->Fill(mass);
+	  
+	  //deltaR & cut ON PHOT 0 and 1 (= those used to calculate the invariant mass)                                                                                     
+	  double dR = deltaR(phoIt0->eta(),phoIt0->phi(),phoIt1->eta(),phoIt1->phi());
+	  if (dR < 0.4) continue;
+
+          h_photonInvMassWithPixelCutdR ->Fill(mass);
+
 	  if (phoIt0 == pho.begin() && phoIt1 == (pho.begin()+1)) {//fill pt histo only once - should have #photons entries
 	    sumPt+=sqrt(sumPx*sumPx+sumPy*sumPy);
 	    h_photon0Pt->Fill(pt0);
 	    h_photon1Pt->Fill(pt1);
 	    h_photon2Pt->Fill(pt2);
-	    h_sumPt3Photons->Fill(sumPt);//should have 3 times less entries than the mass plot 
+	    h_sumPt3Photons->Fill(sumPt);//should have 3 times less entries than the mass plot 	  
 	  }
-
-	  h_photonInvMassWithPixelCut->Fill(mass);
-	  //deltaR & cut ON PHOT 0 and 1 (= those used to calculate the invariant mass)
-	  double dR = deltaR(phoIt0->eta(),phoIt0->phi(),phoIt1->eta(),phoIt1->phi());
-	  if (dR < 0.4) continue;
-     	  cout<< "PhoLike, mass :  "<<mass<< " run nr "<< EvtInfo_Run <<" event nr "<<EvtInfo_Event <<endl;//should add an if statement to get high mass candidates only
-	  h_photonInvMassWithPixelCutdR ->Fill(mass);
-
+	  if (sumPt>60) {
+	    h_photonInvMassIsodRSumPtgt50 -> Fill(mass);
+	    cout<< "PhoLike, mass :  "<<mass<< " run nr "<< EvtInfo_Run <<" event nr "<<EvtInfo_Event <<endl;//should add an if statement to get high mass candidates only   
+	  }	
 	}
 
 	if (!PhoLike0 && !PhoLike1) {//2ele for invariant mass <->Z
@@ -221,7 +228,7 @@ PhotonPlots::endJob() {
   h_photon2Pt->Write();
   h_sumPt3Photons->Write();
   h_sumPt2Photons1Fo->Write();
-
+  h_photonInvMassIsodRSumPtgt50->Write();
 
   hOutputFile->Close();
 

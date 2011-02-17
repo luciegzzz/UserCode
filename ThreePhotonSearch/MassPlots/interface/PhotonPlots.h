@@ -73,6 +73,6 @@ class PhotonPlots : public edm::EDAnalyzer {
   TH1F    *h_photon2Pt;
   TH1F    *h_sumPt3Photons;
   TH1F    *h_sumPt2Photons1Fo;
- 
+  TH1F    *h_photonInvMassIsodRSumPtgt50; 
 
 };
