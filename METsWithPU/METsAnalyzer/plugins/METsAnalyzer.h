@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.1 2011/02/11 09:47:22 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.1 2011/02/28 16:14:40 lucieg Exp $
 //
 //
 
@@ -23,6 +23,7 @@
 
 // system include files
 #include <memory>
+#include <string>
 
 // user include files
 //CMSSW includes
@@ -69,7 +70,7 @@ class METsAnalyzer : public edm::EDAnalyzer {
   edm::InputTag       inputTagGenMET_;
 
   TFile   *hOutputFile;
-  string   fOutputFileName;
+  std:: string   fOutputFileName;
 
   TH1F    *h_CaloMETPt;  
   TH1F    *h_pfMETPt;
