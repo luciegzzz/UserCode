@@ -7,8 +7,7 @@ process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
 process.source = cms.Source("PoolSource",
     # replace 'myfile.root' with the source file you want to use
     fileNames = cms.untracked.vstring(
-  '/store/mc/Spring10/QCD_Pt-15_7TeV-pythia6/GEN-SIM-RECO/START3X_V26B-v1/0051/FA72BA34-555E-DF11-AB7E-00304865C2D0.root',
-       
+    'file:../data/QCD_PU0.root'       
     )
 )
 
