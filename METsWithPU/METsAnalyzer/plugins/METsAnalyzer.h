@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.1 2011/02/28 16:14:40 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.2 2011/02/28 16:27:27 lucieg Exp $
 //
 //
 
@@ -34,6 +34,7 @@
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
+#include "DataFormats/Common/interface/Handle.h"
 
 #include "DataFormats/METReco/interface/PFMETCollection.h"
 #include "DataFormats/METReco/interface/PFMET.h"
@@ -43,10 +44,14 @@
 #include "DataFormats/METReco/interface/GenMET.h"
 #include "DataFormats/METReco/interface/CaloMETCollection.h"
 #include "DataFormats/METReco/interface/CaloMET.h"
+#include "DataFormats/VertexReco/interface/Vertex.h"
+#include "DataFormats/VertexReco/interface/VertexFwd.h" //to get access to VertexCollection
 
 //ROOT includes
 #include "TFile.h"
 #include "TH1F.h"
+#include "TH2F.h"
+#include "TF1.h"
 
 //
 // class declaration
@@ -63,18 +68,43 @@ class METsAnalyzer : public edm::EDAnalyzer {
       virtual void analyze(const edm::Event&, const edm::EventSetup&);
       virtual void endJob() ;
   // ----------member data ---------------------------                                                                                                                                                                                  
-  //  edm::InputTag       inputTagPFCandidates_;
-  edm::InputTag       inputTagCaloMET_;
-  edm::InputTag       inputTagPFMET_;
-  edm::InputTag       inputTagTcMET_;
-  edm::InputTag       inputTagGenMET_;
+  edm::InputTag       inputTagMET0_;
+  edm::InputTag       inputTagMET1_;
+  edm::InputTag       inputTagMET2_;
+  edm::InputTag       inputTagNbVtces_;
 
-  TFile   *hOutputFile;
-  std:: string   fOutputFileName;
+  edm::InputTag       inputTagVertices_;
 
-  TH1F    *h_CaloMETPt;  
-  TH1F    *h_pfMETPt;
-  TH1F    *h_tcMETPt;
+  //output 
+  TFile               *outputFile_;
+  std:: string        fOutputFileName_;
+
+  //Nr vertices
+  TH1I                *h_nVertices_;
+
+  //Pt distributions
+  TH1F                *h_MET0Pt_;  
+  TH1F                *h_MET1Pt_;
+  TH1F                *h_MET2Pt_;
+
+  //Pt x, y distributions
+  TH1F                *h_MET0Ptx_;  
+  TH1F                *h_MET1Ptx_;
+  TH1F                *h_MET2Ptx_;
+
+  TH1F                *h_MET0Pty_;  
+  TH1F                *h_MET1Pty_;
+  TH1F                *h_MET2Pty_;
+
+  //Pt x, y = f(sum Et)
+  TH2F                *h_EtxVsSumEt0_;
+  TH2F                *h_EtyVsSumEt0_;
+  TH2F                *h_EtxVsSumEt1_;
+  TH2F                *h_EtyVsSumEt1_;
+  TH2F                *h_EtxVsSumEt2_;
+  TH2F                *h_EtyVsSumEt2_;
+
+
 };
 
 #endif
