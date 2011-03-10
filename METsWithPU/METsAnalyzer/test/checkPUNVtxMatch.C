@@ -32,12 +32,12 @@ void checkPUNVtxMatch(){
   maxEntriesVsPU  -> Fill(5, nrVtxPU5 -> GetMaximumBin());
 
 
-  TFile *f10       =  TFile::Open("rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_10_5_1_1eC.root");
-  TH1D  *nrVtxPU10 = new TH1D("nrVtxPU10", "number of primary vertices", 30, 0 ,30);
-  nrVtxPU10       -> SetFillColor(kBlue);
-  Events->Draw("recoVertexs_offlinePrimaryVertices__PROD.@obj.size()>>nrVtxPU10", "", "SAME");
-  meanVsPU        -> Fill(10, nrVtxPU10 -> GetMean());
-  maxEntriesVsPU  -> Fill(10, nrVtxPU10 -> GetMaximumBin());
+//   TFile *f10       =  TFile::Open("rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_10_5_1_1eC.root");
+//   TH1D  *nrVtxPU10 = new TH1D("nrVtxPU10", "number of primary vertices", 30, 0 ,30);
+//   nrVtxPU10       -> SetFillColor(kBlue);
+//   Events->Draw("recoVertexs_offlinePrimaryVertices__PROD.@obj.size()>>nrVtxPU10", "", "SAME");
+//   meanVsPU        -> Fill(10, nrVtxPU10 -> GetMean());
+//   maxEntriesVsPU  -> Fill(10, nrVtxPU10 -> GetMaximumBin());
 
 
   TFile *f15       =  TFile::Open("rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_15_1_1_fc8.root");
@@ -76,9 +76,9 @@ void checkPUNVtxMatch(){
   nrVtxPU5 -> SetMaximum(200);
   nrVtxPU5 -> Draw();
 
-  nrPV -> cd(3);
-  nrVtxPU10 -> SetMaximum(200);
-  nrVtxPU10 -> Draw();
+ //  nrPV -> cd(3);
+//   nrVtxPU10 -> SetMaximum(200);
+//   nrVtxPU10 -> Draw();
 
   nrPV -> cd(4);
   nrVtxPU15 -> SetMaximum(200);

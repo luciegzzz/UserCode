@@ -15,7 +15,7 @@ void makePUplots()
   //get Pt distributions files
   TFile *fPU0       =  TFile::Open("plotsPU0.root");
   TFile *fPU5       =  TFile::Open("plotsPU5.root");
-  TFile *fPU10      =  TFile::Open("plotsPU10.root");
+  // TFile *fPU10      =  TFile::Open("plotsPU10.root");
   TFile *fPU15      =  TFile::Open("plotsPU15.root");
   TFile *fPU20      =  TFile::Open("plotsPU20.root");
   TFile *fPU25      =  TFile::Open("plotsPU25.root");
@@ -24,7 +24,7 @@ void makePUplots()
   //get Pt,x vs SumEt histo for met 0 
   TH2F *EtxVsSumEt0PU0  = (TH2F*)fPU0  -> Get("h_EtxVsSumEt0");
   TH2F *EtxVsSumEt0PU5  = (TH2F*)fPU5  -> Get("h_EtxVsSumEt0");
-  TH2F *EtxVsSumEt0PU10 = (TH2F*)fPU10 -> Get("h_EtxVsSumEt0");
+  //  TH2F *EtxVsSumEt0PU10 = (TH2F*)fPU10 -> Get("h_EtxVsSumEt0");
   TH2F *EtxVsSumEt0PU15 = (TH2F*)fPU15 -> Get("h_EtxVsSumEt0");
   TH2F *EtxVsSumEt0PU20 = (TH2F*)fPU20 -> Get("h_EtxVsSumEt0");
   TH2F *EtxVsSumEt0PU25 = (TH2F*)fPU25 -> Get("h_EtxVsSumEt0");
@@ -40,10 +40,10 @@ void makePUplots()
   TF1* f5 = new TF1("f5", "gaus", -50, 50);
   EtxVsSumEt0SlicePU5 -> Fit("f5");
 
-  TH1D *EtxVsSumEt0SlicePU10 = EtxVsSumEt0PU10 -> ProjectionY("PU10");
-  EtxVsSumEt0SlicePU10 -> Draw();
-  TF1* f10 = new TF1("f10", "gaus", -50, 50);
-  EtxVsSumEt0SlicePU10 -> Fit("f10");
+//   TH1D *EtxVsSumEt0SlicePU10 = EtxVsSumEt0PU10 -> ProjectionY("PU10");
+//   EtxVsSumEt0SlicePU10 -> Draw();
+//   TF1* f10 = new TF1("f10", "gaus", -50, 50);
+//   EtxVsSumEt0SlicePU10 -> Fit("f10");
 
   TH1D *EtxVsSumEt0SlicePU15 = EtxVsSumEt0PU15 -> ProjectionY("PU15");
   EtxVsSumEt0SlicePU15 -> Draw();
@@ -65,14 +65,14 @@ void makePUplots()
   TH1D *SigmaEtxVsPU = new TH1D("SigmaEtx0VsPU", "sigma(Et,x) vs PU", 30, 0, 30);//, 20, 0, 20);
   SigmaEtx0VsPU -> Fill(0, f0  -> GetParameter(2));
   SigmaEtx0VsPU -> Fill(5, f5  -> GetParameter(2));
-  SigmaEtx0VsPU -> Fill(10,f10 -> GetParameter(2));
+  //SigmaEtx0VsPU -> Fill(10,f10 -> GetParameter(2));
   SigmaEtx0VsPU -> Fill(15,f15 -> GetParameter(2));
   SigmaEtx0VsPU -> Fill(20,f20 -> GetParameter(2));
   SigmaEtx0VsPU -> Fill(25,f25 -> GetParameter(2));
 
   SigmaEtx0VsPU -> SetBinError(1, f0  -> GetParError(2));
   SigmaEtx0VsPU -> SetBinError(6, f5  -> GetParError(2));
-  SigmaEtx0VsPU -> SetBinError(11,f10 -> GetParError(2));
+  //  SigmaEtx0VsPU -> SetBinError(11,f10 -> GetParError(2));
   SigmaEtx0VsPU -> SetBinError(16,f15 -> GetParError(2));
   SigmaEtx0VsPU -> SetBinError(21,f20 -> GetParError(2));
   SigmaEtx0VsPU -> SetBinError(26,f25 -> GetParError(2));
@@ -81,14 +81,14 @@ void makePUplots()
   TH1D *RMSEtx0VsPU = new TH1D("RMSEtx0VsPU", "RMS(Et,x) vs PU", 30, 0, 30);//, 20, 0, 20);
   RMSEtx0VsPU -> Fill(0, EtxVsSumEt0SlicePU0  -> GetRMS());
   RMSEtx0VsPU -> Fill(5, EtxVsSumEt0SlicePU5  -> GetRMS());
-  RMSEtx0VsPU -> Fill(10,EtxVsSumEt0SlicePU10 -> GetRMS());
+  // RMSEtx0VsPU -> Fill(10,EtxVsSumEt0SlicePU10 -> GetRMS());
   RMSEtx0VsPU -> Fill(15,EtxVsSumEt0SlicePU15 -> GetRMS());
   RMSEtx0VsPU -> Fill(20,EtxVsSumEt0SlicePU20 -> GetRMS());
   RMSEtx0VsPU -> Fill(25,EtxVsSumEt0SlicePU25 -> GetRMS());
 
   RMSEtx0VsPU -> SetBinError(0, 0.);//EtxVsSumEt0SlicePU0  -> GetRMSError(2));
   RMSEtx0VsPU -> SetBinError(5, 0.);//EtxVsSumEt0SlicePU5  -> GetRMSError(2));
-  RMSEtx0VsPU -> SetBinError(10,0.);//EtxVsSumEt0SlicePU10 -> GetRMSError(2));
+  //  RMSEtx0VsPU -> SetBinError(10,0.);//EtxVsSumEt0SlicePU10 -> GetRMSError(2));
   RMSEtx0VsPU -> SetBinError(15,0.);//EtxVsSumEt0SlicePU15 -> GetRMSError(2));
   RMSEtx0VsPU -> SetBinError(20,0.);//EtxVsSumEt0SlicePU20 -> GetRMSError(2));
   RMSEtx0VsPU -> SetBinError(25,0.);//EtxVsSumEt0SlicePU25 -> GetRMSError(2));
@@ -100,7 +100,7 @@ void makePUplots()
  //get Pt,x vs SumEt histo for met 1 
   TH2F *EtxVsSumEt1PU0  = (TH2F*)fPU0  -> Get("h_EtxVsSumEt1");
   TH2F *EtxVsSumEt1PU5  = (TH2F*)fPU5  -> Get("h_EtxVsSumEt1");
-  TH2F *EtxVsSumEt1PU10 = (TH2F*)fPU10 -> Get("h_EtxVsSumEt1");
+  // TH2F *EtxVsSumEt1PU10 = (TH2F*)fPU10 -> Get("h_EtxVsSumEt1");
   TH2F *EtxVsSumEt1PU15 = (TH2F*)fPU15 -> Get("h_EtxVsSumEt1");
   TH2F *EtxVsSumEt1PU20 = (TH2F*)fPU20 -> Get("h_EtxVsSumEt1");
   TH2F *EtxVsSumEt1PU25 = (TH2F*)fPU25 -> Get("h_EtxVsSumEt1");
@@ -116,10 +116,10 @@ void makePUplots()
   TF1* f5 = new TF1("f5", "gaus", -50, 50);
   EtxVsSumEt1SlicePU0 -> Fit("f5");
 
-  TH1D *EtxVsSumEt1SlicePU10 = EtxVsSumEt1PU10 -> ProjectionY("PU10");
-  EtxVsSumEt1SlicePU10 -> Draw();
-  TF1* f10 = new TF1("f10", "gaus", -50, 50);
-  EtxVsSumEt1SlicePU10 -> Fit("f10");
+//   TH1D *EtxVsSumEt1SlicePU10 = EtxVsSumEt1PU10 -> ProjectionY("PU10");
+//   EtxVsSumEt1SlicePU10 -> Draw();
+//   TF1* f10 = new TF1("f10", "gaus", -50, 50);
+//   EtxVsSumEt1SlicePU10 -> Fit("f10");
 
   TH1D *EtxVsSumEt1SlicePU15 = EtxVsSumEt1PU15 -> ProjectionY("PU15");
   EtxVsSumEt1SlicePU15 -> Draw();
@@ -141,14 +141,14 @@ void makePUplots()
   TH1D *SigmaEtxVsPU = new TH1D("SigmaEtx1VsPU", "sigma(Et,x) vs PU", 30, 0, 30);//, 20, 0, 20);
   SigmaEtx1VsPU -> Fill(0, f0  -> GetParameter(2));
   SigmaEtx1VsPU -> Fill(5, f5  -> GetParameter(2));
-  SigmaEtx1VsPU -> Fill(10,f10 -> GetParameter(2));
+  //  SigmaEtx1VsPU -> Fill(10,f10 -> GetParameter(2));
   SigmaEtx1VsPU -> Fill(15,f15 -> GetParameter(2));
   SigmaEtx1VsPU -> Fill(20,f20 -> GetParameter(2));
   SigmaEtx1VsPU -> Fill(25,f25 -> GetParameter(2));
 
   SigmaEtx1VsPU -> SetBinError(1, f0  -> GetParError(2));
   SigmaEtx1VsPU -> SetBinError(6, f5  -> GetParError(2));
-  SigmaEtx1VsPU -> SetBinError(11,f10 -> GetParError(2));
+  //  SigmaEtx1VsPU -> SetBinError(11,f10 -> GetParError(2));
   SigmaEtx1VsPU -> SetBinError(16,f15 -> GetParError(2));
   SigmaEtx1VsPU -> SetBinError(21,f20 -> GetParError(2));
   SigmaEtx1VsPU -> SetBinError(26,f25 -> GetParError(2));
@@ -157,14 +157,14 @@ void makePUplots()
   TH1D *RMSEtxVsPU = new TH1D("RMSEtx1VsPU", "RMS(Et,x) vs PU", 30, 0, 30);//, 20, 0, 20);
   RMSEtx1VsPU -> Fill(0, EtxVsSumEt1SlicePU0  -> GetRMS());
   RMSEtx1VsPU -> Fill(5, EtxVsSumEt1SlicePU5  -> GetRMS());
-  RMSEtx1VsPU -> Fill(10,EtxVsSumEt1SlicePU10 -> GetRMS());
+  // RMSEtx1VsPU -> Fill(10,EtxVsSumEt1SlicePU10 -> GetRMS());
   RMSEtx1VsPU -> Fill(15,EtxVsSumEt1SlicePU15 -> GetRMS());
   RMSEtx1VsPU -> Fill(20,EtxVsSumEt1SlicePU20 -> GetRMS());
   RMSEtx1VsPU -> Fill(25,EtxVsSumEt1SlicePU25 -> GetRMS());
 
   RMSEtx1VsPU -> SetBinError(0, 0.);//EtxVsSumEt1SlicePU0  -> GetRMSError(2));
   RMSEtx1VsPU -> SetBinError(5, 0.);//EtxVsSumEt1SlicePU5  -> GetRMSError(2));
-  RMSEtx1VsPU -> SetBinError(10,0.);//EtxVsSumEt1SlicePU10 -> GetRMSError(2));
+  // RMSEtx1VsPU -> SetBinError(10,0.);//EtxVsSumEt1SlicePU10 -> GetRMSError(2));
   RMSEtx1VsPU -> SetBinError(15,0.);//EtxVsSumEt1SlicePU15 -> GetRMSError(2));
   RMSEtx1VsPU -> SetBinError(20,0.);//EtxVsSumEt1SlicePU20 -> GetRMSError(2));
   RMSEtx1VsPU -> SetBinError(25,0.);//EtxVsSumEt1SlicePU25 -> GetRMSError(2));
@@ -175,7 +175,7 @@ void makePUplots()
  //get Pt,x vs SumEt histo for met 2 
   TH2F *EtxVsSumEt2PU0  = (TH2F*)fPU0  -> Get("h_EtxVsSumEt2");
   TH2F *EtxVsSumEt2PU5  = (TH2F*)fPU5  -> Get("h_EtxVsSumEt2");
-  TH2F *EtxVsSumEt2PU10 = (TH2F*)fPU10 -> Get("h_EtxVsSumEt2");
+  // TH2F *EtxVsSumEt2PU10 = (TH2F*)fPU10 -> Get("h_EtxVsSumEt2");
   TH2F *EtxVsSumEt2PU15 = (TH2F*)fPU15 -> Get("h_EtxVsSumEt2");
   TH2F *EtxVsSumEt2PU20 = (TH2F*)fPU20 -> Get("h_EtxVsSumEt2");
   TH2F *EtxVsSumEt2PU25 = (TH2F*)fPU25 -> Get("h_EtxVsSumEt2");
@@ -191,10 +191,10 @@ void makePUplots()
   TF1* f5 = new TF1("f5", "gaus", -50, 50);
   EtxVsSumEt2SlicePU0 -> Fit("f5");
 
-  TH1D *EtxVsSumEt2SlicePU10 = EtxVsSumEt2PU10 -> ProjectionY("PU10");
-  EtxVsSumEt2SlicePU10 -> Draw();
-  TF1* f10 = new TF1("f10", "gaus", -50, 50);
-  EtxVsSumEt2SlicePU10 -> Fit("f10");
+//   TH1D *EtxVsSumEt2SlicePU10 = EtxVsSumEt2PU10 -> ProjectionY("PU10");
+//   EtxVsSumEt2SlicePU10 -> Draw();
+//   TF1* f10 = new TF1("f10", "gaus", -50, 50);
+//   EtxVsSumEt2SlicePU10 -> Fit("f10");
 
   TH1D *EtxVsSumEt2SlicePU15 = EtxVsSumEt2PU15 -> ProjectionY("PU15");
   EtxVsSumEt2SlicePU15 -> Draw();
@@ -216,14 +216,14 @@ void makePUplots()
   TH1D *SigmaEtxVsPU = new TH1D("SigmaEtx2VsPU", "sigma(Et,x) vs PU", 30, 0, 30);//, 20, 0, 20);
   SigmaEtx2VsPU -> Fill(0, f0  -> GetParameter(2));
   SigmaEtx2VsPU -> Fill(5, f5  -> GetParameter(2));
-  SigmaEtx2VsPU -> Fill(10,f10 -> GetParameter(2));
+  //  SigmaEtx2VsPU -> Fill(10,f10 -> GetParameter(2));
   SigmaEtx2VsPU -> Fill(15,f15 -> GetParameter(2));
   SigmaEtx2VsPU -> Fill(20,f20 -> GetParameter(2));
   SigmaEtx2VsPU -> Fill(25,f25 -> GetParameter(2));
 
   SigmaEtx2VsPU -> SetBinError(1, f0  -> GetParError(2));
   SigmaEtx2VsPU -> SetBinError(6, f5  -> GetParError(2));
-  SigmaEtx2VsPU -> SetBinError(11,f10 -> GetParError(2));
+  //  SigmaEtx2VsPU -> SetBinError(11,f10 -> GetParError(2));
   SigmaEtx2VsPU -> SetBinError(16,f15 -> GetParError(2));
   SigmaEtx2VsPU -> SetBinError(21,f20 -> GetParError(2));
   SigmaEtx2VsPU -> SetBinError(26,f25 -> GetParError(2));
@@ -232,14 +232,14 @@ void makePUplots()
   TH1D *RMSEtxVsPU = new TH1D("RMSEtx2VsPU", "RMS(Et,x) vs PU", 30, 0, 30);//, 20, 0, 20);
   RMSEtx2VsPU -> Fill(0, EtxVsSumEt2SlicePU0  -> GetRMS());
   RMSEtx2VsPU -> Fill(5, EtxVsSumEt2SlicePU5  -> GetRMS());
-  RMSEtx2VsPU -> Fill(10,EtxVsSumEt2SlicePU10 -> GetRMS());
+  //  RMSEtx2VsPU -> Fill(10,EtxVsSumEt2SlicePU10 -> GetRMS());
   RMSEtx2VsPU -> Fill(15,EtxVsSumEt2SlicePU15 -> GetRMS());
   RMSEtx2VsPU -> Fill(20,EtxVsSumEt2SlicePU20 -> GetRMS());
   RMSEtx2VsPU -> Fill(25,EtxVsSumEt2SlicePU25 -> GetRMS());
 
   RMSEtx2VsPU -> SetBinError(0,0.);// EtxVsSumEt2SlicePU0  -> GetRMSError(2));
   RMSEtx2VsPU -> SetBinError(5,0.);// EtxVsSumEt2SlicePU5  -> GetRMSError(2));
-  RMSEtx2VsPU -> SetBinError(10,0.);//EtxVsSumEt2SlicePU10 -> GetRMSError(2));
+  // RMSEtx2VsPU -> SetBinError(10,0.);//EtxVsSumEt2SlicePU10 -> GetRMSError(2));
   RMSEtx2VsPU -> SetBinError(15,0.);//EtxVsSumEt2SlicePU15 -> GetRMSError(2));
   RMSEtx2VsPU -> SetBinError(20,0.);//EtxVsSumEt2SlicePU20 -> GetRMSError(2));
   RMSEtx2VsPU -> SetBinError(25,0.);//EtxVsSumEt2SlicePU25 -> GetRMSError(2));

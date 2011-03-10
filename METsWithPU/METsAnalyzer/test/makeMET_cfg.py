@@ -2,15 +2,7 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("REPROD")
 
-process.source = cms.Source("PoolSource", 
-     fileNames = cms.untracked.vstring(#'rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_0_1_1_XND.root'#,
-                                       #'rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_5_1_1_Khx.root'#,
-                                      # 'rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_10_1_1_r5j.root'
-                                       # 'rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_15_1_1_fc8.root'
-                                       # 'rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_20_1_1_LoH.root'
-                                        'rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_25_1_1_Cal.root'
-                                        )
-)
+process.load("METsWithPU.METsAnalyzer.source_QCD_15-500_7TeV_MCIdl_cff")
 
 process.options   = cms.untracked.PSet( wantSummary = cms.untracked.bool(False))
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
@@ -31,7 +23,7 @@ process.p = cms.Path(
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METsPU25.root'),
+                               fileName = cms.untracked.string('METs_QCD_15-500_PU15.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoPFCandidates_particleFlow_*_*',
                                                    'keep recoPFMETs_*_*_*',
