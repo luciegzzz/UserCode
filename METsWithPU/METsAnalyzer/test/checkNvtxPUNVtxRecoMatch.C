@@ -11,19 +11,20 @@ void checkPUNVtxMatch(){
 
   //  TFile *f0 = new TFile("../data/QCD_PU0.root");
 
-  TH2D *maxEntriesVsPU  = new TH2D("maxEntriesVsPU", "number of primary vertices with max entries vs pile-up", 30, 0, 30, 20, 0, 20);
-  TH2D *meanVsPU        = new TH2D("meanVsPU", "mean number of primary vertices vs pile-up", 30, 0, 30, 20, 0, 20);
+  TH2D *maxEntriesVsNVTxPU  = new TH2D("maxEntriesVsNvtxPU", "number of primary vertices with max entries vs pile-up nr of PU vertices", 30, 0, 30, 20, 0, 20);
+  TH2D *meanVsNVtxPU        = new TH2D("meanVsNvtxPU", "mean number of primary vertices vs nr of pile-up vertices", 30, 0, 30, 20, 0, 20);
 
   //  TCanvas *c = new TCanvas("c");//line to comment/uncomment depending on root complaining that meanVsPU doesn't exist
 
-  // TFile *f0       =  TFile::Open("rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_0_1_1_XND.root");
-  TFile *f0       =  TFile::Open("~/QCD_PU15.root");
-  TH1D  *nrVtxPU0 = new TH1D("nrVtxPU0", "number of primary vertices", 30, 0 ,30);
-  nrVtxPU0        -> SetFillColor(kBlue);
-  //Events->Draw("recoVertexs_offlinePrimaryVertices__PROD.@obj.size()>>nrVtxPU0");
-  Events->Draw("edmHepMCProduct_famosPileUp_PileUpEvents_PROD.obj.GetEvent()->vertices_size()>>nrVtxPU0");
-  meanVsPU        -> Fill(0, nrVtxPU0 -> GetMean());
-  maxEntriesVsPU  -> Fill(0, nrVtxPU0 -> GetMaximumBin());
+  TFile *f0       = TFile::Open("rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_15-500/QCD_15-500_PU_0_10_1_nzL.root");
+  TH2D  *nrVtxPU0 = new TH2D("nrVtxPU0", "number of reco primary vertices vs nr of PU vertices", 30, 0 ,30, 30, 0, 30);
+  Events->Draw("recoVertexs_offlinePrimaryVertices__PROD.@obj.size():edmHepMCProduct_famosPileUp_PileUpEvents_PROD.obj.GetEvent()->vertices_size()>>nrVtxPU0");
+
+
+  TFile *f5       = TFile::Open("rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_15-500/QCD_15-500_PU_5_1_1_QY1.root");
+  //TH2D  *nrVtxPU5 = new TH2D("nrVtxPU5", "number of reco primary vertices vs nr of PU vertices", 30, 0 ,30, 30, 0, 30);
+  Events->Draw("recoVertexs_offlinePrimaryVertices__PROD.@obj.size():edmHepMCProduct_famosPileUp_PileUpEvents_PROD.obj.GetEvent()->vertices_size()", "", "SAME");
+
 
 
 //   TFile *f5       =  TFile::Open("rfio:/castor/cern.ch/user/l/lucieg/FastSimQCD/QCD_80-120_PU_5_1_1_Khx.root");
