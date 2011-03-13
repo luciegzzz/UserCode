@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.4 2011/03/13 15:05:37 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.5 2011/03/13 18:20:43 lucieg Exp $
 //
 //
 
@@ -47,6 +47,9 @@ METsAnalyzer::METsAnalyzer(const edm::ParameterSet& iConfig)
   inputTagHepMCEvent_
    = iConfig.getParameter<InputTag>("HepMCEvent");
 
+  inputTagType_
+   = iConfig.getParameter<InputTag>("inputType");
+
 
 }
 
@@ -73,7 +76,7 @@ METsAnalyzer::beginJob()
   //histograms definition                                                                                                                                 
   h_nRecoVertices_        = new TH1I("h_nRecoVertices", "nr of reco PV", 25, 0, 25);
   h_nPUVertices_          = new TH1I("h_nPUVertices", "nr of PU vertices", 25, 0, 25);
-  h_nrecoVtcesVsnPUVtces_ = new TH2D("h_nrecoVtcesVsnPUVtces_", "nr of reco vertices vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
+  h_nrecoVtcesVsnPUVtces_ = new TH2D("h_nrecoVtcesVsnPUVtces", "nr of reco vertices vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
 
   /*****TH1 Pt histo *******/                 
   h_MET0PtVsNPU_    = new TH2D("h_MET0PtVsNPU","MET0 Pt(GeV) vs NPU",30 ,0, 30, 100, 0, 100);
@@ -120,11 +123,23 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   int nVertices = vertices -> size();
   h_nRecoVertices_   -> Fill(nVertices);
  
-  //PU vertices
-  Handle<edm::HepMCProduct> pileUpSource;
-  iEvent.getByLabel("famosPileUp", "PileUpEvents", pileUpSource);
-  int nPUVertices = (pileUpSource -> GetEvent()) -> vertices_size();
-  h_nPUVertices_   -> Fill(nPUVertices);
+
+  if (inputType_ = "FastSim"){
+    //PU vertices
+    Handle<edm::HepMCProduct> pileUpSource;
+    iEvent.getByLabel("famosPileUp", "PileUpEvents", pileUpSource);
+    int nPUVertices = (pileUpSource -> GetEvent()) -> vertices_size();
+    h_nPUVertices_   -> Fill(nPUVertices);
+
+  }
+
+  else if (inputType_ = "MCofficial"){
+    Handle<PileupSummaryInfo> pileUpSource;
+    iEvent.getByLabel("addPileupInfo", pileUpSource);
+    int nPUVertices = pileUpSource -> getPU_NumInteractions();
+    h_nPUVertices_   -> Fill(nPUVertices);
+
+  }
 
   //nreco PV vs n PU vertices histo
   TH2D *h_nrecoVtcesVsnPUVtcesTemp = new TH2D("h_nrecoVtcesVsnPUVtcesTemp", "nhtemp", 50, 0, 50, 50, 0, 50);

@@ -49,7 +49,7 @@ void checkNvtxPUNVtxRecoMatch(){
    //nrVtxPU0 -> Draw("colz");
 
    TH2I  *nrVtxAllPU = new TH2I("nrVtxAllPU", "number of reco primary vertices vs nr of PU vertices", 50, 0 ,50, 50, 0, 50);
-   //   nrVtxAllPU -> Add(nrVtxPU0);
+   nrVtxAllPU -> Add(nrVtxPU0);
    nrVtxAllPU -> Add(nrVtxPU5);
    nrVtxAllPU -> Add(nrVtxPU10);
    nrVtxAllPU -> Add(nrVtxPU15);

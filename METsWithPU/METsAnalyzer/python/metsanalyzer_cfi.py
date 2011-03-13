@@ -6,5 +6,6 @@ analysis = cms.EDAnalyzer('METsAnalyzer',
                           met2     = cms.InputTag("pfMetNoPileUp"),#to be renamed 
                           vertices = cms.InputTag("offlinePrimaryVertices"),
                           HepMCEvent = cms.InputTag("PileUpEvents"),
+                          inputType  = cms.InputTag("FastSim"),
                           HistOutFile = cms.untracked.string('plotsPU5.root')
 )

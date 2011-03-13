@@ -54,7 +54,7 @@ process.p = cms.Path(
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METs_QCD_15_500_FastSim.root'),
+                               fileName = cms.untracked.string('/castor/cern.ch/user/l/lucieg/MET/METs_QCD_15_500_FastSim.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoPFCandidates_particleFlow_*_*',
                                                    'keep recoPFMETs_*_*_*',

@@ -3,7 +3,7 @@
 // Package:    METsAnalyzer
 // Class:      METsAnalyzer
 // 
-/**\class METsAnalyzer METsAnalyzer.cc METs/METsAnalyzer/src/METsAnalyzer.cc
+/**\class METsAnalyzer METsAnalyzer.cc METs/METsAnalyzer/plugins/METsAnalyzer.cc
 
  Description: [one line class summary]
 
@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.4 2011/03/13 15:05:37 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.5 2011/03/13 18:20:43 lucieg Exp $
 //
 //
 
@@ -76,6 +76,8 @@ class METsAnalyzer : public edm::EDAnalyzer {
   edm::InputTag       inputTagVertices_;
 
   edm::InputTag       inputTagHepMCEvent_;
+
+  edm::InputTag       inputType_;
 
   //output 
   TFile               *outputFile_;
