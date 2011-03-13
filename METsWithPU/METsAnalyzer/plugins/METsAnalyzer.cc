@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.2 2011/02/11 13:54:10 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.3 2011/03/08 17:19:17 lucieg Exp $
 //
 //
 
@@ -43,6 +43,11 @@ METsAnalyzer::METsAnalyzer(const edm::ParameterSet& iConfig)
 
   inputTagVertices_
     = iConfig.getParameter<InputTag>("vertices");
+
+  inputTagHepMCEvent_
+   = iConfig.getParameter<InputTag>("HepMCEvent");
+
+
 }
 
 
@@ -66,29 +71,31 @@ METsAnalyzer::beginJob()
   outputFile_ = new TFile( fOutputFileName_.c_str(), "RECREATE" );
 
   //histograms definition                                                                                                                                 
-  h_nVertices_ = new TH1I("h_nVertices", "nr of PV", 25, 0, 25);
+  h_nVertices_   = new TH1I("h_nVertices", "nr of PV", 25, 0, 25);
+  h_nPUVertices_ = new TH1I("h_nPUVertices", "nr of PV", 25, 0, 25);
+  h_nrecoVtcesVsnPUVtces_ = new TH2D("h_nrecoVtcesVsnPUVtces_", "nr of reco vertices vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
 
   /*****TH1 Pt histo *******/                 
-  h_MET0Pt_    = new TH1F("h_MET0Pt","MET0 Pt(GeV)",100,0,100);
-  h_MET1Pt_    = new TH1F("h_MET1Pt","MET1 Pt(GeV)",100,0,100);
-  h_MET2Pt_    = new TH1F("h_MET2Pt","MET2 Pt(GeV)",100,0,100);
+  h_MET0Pt_    = new TH1D("h_MET0Pt","MET0 Pt(GeV)",100,0,100);
+  h_MET1Pt_    = new TH1D("h_MET1Pt","MET1 Pt(GeV)",100,0,100);
+  h_MET2Pt_    = new TH1D("h_MET2Pt","MET2 Pt(GeV)",100,0,100);
 
-  h_MET0Ptx_   = new TH1F("h_MET0Ptx","MET0 Ptx(GeV)",100,-50, 50);
-  h_MET1Ptx_   = new TH1F("h_MET1Ptx","MET1 Ptx(GeV)",100,-50, 50);
-  h_MET2Ptx_   = new TH1F("h_MET2Ptx","MET2 Ptx(GeV)",100,-50, 50);
+  h_MET0Ptx_   = new TH1D("h_MET0Ptx","MET0 Ptx(GeV)",100,-50, 50);
+  h_MET1Ptx_   = new TH1D("h_MET1Ptx","MET1 Ptx(GeV)",100,-50, 50);
+  h_MET2Ptx_   = new TH1D("h_MET2Ptx","MET2 Ptx(GeV)",100,-50, 50);
 
-  h_MET0Pty_   = new TH1F("h_MET0Pty","MET0 Pty(GeV)",100,-50, 50);
-  h_MET1Pty_   = new TH1F("h_MET1Pty","MET1 Pty(GeV)",100,-50, 50);
-  h_MET2Pty_   = new TH1F("h_MET2Pty","MET2 Pty(GeV)",100,-50, 50);
+  h_MET0Pty_   = new TH1D("h_MET0Pty","MET0 Pty(GeV)",100,-50, 50);
+  h_MET1Pty_   = new TH1D("h_MET1Pty","MET1 Pty(GeV)",100,-50, 50);
+  h_MET2Pty_   = new TH1D("h_MET2Pty","MET2 Pty(GeV)",100,-50, 50);
 
 
   /*****TH2 res...histo******/
-  h_EtxVsSumEt0_ = new TH2F("h_EtxVsSumEt0", "Et,x vs sumEt caloMet", 500, 0, 1000, 50, -50, 50);
-  h_EtyVsSumEt0_ = new TH2F("h_EtyVsSumEt0", "Et,y vs sumEt caloMet", 500, 0, 1000, 50, -50, 50);
-  h_EtxVsSumEt1_ = new TH2F("h_EtxVsSumEt1", "Et,x vs sumEt pfMet", 500, 0, 1000, 50, -50, 50);
-  h_EtyVsSumEt1_ = new TH2F("h_EtyVsSumEt1", "Et,y vs sumEt pfMet", 500, 0, 1000, 50, -50, 50); 
-  h_EtxVsSumEt2_ = new TH2F("h_EtxVsSumEt2", "Et,x vs sumEt pfMetNoPileUp", 500, 0, 1000, 50, -50, 50); 
-  h_EtyVsSumEt2_ = new TH2F("h_EtyVsSumEt2", "Et,y vs sumEt pfMetNoPileUp", 500, 0, 1000, 50, -50, 50);
+  h_EtxVsSumEt0_ = new TH2D("h_EtxVsSumEt0", "Et,x vs sumEt caloMet", 500, 0, 1000, 50, -50, 50);
+  h_EtyVsSumEt0_ = new TH2D("h_EtyVsSumEt0", "Et,y vs sumEt caloMet", 500, 0, 1000, 50, -50, 50);
+  h_EtxVsSumEt1_ = new TH2D("h_EtxVsSumEt1", "Et,x vs sumEt pfMet", 500, 0, 1000, 50, -50, 50);
+  h_EtyVsSumEt1_ = new TH2D("h_EtyVsSumEt1", "Et,y vs sumEt pfMet", 500, 0, 1000, 50, -50, 50); 
+  h_EtxVsSumEt2_ = new TH2D("h_EtxVsSumEt2", "Et,x vs sumEt pfMetNoPileUp", 500, 0, 1000, 50, -50, 50); 
+  h_EtyVsSumEt2_ = new TH2D("h_EtyVsSumEt2", "Et,y vs sumEt pfMetNoPileUp", 500, 0, 1000, 50, -50, 50);
 
 }
 
@@ -117,6 +124,15 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   int nVertices = vertices -> size();
   h_nVertices_   -> Fill(nVertices);
  
+  Handle<edm::HepMCProduct> pileUpSource;
+  iEvent.getByLabel("famosPileUp", "PileUpEvents", pileUpSource);
+  int nPUVertices = (pileUpSource -> GetEvent()) -> vertices_size();
+  h_nPUVertices_   -> Fill(nPUVertices);
+
+  TH2D *h_nrecoVtcesVsnPUVtcesTemp = new TH2D("h_nrecoVtcesVsnPUVtcesTemp", "nhtemp", 50, 0, 50, 50, 0, 50);
+  h_nrecoVtcesVsnPUVtcesTemp -> Fill(nPUVertices,nVertices);
+  h_nrecoVtcesVsnPUVtces_ -> Add(h_nrecoVtcesVsnPUVtcesTemp);
+
   h_MET0Pt_      -> Fill(met0->pt());
   h_MET1Pt_      -> Fill(met1->pt());
   h_MET2Pt_      -> Fill(met2->pt());
@@ -153,6 +169,8 @@ METsAnalyzer::endJob() {
 
 
   h_nVertices_     -> Write();
+  h_nPUVertices_   -> Write();
+  h_nrecoVtcesVsnPUVtces_ -> Write();
 
   h_MET0Pt_        -> Write();
   h_MET1Pt_        -> Write();

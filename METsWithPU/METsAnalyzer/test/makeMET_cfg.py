@@ -2,10 +2,10 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("REPROD")
 
-process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCIdl_cff")
+process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartup_cff")
 
 process.options   = cms.untracked.PSet( wantSummary = cms.untracked.bool(False))
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
 
 #GT -for type I corrections
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
@@ -62,7 +62,8 @@ process.out = cms.OutputModule("PoolOutputModule",
                                                    'keep recoCaloMETs_*_*_*',
                                                    'keep recoVertexs_*_*_*',
                                                    'keep *_metJESCorAK5PFJet_*_*',
-                                                   'keep *_ak5PFL1Offset_*_*'
+                                                   'keep *_ak5PFL1Offset_*_*',
+                                                   'keep edmHepMCProduct_*_*_*'
                                                                       )
                                )
 

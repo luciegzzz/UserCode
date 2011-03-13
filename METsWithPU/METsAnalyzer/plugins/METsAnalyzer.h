@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.2 2011/02/28 16:27:27 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.3 2011/03/08 17:19:17 lucieg Exp $
 //
 //
 
@@ -46,7 +46,7 @@
 #include "DataFormats/METReco/interface/CaloMET.h"
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/VertexReco/interface/VertexFwd.h" //to get access to VertexCollection
-
+#include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
 //ROOT includes
 #include "TFile.h"
 #include "TH1F.h"
@@ -75,34 +75,37 @@ class METsAnalyzer : public edm::EDAnalyzer {
 
   edm::InputTag       inputTagVertices_;
 
+  edm::InputTag       inputTagHepMCEvent_;
+
   //output 
   TFile               *outputFile_;
   std:: string        fOutputFileName_;
 
   //Nr vertices
   TH1I                *h_nVertices_;
-
+  TH1I                *h_nPUVertices_;
+  TH2D                *h_nrecoVtcesVsnPUVtces_;
   //Pt distributions
-  TH1F                *h_MET0Pt_;  
-  TH1F                *h_MET1Pt_;
-  TH1F                *h_MET2Pt_;
+  TH1D                *h_MET0Pt_;  
+  TH1D                *h_MET1Pt_;
+  TH1D                *h_MET2Pt_;
 
   //Pt x, y distributions
-  TH1F                *h_MET0Ptx_;  
-  TH1F                *h_MET1Ptx_;
-  TH1F                *h_MET2Ptx_;
+  TH1D                *h_MET0Ptx_;  
+  TH1D                *h_MET1Ptx_;
+  TH1D                *h_MET2Ptx_;
 
-  TH1F                *h_MET0Pty_;  
-  TH1F                *h_MET1Pty_;
-  TH1F                *h_MET2Pty_;
+  TH1D                *h_MET0Pty_;  
+  TH1D                *h_MET1Pty_;
+  TH1D                *h_MET2Pty_;
 
   //Pt x, y = f(sum Et)
-  TH2F                *h_EtxVsSumEt0_;
-  TH2F                *h_EtyVsSumEt0_;
-  TH2F                *h_EtxVsSumEt1_;
-  TH2F                *h_EtyVsSumEt1_;
-  TH2F                *h_EtxVsSumEt2_;
-  TH2F                *h_EtyVsSumEt2_;
+  TH2D                *h_EtxVsSumEt0_;
+  TH2D                *h_EtyVsSumEt0_;
+  TH2D                *h_EtxVsSumEt1_;
+  TH2D                *h_EtyVsSumEt1_;
+  TH2D                *h_EtxVsSumEt2_;
+  TH2D                *h_EtyVsSumEt2_;
 
 
 };
