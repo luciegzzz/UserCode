@@ -9,9 +9,9 @@ process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
 
 #GT -for type I corrections
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
-#process.GlobalTag.globaltag = cms.string('START39_V8::All') #MC official samples
-from Configuration.PyReleaseValidation.autoCond import autoCond
-process.GlobalTag.globaltag = autoCond['startup']
+process.GlobalTag.globaltag = cms.string('START311_V1::All') #MC official samples
+#from Configuration.PyReleaseValidation.autoCond import autoCond
+#process.GlobalTag.globaltag = autoCond['startup']
 
 
 #load jet corrections + MET type I corrections
@@ -54,7 +54,7 @@ process.p = cms.Path(
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METs.root'),
+                               fileName = cms.untracked.string('METs_QCD_15_3000Flat_FlatDist10.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoPFCandidates_particleFlow_*_*',
                                                    'keep recoPFMETs_*_*_*',
@@ -62,8 +62,10 @@ process.out = cms.OutputModule("PoolOutputModule",
                                                    'keep recoCaloMETs_*_*_*',
                                                    'keep recoVertexs_*_*_*',
                                                    'keep *_metJESCorAK5PFJet_*_*',
-                                                   'keep *_ak5PFL1Offset_*_*',
-                                                   'keep edmHepMCProduct_*_*_*'
+#                                                   'keep *_ak5PFL1Offset_*_*',
+                                                   'keep edmHepMCProduct_*_*_*',
+                                                   'keep PileupSummaryInfo_*_*_*',
+                                                   'keep _addPileupInfo_*_*'         
                                                                       )
                                )
 
