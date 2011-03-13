@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.5 2011/03/13 18:20:43 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.6 2011/03/13 21:20:46 lucieg Exp $
 //
 //
 
@@ -47,9 +47,8 @@ METsAnalyzer::METsAnalyzer(const edm::ParameterSet& iConfig)
   inputTagHepMCEvent_
    = iConfig.getParameter<InputTag>("HepMCEvent");
 
-  inputTagType_
-   = iConfig.getParameter<InputTag>("inputType");
-
+  inputType_
+    = iConfig.getUntrackedParameter<string>("inputType");
 
 }
 
@@ -123,23 +122,24 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   int nVertices = vertices -> size();
   h_nRecoVertices_   -> Fill(nVertices);
  
+  int nPUVertices = -10;
 
-  if (inputType_ = "FastSim"){
+  if (inputType_ == "FastSim"){
     //PU vertices
     Handle<edm::HepMCProduct> pileUpSource;
     iEvent.getByLabel("famosPileUp", "PileUpEvents", pileUpSource);
-    int nPUVertices = (pileUpSource -> GetEvent()) -> vertices_size();
+    nPUVertices = (pileUpSource -> GetEvent()) -> vertices_size();
     h_nPUVertices_   -> Fill(nPUVertices);
 
   }
 
-  else if (inputType_ = "MCofficial"){
+  else if (inputType_ == "MCOfficial"){
     Handle<PileupSummaryInfo> pileUpSource;
     iEvent.getByLabel("addPileupInfo", pileUpSource);
-    int nPUVertices = pileUpSource -> getPU_NumInteractions();
+    nPUVertices = pileUpSource -> getPU_NumInteractions();
     h_nPUVertices_   -> Fill(nPUVertices);
 
-  }
+     }
 
   //nreco PV vs n PU vertices histo
   TH2D *h_nrecoVtcesVsnPUVtcesTemp = new TH2D("h_nrecoVtcesVsnPUVtcesTemp", "nhtemp", 50, 0, 50, 50, 0, 50);

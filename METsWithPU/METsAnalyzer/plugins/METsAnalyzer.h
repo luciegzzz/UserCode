@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.5 2011/03/13 18:20:43 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.6 2011/03/13 21:20:46 lucieg Exp $
 //
 //
 
@@ -47,6 +47,8 @@
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/VertexReco/interface/VertexFwd.h" //to get access to VertexCollection
 #include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
+#include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h" 
+
 //ROOT includes
 #include "TFile.h"
 #include "TH1F.h"
@@ -77,7 +79,7 @@ class METsAnalyzer : public edm::EDAnalyzer {
 
   edm::InputTag       inputTagHepMCEvent_;
 
-  edm::InputTag       inputType_;
+  std::string              inputType_;
 
   //output 
   TFile               *outputFile_;
