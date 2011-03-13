@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.3 2011/03/08 17:19:17 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.4 2011/03/13 15:05:37 lucieg Exp $
 //
 //
 
@@ -71,31 +71,39 @@ METsAnalyzer::beginJob()
   outputFile_ = new TFile( fOutputFileName_.c_str(), "RECREATE" );
 
   //histograms definition                                                                                                                                 
-  h_nVertices_   = new TH1I("h_nVertices", "nr of PV", 25, 0, 25);
-  h_nPUVertices_ = new TH1I("h_nPUVertices", "nr of PV", 25, 0, 25);
+  h_nRecoVertices_        = new TH1I("h_nRecoVertices", "nr of reco PV", 25, 0, 25);
+  h_nPUVertices_          = new TH1I("h_nPUVertices", "nr of PU vertices", 25, 0, 25);
   h_nrecoVtcesVsnPUVtces_ = new TH2D("h_nrecoVtcesVsnPUVtces_", "nr of reco vertices vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
 
   /*****TH1 Pt histo *******/                 
-  h_MET0Pt_    = new TH1D("h_MET0Pt","MET0 Pt(GeV)",100,0,100);
-  h_MET1Pt_    = new TH1D("h_MET1Pt","MET1 Pt(GeV)",100,0,100);
-  h_MET2Pt_    = new TH1D("h_MET2Pt","MET2 Pt(GeV)",100,0,100);
+  h_MET0PtVsNPU_    = new TH2D("h_MET0PtVsNPU","MET0 Pt(GeV) vs NPU",30 ,0, 30, 100, 0, 100);
+  h_MET1PtVsNPU_    = new TH2D("h_MET1PtVsNPU","MET1 Pt(GeV) vs NPU",30 ,0, 30, 100, 0, 100);
+  h_MET2PtVsNPU_    = new TH2D("h_MET2PtVsNPU","MET2 Pt(GeV) vs NPU",30 ,0, 30, 100, 0, 100);
 
-  h_MET0Ptx_   = new TH1D("h_MET0Ptx","MET0 Ptx(GeV)",100,-50, 50);
-  h_MET1Ptx_   = new TH1D("h_MET1Ptx","MET1 Ptx(GeV)",100,-50, 50);
-  h_MET2Ptx_   = new TH1D("h_MET2Ptx","MET2 Ptx(GeV)",100,-50, 50);
+  h_MET0PtxVsNPU_   = new TH2D("h_MET0PtxVsNPU","MET0 Ptx(GeV) vs NPU",30 ,0, 30, 100,-50, 50);
+  h_MET1PtxVsNPU_   = new TH2D("h_MET1PtxVsNPU","MET1 Ptx(GeV) vs NPU",30 ,0, 30, 100,-50, 50);
+  h_MET2PtxVsNPU_   = new TH2D("h_MET2PtxVsNPU","MET2 Ptx(GeV) vs NPU",30 ,0, 30, 100,-50, 50);
 
-  h_MET0Pty_   = new TH1D("h_MET0Pty","MET0 Pty(GeV)",100,-50, 50);
-  h_MET1Pty_   = new TH1D("h_MET1Pty","MET1 Pty(GeV)",100,-50, 50);
-  h_MET2Pty_   = new TH1D("h_MET2Pty","MET2 Pty(GeV)",100,-50, 50);
+  h_MET0PtyVsNPU_   = new TH2D("h_MET0PtyVsNPU","MET0 Pty(GeV) vs NPU",30 ,0, 30, 100,-50, 50);
+  h_MET1PtyVsNPU_   = new TH2D("h_MET1PtyVsNPU","MET1 Pty(GeV) vs NPU",30 ,0, 30, 100,-50, 50);
+  h_MET2PtyVsNPU_   = new TH2D("h_MET2PtyVsNPU","MET2 Pty(GeV) vs NPU",30 ,0, 30, 100,-50, 50);
 
 
   /*****TH2 res...histo******/
-  h_EtxVsSumEt0_ = new TH2D("h_EtxVsSumEt0", "Et,x vs sumEt caloMet", 500, 0, 1000, 50, -50, 50);
-  h_EtyVsSumEt0_ = new TH2D("h_EtyVsSumEt0", "Et,y vs sumEt caloMet", 500, 0, 1000, 50, -50, 50);
-  h_EtxVsSumEt1_ = new TH2D("h_EtxVsSumEt1", "Et,x vs sumEt pfMet", 500, 0, 1000, 50, -50, 50);
-  h_EtyVsSumEt1_ = new TH2D("h_EtyVsSumEt1", "Et,y vs sumEt pfMet", 500, 0, 1000, 50, -50, 50); 
-  h_EtxVsSumEt2_ = new TH2D("h_EtxVsSumEt2", "Et,x vs sumEt pfMetNoPileUp", 500, 0, 1000, 50, -50, 50); 
-  h_EtyVsSumEt2_ = new TH2D("h_EtyVsSumEt2", "Et,y vs sumEt pfMetNoPileUp", 500, 0, 1000, 50, -50, 50);
+  for (int i = 0; i < 50 ; i++){
+
+    TString histoName = TString::Format("h_EtxVsSumEt0_%d", i);
+    TH2D *h_EtxVsSumEt0Dummy_ = new TH2D(histoName, "Et,x vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+    h_EtxVsSumEt0_. push_back(h_EtxVsSumEt0Dummy_);
+
+  }
+
+ //  h_EtxVsSumEt0_ = new TH2D("h_EtxVsSumEt0", "Et,x vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+//   h_EtyVsSumEt0_ = new TH2D("h_EtyVsSumEt0", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+//   h_EtxVsSumEt1_ = new TH2D("h_EtxVsSumEt1", "Et,x vs sumEt pfMet vs NPU", 500, 0, 1000, 50, -50, 50);
+//   h_EtyVsSumEt1_ = new TH2D("h_EtyVsSumEt1", "Et,y vs sumEt pfMet vs NPU", 500, 0, 1000, 50, -50, 50); 
+//   h_EtxVsSumEt2_ = new TH2D("h_EtxVsSumEt2", "Et,x vs sumEt pfMetNoPileUp vs NPU", 500, 0, 1000, 50, -50, 50); 
+//   h_EtyVsSumEt2_ = new TH2D("h_EtyVsSumEt2", "Et,y vs sumEt pfMetNoPileUp vs NPU", 500, 0, 1000, 50, -50, 50);
 
 }
 
@@ -104,6 +112,27 @@ void
 METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
 
+  /*****get Vertices collections and fill vtces (only) histograms******/
+
+  //reco PV (all of them). Need to add something about good vertices
+  Handle<VertexCollection> vertices;  
+  iEvent.getByLabel(inputTagVertices_, vertices);
+  int nVertices = vertices -> size();
+  h_nRecoVertices_   -> Fill(nVertices);
+ 
+  //PU vertices
+  Handle<edm::HepMCProduct> pileUpSource;
+  iEvent.getByLabel("famosPileUp", "PileUpEvents", pileUpSource);
+  int nPUVertices = (pileUpSource -> GetEvent()) -> vertices_size();
+  h_nPUVertices_   -> Fill(nPUVertices);
+
+  //nreco PV vs n PU vertices histo
+  TH2D *h_nrecoVtcesVsnPUVtcesTemp = new TH2D("h_nrecoVtcesVsnPUVtcesTemp", "nhtemp", 50, 0, 50, 50, 0, 50);
+  h_nrecoVtcesVsnPUVtcesTemp -> Fill(nPUVertices,nVertices);
+  h_nrecoVtcesVsnPUVtces_ -> Add(h_nrecoVtcesVsnPUVtcesTemp);
+
+
+ /*****get MET collections *******/
   Handle<CaloMETCollection> met0Coll;
   iEvent.getByLabel(inputTagMET0_, met0Coll);
   CaloMETCollection::const_iterator met0 = met0Coll -> begin();
@@ -116,42 +145,50 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   iEvent.getByLabel(inputTagMET2_, met2Coll);
   PFMETCollection::const_iterator met2 = met2Coll -> begin();
 
+  //maybe used later
   //Handle<GenMETCollection> genMet;
   //iEvent.getByLabel(inputTagGenMET_, genMet);
 
-  Handle<VertexCollection> vertices;  
-  iEvent.getByLabel(inputTagVertices_, vertices);
-  int nVertices = vertices -> size();
-  h_nVertices_   -> Fill(nVertices);
+  h_MET0PtVsNPU_      -> Fill(nPUVertices, met0->pt());
+  h_MET1PtVsNPU_      -> Fill(nPUVertices, met1->pt());
+  h_MET2PtVsNPU_      -> Fill(nPUVertices, met2->pt());
+
+  h_MET0PtxVsNPU_     -> Fill(nPUVertices, met0->px());
+  h_MET1PtxVsNPU_     -> Fill(nPUVertices, met1->px());
+  h_MET2PtxVsNPU_     -> Fill(nPUVertices, met2->px());
+
+  h_MET0PtyVsNPU_     -> Fill(nPUVertices, met0->py());
+  h_MET1PtyVsNPU_     -> Fill(nPUVertices, met1->py());
+  h_MET2PtyVsNPU_     -> Fill(nPUVertices, met2->py());
+
+  ///
+
+
+  TH2D *h_EtxVsSumEt0Temp = new TH2D("h_EtxVsSumEt0Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+  h_EtxVsSumEt0Temp -> Fill(met0->sumEt(), met0->px());  
+  h_EtxVsSumEt0_[nPUVertices] -> Add(h_EtxVsSumEt0Temp);
+
+  TH2D *h_EtyVsSumEt0Temp = new TH2D("h_EtyVsSumEt0Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+  h_EtyVsSumEt0Temp -> Fill(met0->sumEt(), met0->py());  
+  h_EtyVsSumEt0_[nPUVertices] -> Add(h_EtyVsSumEt0Temp);
+
+  TH2D *h_EtxVsSumEt1Temp = new TH2D("h_EtxVsSumEt1Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+  h_EtxVsSumEt1Temp -> Fill(met1->sumEt(), met1->px());  
+  h_EtxVsSumEt1_[nPUVertices] -> Add(h_EtxVsSumEt1Temp);
+
+  TH2D *h_EtyVsSumEt1Temp = new TH2D("h_EtyVsSumEt1Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+  h_EtyVsSumEt1Temp -> Fill(met1->sumEt(), met1->py());  
+  h_EtyVsSumEt1_[nPUVertices] -> Add(h_EtyVsSumEt1Temp);
+
+  TH2D *h_EtxVsSumEt2Temp = new TH2D("h_EtxVsSumEt2Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+  h_EtxVsSumEt2Temp -> Fill(met2->sumEt(), met2->px());  
+  h_EtxVsSumEt2_[nPUVertices] -> Add(h_EtxVsSumEt2Temp);
+
+  TH2D *h_EtyVsSumEt2Temp = new TH2D("h_EtyVsSumEt2Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+  h_EtyVsSumEt2Temp -> Fill(met2->sumEt(), met2->py());  
+  h_EtyVsSumEt2_[nPUVertices] -> Add(h_EtyVsSumEt2Temp);
+
  
-  Handle<edm::HepMCProduct> pileUpSource;
-  iEvent.getByLabel("famosPileUp", "PileUpEvents", pileUpSource);
-  int nPUVertices = (pileUpSource -> GetEvent()) -> vertices_size();
-  h_nPUVertices_   -> Fill(nPUVertices);
-
-  TH2D *h_nrecoVtcesVsnPUVtcesTemp = new TH2D("h_nrecoVtcesVsnPUVtcesTemp", "nhtemp", 50, 0, 50, 50, 0, 50);
-  h_nrecoVtcesVsnPUVtcesTemp -> Fill(nPUVertices,nVertices);
-  h_nrecoVtcesVsnPUVtces_ -> Add(h_nrecoVtcesVsnPUVtcesTemp);
-
-  h_MET0Pt_      -> Fill(met0->pt());
-  h_MET1Pt_      -> Fill(met1->pt());
-  h_MET2Pt_      -> Fill(met2->pt());
-
-  h_MET0Ptx_     -> Fill(met0->px());
-  h_MET1Ptx_     -> Fill(met1->px());
-  h_MET2Ptx_     -> Fill(met2->px());
-
-  h_MET0Pty_     -> Fill(met0->py());
-  h_MET1Pty_     -> Fill(met1->py());
-  h_MET2Pty_     -> Fill(met2->py());
-
-  h_EtxVsSumEt0_ -> Fill(met0->sumEt(), met0->px());  
-  h_EtyVsSumEt0_ -> Fill(met0->sumEt(), met0->py());
-  h_EtxVsSumEt1_ -> Fill(met1->sumEt(), met1->px());  
-  h_EtyVsSumEt1_ -> Fill(met1->sumEt(), met1->py());
-  h_EtxVsSumEt2_ -> Fill(met2->sumEt(), met2->px());  
-  h_EtyVsSumEt2_ -> Fill(met2->sumEt(), met2->py());
-
 
 }
 
@@ -160,37 +197,45 @@ void
 METsAnalyzer::endJob() {
   outputFile_->cd();
 
-//   TF1* f1= new TF1("f1", "gaus", -40, 40);
-//   h_MET1Ptx        -> Fit("f1");
- 
-//   h_SigmaVsNbVtces -> Fill(nVertices, f1 -> GetParameter(2)); //error...
-//   h_RMSVsNbVtces   -> Fill(nVertices, h_MET1Ptx -> GetRMS()); //error...
-
-
-
-  h_nVertices_     -> Write();
-  h_nPUVertices_   -> Write();
+  h_nRecoVertices_        -> Write();
+  h_nPUVertices_          -> Write();
   h_nrecoVtcesVsnPUVtces_ -> Write();
 
-  h_MET0Pt_        -> Write();
-  h_MET1Pt_        -> Write();
-  h_MET2Pt_        -> Write();
+  h_MET0PtVsNPU_        -> Write();
+  h_MET1PtVsNPU_        -> Write();
+  h_MET2PtVsNPU_        -> Write();
 
-  h_MET0Ptx_       -> Write();
-  h_MET1Ptx_       -> Write();
-  h_MET2Ptx_       -> Write();
+  h_MET0PtxVsNPU_       -> Write();
+  h_MET1PtxVsNPU_       -> Write();
+  h_MET2PtxVsNPU_       -> Write();
 
-  h_MET0Pty_       -> Write();
-  h_MET1Pty_       -> Write();
-  h_MET2Pty_       -> Write();
+  h_MET0PtyVsNPU_       -> Write();
+  h_MET1PtyVsNPU_       -> Write();
+  h_MET2PtyVsNPU_       -> Write();
 
-  h_EtxVsSumEt0_   -> Write();
-  h_EtxVsSumEt0_   -> Write();
-  h_EtxVsSumEt1_   -> Write();
-  h_EtxVsSumEt1_   -> Write();
-  h_EtxVsSumEt2_   -> Write();
-  h_EtxVsSumEt2_   -> Write();
+  for (unsigned int i = 0 ; i < h_EtxVsSumEt0_.size() ; i++){
+    h_EtxVsSumEt0_[i]   -> Write();
+  }
 
+  for (unsigned int i = 0 ; i < h_EtxVsSumEt0_.size() ; i++){
+    h_EtyVsSumEt0_[i]   -> Write();
+  }
+
+  for (unsigned int i = 0 ; i < h_EtxVsSumEt1_.size() ; i++){
+    h_EtxVsSumEt1_[i]   -> Write();
+  }
+
+  for (unsigned int i = 0 ; i < h_EtyVsSumEt1_.size() ; i++){
+    h_EtyVsSumEt1_[i]   -> Write();
+  }
+
+  for (unsigned int i = 0 ; i < h_EtxVsSumEt2_.size() ; i++){
+    h_EtxVsSumEt2_[i]   -> Write();
+  }
+  
+  for (unsigned int i = 0 ; i < h_EtyVsSumEt2_.size() ; i++){
+    h_EtyVsSumEt2_[i]   -> Write();
+ }
 
 }
 

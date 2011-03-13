@@ -5,13 +5,13 @@ process = cms.Process("REPROD")
 process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartup_cff")
 
 process.options   = cms.untracked.PSet( wantSummary = cms.untracked.bool(False))
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 #GT -for type I corrections
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
-process.GlobalTag.globaltag = cms.string('START311_V1::All') #MC official samples
-#from Configuration.PyReleaseValidation.autoCond import autoCond
-#process.GlobalTag.globaltag = autoCond['startup']
+#process.GlobalTag.globaltag = cms.string('START311_V1::All') #MC official samples
+from Configuration.PyReleaseValidation.autoCond import autoCond
+process.GlobalTag.globaltag = autoCond['startup']
 
 
 #load jet corrections + MET type I corrections
@@ -54,7 +54,7 @@ process.p = cms.Path(
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METs_QCD_15_3000Flat_FlatDist10.root'),
+                               fileName = cms.untracked.string('METs_QCD_15_500_FastSim.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoPFCandidates_particleFlow_*_*',
                                                    'keep recoPFMETs_*_*_*',
@@ -72,4 +72,4 @@ process.out = cms.OutputModule("PoolOutputModule",
 process.outpath = cms.EndPath(process.out)
  
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
-process.MessageLogger.cerr.FwkReport.reportEvery = 1000
+process.MessageLogger.cerr.FwkReport.reportEvery = 10000

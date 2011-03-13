@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.3 2011/03/08 17:19:17 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.4 2011/03/13 15:05:37 lucieg Exp $
 //
 //
 
@@ -82,30 +82,38 @@ class METsAnalyzer : public edm::EDAnalyzer {
   std:: string        fOutputFileName_;
 
   //Nr vertices
-  TH1I                *h_nVertices_;
+  TH1I                *h_nRecoVertices_;
   TH1I                *h_nPUVertices_;
   TH2D                *h_nrecoVtcesVsnPUVtces_;
   //Pt distributions
-  TH1D                *h_MET0Pt_;  
-  TH1D                *h_MET1Pt_;
-  TH1D                *h_MET2Pt_;
+  TH2D                *h_MET0PtVsNPU_;  
+  TH2D                *h_MET1PtVsNPU_;
+  TH2D                *h_MET2PtVsNPU_;
 
   //Pt x, y distributions
-  TH1D                *h_MET0Ptx_;  
-  TH1D                *h_MET1Ptx_;
-  TH1D                *h_MET2Ptx_;
+  TH2D                *h_MET0PtxVsNPU_;  
+  TH2D                *h_MET1PtxVsNPU_;
+  TH2D                *h_MET2PtxVsNPU_;
 
-  TH1D                *h_MET0Pty_;  
-  TH1D                *h_MET1Pty_;
-  TH1D                *h_MET2Pty_;
+  TH2D                *h_MET0PtyVsNPU_;  
+  TH2D                *h_MET1PtyVsNPU_;
+  TH2D                *h_MET2PtyVsNPU_;
 
   //Pt x, y = f(sum Et)
-  TH2D                *h_EtxVsSumEt0_;
-  TH2D                *h_EtyVsSumEt0_;
-  TH2D                *h_EtxVsSumEt1_;
-  TH2D                *h_EtyVsSumEt1_;
-  TH2D                *h_EtxVsSumEt2_;
-  TH2D                *h_EtyVsSumEt2_;
+ //  TH2D                *h_EtxVsSumEt0_;
+//   TH2D                *h_EtyVsSumEt0_;
+//   TH2D                *h_EtxVsSumEt1_;
+//   TH2D                *h_EtyVsSumEt1_;
+//   TH2D                *h_EtxVsSumEt2_;
+//   TH2D                *h_EtyVsSumEt2_;
+
+  std::vector< TH2D* >                h_EtxVsSumEt0_;
+  std::vector< TH2D* >                h_EtyVsSumEt0_;
+  std::vector< TH2D* >                h_EtxVsSumEt1_;
+  std::vector< TH2D* >                h_EtyVsSumEt1_;
+  std::vector< TH2D* >                h_EtxVsSumEt2_;
+  std::vector< TH2D* >                h_EtyVsSumEt2_;
+
 
 
 };
