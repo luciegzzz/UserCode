@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.9 2011/03/14 21:10:08 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.10 2011/03/14 21:24:44 lucieg Exp $
 //
 //
 
@@ -95,37 +95,37 @@ METsAnalyzer::beginJob()
   for (int i = 0; i < 50 ; i++){
     TString histoName = TString::Format("h_EtxVsSumEt0_%d", i);
     TH2D *h_EtxVsSumEt0Dummy_ = new TH2D(histoName, "Et,x vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
-    h_EtxVsSumEt0_. push_back(h_EtxVsSumEt0Dummy_);
+    h_EtxVsSumEt0_.push_back(h_EtxVsSumEt0Dummy_);
   }
 
   for (int i = 0; i < 50 ; i++){
     TString histoName = TString::Format("h_EtyVsSumEt0_%d", i);
     TH2D *h_EtyVsSumEt0Dummy_ = new TH2D(histoName, "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
-    h_EtyVsSumEt0_. push_back(h_EtyVsSumEt0Dummy_);
+    h_EtyVsSumEt0_.push_back(h_EtyVsSumEt0Dummy_);
   }
 
  for (int i = 0; i < 50 ; i++){
     TString histoName = TString::Format("h_EtxVsSumEt1_%d", i);
     TH2D *h_EtxVsSumEt1Dummy_ = new TH2D(histoName, "Et,x vs sumEt pfMet vs NPU", 500, 0, 1000, 50, -50, 50);
-    h_EtxVsSumEt1_. push_back(h_EtxVsSumEt1Dummy_);
+    h_EtxVsSumEt1_.push_back(h_EtxVsSumEt1Dummy_);
   }
 
   for (int i = 0; i < 50 ; i++){
     TString histoName = TString::Format("h_EtyVsSumEt1_%d", i);
     TH2D *h_EtyVsSumEt1Dummy_ = new TH2D(histoName, "Et,y vs sumEt pfMet vs NPU", 500, 0, 1000, 50, -50, 50);
-    h_EtyVsSumEt1_. push_back(h_EtyVsSumEt1Dummy_);
+    h_EtyVsSumEt1_.push_back(h_EtyVsSumEt1Dummy_);
   }
 
  for (int i = 0; i < 50 ; i++){
     TString histoName = TString::Format("h_EtxVsSumEt2_%d", i);
     TH2D *h_EtxVsSumEt2Dummy_ = new TH2D(histoName, "Et,x vs sumEt pfMetNoPileUp vs NPU", 500, 0, 1000, 50, -50, 50);
-    h_EtxVsSumEt2_. push_back(h_EtxVsSumEt2Dummy_);
+    h_EtxVsSumEt2_.push_back(h_EtxVsSumEt2Dummy_);
   }
 
   for (int i = 0; i < 50 ; i++){
     TString histoName = TString::Format("h_EtyVsSumEt2_%d", i);
     TH2D *h_EtyVsSumEt2Dummy_ = new TH2D(histoName, "Et,y vs sumEt pfMetNoPileUp vs NPU", 500, 0, 1000, 50, -50, 50);
-    h_EtyVsSumEt2_. push_back(h_EtyVsSumEt2Dummy_);
+    h_EtyVsSumEt2_.push_back(h_EtyVsSumEt2Dummy_);
   }
 
 }
