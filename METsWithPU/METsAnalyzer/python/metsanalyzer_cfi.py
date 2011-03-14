@@ -7,5 +7,5 @@ analysis = cms.EDAnalyzer('METsAnalyzer',
                           vertices = cms.InputTag("offlinePrimaryVertices"),
                           HepMCEvent = cms.InputTag("PileUpEvents"),
                           inputType  = cms.untracked.string("FastSim"),
-                          HistOutFile = cms.untracked.string('plotsPU5.root')
+                          HistOutFile = cms.untracked.string('plots.root')
 )

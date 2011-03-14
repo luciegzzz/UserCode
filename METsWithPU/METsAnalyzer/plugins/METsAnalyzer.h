@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.6 2011/03/13 21:20:46 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.7 2011/03/13 21:42:40 lucieg Exp $
 //
 //
 
@@ -79,7 +79,7 @@ class METsAnalyzer : public edm::EDAnalyzer {
 
   edm::InputTag       inputTagHepMCEvent_;
 
-  std::string              inputType_;
+  std::string         inputType_;
 
   //output 
   TFile               *outputFile_;
