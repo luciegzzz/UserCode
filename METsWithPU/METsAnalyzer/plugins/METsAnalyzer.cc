@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.7 2011/03/13 21:42:40 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.8 2011/03/14 18:05:47 lucieg Exp $
 //
 //
 
@@ -92,13 +92,13 @@ METsAnalyzer::beginJob()
 
 
   /*****TH2 res...histo******/
-//   for (int i = 0; i < 50 ; i++){
+  for (int i = 0; i < 50 ; i++){
 
-//     TString histoName = TString::Format("h_EtxVsSumEt0_%d", i);
-//     TH2D *h_EtxVsSumEt0Dummy_ = new TH2D(histoName, "Et,x vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
-//     h_EtxVsSumEt0_. push_back(h_EtxVsSumEt0Dummy_);
+    TString histoName = TString::Format("h_EtxVsSumEt0_%d", i);
+    TH2D *h_EtxVsSumEt0Dummy_ = new TH2D(histoName, "Et,x vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+    h_EtxVsSumEt0_. push_back(h_EtxVsSumEt0Dummy_);
 
-//   }
+  }
 
  //  h_EtxVsSumEt0_ = new TH2D("h_EtxVsSumEt0", "Et,x vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
 //   h_EtyVsSumEt0_ = new TH2D("h_EtyVsSumEt0", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
@@ -179,9 +179,10 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   ///
 
 
-//   TH2D *h_EtxVsSumEt0Temp = new TH2D("h_EtxVsSumEt0Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
-//   h_EtxVsSumEt0Temp -> Fill(met0->sumEt(), met0->px());  
-//   h_EtxVsSumEt0_[nPUVertices] -> Add(h_EtxVsSumEt0Temp);
+  TH2D *h_EtxVsSumEt0Temp = new TH2D("h_EtxVsSumEt0Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+  h_EtxVsSumEt0Temp -> Fill(met0->sumEt(), met0->px()); 
+  cout<< "nPUVertices "<< nPUVertices <<" sumET "<<met0->sumEt()<<" px " <<met0->px()<<endl;
+  h_EtxVsSumEt0_[nPUVertices] -> Add(h_EtxVsSumEt0Temp);
 
 //   TH2D *h_EtyVsSumEt0Temp = new TH2D("h_EtyVsSumEt0Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
 //   h_EtyVsSumEt0Temp -> Fill(met0->sumEt(), met0->py());  
@@ -228,9 +229,9 @@ METsAnalyzer::endJob() {
   h_MET1PtyVsNPU_       -> Write();
   h_MET2PtyVsNPU_       -> Write();
 
-//   for (unsigned int i = 0 ; i < h_EtxVsSumEt0_.size() ; i++){
-//     h_EtxVsSumEt0_[i]   -> Write();
-//   }
+  for (unsigned int i = 0 ; i < h_EtxVsSumEt0_.size() ; i++){
+    h_EtxVsSumEt0_[i]   -> Write();
+  }
 
 //   for (unsigned int i = 0 ; i < h_EtxVsSumEt0_.size() ; i++){
 //     h_EtyVsSumEt0_[i]   -> Write();
