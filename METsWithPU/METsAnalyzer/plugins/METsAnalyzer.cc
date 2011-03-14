@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.10 2011/03/14 21:24:44 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.11 2011/03/14 21:45:56 lucieg Exp $
 //
 //
 
@@ -201,27 +201,32 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   TH2D *h_EtxVsSumEt0Temp = new TH2D("h_EtxVsSumEt0Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
   h_EtxVsSumEt0Temp -> Fill(met0->sumEt(), met0->px()); 
   h_EtxVsSumEt0_[nPUVertices] -> Add(h_EtxVsSumEt0Temp);
+  delete h_EtxVsSumEt0Temp; 
 
   TH2D *h_EtyVsSumEt0Temp = new TH2D("h_EtyVsSumEt0Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
   h_EtyVsSumEt0Temp -> Fill(met0->sumEt(), met0->py());  
   h_EtyVsSumEt0_[nPUVertices] -> Add(h_EtyVsSumEt0Temp);
+  delete h_EtyVsSumEt0Temp;
 
   TH2D *h_EtxVsSumEt1Temp = new TH2D("h_EtxVsSumEt1Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
   h_EtxVsSumEt1Temp -> Fill(met1->sumEt(), met1->px());  
   h_EtxVsSumEt1_[nPUVertices] -> Add(h_EtxVsSumEt1Temp);
+  delete h_EtxVsSumEt1Temp;
 
   TH2D *h_EtyVsSumEt1Temp = new TH2D("h_EtyVsSumEt1Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
   h_EtyVsSumEt1Temp -> Fill(met1->sumEt(), met1->py());  
   h_EtyVsSumEt1_[nPUVertices] -> Add(h_EtyVsSumEt1Temp);
+  delete h_EtyVsSumEt1Temp;
 
   TH2D *h_EtxVsSumEt2Temp = new TH2D("h_EtxVsSumEt2Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
   h_EtxVsSumEt2Temp -> Fill(met2->sumEt(), met2->px());  
   h_EtxVsSumEt2_[nPUVertices] -> Add(h_EtxVsSumEt2Temp);
-
+  delete h_EtxVsSumEt2Temp;
+ 
   TH2D *h_EtyVsSumEt2Temp = new TH2D("h_EtyVsSumEt2Temp", "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
   h_EtyVsSumEt2Temp -> Fill(met2->sumEt(), met2->py());  
   h_EtyVsSumEt2_[nPUVertices] -> Add(h_EtyVsSumEt2Temp);
-
+  delete h_EtyVsSumEt2Temp;
  
 
 }
