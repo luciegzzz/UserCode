@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.7 2011/03/13 21:42:40 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.8 2011/03/14 18:05:47 lucieg Exp $
 //
 //
 
@@ -77,8 +77,6 @@ class METsAnalyzer : public edm::EDAnalyzer {
 
   edm::InputTag       inputTagVertices_;
 
-  edm::InputTag       inputTagHepMCEvent_;
-
   std::string         inputType_;
 
   //output 
@@ -89,6 +87,7 @@ class METsAnalyzer : public edm::EDAnalyzer {
   TH1I                *h_nRecoVertices_;
   TH1I                *h_nPUVertices_;
   TH2D                *h_nrecoVtcesVsnPUVtces_;
+  TH2D                *h_ngoodRecoVtcesVsnPUVtces_;
   //Pt distributions
   TH2D                *h_MET0PtVsNPU_;  
   TH2D                *h_MET1PtVsNPU_;
