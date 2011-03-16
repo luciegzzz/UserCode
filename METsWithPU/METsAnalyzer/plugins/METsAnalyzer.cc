@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.14 2011/03/16 13:07:13 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.15 2011/03/16 19:31:41 lucieg Exp $
 //
 //
 
@@ -185,7 +185,7 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   
   //n good reco PV vs n PU vertices histo
   TH2D *h_nGoodRecoVtcesVsnPUVtcesTemp = new TH2D("h_nGoodRecoVtcesVsnPUVtcesTemp", "nhtemp", 50, 0, 50, 50, 0, 50);
-  h_nGoodRecoVtcesVsnPUVtcesTemp -> Fill(nPUVertices,nVertices);
+  h_nGoodRecoVtcesVsnPUVtcesTemp -> Fill(nPUVertices,nGoodVertices);
   h_nGoodRecoVtcesVsnPUVtces_ -> Add(h_nGoodRecoVtcesVsnPUVtcesTemp);
 
  /*****get MET collections *- might be more flexible with patmets ?******/
