@@ -5,7 +5,7 @@ process = cms.Process("REPROD")
 process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartup_cff")
 
 process.options   = cms.untracked.PSet( wantSummary = cms.untracked.bool(False))
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 
 #GT -for type I corrections
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
@@ -47,7 +47,7 @@ process.load("METsWithPU.METsAnalyzer.goodVertices_cff")
 
 ####
 
-process.p = cms.Path(
+process.makeMET = cms.Path(
   #  process.pfMET + #already in the AOD from FastSim
     process.goodVertices +
     process.metJESCorAK5PFJet +
@@ -58,7 +58,7 @@ process.p = cms.Path(
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METs_QCD_15_500_FastSim.root'),
+                               fileName = cms.untracked.string('METs_QCD_15_500_FastSim10k.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoPFCandidates_particleFlow_*_*',
                                                    'keep recoPFMETs_*_*_*',
@@ -76,4 +76,4 @@ process.out = cms.OutputModule("PoolOutputModule",
 process.outpath = cms.EndPath(process.out)
  
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
-process.MessageLogger.cerr.FwkReport.reportEvery = 10000
+process.MessageLogger.cerr.FwkReport.reportEvery = 1000

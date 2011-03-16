@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.8 2011/03/14 18:05:47 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.9 2011/03/15 23:43:56 lucieg Exp $
 //
 //
 
@@ -76,8 +76,9 @@ class METsAnalyzer : public edm::EDAnalyzer {
   edm::InputTag       inputTagNbVtces_;
 
   edm::InputTag       inputTagVertices_;
+  edm::InputTag       inputTagGoodVertices_;
 
-  std::string         inputType_;
+  std::string         inputType_;//get whether it's MC official or FastSim
 
   //output 
   TFile               *outputFile_;
@@ -85,9 +86,10 @@ class METsAnalyzer : public edm::EDAnalyzer {
 
   //Nr vertices
   TH1I                *h_nRecoVertices_;
+  TH1I                *h_nGoodRecoVertices_;
   TH1I                *h_nPUVertices_;
-  TH2D                *h_nrecoVtcesVsnPUVtces_;
-  TH2D                *h_ngoodRecoVtcesVsnPUVtces_;
+  TH2D                *h_nRecoVtcesVsnPUVtces_;
+  TH2D                *h_nGoodRecoVtcesVsnPUVtces_;
   //Pt distributions
   TH2D                *h_MET0PtVsNPU_;  
   TH2D                *h_MET1PtVsNPU_;
@@ -98,17 +100,17 @@ class METsAnalyzer : public edm::EDAnalyzer {
   TH2D                *h_MET1PtxVsNPU_;
   TH2D                *h_MET2PtxVsNPU_;
 
+  TH2D                *h_MET0PtxVsNPV_;  
+  TH2D                *h_MET1PtxVsNPV_;
+  TH2D                *h_MET2PtxVsNPV_;
+
+  TH2D                *h_MET0PtxVsNGPV_;  
+  TH2D                *h_MET1PtxVsNGPV_;
+  TH2D                *h_MET2PtxVsNGPV_;
+
   TH2D                *h_MET0PtyVsNPU_;  
   TH2D                *h_MET1PtyVsNPU_;
   TH2D                *h_MET2PtyVsNPU_;
-
-  //Pt x, y = f(sum Et)
- //  TH2D                *h_EtxVsSumEt0_;
-//   TH2D                *h_EtyVsSumEt0_;
-//   TH2D                *h_EtxVsSumEt1_;
-//   TH2D                *h_EtyVsSumEt1_;
-//   TH2D                *h_EtxVsSumEt2_;
-//   TH2D                *h_EtyVsSumEt2_;
 
   std::vector< TH2D* >                h_EtxVsSumEt0_;
   std::vector< TH2D* >                h_EtyVsSumEt0_;
