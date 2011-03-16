@@ -21,6 +21,9 @@ process.load("JetMETCorrections.Type1MET.MetType1Corrections_cff")
 #METNoPileUp module
 process.load("METsWithPU.METsAnalyzer.pfMetNoPileUp_cff")
 
+#Good Vertices producer
+process.load("METsWithPU.METsAnalyzer.goodVertices_cff")
+
 
 ## ##L1Offset
 ## ##-------------------- Communicate with the DB -----------------------
@@ -46,6 +49,7 @@ process.load("METsWithPU.METsAnalyzer.pfMetNoPileUp_cff")
 
 process.p = cms.Path(
   #  process.pfMET + #already in the AOD from FastSim
+    process.goodVertices +
     process.metJESCorAK5PFJet +
     process.pfNoPileUpSequence +
     process.pfMetNoPileUp##  +
