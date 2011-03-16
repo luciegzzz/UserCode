@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.13 2011/03/15 23:43:56 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.14 2011/03/16 13:07:13 lucieg Exp $
 //
 //
 
@@ -179,12 +179,14 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   }
 
   //nreco PV vs n PU vertices histo
-  double previousContentV  = h_nRecoVtcesVsnPUVtces_ -> GetBinContent(nPUVertices,nVertices);
-  h_nRecoVtcesVsnPUVtces_ -> Fill(nPUVertices,nVertices, previousContentV +1);
-
+  TH2D *h_nRecoVtcesVsnPUVtcesTemp = new TH2D("h_nRecoVtcesVsnPUVtcesTemp", "nhtemp", 50, 0, 50, 50, 0, 50);
+  h_nRecoVtcesVsnPUVtcesTemp -> Fill(nPUVertices,nVertices);
+  h_nRecoVtcesVsnPUVtces_ -> Add(h_nRecoVtcesVsnPUVtcesTemp);
+  
   //n good reco PV vs n PU vertices histo
-  double previousContentGV      = h_nGoodRecoVtcesVsnPUVtces_ -> GetBinContent(nPUVertices,nVertices);
-  h_nGoodRecoVtcesVsnPUVtces_ -> Fill(nPUVertices,nVertices, previousContentGV +1.);
+  TH2D *h_nGoodRecoVtcesVsnPUVtcesTemp = new TH2D("h_nGoodRecoVtcesVsnPUVtcesTemp", "nhtemp", 50, 0, 50, 50, 0, 50);
+  h_nGoodRecoVtcesVsnPUVtcesTemp -> Fill(nPUVertices,nVertices);
+  h_nGoodRecoVtcesVsnPUVtces_ -> Add(h_nGoodRecoVtcesVsnPUVtcesTemp);
 
  /*****get MET collections *- might be more flexible with patmets ?******/
   Handle<CaloMETCollection> met0Coll;
