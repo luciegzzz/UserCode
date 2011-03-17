@@ -21,9 +21,23 @@ process.load("JetMETCorrections.Type1MET.MetType1Corrections_cff")
 #METNoPileUp module
 process.load("METsWithPU.METsAnalyzer.pfMetNoPileUp_cff")
 
-#Good Vertices producer
+#####Vertices###########################
+#Good Vertices producer (on offline PV for now)
 process.load("METsWithPU.METsAnalyzer.goodVertices_cff")
 
+process.load("RecoVertex.Configuration.RecoVertex_cff")
+from RecoVertex.PrimaryVertexProducer.OfflinePrimaryVerticesDA_cfi import *
+process.load("RecoVertex.PrimaryVertexProducer.OfflinePrimaryVerticesDA_cfi")  # not in the standard configuration
+process.vertexreco = cms.Sequence(offlinePrimaryVerticesDA)
+
+
+
+## #primary vertices with deterministic annealing
+## process.load("METsWithPU.METsAnalyzer.primaryVerticesProducerWithDeterministicAnnealing_cff")
+
+## # good primary vertices with deterministic annealing
+## process.load("METsWithPU.METsAnalyzer.goodPrimaryVerticesProducerWithDeterministicAnnealing_cff")
+########################################
 
 ## ##L1Offset
 ## ##-------------------- Communicate with the DB -----------------------
@@ -49,6 +63,7 @@ process.load("METsWithPU.METsAnalyzer.goodVertices_cff")
 
 process.makeMET = cms.Path(
   #  process.pfMET + #already in the AOD from FastSim
+    process.offlinePrimaryVerticesDA +
     process.goodVertices +
     process.metJESCorAK5PFJet +
     process.pfNoPileUpSequence +
