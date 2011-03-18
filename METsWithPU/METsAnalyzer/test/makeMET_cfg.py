@@ -6,11 +6,11 @@ process = cms.Process("REPROD")
 #---------source---------------#
 ################################    
 ##FastSim samples
-#process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartupFnal_cff")
+process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartupFnal_cff")
 ##MC official sample -for testing purposes. Otherwise, use crab
-process.source = cms.Source ("PoolSource",
-                             fileNames = cms.untracked.vstring('/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/E7TeV_FlatDist10_2011EarlyData_50ns_START311_V1G1-v1/0002/FEA7702A-033E-E011-989F-00215E21DD26.root')
-                             )
+#process.source = cms.Source ("PoolSource",
+#                             fileNames = cms.untracked.vstring('/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/E7TeV_FlatDist10_2011EarlyData_50ns_START311_V1G1-v1/0002/FEA7702A-033E-E011-989F-00215E21DD26.root')
+#                             )
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 
@@ -35,13 +35,19 @@ process.load("JetMETCorrections.Type1MET.MetType1Corrections_cff")
 
 
 ################################
+#----playing with pfNoPileUp---#
+################################ 
+#for now, keep that in pfMetNoPileUpDA. hmmm...might be needed for jets corrections
+
+################################
 #------MET stuff --------------#
 ################################
 #METNoPileUp module
 process.load("METsWithPU.METsAnalyzer.pfMetNoPileUp_cff")
+process.load("METsWithPU.METsAnalyzer.pfMetNoPileUpDA_cff")
 
 ################################
-#####-----Vertices-------#######
+#---------Vertices-------------#
 ################################
 #Good Vertices producer (on offline PV for now)
 process.load("METsWithPU.METsAnalyzer.goodVertices_cff")
@@ -91,7 +97,9 @@ process.makeMET = cms.Path(
     process.goodVerticesDA +
     process.metJESCorAK5PFJet +
     process.pfNoPileUpSequence +
-    process.pfMetNoPileUp##  +
+    process.pfMetNoPileUp +
+    process.pfNoPileUpDASequence +
+    process.pfMetNoPileUpDA
 ##     process.ak5PFL1Offset
 )
 
