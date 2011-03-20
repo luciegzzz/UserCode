@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.15 2011/03/16 19:31:41 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.16 2011/03/16 21:36:35 lucieg Exp $
 //
 //
 
@@ -168,10 +168,13 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   }
 
   else if (inputType_ == "MCOfficial"){
+    //num PU vertices
     Handle<PileupSummaryInfo> pileUpSource;
     iEvent.getByLabel("addPileupInfo", pileUpSource);
     nPUVertices       = pileUpSource -> getPU_NumInteractions();
     h_nPUVertices_    -> Fill(nPUVertices);
+
+    //
      }
 
   if (nPUVertices == -10) {

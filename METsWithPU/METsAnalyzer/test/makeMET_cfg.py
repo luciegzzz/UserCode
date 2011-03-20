@@ -12,7 +12,11 @@ process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartupFnal_cff")
 #                             fileNames = cms.untracked.vstring('/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/E7TeV_FlatDist10_2011EarlyData_50ns_START311_V1G1-v1/0002/FEA7702A-033E-E011-989F-00215E21DD26.root')
 #                             )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+process.source = cms.Source ("PoolSource",
+                             fileNames = cms.untracked.vstring('dcache:/pnfs/cms/WAX/resilient/lucieg/FastSimQCD/QCD_15-500/QCD_15-500_PU_10_10_1_C1c.root')
+                             )
+
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
 
 ################################
 #------detector conditions-----#
@@ -56,12 +60,12 @@ process.load("RecoVertex.Configuration.RecoVertex_cff")
 from RecoVertex.PrimaryVertexProducer.OfflinePrimaryVerticesDA_cfi import *
 process.load("RecoVertex.PrimaryVertexProducer.OfflinePrimaryVerticesDA_cfi")
 #modifications to match what's on the twiki https://twiki.cern.ch/twiki/bin/view/CMS/PrimaryVertex2011 /cvs - should come with 4_2_0_pre7. Relevant with 3111 ?
-process.offlinePrimaryVerticesDA.TkFilterParameters.maxNormalisedChi2 = cms.double(5.0)
-process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.coolingFactor = cms.double(0.6)
-process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.Tmin = cms.double(4.)
-process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.vertexSize = cms.double(0.01)
-process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.d0CutOff = cms.double(3.)
-process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.dzCutOff = cms.double(4.)
+#process.offlinePrimaryVerticesDA.TkFilterParameters.maxNormalisedChi2 = cms.double(5.0)
+#process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.coolingFactor = cms.double(0.6)
+#process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.Tmin = cms.double(4.)
+#process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.vertexSize = cms.double(0.01)
+#process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.d0CutOff = cms.double(3.)
+#process.offlinePrimaryVerticesDA.TkClusParameters.TkDAClusParameters.dzCutOff = cms.double(4.)
 
 #Good Vertices with Deterministic Annealing
 process.load("METsWithPU.METsAnalyzer.goodVerticesDA_cff")
@@ -116,7 +120,8 @@ process.out = cms.OutputModule("PoolOutputModule",
 #                                                   'keep *_ak5PFL1Offset_*_*',
                                                    'keep edmHepMCProduct_*_*_*',
                                                    'keep PileupSummaryInfo_*_*_*',
-                                                   'keep _addPileupInfo_*_*'         
+                                                   'keep _addPileupInfo_*_*',         
+                                                   'keep recoTracks_*_*_*'                   
                                                                       )
                                )
 
