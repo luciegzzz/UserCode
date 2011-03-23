@@ -6,6 +6,6 @@ analysis = cms.EDAnalyzer('METsAnalyzer',
                           met2     = cms.InputTag("pfMetNoPileUp"),
                           vertices = cms.InputTag("offlinePrimaryVerticesDA"),
                           goodVertices = cms.InputTag("goodVerticesDA"),
-                          inputType  = cms.untracked.string("MCOfficial"),#FastSim or MCOfficial
+                          inputType  = cms.untracked.string("FastSim"),#FastSim or MCOfficial
                           HistOutFile = cms.untracked.string('plots.root')
 )
