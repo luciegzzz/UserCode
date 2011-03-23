@@ -1,7 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 
-from PhysicsTools.PFCandProducer.pfPileUp_cfi import *
-from PhysicsTools.PFCandProducer.pfNoPileUp_cff import *
+from CommonTools.ParticleFlow.pfPileUp_cfi import *
+from CommonTools.ParticleFlow.pfNoPileUp_cff import *
 from METsWithPU.METsAnalyzer.pfMET_cfi import *
 
 #produce pf pile up candidates with offlinePrimaryVerticesDA

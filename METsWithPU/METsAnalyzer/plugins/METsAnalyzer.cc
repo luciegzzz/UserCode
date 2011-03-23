@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.16 2011/03/16 21:36:35 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.17 2011/03/20 19:44:52 lucieg Exp $
 //
 //
 
@@ -102,37 +102,37 @@ METsAnalyzer::beginJob()
   /*****TH2 res...histo******/
   for (int i = 0; i < 20 ; i++){
     TString histoName = TString::Format("h_EtxVsSumEt0_%d", i);
-    TH2D *h_EtxVsSumEt0Dummy_ = new TH2D(histoName, "Et,x vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+    TH2D *h_EtxVsSumEt0Dummy_ = new TH2D(histoName, "Et,x vs sumEt caloMet vs NPU", 500, 0, 2000, 50, -50, 50);
     h_EtxVsSumEt0_.push_back(h_EtxVsSumEt0Dummy_);
   }
 
   for (int i = 0; i < 20 ; i++){
     TString histoName = TString::Format("h_EtyVsSumEt0_%d", i);
-    TH2D *h_EtyVsSumEt0Dummy_ = new TH2D(histoName, "Et,y vs sumEt caloMet vs NPU", 500, 0, 1000, 50, -50, 50);
+    TH2D *h_EtyVsSumEt0Dummy_ = new TH2D(histoName, "Et,y vs sumEt caloMet vs NPU", 500, 0, 2000, 50, -50, 50);
     h_EtyVsSumEt0_.push_back(h_EtyVsSumEt0Dummy_);
   }
 
  for (int i = 0; i < 20 ; i++){
     TString histoName = TString::Format("h_EtxVsSumEt1_%d", i);
-    TH2D *h_EtxVsSumEt1Dummy_ = new TH2D(histoName, "Et,x vs sumEt pfMet vs NPU", 500, 0, 1000, 50, -50, 50);
+    TH2D *h_EtxVsSumEt1Dummy_ = new TH2D(histoName, "Et,x vs sumEt pfMet vs NPU", 500, 0, 2000, 50, -50, 50);
     h_EtxVsSumEt1_.push_back(h_EtxVsSumEt1Dummy_);
   }
 
   for (int i = 0; i < 20 ; i++){
     TString histoName = TString::Format("h_EtyVsSumEt1_%d", i);
-    TH2D *h_EtyVsSumEt1Dummy_ = new TH2D(histoName, "Et,y vs sumEt pfMet vs NPU", 500, 0, 1000, 50, -50, 50);
+    TH2D *h_EtyVsSumEt1Dummy_ = new TH2D(histoName, "Et,y vs sumEt pfMet vs NPU", 500, 0, 2000, 50, -50, 50);
     h_EtyVsSumEt1_.push_back(h_EtyVsSumEt1Dummy_);
   }
 
  for (int i = 0; i < 20 ; i++){
     TString histoName = TString::Format("h_EtxVsSumEt2_%d", i);
-    TH2D *h_EtxVsSumEt2Dummy_ = new TH2D(histoName, "Et,x vs sumEt pfMetNoPileUp vs NPU", 500, 0, 1000, 50, -50, 50);
+    TH2D *h_EtxVsSumEt2Dummy_ = new TH2D(histoName, "Et,x vs sumEt pfMetNoPileUp vs NPU", 500, 0, 2000, 50, -50, 50);
     h_EtxVsSumEt2_.push_back(h_EtxVsSumEt2Dummy_);
   }
 
   for (int i = 0; i < 20 ; i++){
     TString histoName = TString::Format("h_EtyVsSumEt2_%d", i);
-    TH2D *h_EtyVsSumEt2Dummy_ = new TH2D(histoName, "Et,y vs sumEt pfMetNoPileUp vs NPU", 500, 0, 1000, 50, -50, 50);
+    TH2D *h_EtyVsSumEt2Dummy_ = new TH2D(histoName, "Et,y vs sumEt pfMetNoPileUp vs NPU", 500, 0, 2000, 50, -50, 50);
     h_EtyVsSumEt2_.push_back(h_EtyVsSumEt2Dummy_);
   }
 
@@ -192,9 +192,9 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   h_nGoodRecoVtcesVsnPUVtces_ -> Add(h_nGoodRecoVtcesVsnPUVtcesTemp);
 
  /*****get MET collections *- might be more flexible with patmets ?******/
-  Handle<CaloMETCollection> met0Coll;
+  Handle<PFMETCollection> met0Coll;
   iEvent.getByLabel(inputTagMET0_, met0Coll);
-  CaloMETCollection::const_iterator met0 = met0Coll -> begin();
+  PFMETCollection::const_iterator met0 = met0Coll -> begin();
 
   Handle<PFMETCollection> met1Coll;
   iEvent.getByLabel(inputTagMET1_, met1Coll);
@@ -232,28 +232,12 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   //if (fillEtSumEt && ((nPUVertices/5) < 6)){
 
   if (nPUVertices < 20){
-    double binContent = h_EtxVsSumEt0_[nPUVertices] -> GetBinContent(met0->sumEt(), met0->px()); 
-    h_EtxVsSumEt0_[nPUVertices] -> Fill(met1->sumEt(), met0->px(), binContent + 1.);
-
-    binContent = -10;
-    binContent = h_EtyVsSumEt0_[nPUVertices] -> GetBinContent(met0->sumEt(), met0->py());
-    h_EtyVsSumEt0_[nPUVertices] -> Fill(met1->sumEt(), met0->py(), binContent + 1.);
- 
-    binContent = -10;
-    binContent = h_EtxVsSumEt1_[nPUVertices] -> GetBinContent(met1->sumEt(), met1->px());
-    h_EtxVsSumEt1_[nPUVertices] -> Fill(met1->sumEt(), met1->px(), binContent + 1.);
-
-    binContent = -10;
-    binContent = h_EtyVsSumEt1_[nPUVertices] -> GetBinContent(met1->sumEt(), met1->py());
-    h_EtyVsSumEt1_[nPUVertices] -> Fill(met1->sumEt(), met1->py(), binContent + 1.);
-
-    binContent = -10;
-    binContent = h_EtxVsSumEt2_[nPUVertices] -> GetBinContent(met2->sumEt(), met2->px());
-    h_EtxVsSumEt2_[nPUVertices] -> Fill(met1->sumEt(), met2->px(), binContent + 1.);
-
-    binContent = -10;
-    binContent = h_EtyVsSumEt2_[nPUVertices] -> GetBinContent(met2->sumEt(), met2->py());
-    h_EtyVsSumEt2_[nPUVertices] -> Fill(met1->sumEt(), met2->py(), binContent + 1.);
+    h_EtxVsSumEt0_[nPUVertices] -> Fill(met1->sumEt(), met0->px());
+    h_EtyVsSumEt0_[nPUVertices] -> Fill(met1->sumEt(), met0->py());
+    h_EtxVsSumEt1_[nPUVertices] -> Fill(met1->sumEt(), met1->px());
+    h_EtyVsSumEt1_[nPUVertices] -> Fill(met1->sumEt(), met1->py());
+    h_EtxVsSumEt2_[nPUVertices] -> Fill(met1->sumEt(), met2->px());
+    h_EtyVsSumEt2_[nPUVertices] -> Fill(met1->sumEt(), met2->py());
   }
 
 
