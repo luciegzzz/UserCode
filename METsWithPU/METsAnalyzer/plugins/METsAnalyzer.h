@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.9 2011/03/15 23:43:56 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.10 2011/03/16 13:07:13 lucieg Exp $
 //
 //
 
@@ -38,12 +38,6 @@
 
 #include "DataFormats/METReco/interface/PFMETCollection.h"
 #include "DataFormats/METReco/interface/PFMET.h"
-#include "DataFormats/METReco/interface/METCollection.h"
-#include "DataFormats/METReco/interface/MET.h"
-#include "DataFormats/METReco/interface/GenMETCollection.h"
-#include "DataFormats/METReco/interface/GenMET.h"
-#include "DataFormats/METReco/interface/CaloMETCollection.h"
-#include "DataFormats/METReco/interface/CaloMET.h"
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/VertexReco/interface/VertexFwd.h" //to get access to VertexCollection
 #include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
@@ -70,9 +64,7 @@ class METsAnalyzer : public edm::EDAnalyzer {
       virtual void analyze(const edm::Event&, const edm::EventSetup&);
       virtual void endJob() ;
   // ----------member data ---------------------------                                                                                                                                                                                  
-  edm::InputTag       inputTagMET0_;
-  edm::InputTag       inputTagMET1_;
-  edm::InputTag       inputTagMET2_;
+  edm::InputTag       inputTagMET_;
   edm::InputTag       inputTagNbVtces_;
 
   edm::InputTag       inputTagVertices_;
@@ -91,33 +83,19 @@ class METsAnalyzer : public edm::EDAnalyzer {
   TH2D                *h_nRecoVtcesVsnPUVtces_;
   TH2D                *h_nGoodRecoVtcesVsnPUVtces_;
   //Pt distributions
-  TH2D                *h_MET0PtVsNPU_;  
-  TH2D                *h_MET1PtVsNPU_;
-  TH2D                *h_MET2PtVsNPU_;
+  TH2D                *h_METPtVsNPU_;  
 
   //Pt x, y distributions
-  TH2D                *h_MET0PtxVsNPU_;  
-  TH2D                *h_MET1PtxVsNPU_;
-  TH2D                *h_MET2PtxVsNPU_;
+  TH2D                *h_METPtxVsNPU_;  
+  TH2D                *h_METPtxVsNPV_;  
+  TH2D                *h_METPtxVsNGPV_;  
+  TH2D                *h_METPtyVsNPU_;  
 
-  TH2D                *h_MET0PtxVsNPV_;  
-  TH2D                *h_MET1PtxVsNPV_;
-  TH2D                *h_MET2PtxVsNPV_;
+  std::vector< TH2D* > h_EtxVsSumEtPUV_;
+  std::vector< TH2D* > h_EtxVsSumEtPV_;
+  std::vector< TH2D* > h_EtxVsSumEtGPV_;
 
-  TH2D                *h_MET0PtxVsNGPV_;  
-  TH2D                *h_MET1PtxVsNGPV_;
-  TH2D                *h_MET2PtxVsNGPV_;
-
-  TH2D                *h_MET0PtyVsNPU_;  
-  TH2D                *h_MET1PtyVsNPU_;
-  TH2D                *h_MET2PtyVsNPU_;
-
-  std::vector< TH2D* >                h_EtxVsSumEt0_;
-  std::vector< TH2D* >                h_EtyVsSumEt0_;
-  std::vector< TH2D* >                h_EtxVsSumEt1_;
-  std::vector< TH2D* >                h_EtyVsSumEt1_;
-  std::vector< TH2D* >                h_EtxVsSumEt2_;
-  std::vector< TH2D* >                h_EtyVsSumEt2_;
+  //  std::vector< TH2D* > h_EtyVsSumEtPUV_;
 
 
 
