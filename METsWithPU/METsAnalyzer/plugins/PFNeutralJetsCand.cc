@@ -41,15 +41,14 @@ void PFNeutralJetsCand::produce(Event& iEvent,
     iEvent.getByLabel(inputTagPFJets_, pfJets);
    
     for (PFJetCollection::const_iterator jet = pfJets->begin(); jet!=pfJets->end(); ++jet){
-      if (jet -> chargedMultiplicity() > 0) continue; 
+      if ((abs(jet -> eta()) > 2.4) || (jet -> chargedMultiplicity() > 0)) continue; 
       else  {
 	//cout<<jet->pt()<<endl;
  	//get the vector of constituents/pf candidates from jets  
 		std::vector < PFCandidatePtr > constituents = jet -> getPFConstituents ();
 	
 	for (unsigned int i = 0 ; i < constituents.size(); i++){
-	  //cout<< "i "<<endl;
-	  //cout<<constituents[i]->pt()<<endl;
+	  // if ( constituents[i] <
 		    pOutput -> push_back(PFCandidate(constituents[i])); 
 	}
 
