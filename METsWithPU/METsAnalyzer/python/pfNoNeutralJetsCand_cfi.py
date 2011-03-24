@@ -6,5 +6,5 @@ pfNoNeutralJetsCand = cms.EDProducer(
     verbose = cms.untracked.bool( False ),
     name = cms.untracked.string("pfNeutralJetCandOnPFCandidates"),
     topCollection = cms.InputTag("pfNeutralJetsCand"),
-    bottomCollection = cms.InputTag("recoPFCandidates_pfNoPileUp__REPROD."),
+    bottomCollection = cms.InputTag("pfNoPileUp"),
     )

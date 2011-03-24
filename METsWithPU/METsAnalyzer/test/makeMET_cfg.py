@@ -68,9 +68,8 @@ process.load("METsWithPU.METsAnalyzer.goodVerticesDA_cff")
 #--------Messing around----------------#
 ########################################
 process.load("CommonTools.ParticleFlow.PF2PAT_cff")
+process.load("METsWithPU.METsAnalyzer.pfNoNeutralJetsCand_cff")
 
-
-####
 
 process.makeMET = cms.Path(
   #  process.pfMET + #already in the AOD from FastSim
@@ -82,28 +81,27 @@ process.makeMET = cms.Path(
     process.pfNoPileUpSequence +
     process.pfMetNoPileUp +
     process.pfNoPileUpDASequence +
-    process.pfMetNoPileUpDA
-##     process.ak5PFL1Offset
+    process.pfMetNoPileUpDA +
+    process.pfNoNeutralJetsCandSequence
 )
 
 
 process.out = cms.OutputModule("PoolOutputModule",
                                fileName = cms.untracked.string('METsFS_3.root'),
                                outputCommands = cms.untracked.vstring('drop *',
-                                                  # 'keep recoPFCandidates_particleFlow_*_*',
-                                                   'keep recoPFMETs_*_*_REPROD',
-                                                   'keep *_pfPileUp*_*_REPROD',
-                                                   'keep *_pfNoPileUp*_*_REPROD',
-                                                   'keep recoPFCandidates_*_*_REPROD',                   
-                                                  # 'keep recoCaloMETs_*_*_*',
-                                                   'keep recoVertexs_*_*_REPROD',
-                                                  # 'keep *_metJESCorAK5PFJet_*_*',
-#                                                   'keep *_ak5PFL1Offset_*_*',
-                                                  # 'keep edmHepMCProduct_*_*_*',
-                                                  # 'keep PileupSummaryInfo_*_*_*',
-                                                  # 'keep _addPileupInfo_*_*',         
-                                                  # 'keep recoTracks_*_*_*',
-                                                   'keep recoPFJets_*_*_REPROD'                   
+                                                   'keep recoPFCandidates_particleFlow_*_*',
+                                                   'keep recoPFMETs_*_*_*',
+                                                   'keep *_pfPileUp*_*_*',
+                                                   'keep *_pfNoPileUp*_*_*',
+                                                   'keep recoPFCandidates_*_*_*',                   
+                                                   'keep recoCaloMETs_*_*_*',
+                                                   'keep recoVertexs_*_*_*',
+                                                   'keep *_metJESCorAK5PFJet_*_*',
+                                                   'keep edmHepMCProduct_*_*_*',
+                                                   'keep PileupSummaryInfo_*_*_*',
+                                                   'keep _addPileupInfo_*_*',         
+                                                   'keep recoTracks_*_*_*',
+                                                   'keep recoPFJets_*_*_*'                   
                                                                       )
                                )
 

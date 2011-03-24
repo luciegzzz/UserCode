@@ -2,7 +2,7 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("ANALYSIS")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 process.options = cms.untracked.PSet(
     SkipEvent = cms.untracked.vstring('ProductNotFound'),
     )
@@ -12,9 +12,9 @@ process.source = cms.Source("PoolSource",
    fileNames = cms.untracked.vstring(
 #    'file:rfio:/castor/cern.ch/user/l/lucieg/MET/METs_QCD_15-500_PU0.root'       
 #    'file:/afs/fnal.gov/files/home/room1/lucieg/cms_nb/METs_QCD_15_500_FastSim.root'
-    'dcache:/pnfs/cms/WAX/resilient/lucieg/MET/QCD_Pt_15to3000_Flat_FlatDist10_Spring2011_DA_311/METs_102_1_zsL.root'
+#    'dcache:/pnfs/cms/WAX/resilient/lucieg/MET/QCD_Pt_15to3000_Flat_FlatDist10_Spring2011_DA_311/METs_102_1_zsL.root'
 #    'file:rfio:/castor/cern.ch/user/l/lucieg/MET/METs_QCD_15-500_PU0.root'       
-#    'file:METs.root'
+    'file:METsFS_3.root'
 
                             )
 )
