@@ -6,7 +6,7 @@ process = cms.Process("REPROD")
 #---------source---------------#
 ################################    
 ##FastSim samples
-process.load("METsWithPU.METsAnalyzer.sources.source_QCD_15_500_7TeV_MCStartupFnal_cff")
+process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartup_cff")
 ##MC official sample -for testing purposes. Otherwise, use crab
 #process.source = cms.Source ("PoolSource",
 #                             fileNames = cms.untracked.vstring('/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/E7TeV_FlatDist10_2011EarlyData_50ns_START311_V1G1-v1/0002/FEA7702A-033E-E011-989F-00215E21DD26.root')
@@ -16,7 +16,7 @@ process.load("METsWithPU.METsAnalyzer.sources.source_QCD_15_500_7TeV_MCStartupFn
 #                             fileNames = cms.untracked.vstring('dcache:/pnfs/cms/WAX/resilient/lucieg/FastSimQCD/QCD_15-500/QCD_15-500_PU_10_10_1_C1c.root')
 #                             )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
 
 ################################
 #------detector conditions-----#
@@ -65,31 +65,16 @@ process.offlinePrimaryVerticesDA = process.offlinePrimaryVertices.clone()
 process.load("METsWithPU.METsAnalyzer.goodVerticesDA_cff")
 
 ########################################
+#--------Messing around----------------#
+########################################
+process.load("CommonTools.ParticleFlow.PF2PAT_cff")
 
-## ##L1Offset
-## ##-------------------- Communicate with the DB -----------------------
-## process.load('Configuration.StandardSequences.Services_cff')
-## ##-------------------- Import the JEC services -----------------------
-## #process.load('JetMETCorrections.Configuration.DefaultJEC_cff')
-## ##-------------------- Disable the CondDB for the L1Offset (until they are included in a new global tag) -------
-## process.ak5CaloL1Offset.useCondDB = False
-## process.ak5PFL1Offset.useCondDB = False
-## process.ak5JPTL1Offset.useCondDB = False
-## #.............................................................................................
-## ##-------------------- User analyzer  --------------------------------
-## ## process.MyAnalyzer  = cms.EDAnalyzer('MyAnalyzer',
-## ## ...............................................................................................
-## ## JetCorrectionService = cms.string('ak5CaloL1L2L3Residual'), ## or 'ak5PFL1L2L3Residual' or 'ak5JPTL1L2L3Residual'
-## ## ...............................................................................................
-## ## )
-
-#process.load("JetMETCorrections.Configuration.JetCorrectionServices_cff")
-             
 
 ####
 
 process.makeMET = cms.Path(
   #  process.pfMET + #already in the AOD from FastSim
+    process.PF2PAT +
     process.offlinePrimaryVerticesDA +
     process.goodVertices +
     process.goodVerticesDA +
@@ -115,7 +100,8 @@ process.out = cms.OutputModule("PoolOutputModule",
                                                    'keep edmHepMCProduct_*_*_*',
                                                    'keep PileupSummaryInfo_*_*_*',
                                                    'keep _addPileupInfo_*_*',         
-                                                   'keep recoTracks_*_*_*'                   
+                                                   'keep recoTracks_*_*_*',
+                                                   'keep recoPF_*_*_*'                   
                                                                       )
                                )
 
