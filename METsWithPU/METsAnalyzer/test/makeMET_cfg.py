@@ -7,14 +7,6 @@ process = cms.Process("REPROD")
 ################################    
 ##FastSim samples
 process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartup_cff")
-##MC official sample -for testing purposes. Otherwise, use crab
-#process.source = cms.Source ("PoolSource",
-#                             fileNames = cms.untracked.vstring('/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/E7TeV_FlatDist10_2011EarlyData_50ns_START311_V1G1-v1/0002/FEA7702A-033E-E011-989F-00215E21DD26.root')
-#                             )
-
-#process.source = cms.Source ("PoolSource",
-#                             fileNames = cms.untracked.vstring('dcache:/pnfs/cms/WAX/resilient/lucieg/FastSimQCD/QCD_15-500/QCD_15-500_PU_10_10_1_C1c.root')
-#                             )
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 
@@ -41,67 +33,76 @@ process.load("JetMETCorrections.Type1MET.MetType1Corrections_cff")
 ################################
 #----playing with pfNoPileUp---#
 ################################ 
-#for now, keep that in pfMetNoPileUpDA. hmmm...might be needed for jets corrections
+
 
 ################################
 #------MET stuff --------------#
 ################################
-#METNoPileUp module
+#make pfMetNoPileUp with old vertices
 process.load("METsWithPU.METsAnalyzer.pfMetNoPileUp_cff")
-process.load("METsWithPU.METsAnalyzer.pfMetNoPileUpDA_cff")
+
+#make pfMetFancy = no pile up with offline primary vertices with deterministic annealing, also removing pf candidates from neutral jets within the barrel (eta <2.4)
+process.load("METsWithPU.METsAnalyzer.pfMetFancy_cff")
 
 ################################
 #---------Vertices-------------#
 ################################
-#Good Vertices producer (on offline PV for now)
-process.load("METsWithPU.METsAnalyzer.goodVertices_cff")
-#Vertices with Deterministic Annealing (...)
+#Vertices with Deterministic Annealing (...) -from V01-04-04 RecoVertex/PrimaryVertexProducer 3111 looks outdated
 process.load("RecoVertex.Configuration.RecoVertex_cff")
 from RecoVertex.PrimaryVertexProducer.OfflinePrimaryVertices_cfi import *
 process.load("RecoVertex.PrimaryVertexProducer.OfflinePrimaryVertices_cfi")
 process.offlinePrimaryVerticesDA = process.offlinePrimaryVertices.clone()
 
+#Good Vertices producer on offline PV 
+process.load("METsWithPU.METsAnalyzer.goodVertices_cff")
 #Good Vertices with Deterministic Annealing
 process.load("METsWithPU.METsAnalyzer.goodVerticesDA_cff")
+
 
 ########################################
 #--------Messing around----------------#
 ########################################
+#use HEAD for CommonTools/ParticleFlow so as to get PFNoPileUp.cc wo the assert() when 2 tracks match different vertices
 process.load("CommonTools.ParticleFlow.PF2PAT_cff")
+#modifies the input vertices forpfNoPileUp and redo PF2PAT sequence (nothing else from PAT), without taus, + pfMetNoPileUPDA
+process.pfPileUp.Vertices = cms.InputTag("offlinePrimaryVerticesDA")
+process.pfMET.alias = cms.string("pfMetNoPileUpDA")
+#makes collection of pfCandidates wo candidates from neutral jets within the barrel
 process.load("METsWithPU.METsAnalyzer.pfNoNeutralJetsCand_cff")
+
+#debugging
+process.dump = cms.EDAnalyzer("EventContentAnalyzer")
 
 
 process.makeMET = cms.Path(
-  #  process.pfMET + #already in the AOD from FastSim
-    process.PF2PAT +
+    #process.dump +
     process.offlinePrimaryVerticesDA +
     process.goodVertices +
     process.goodVerticesDA +
     process.metJESCorAK5PFJet +
-    process.pfNoPileUpSequence +
-    process.pfMetNoPileUp +
-    process.pfNoPileUpDASequence +
-    process.pfMetNoPileUpDA +
-    process.pfNoNeutralJetsCandSequence
+    process.pfNoPileUpOldVtcesSequence +
+    process.pfMetNoPileUp  +
+    process.PF2PAT  +
+    process.pfNoNeutralJetsCandSequence +
+    process.pfMetFancy ##  +
+##     process.dump
 )
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METsFS_3.root'),
+                               fileName = cms.untracked.string('METsFS.root'),
                                outputCommands = cms.untracked.vstring('drop *',
-                                                   'keep recoPFCandidates_particleFlow_*_*',
                                                    'keep recoPFMETs_*_*_*',
                                                    'keep *_pfPileUp*_*_*',
-                                                   'keep *_pfNoPileUp*_*_*',
-                                                   'keep recoPFCandidates_*_*_*',                   
-                                                   'keep recoCaloMETs_*_*_*',
+                                                   'keep recoPFCandidates_*_*_*',
                                                    'keep recoVertexs_*_*_*',
                                                    'keep *_metJESCorAK5PFJet_*_*',
                                                    'keep edmHepMCProduct_*_*_*',
                                                    'keep PileupSummaryInfo_*_*_*',
                                                    'keep _addPileupInfo_*_*',         
                                                    'keep recoTracks_*_*_*',
-                                                   'keep recoPFJets_*_*_*'                   
+                                                   'keep recoPFJets_*_*_*',
+                                                   'keep *_*_*_REPROD'
                                                                       )
                                )
 
