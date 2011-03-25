@@ -1,10 +1,10 @@
 import FWCore.ParameterSet.Config as cms
 
 pfNoNeutralJetsCand = cms.EDProducer(
-    "TPPFCandidatesOnPFCandidates",
+    "TPPFJetsOnPFCandidates",
     enable =  cms.bool( True ),
     verbose = cms.untracked.bool( False ),
-    name = cms.untracked.string("pfNeutralJetCandOnPFCandidates"),
-    topCollection = cms.InputTag("pfNeutralJetsCand"),
+    name = cms.untracked.string("pfNeutralJetsOnPFCandidates"),
+    topCollection = cms.InputTag("neutralJetFilter"),
     bottomCollection = cms.InputTag("pfNoPileUp"),
     )
