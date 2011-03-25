@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.10 2011/03/16 13:07:13 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.11 2011/03/24 17:07:19 lucieg Exp $
 //
 //
 
@@ -65,10 +65,12 @@ class METsAnalyzer : public edm::EDAnalyzer {
       virtual void endJob() ;
   // ----------member data ---------------------------                                                                                                                                                                                  
   edm::InputTag       inputTagMET_;
-  edm::InputTag       inputTagNbVtces_;
-
+  edm::InputTag       inputTagRAWMET_;
+ 
   edm::InputTag       inputTagVertices_;
   edm::InputTag       inputTagGoodVertices_;
+  edm::InputTag       inputTagVerticesDA_;
+  edm::InputTag       inputTagGoodVerticesDA_;
 
   std::string         inputType_;//get whether it's MC official or FastSim
 
@@ -77,11 +79,17 @@ class METsAnalyzer : public edm::EDAnalyzer {
   std:: string        fOutputFileName_;
 
   //Nr vertices
-  TH1I                *h_nRecoVertices_;
-  TH1I                *h_nGoodRecoVertices_;
-  TH1I                *h_nPUVertices_;
+  TH1D                *h_nPUVertices_;
+  TH1D                *h_nRecoVertices_;
+  TH1D                *h_nGoodRecoVertices_;
+  TH1D                *h_nRecoVerticesDA_;
+  TH1D                *h_nGoodRecoVerticesDA_;
+
   TH2D                *h_nRecoVtcesVsnPUVtces_;
   TH2D                *h_nGoodRecoVtcesVsnPUVtces_;
+  TH2D                *h_nRecoVtcesDAVsnPUVtces_;
+  TH2D                *h_nGoodRecoVtcesDAVsnPUVtces_;
+
   //Pt distributions
   TH2D                *h_METPtVsNPU_;  
 

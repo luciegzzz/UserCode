@@ -23,7 +23,7 @@ process.source = cms.Source("PoolSource",
 
 process.load("METsWithPU.METsAnalyzer.metsanalyzer_cfi")
 
-process.analysis.HistOutFile = cms.untracked.string('plotsQCD_METs101_2.root')
+process.analysis.HistOutFile = cms.untracked.string('plotspfMetNoPileUp.root')
 
 process.p = cms.Path(process.analysis)
 
