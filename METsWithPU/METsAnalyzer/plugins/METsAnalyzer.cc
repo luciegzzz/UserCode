@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.19 2011/03/24 17:07:19 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.20 2011/03/25 23:01:50 lucieg Exp $
 //
 //
 
@@ -225,12 +225,14 @@ void
 METsAnalyzer::endJob() {
   outputFile_->cd();
 
-  h_nPUVertices_              -> Write();
-  h_nRecoVertices_            -> Write();
-  h_nGoodRecoVertices_        -> Write();
+  h_nPUVertices_                -> Write();
+  h_nRecoVertices_              -> Write();
+  h_nGoodRecoVertices_          -> Write();
   h_nRecoVerticesDA_            -> Write();
   h_nGoodRecoVerticesDA_        -> Write();
 
+  h_nRecoVtcesVsnPUVtces_       -> Write();
+  h_nGoodRecoVtcesVsnPUVtces_   -> Write();
   h_nRecoVtcesDAVsnPUVtces_     -> Write();
   h_nGoodRecoVtcesDAVsnPUVtces_ -> Write();
 
