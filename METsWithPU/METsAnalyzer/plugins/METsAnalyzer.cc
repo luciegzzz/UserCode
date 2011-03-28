@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.20 2011/03/25 23:01:50 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.21 2011/03/26 19:29:41 lucieg Exp $
 //
 //
 
@@ -126,7 +126,7 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   /*****get Vertices collections and fill vertices (only) histograms******/
 
   //PU vertices
-  int nPUVertices = -10;
+  int nPUVertices = 0;
 
   if (inputType_ == "FastSim"){
     Handle<edm::HepMCProduct> pileUpSource;
@@ -137,14 +137,14 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 
   else if (inputType_ == "MCOfficial"){
     //num PU vertices
-    Handle<PileupSummaryInfo> pileUpSource;
-    iEvent.getByLabel("addPileupInfo", pileUpSource);
-    nPUVertices       = pileUpSource -> getPU_NumInteractions();
-    h_nPUVertices_    -> Fill(nPUVertices);
-  }
+    Handle<std::vector< PileupSummaryInfo > >  PupInfo;
+    iEvent.getByLabel("addPileupInfo", PupInfo);
 
-  if (nPUVertices == -10) {
-    cout << "failed to get NPU vertices !!!\n";
+    std::vector<PileupSummaryInfo>::const_iterator PVI;
+
+    for(PVI = PupInfo->begin(); PVI != PupInfo->end(); ++PVI) {
+      nPUVertices += PVI->getPU_NumInteractions();
+    }
   }
 
 
