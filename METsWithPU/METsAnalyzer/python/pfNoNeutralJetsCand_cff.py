@@ -5,5 +5,6 @@ from METsWithPU.METsAnalyzer.pfNoNeutralJetsCand_cfi import *
 
 pfNoNeutralJetsCandSequence = cms.Sequence(
     neutralJetFilter +
-    pfNoNeutralJetsCand
+    pfNoNeutralJetsCand +
+    pfNoNeutralJetsCandJets
     )
