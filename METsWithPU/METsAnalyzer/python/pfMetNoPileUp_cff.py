@@ -5,7 +5,7 @@ from CommonTools.ParticleFlow.pfNoPileUp_cff import *
 
 #produce pf pile up candidates with offlinePrimaryVerticesDA
 pfPileUpOldVtces = pfPileUp.clone()
-pfPileUpOldVtces.Vertices = cms.InputTag("offlinePrimaryVertices")
+pfPileUpOldVtces.Vertices = cms.InputTag('offlinePrimaryVertices')
 
 #replace the top collection used by pfNoPileUp 
 pfNoPileUpOldVtces = pfNoPileUp.clone()

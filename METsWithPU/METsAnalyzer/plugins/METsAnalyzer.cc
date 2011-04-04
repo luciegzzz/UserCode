@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.22 2011/03/28 15:12:46 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.23 2011/04/04 11:58:52 lucieg Exp $
 //
 //
 
@@ -105,15 +105,15 @@ METsAnalyzer::beginJob()
   /*****TH2 res...histo******/
   for (int i = 0; i < 25 ; i++){
     TString histoNamePUV = TString::Format("h_EtxVsSumEtPUV_%d", i);
-    TH2D *h_EtxVsSumEtDummyPUV_ = new TH2D(histoNamePUV, "Et,x vs sumEt, PUV", 500, 0, 2000, 50, -50, 50);
+    TH2D *h_EtxVsSumEtDummyPUV_ = new TH2D(histoNamePUV, "Et,x vs sumEt, PUV", 500, 0, 2000, 100, -50, 50);
     h_EtxVsSumEtPUV_.push_back(h_EtxVsSumEtDummyPUV_);
 
     TString histoNamePV = TString::Format("h_EtxVsSumEtPV_%d", i);
-    TH2D *h_EtxVsSumEtDummyPV_ = new TH2D(histoNamePV, "Et,x vs sumEt, PV (DA)", 500, 0, 2000, 50, -50, 50);
+    TH2D *h_EtxVsSumEtDummyPV_ = new TH2D(histoNamePV, "Et,x vs sumEt, PV (DA)", 500, 0, 2000, 100, -50, 50);
     h_EtxVsSumEtPV_.push_back(h_EtxVsSumEtDummyPV_);
     
     TString histoNameGPV = TString::Format("h_EtxVsSumEt_%d", i);
-    TH2D *h_EtxVsSumEtDummyGPV_ = new TH2D(histoNameGPV, "Et,x vs sumEt, GPV (DA)", 500, 0, 2000, 50, -50, 50);
+    TH2D *h_EtxVsSumEtDummyGPV_ = new TH2D(histoNameGPV, "Et,x vs sumEt, GPV (DA)", 500, 0, 2000, 100, -50, 50);
     h_EtxVsSumEtGPV_.push_back(h_EtxVsSumEtDummyGPV_);
   }
 
@@ -193,11 +193,11 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 } 
 
  /*****get MET collections ******/
-  //  Handle<PFMETCollection> metColl;
-  Handle<METCollection> metColl; //for corrected met
+  Handle<PFMETCollection> metColl;
+  //Handle<METCollection> metColl; //for corrected met
   iEvent.getByLabel(inputTagMET_, metColl);
-  //PFMETCollection::const_iterator met = metColl -> begin();
-  METCollection::const_iterator met = metColl -> begin();
+  PFMETCollection::const_iterator met = metColl -> begin();
+  //METCollection::const_iterator met = metColl -> begin();
 
   Handle<PFMETCollection> rawPFMetColl;
   iEvent.getByLabel(inputTagRAWMET_, rawPFMetColl);
