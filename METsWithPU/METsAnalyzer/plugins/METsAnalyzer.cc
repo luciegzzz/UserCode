@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.21 2011/03/26 19:29:41 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.22 2011/03/28 15:12:46 lucieg Exp $
 //
 //
 
@@ -31,7 +31,6 @@ using namespace reco;
 METsAnalyzer::METsAnalyzer(const edm::ParameterSet& iConfig)
 
 {
-  fOutputFileName_ = iConfig.getUntrackedParameter<string>("HistOutFile");
   
   inputTagMET_ 
     = iConfig.getParameter<InputTag>("met");
@@ -54,6 +53,12 @@ METsAnalyzer::METsAnalyzer(const edm::ParameterSet& iConfig)
   inputType_
      = iConfig.getUntrackedParameter<string>("inputType");
 
+  fillVerticesHistos_    
+     = iConfig.getUntrackedParameter<bool>("fillVerticesHistos");
+
+  fOutputFileName_ = iConfig.getUntrackedParameter<string>("HistOutFile");
+
+  //  metLabel_ = iConfig.getUntrackedParameter<string>("metLabel");
 }
 
 
@@ -73,20 +78,21 @@ METsAnalyzer::beginJob()
   //Create output file                                                                                                                                                     
   outputFile_ = new TFile( fOutputFileName_.c_str(), "RECREATE" );
 
-  //histograms definition                                                                                                              
-  /**vertices distributions**/
-  h_nPUVertices_                = new TH1D("h_nPUVertices", "nr of PU vertices", 50, 0, 50);
-  h_nRecoVertices_              = new TH1D("h_nRecoVertices", "nr of reco PV", 50, 0, 50);
-  h_nGoodRecoVertices_          = new TH1D("h_nGoodRecoVertices", "nr of good reco PV", 50, 0, 50);
-  h_nRecoVerticesDA_            = new TH1D("h_nRecoVerticesDA", "nr of reco PV with DA", 50, 0, 50);
-  h_nGoodRecoVerticesDA_        = new TH1D("h_nGoodRecoVerticesDA", "nr of good reco PV with DA", 50, 0, 50);
-  
-  h_nRecoVtcesVsnPUVtces_       = new TH2D("h_nrecoVtcesVsnPUVtces", "nr of reco vertices vs nr of PU vertices", 50, 0, 50, 50, 0, 50);  
-  h_nGoodRecoVtcesVsnPUVtces_   = new TH2D("h_ngoodRecoVtcesVsnPUVtces", "nr of good reco vertices vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
-
-  h_nRecoVtcesDAVsnPUVtces_     = new TH2D("h_nrecoVtcesDAVsnPUVtces", "nr of reco vertices with DA vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
-  h_nGoodRecoVtcesDAVsnPUVtces_ = new TH2D("h_ngoodRecoVtcesDAVsnPUVtces", "nr of good reco vertices with DA vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
-
+  //histograms definition
+  if (fillVerticesHistos_){
+    /**vertices distributions**/
+    h_nPUVertices_                = new TH1D("h_nPUVertices", "nr of PU vertices", 50, 0, 50);
+    h_nRecoVertices_              = new TH1D("h_nRecoVertices", "nr of reco PV", 50, 0, 50);
+    h_nGoodRecoVertices_          = new TH1D("h_nGoodRecoVertices", "nr of good reco PV", 50, 0, 50);
+    h_nRecoVerticesDA_            = new TH1D("h_nRecoVerticesDA", "nr of reco PV with DA", 50, 0, 50);
+    h_nGoodRecoVerticesDA_        = new TH1D("h_nGoodRecoVerticesDA", "nr of good reco PV with DA", 50, 0, 50);
+    
+    h_nRecoVtcesVsnPUVtces_       = new TH2D("h_nrecoVtcesVsnPUVtces", "nr of reco vertices vs nr of PU vertices", 50, 0, 50, 50, 0, 50);  
+    h_nGoodRecoVtcesVsnPUVtces_   = new TH2D("h_ngoodRecoVtcesVsnPUVtces", "nr of good reco vertices vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
+    
+    h_nRecoVtcesDAVsnPUVtces_     = new TH2D("h_nrecoVtcesDAVsnPUVtces", "nr of reco vertices with DA vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
+    h_nGoodRecoVtcesDAVsnPUVtces_ = new TH2D("h_ngoodRecoVtcesDAVsnPUVtces", "nr of good reco vertices with DA vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
+  }
 
   /*****TH1 Pt histo *******/                 
   h_METPtVsNPU_                 = new TH2D("h_METPtVsNPU","MET Pt(GeV) vs NPU",30 ,0, 30, 100, 0, 100);
@@ -97,7 +103,7 @@ METsAnalyzer::beginJob()
 
 
   /*****TH2 res...histo******/
-  for (int i = 0; i < 20 ; i++){
+  for (int i = 0; i < 25 ; i++){
     TString histoNamePUV = TString::Format("h_EtxVsSumEtPUV_%d", i);
     TH2D *h_EtxVsSumEtDummyPUV_ = new TH2D(histoNamePUV, "Et,x vs sumEt, PUV", 500, 0, 2000, 50, -50, 50);
     h_EtxVsSumEtPUV_.push_back(h_EtxVsSumEtDummyPUV_);
@@ -136,7 +142,6 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   }
 
   else if (inputType_ == "MCOfficial"){
-    //num PU vertices
     Handle<std::vector< PileupSummaryInfo > >  PupInfo;
     iEvent.getByLabel("addPileupInfo", PupInfo);
 
@@ -145,51 +150,54 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     for(PVI = PupInfo->begin(); PVI != PupInfo->end(); ++PVI) {
       nPUVertices += PVI->getPU_NumInteractions();
     }
+    h_nPUVertices_    -> Fill(nPUVertices);
   }
 
+  //  Handle<double> rho;
+  //iEvent.getByLabel("kt6PFJets", "rho", rho);
 
   //reco PV 
   Handle<VertexCollection> vertices;  
   iEvent.getByLabel(inputTagVertices_, vertices);
   int nVertices      = vertices -> size();
-  h_nRecoVertices_   -> Fill(nVertices);
  
   // good reco PV (!isFake && ndof >4 && abs(z)<25 and position.Rho()<2)
   Handle<VertexCollection> goodVertices;  
   iEvent.getByLabel(inputTagGoodVertices_, goodVertices);
   int nGoodVertices   = goodVertices -> size();
-  h_nGoodRecoVertices_-> Fill(nGoodVertices);
- 
+
   //reco PV with DA 
   Handle<VertexCollection> verticesDA;  
   iEvent.getByLabel(inputTagVerticesDA_, verticesDA);
   int nVerticesDA     = verticesDA -> size();
-  h_nRecoVerticesDA_  -> Fill(nVerticesDA);
- 
+
   // good reco PV  with DA (!isFake && ndof >4 && abs(z)<25 and position.Rho()<2)
   Handle<VertexCollection> goodVerticesDA;  
   iEvent.getByLabel(inputTagGoodVerticesDA_, goodVerticesDA);
   int nGoodVerticesDA   = goodVerticesDA -> size();
+
+  if (fillVerticesHistos_){
+
+  /***1D Vertices histos***/
+  h_nRecoVertices_   -> Fill(nVertices);
+  h_nGoodRecoVertices_-> Fill(nGoodVertices);
+  h_nRecoVerticesDA_  -> Fill(nVerticesDA);
   h_nGoodRecoVerticesDA_-> Fill(nGoodVerticesDA);
-  
-  /***2D histo****/
-  //nreco PV vs n PU vertices histo
+
+  /***2D histos****/
   h_nRecoVtcesVsnPUVtces_ -> Fill(nPUVertices,nVertices);
-  
-  //n good reco PV vs n PU vertices histo
   h_nGoodRecoVtcesVsnPUVtces_ -> Fill(nPUVertices,nGoodVertices);
-
-  //nreco PV with DA vs n PU vertices histo
   h_nRecoVtcesDAVsnPUVtces_ -> Fill(nPUVertices,nVerticesDA);
-  
-  //n good reco PV with DA vs n PU vertices histo
   h_nGoodRecoVtcesDAVsnPUVtces_ -> Fill(nPUVertices,nGoodVerticesDA);
- 
 
- /*****get MET collections *- might be more flexible with patmets ?******/
-  Handle<PFMETCollection> metColl;
+} 
+
+ /*****get MET collections ******/
+  //  Handle<PFMETCollection> metColl;
+  Handle<METCollection> metColl; //for corrected met
   iEvent.getByLabel(inputTagMET_, metColl);
-  PFMETCollection::const_iterator met = metColl -> begin();
+  //PFMETCollection::const_iterator met = metColl -> begin();
+  METCollection::const_iterator met = metColl -> begin();
 
   Handle<PFMETCollection> rawPFMetColl;
   iEvent.getByLabel(inputTagRAWMET_, rawPFMetColl);
@@ -202,21 +210,18 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 
   //Pt, x
   h_METPtxVsNPU_     -> Fill(nPUVertices, met->px());
-
   h_METPtxVsNPV_     -> Fill(nVerticesDA, met->px());
-
   h_METPtxVsNGPV_    -> Fill(nGoodVerticesDA, met->px());
-
   //Pt, y
   h_METPtyVsNPU_     -> Fill(nPUVertices, met->py());
 
-  if (nPUVertices < 20){
+  if (nPUVertices < 25 && nVerticesDA <25){
     h_EtxVsSumEtPUV_[nPUVertices] -> Fill(sumEt, met->px());
     h_EtxVsSumEtPV_[nVerticesDA]  -> Fill(sumEt, met->px());
     h_EtxVsSumEtGPV_[nGoodVerticesDA] -> Fill(sumEt, met->px());
   }
 
-
+  else cout<<"higher nr of vtces than expected"<<endl;
 
 }
 
@@ -225,16 +230,20 @@ void
 METsAnalyzer::endJob() {
   outputFile_->cd();
 
-  h_nPUVertices_                -> Write();
-  h_nRecoVertices_              -> Write();
-  h_nGoodRecoVertices_          -> Write();
-  h_nRecoVerticesDA_            -> Write();
-  h_nGoodRecoVerticesDA_        -> Write();
+  if (fillVerticesHistos_){
 
-  h_nRecoVtcesVsnPUVtces_       -> Write();
-  h_nGoodRecoVtcesVsnPUVtces_   -> Write();
-  h_nRecoVtcesDAVsnPUVtces_     -> Write();
-  h_nGoodRecoVtcesDAVsnPUVtces_ -> Write();
+    h_nPUVertices_                -> Write();
+    h_nRecoVertices_              -> Write();
+    h_nGoodRecoVertices_          -> Write();
+    h_nRecoVerticesDA_            -> Write();
+    h_nGoodRecoVerticesDA_        -> Write();
+
+    h_nRecoVtcesVsnPUVtces_       -> Write();
+    h_nGoodRecoVtcesVsnPUVtces_   -> Write();
+    h_nRecoVtcesDAVsnPUVtces_     -> Write();
+    h_nGoodRecoVtcesDAVsnPUVtces_ -> Write();
+
+  }
 
   h_METPtVsNPU_              -> Write();
   h_METPtxVsNPU_             -> Write();

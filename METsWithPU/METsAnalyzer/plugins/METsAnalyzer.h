@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.11 2011/03/24 17:07:19 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.12 2011/03/25 23:01:50 lucieg Exp $
 //
 //
 
@@ -38,6 +38,8 @@
 
 #include "DataFormats/METReco/interface/PFMETCollection.h"
 #include "DataFormats/METReco/interface/PFMET.h"
+#include "DataFormats/METReco/interface/MET.h"
+#include "DataFormats/METReco/interface/METCollection.h"
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/VertexReco/interface/VertexFwd.h" //to get access to VertexCollection
 #include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
@@ -73,10 +75,10 @@ class METsAnalyzer : public edm::EDAnalyzer {
   edm::InputTag       inputTagGoodVerticesDA_;
 
   std::string         inputType_;//get whether it's MC official or FastSim
-
+  bool                fillVerticesHistos_;
   //output 
   TFile               *outputFile_;
-  std:: string        fOutputFileName_;
+  std::string         fOutputFileName_;
 
   //Nr vertices
   TH1D                *h_nPUVertices_;
