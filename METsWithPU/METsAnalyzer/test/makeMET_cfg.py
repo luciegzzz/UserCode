@@ -15,7 +15,7 @@ process.source =cms.Source("PoolSource",
     )
                            )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 ################################
 #------detector conditions-----#
@@ -89,9 +89,9 @@ process.load("METsWithPU.METsAnalyzer.goodVerticesDA_cff")
 ########################################
 process.load("CommonTools.ParticleFlow.PF2PAT_cff")
 
-#modifies the input vertices forpfNoPileUp and redo PF2PAT sequence (nothing else from PAT), without taus, + pfMetNoPileUPDA
+#modifies the input vertices forpfNoPileUp and redo PF2PAT sequence (nothing else from PAT), without taus, the computed MET is pfMetNoPileUPDA
 process.pfPileUp.Vertices = cms.InputTag("offlinePrimaryVerticesDA") #subsequent steps (pfAll* and pfNoMuon) take pfNoPileUp as input
-process.pfMET.alias = cms.string("pfMetNoPileUpDA")
+process.pfMET.src = 'pfNoPileUp' #otherwise the prod defined in RecoMET/METProducers takes particleFlow as input ...
 
 #debugging
 process.dump = cms.EDAnalyzer("EventContentAnalyzer")
@@ -104,11 +104,11 @@ process.makeMET = cms.Path(
     process.goodVerticesDA +
     process.pfNoPileUpOldVtcesSequence +
     process.pfMetNoPileUp  +
-    process.PF2PAT  +
+    process.PF2PAT  + #includes pfMetNoPileUpDA - named pfMET
     process.pfNoNeutralJetsCandSequence +
     process.pfMetFancy +
-    process.kt6PFJets* # need for L1FastJet corrections
-    process.ak5PFJetsC* # jet clustering after neutral jets removal
+    process.kt6PFJets +# needed for L1FastJet corrections
+    process.ak5PFJetsC + # jet clustering after neutral jets removal
     process.ak5PFJetsL2L3+ # compute JEC
     process.metJESCorAK5PFJet ##+
 ##     process.dump
@@ -116,7 +116,7 @@ process.makeMET = cms.Path(
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METsFS.root'),
+                               fileName = cms.untracked.string('METs.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoPFMETs_*_*_*',
                                                    'keep *_pfPileUp*_*_*',
@@ -138,5 +138,5 @@ process.outpath = cms.EndPath(process.out)
 ###-----log-----------------###
 ###############################
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
-process.MessageLogger.cerr.FwkReport.reportEvery = 1
+process.MessageLogger.cerr.FwkReport.reportEvery = 10000
 process.options   = cms.untracked.PSet( wantSummary = cms.untracked.bool(False))
