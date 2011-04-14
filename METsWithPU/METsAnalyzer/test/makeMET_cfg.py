@@ -11,8 +11,9 @@ process = cms.Process("REPROD")
 ##QCD official MC sample
 process.source =cms.Source("PoolSource",
                                                fileNames = cms.untracked.vstring(
-    '/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/PU_S1_START311_V1G1-v1/0002/FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
-    )
+#    '/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/PU_S1_START311_V1G1-v1/0002/FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
+ '/store/mc/Spring11/MinBias_TuneZ2_7TeV-pythia6/GEN-SIM-RECODEBUG/START311_V1G1-v2/0016/44FD2E01-2550-E011-B3FB-00261894385A.root'#,
+ )
                            )
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
@@ -110,21 +111,22 @@ process.makeMET = cms.Path(
     process.kt6PFJets +# needed for L1FastJet corrections
     process.ak5PFJetsC + # jet clustering after neutral jets removal
     process.ak5PFJetsL2L3+ # compute JEC
-    process.metJESCorAK5PFJet ##+
-##     process.dump
+    process.metJESCorAK5PFJet# +
+#     process.dump
 )
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METs.root'),
+                               fileName = cms.untracked.string('METsNoVtx.root'),
                                outputCommands = cms.untracked.vstring('drop *',
+                                                   'keep recoGenMETs_*_*_*',
                                                    'keep recoPFMETs_*_*_*',
                                                    'keep *_pfPileUp*_*_*',
                                                    'keep recoPFCandidates_*_*_*',
                                                    'keep recoVertexs_*_*_*',
                                                    'keep *_metJESCorAK5PFJet_*_*',
                                                    'keep edmHepMCProduct_*_*_*',
-                                                   'keep PileupSummaryInfo_*_*_*',
+                                                   'keep PileupSummaryInfos_*_*_*',
                                                    'keep _addPileupInfo_*_*',         
                                                    'keep recoTracks_*_*_*',
                                                    'keep recoPFJets_*_*_*',

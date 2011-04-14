@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.h,v 1.12 2011/03/25 23:01:50 lucieg Exp $
+// $Id: METsAnalyzer.h,v 1.13 2011/04/04 11:58:52 lucieg Exp $
 //
 //
 
@@ -92,6 +92,11 @@ class METsAnalyzer : public edm::EDAnalyzer {
   TH2D                *h_nRecoVtcesDAVsnPUVtces_;
   TH2D                *h_nGoodRecoVtcesDAVsnPUVtces_;
 
+  //SumEt
+  TH2D                *h_sumEtEffNPU_;
+  TH2D                *h_sumEtEffNPVDA_;
+  TH2D                *h_sumEtEffNGPVDA_;
+
   //Pt distributions
   TH2D                *h_METPtVsNPU_;  
 
@@ -104,6 +109,8 @@ class METsAnalyzer : public edm::EDAnalyzer {
   std::vector< TH2D* > h_EtxVsSumEtPUV_;
   std::vector< TH2D* > h_EtxVsSumEtPV_;
   std::vector< TH2D* > h_EtxVsSumEtGPV_;
+
+  std::vector< TH2D* > h_sumEtRatioVsRawSumEtNPU_;
 
   //  std::vector< TH2D* > h_EtyVsSumEtPUV_;
 

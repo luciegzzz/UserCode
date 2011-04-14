@@ -1,7 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 
 analysis = cms.EDAnalyzer('METsAnalyzer',
-                          met     = cms.InputTag("pfMetNoPileUp"),
+                          met     = cms.InputTag("pfMet"),
                           rawmet     = cms.InputTag("pfMet"),
                           vertices = cms.InputTag("offlinePrimaryVertices"),
                           verticesDA = cms.InputTag("offlinePrimaryVerticesDA"),

@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: METsAnalyzer.cc,v 1.23 2011/04/04 11:58:52 lucieg Exp $
+// $Id: METsAnalyzer.cc,v 1.24 2011/04/04 12:58:23 lucieg Exp $
 //
 //
 
@@ -93,8 +93,12 @@ METsAnalyzer::beginJob()
     h_nRecoVtcesDAVsnPUVtces_     = new TH2D("h_nrecoVtcesDAVsnPUVtces", "nr of reco vertices with DA vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
     h_nGoodRecoVtcesDAVsnPUVtces_ = new TH2D("h_ngoodRecoVtcesDAVsnPUVtces", "nr of good reco vertices with DA vs nr of PU vertices", 50, 0, 50, 50, 0, 50);
   }
+  /*****SumEt***************/
+  h_sumEtEffNPU_                  = new TH2D("h_sumEtEffNPU", "sumEt (GeV) vs NPU", 30 ,0 ,30 , 500, 0, 2000);
+  h_sumEtEffNPVDA_                = new TH2D("h_sumEtEffNPVDA", "sumEt (GeV) vs NPVDA", 30 ,0 ,30 , 500, 0, 2000);
+  h_sumEtEffNGPVDA_               = new TH2D("h_sumEtEffNGPVDA", "sumEt (GeV) vs NGPVDA", 30 ,0 ,30 , 500, 0, 2000);
 
-  /*****TH1 Pt histo *******/                 
+  /*****MET : TH1 Pt histo *******/                 
   h_METPtVsNPU_                 = new TH2D("h_METPtVsNPU","MET Pt(GeV) vs NPU",30 ,0, 30, 100, 0, 100);
   h_METPtxVsNPU_                = new TH2D("h_METPtxVsNPU","MET Ptx(GeV) vs NPU",30 ,0, 30, 100,-50, 50);
   h_METPtxVsNPV_                = new TH2D("h_METPtxVsNPV","MET Ptx(GeV) vs NPV (DA)",30 ,0, 30, 100,-50, 50);
@@ -102,7 +106,7 @@ METsAnalyzer::beginJob()
   h_METPtyVsNPU_                = new TH2D("h_METPtyVsNPU","MET Pty(GeV) vs NPU",30 ,0, 30, 100,-50, 50);
 
 
-  /*****TH2 res...histo******/
+  /*****MET : TH2 res...histo******/
   for (int i = 0; i < 25 ; i++){
     TString histoNamePUV = TString::Format("h_EtxVsSumEtPUV_%d", i);
     TH2D *h_EtxVsSumEtDummyPUV_ = new TH2D(histoNamePUV, "Et,x vs sumEt, PUV", 500, 0, 2000, 100, -50, 50);
@@ -115,7 +119,15 @@ METsAnalyzer::beginJob()
     TString histoNameGPV = TString::Format("h_EtxVsSumEt_%d", i);
     TH2D *h_EtxVsSumEtDummyGPV_ = new TH2D(histoNameGPV, "Et,x vs sumEt, GPV (DA)", 500, 0, 2000, 100, -50, 50);
     h_EtxVsSumEtGPV_.push_back(h_EtxVsSumEtDummyGPV_);
+
+    TString histoNameSumEtNPU = TString::Format("h_sumEtRatioVsRawSumEt_%d", i);
+    TH2D *h_sumEtRatioVsRawSumEtDummyNPU_ = new TH2D(histoNameSumEtNPU, "sumEt eff/raw vs sumEt raw", 500, 0, 2000, 100, 0, 2 );
+    h_sumEtRatioVsRawSumEtNPU_.push_back(h_sumEtRatioVsRawSumEtDummyNPU_);
+
   }
+
+
+
 
  //  for (int i = 0; i < 20 ; i++){
 //     TString histoName = TString::Format("h_EtyVsSumEt0_%d", i);
@@ -179,20 +191,22 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   if (fillVerticesHistos_){
 
   /***1D Vertices histos***/
-  h_nRecoVertices_   -> Fill(nVertices);
-  h_nGoodRecoVertices_-> Fill(nGoodVertices);
-  h_nRecoVerticesDA_  -> Fill(nVerticesDA);
+  h_nRecoVertices_      -> Fill(nVertices);
+  h_nGoodRecoVertices_  -> Fill(nGoodVertices);
+  h_nRecoVerticesDA_    -> Fill(nVerticesDA);
   h_nGoodRecoVerticesDA_-> Fill(nGoodVerticesDA);
 
   /***2D histos****/
-  h_nRecoVtcesVsnPUVtces_ -> Fill(nPUVertices,nVertices);
-  h_nGoodRecoVtcesVsnPUVtces_ -> Fill(nPUVertices,nGoodVertices);
-  h_nRecoVtcesDAVsnPUVtces_ -> Fill(nPUVertices,nVerticesDA);
+  h_nRecoVtcesVsnPUVtces_       -> Fill(nPUVertices,nVertices);
+  h_nGoodRecoVtcesVsnPUVtces_   -> Fill(nPUVertices,nGoodVertices);
+  h_nRecoVtcesDAVsnPUVtces_     -> Fill(nPUVertices,nVerticesDA);
   h_nGoodRecoVtcesDAVsnPUVtces_ -> Fill(nPUVertices,nGoodVerticesDA);
 
 } 
 
- /*****get MET collections ******/
+  /*******************************/
+  /*****get MET collections ******/
+  /*******************************/
   Handle<PFMETCollection> metColl;
   //Handle<METCollection> metColl; //for corrected met
   iEvent.getByLabel(inputTagMET_, metColl);
@@ -203,7 +217,16 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   iEvent.getByLabel(inputTagRAWMET_, rawPFMetColl);
   PFMETCollection::const_iterator rawmet = rawPFMetColl -> begin();
 
-  double sumEt = rawmet -> sumEt();
+  /****sumEt histos*****/
+  double sumEtEff = met    -> sumEt();
+  double rawSumEt = rawmet -> sumEt();
+  //  double genSumEt = 
+
+  h_sumEtEffNPU_    -> Fill(nPUVertices, sumEtEff);
+  h_sumEtEffNPVDA_  -> Fill(nVerticesDA, sumEtEff);
+  h_sumEtEffNGPVDA_ -> Fill(nGoodVerticesDA, sumEtEff);
+
+  /*****MET histos******/
 
   //Pt
   h_METPtVsNPU_      -> Fill(nPUVertices, met->pt());
@@ -216,9 +239,12 @@ METsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   h_METPtyVsNPU_     -> Fill(nPUVertices, met->py());
 
   if (nPUVertices < 25 && nVerticesDA <25){
-    h_EtxVsSumEtPUV_[nPUVertices] -> Fill(sumEt, met->px());
-    h_EtxVsSumEtPV_[nVerticesDA]  -> Fill(sumEt, met->px());
-    h_EtxVsSumEtGPV_[nGoodVerticesDA] -> Fill(sumEt, met->px());
+    h_EtxVsSumEtPUV_[nPUVertices]     -> Fill(rawSumEt, met->px());
+    h_EtxVsSumEtPV_[nVerticesDA]      -> Fill(rawSumEt, met->px());
+    h_EtxVsSumEtGPV_[nGoodVerticesDA] -> Fill(rawSumEt, met->px());
+
+    h_sumEtRatioVsRawSumEtNPU_[nPUVertices] -> Fill(rawSumEt, sumEtEff/rawSumEt);
+    //    h_sumEtRatioVsRawSumEt[nPUVertices] -> Fill(rawSumEt, sumEtEff/genSumEt);
   }
 
   else cout<<"higher nr of vtces than expected"<<endl;
@@ -245,6 +271,10 @@ METsAnalyzer::endJob() {
 
   }
 
+  h_sumEtEffNPU_             -> Write();
+  h_sumEtEffNPVDA_           -> Write();
+  h_sumEtEffNGPVDA_          -> Write();
+
   h_METPtVsNPU_              -> Write();
   h_METPtxVsNPU_             -> Write();
   h_METPtxVsNPV_             -> Write();
@@ -252,9 +282,10 @@ METsAnalyzer::endJob() {
   h_METPtyVsNPU_             -> Write();
 
   for (unsigned int i = 0 ; i < h_EtxVsSumEtPUV_.size() ; i++){
-    h_EtxVsSumEtPUV_[i]   -> Write();
-    h_EtxVsSumEtPV_[i]    -> Write();
-    h_EtxVsSumEtGPV_[i]   -> Write();
+    h_EtxVsSumEtPUV_[i]        -> Write();
+    h_EtxVsSumEtPV_[i]         -> Write();
+    h_EtxVsSumEtGPV_[i]        -> Write();
+    h_sumEtRatioVsRawSumEtNPU_[i] -> Write();
   }
 
 //   for (unsigned int i = 0 ; i < h_EtxVsSumEt_.size() ; i++){
