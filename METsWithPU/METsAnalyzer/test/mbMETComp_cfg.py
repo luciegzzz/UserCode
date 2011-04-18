@@ -17,7 +17,7 @@ process.source =cms.Source("PoolSource",
  )
                            )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
 
 ################################
 #------detector conditions-----#
@@ -51,10 +51,6 @@ process.load("METsWithPU.METsAnalyzer.pfMetComp_cff")
 from METsWithPU.METsAnalyzer.pfMetNoPileUpDA_cff import *
 process.load("METsWithPU.METsAnalyzer.pfMetNoPileUpDA_cff")
 
-## from PhysicsTools.PatAlgos.tools.helpers import *
-
-## postfix = "NPU"
-## pfMetCompSequenceAfterPFNoPileUp = applyPostfix(process, "pfMetCompSequence", postfix)
 
 process.pfCandBarrelNPU       = process.pfCandBarrel.clone(alias="pfCandBarrelNPU")
 process.pfCandBarrelNPU.src   = 'pfNoPileUpDA'
@@ -69,7 +65,7 @@ process.pfMetFwdBwdNPU        = process.pfMetFwdBwd.clone(alias="pfMetFwdBwdNPU"
 process.pfMetNeutralNPU       = process.pfMetNeutral.clone(alias="pfMetNeutralNPU")
 process.pfMetChargedNPU       = process.pfMetCharged.clone(alias="pfMetChargedNPU")
 
-process.pfMetCompSequenceAfterPFNoPileUp = cms.Sequence(
+process.pfMetCompSequenceNPU = cms.Sequence(
     process.pfCandBarrelNPU +
     process.pfMetBarrelNPU +
     process.pfCandFwdBwdNPU +
@@ -89,7 +85,7 @@ process.makeMET = cms.Path(
     process.offlinePrimaryVerticesDA +
     process.pfNoPileUpDASequence +
     process.pfMetNoPileUpDA +
-    process.pfMetCompSequenceAfterPFNoPileUp
+    process.pfMetCompSequenceNPU
     
 
 )
