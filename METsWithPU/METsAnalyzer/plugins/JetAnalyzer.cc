@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.6 2011/04/19 18:47:26 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.7 2011/04/19 18:57:39 lucieg Exp $
 //
 //
 
@@ -109,7 +109,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   sumPtFromPU_            = -999.;
   sumPtNotAssociated_     = -999.;
   chargedMultiplicity_    = -999; 
-  dR_                     = -999.;
+  dR_                     = 999.;
   isMatched_              = false;
 
   Handle<std::vector< PileupSummaryInfo > >  PupInfo;
@@ -147,10 +147,10 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 
   
     //  //cout <<"chargedMultiplicity "<<jet -> chargedMultiplicity()<<endl;
-    //     if (jet -> chargedMultiplicity() == 0){
+         if (jet -> chargedMultiplicity() == 0){
     //       nNeutralJets++;
-    //       continue;
-    //     }
+           continue;
+         }
 
     //genJet matching
     bool matchedJet = isMatched( genJetColl, *jet );
@@ -295,20 +295,25 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
     double etaPfJet     = pfjet.eta();
     double phiPfJet     = pfjet.phi();
 
-    double dRmin     = 999.;
-    double etaGenJet = 999.;
-    double phiGenJet = 999.;
-    double ptGenJet  = 9999.;
+    double dRmin        = 999.;
+    double etaGenJetMin = 999.;
+    double phiGenJetMin = 999.;
+    double ptGenJetMin  = 9999.;
+    int jetIndex = 0;
  
-    for(; genJet != genJets -> end(); genJet++){
+    for(; genJet != genJets -> end(); genJet++, jetIndex++){
+    
+      double etaGenJet = genJet -> eta();
+      double phiGenJet = genJet -> phi();
+      double ptGenJet  = genJet -> pt();
 
       double dR = deltaR(etaPfJet, phiPfJet, etaGenJet, phiGenJet);
-
+     
       if (dR < dRmin) {
 	dRmin = dR;
-	etaGenJet = genJet -> eta();
-	phiGenJet = genJet -> phi();
-	ptGenJet  = genJet -> pt();
+	etaGenJetMin = etaGenJet ;
+	phiGenJetMin = phiGenJet ;
+	ptGenJetMin  = ptGenJet ;
       }
 
     }
@@ -319,9 +324,9 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
 
       isMatched = true;
       
-      etaGenJet_ = etaGenJet;
-      phiGenJet_ = phiGenJet;
-      ptGenJet_  = ptGenJet;
+      etaGenJet_ = etaGenJetMin;
+      phiGenJet_ = phiGenJetMin;
+      ptGenJet_  = ptGenJetMin;
 
     }
   }

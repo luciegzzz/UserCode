@@ -12,8 +12,8 @@ process.source =cms.Source("PoolSource",
 #    '/store/relval/CMSSW_4_2_0_pre4/RelValMinBias/GEN-SIM-RECO/MC_42_V1-v1/0000/A4505C44-DC38-E011-9FD3-002618943940.root'
 #'file:/tmp/lucieg/A4505C44-DC38-E011-9FD3-002618943940.root'
 #'/store/mc/Spring11/MinBias_TuneZ2_7TeV-pythia6/GEN-SIM-RECODEBUG/START311_V1G1-v2/0016/44FD2E01-2550-E011-B3FB-00261894385A.root'#,
-#'rfio:/castor/cern.ch/user/l/lucieg/MET/MinBias/MinBias_TuneZ2_7TeV-pythia6_GEN-SIM-RECODEBUG_START311_V1G1-v2_44FD2E01-2550-E011-B3FB-00261894385A.root'
-'file:/tmp/lucieg/MinBias_TuneZ2_7TeV-pythia6_GEN-SIM-RECODEBUG_START311_V1G1-v2_44FD2E01-2550-E011-B3FB-00261894385A.root'
+'rfio:/castor/cern.ch/user/l/lucieg/MET/MinBias/MinBias_TuneZ2_7TeV-pythia6_GEN-SIM-RECODEBUG_START311_V1G1-v2_44FD2E01-2550-E011-B3FB-00261894385A.root'
+#'file:/tmp/lucieg/MinBias_TuneZ2_7TeV-pythia6_GEN-SIM-RECODEBUG_START311_V1G1-v2_44FD2E01-2550-E011-B3FB-00261894385A.root'
  )
                            )
 
@@ -52,42 +52,13 @@ from METsWithPU.METsAnalyzer.pfMetNoPileUpDA_cff import *
 process.load("METsWithPU.METsAnalyzer.pfMetNoPileUpDA_cff")
 
 
-process.pfCandBarrelNPU       = process.pfCandBarrel.clone(alias="pfCandBarrelNPU")
-process.pfCandBarrelNPU.src   = 'pfNoPileUpDA'
-process.pfCandFwdBwdNPU       = process.pfCandFwdBwd.clone(alias="pfCandFwdBwdNPU")
-process.pfCandFwdBwdNPU.src   = 'pfNoPileUpDA'
-process.pfCandNeutralNPU      = process.pfCandNeutral.clone(alias="pfCandNeutralNPU")
-process.pfCandNeutralNPU.src  = 'pfNoPileUpDA'
-process.pfCandChargedNPU      = process.pfCandCharged.clone(alias="pfCandChargedNPU")
-process.pfCandChargedNPU.src  = 'pfNoPileUpDA'
-process.pfMetBarrelNPU        = process.pfMetBarrel.clone(alias="pfMetBarrelNPU")
-process.pfMetFwdBwdNPU        = process.pfMetFwdBwd.clone(alias="pfMetFwdBwdNPU")
-process.pfMetNeutralNPU       = process.pfMetNeutral.clone(alias="pfMetNeutralNPU")
-process.pfMetChargedNPU       = process.pfMetCharged.clone(alias="pfMetChargedNPU")
-
-process.pfMetCompSequenceNPU = cms.Sequence(
-    process.pfCandBarrelNPU +
-    process.pfMetBarrelNPU +
-    process.pfCandFwdBwdNPU +
-    process.pfMetFwdBwdNPU +
-    process.pfCandChargedNPU +
-    process.pfMetChargedNPU  +
-    process.pfCandNeutralNPU +
-    process.pfMetNeutralNPU
-    )
-
 process.dump = cms.EDAnalyzer("EventContentAnalyzer")
 
 
 process.makeMET = cms.Path(
    # process.dump +
-    process.pfMetCompSequence +
-    process.offlinePrimaryVerticesDA +
-    process.pfNoPileUpDASequence +
-    process.pfMetNoPileUpDA +
-    process.pfMetCompSequenceNPU
-    
-
+    process.pfMetCompSequence #+
+   
 )
 
 
@@ -96,6 +67,9 @@ process.out = cms.OutputModule("PoolOutputModule",
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep *_particleFlow_*_*',
                                                    'keep recoPFMETs_*_*_*',
+                                                   'keep recoGenMETs_*_*_*',
+                                                   'keep *_ak5GenJets_*_*',
+                                                   'keep *_ak5PFJets_*_*',                   
                                                    'keep recoPFCandidates_*_*_*',
                                                    'keep edmHepMCProduct_*_*_*',
                                                    'keep *_*_*_REPROD'
