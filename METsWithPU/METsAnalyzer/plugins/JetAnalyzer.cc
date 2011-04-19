@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.4 2011/04/19 18:12:06 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.5 2011/04/19 18:21:09 lucieg Exp $
 //
 //
 
@@ -99,6 +99,12 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   nElectrons_             = -999.;
   nChargedConstituents_   = -999.;
   nConstituents_          = -999.;
+  etaRecoJet_             = -999.;
+  phiRecoJet_             = -999.;
+  ptRecoJet_              = -999.;
+  etaGenJet_              = -999.;
+  phiGenJet_              = -999.;
+  ptGenJet_               = -999.;
   sumPtFromPV_            = -999.;
   sumPtFromPU_            = -999.;
   sumPtNotAssociated_     = -999.;
@@ -139,18 +145,18 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   for(; jet != jetColl -> end(); jet++, jetIndex++){
 
   
- //  //cout <<"chargedMultiplicity "<<jet -> chargedMultiplicity()<<endl;
-//     if (jet -> chargedMultiplicity() == 0){
-//       nNeutralJets++;
-//       continue;
-//     }
+    //  //cout <<"chargedMultiplicity "<<jet -> chargedMultiplicity()<<endl;
+    //     if (jet -> chargedMultiplicity() == 0){
+    //       nNeutralJets++;
+    //       continue;
+    //     }
 
     //genJet matching
     bool matchedJet = isMatched( genJetColl, *jet );
 
     //bookkeeping variables
     double nPFCand            = 0.;
-    double nPFCCand           = 0.; // = nConstituents
+    double nPFCCand           = 0.; 
     double nPFCandFromPV      = 0.;
     double nPFCandFromPU      = 0.;
     double nPFCandNotAssd     = 0.;
@@ -187,7 +193,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
       if( vertexref.key()==0 )  {//PV associated
 	nPFCandFromPV++;
 	sumPtFromPV += constituents[ic]-> pt();
-    }
+      }
       else if(vertexref.isNull()){//no vertex associated
 	nPFCandNotAssd++;
 	sumPtNotAssd += constituents[ic]-> pt();
@@ -210,8 +216,8 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     nPFCNotAssociated_     = nPFCandNotAssd;
     nMuons_                = nMuons;
     nElectrons_            = nElectrons;
-    nChargedConstituents_  = nPFCand;
-    nConstituents_         = nPFCCand;
+    nChargedConstituents_  = nPFCCand;
+    nConstituents_         = nPFCand;
     sumPtFromPV_           = sumPtFromPV;
     sumPtFromPU_           = sumPtFromPU;
     sumPtNotAssociated_    = sumPtNotAssd;
@@ -281,33 +287,44 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
 
   bool isMatched = false;
  
- //  if (genJets ->size()>0) {
+  if (genJets ->size()>0) {
 
-//   GenJetCollection::const_iterator genJet = genJets -> begin();
+    GenJetCollection::const_iterator genJet = genJets -> begin();
   
-//   double etaPfJet     = pfjet.eta();
-//   double phiPfJet     = pfjet.phi();
+    double etaPfJet     = pfjet.eta();
+    double phiPfJet     = pfjet.phi();
 
-//   double dRmin     = 999.;
-//   double etaGenJet = 999.;
-//   double phiGenJet = 999.;
+    double dRmin     = 999.;
+    double etaGenJet = 999.;
+    double phiGenJet = 999.;
+    double ptGenJet  = 9999.;
+ 
+    for(; genJet != genJets -> end(); genJet++){
 
-//   for(; genJet != genJets -> end(); genJet++){
+      double dR = deltaR(etaPfJet, phiPfJet, etaGenJet, phiGenJet);
 
-//     double dR = deltaR(etaPfJet, phiPfJet, etaGenJet, phiGenJet);
+      if (dR < dRmin) {
+	dRmin = dR;
+	etaGenJet = genJet -> eta();
+	phiGenJet = genJet -> phi();
+	ptGenJet  = genJet -> pt();
+      }
 
-//     if (dR < dRmin) {
-//       dRmin = dR;
-//       etaGenJet = genJet -> eta();
-//       phiGenJet = genJet -> pt();
-//     }
+    }
 
-//   }
+    if (dRmin < 0.4) {
 
-//   if (dRmin < 0.4) isMatched = true;
-   
-//   }
+      isMatched = true;
+    
+      dR_        = dRmin;
+      etaGenJet_ = etaGenJet;
+      phiGenJet_ = phiGenJet;
+      ptGenJet_  = ptGenJet;
 
+    }
+  }
+
+ 
   return isMatched;
 }
 
