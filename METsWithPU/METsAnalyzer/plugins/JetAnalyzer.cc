@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.5 2011/04/19 18:21:09 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.6 2011/04/19 18:47:26 lucieg Exp $
 //
 //
 
@@ -108,7 +108,8 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   sumPtFromPV_            = -999.;
   sumPtFromPU_            = -999.;
   sumPtNotAssociated_     = -999.;
-  chargedMultiplicity_    = -999;
+  chargedMultiplicity_    = -999; 
+  dR_                     = -999.;
   isMatched_              = false;
 
   Handle<std::vector< PileupSummaryInfo > >  PupInfo;
@@ -312,11 +313,12 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
 
     }
 
+    dR_        = dRmin;
+
     if (dRmin < 0.4) {
 
       isMatched = true;
-    
-      dR_        = dRmin;
+      
       etaGenJet_ = etaGenJet;
       phiGenJet_ = phiGenJet;
       ptGenJet_  = ptGenJet;
