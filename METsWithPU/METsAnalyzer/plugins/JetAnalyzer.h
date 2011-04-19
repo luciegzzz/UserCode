@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //        
-// $Id: JetAnalyzer.h,v 1.1 2011/04/18 18:03:01 lucieg Exp $
+// $Id: JetAnalyzer.h,v 1.2 2011/04/19 12:50:48 lucieg Exp $
 //
 //
 
@@ -57,6 +57,7 @@
 #include "TH1F.h"
 #include "TH2F.h"
 #include "TF1.h"
+#include "TTree.h"
 
 //
 // class declaration
@@ -83,6 +84,19 @@ class JetAnalyzer : public edm::EDAnalyzer {
   //output 
   TFile               *outputFile_;
   std::string         fOutputFileName_;
+
+
+  // tree variables
+  // event
+  //int nPUVertices_;
+  //double neutralJets_;
+
+  // jet
+  TTree* METTree_;
+  double nPFCFromPV_;
+  double nPFCFromPU_;
+  double nConstituents_;
+  bool isMatched_;
 
   //Nr vertices
   TH1D                *h_nPUVertices_;

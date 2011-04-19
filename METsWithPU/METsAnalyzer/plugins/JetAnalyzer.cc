@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.1 2011/04/18 18:03:00 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.2 2011/04/19 12:50:48 lucieg Exp $
 //
 //
 
@@ -74,6 +74,12 @@ JetAnalyzer::beginJob()
   h_dR_                              = new TH1D("deltaR","dR",200, 0., 2.);
   h_jetsFromPVMatchedOverJetsFromPV_ = new TH1D("h_jetsFromPVMatchedOverJetsFromPV", "fraction of jets from PV matched", 500, 0., 5.);
 
+  METTree_ = new TTree("METTree", "METTree");
+  METTree_->Branch("nPFCFromPV",&nPFCFromPV_,"nPFCFromPV/D");
+  METTree_->Branch("nPFCFromPU",&nPFCFromPU_,"nPFCFromPU/D");
+  METTree_->Branch("nConstituents",&nConstituents_,"nConstituents/D");
+  METTree_->Branch("isMatched",&isMatched_,"isMatched/O");
+
 }
 
 // ------------ method called to for each event  ------------
@@ -85,6 +91,10 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 
   //PU vertices -not  needed so far....
   int nPUVertices = 0;
+  nPFCFromPV_=-999.;
+  nPFCFromPU_=-999.;
+  nConstituents_=-999.;
+  isMatched_=false;
 
   Handle<std::vector< PileupSummaryInfo > >  PupInfo;
   iEvent.getByLabel("addPileupInfo", PupInfo);
@@ -135,7 +145,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     //bookkeeping
     //cout << "reading "<< jetIndex << "th jetIndex"<<endl;
     double nPFCand            = 0.;
-    double nPFCCand           = 0.;
+    double nPFCCand           = 0.; // = nConstituents
     double nPFCandFromPV      = 0.;
     double nPFCandFromPU      = 0.;
     double nPFNoChargedHadron = 0.;
@@ -163,8 +173,8 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     
       // no associated vertex, or primary vertex
       // not pile-up
-      // if( vertexref.isNull() ||  vertexref.key()==0 )  {
-      if(  vertexref.key()==0 )  {
+      if( vertexref.isNull() ||  vertexref.key()==0 )  {
+	//if(  vertexref.key()==0 )  {
 	nPFCandFromPV++;
 	//cout<<"increased PV"<<endl;
       }
@@ -194,6 +204,14 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     //     cout << "tot "<< nPFCand <<endl;
 
   
+
+  nPFCFromPV_=nPFCandFromPV;
+  nPFCFromPU_=nPFCandFromPU;
+  nConstituents_=nPFCCand;
+  isMatched_=matchedJet;
+
+  METTree_->Fill();
+
   }// end loop over jets
 
   h_jetFromPVOverGenJet_             -> Fill(nJetsFromPV/nGenJet);
@@ -202,6 +220,9 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   h_neutralJetsOverTot_  -> Fill(nNeutralJets/(jetColl -> size()));
 
  
+
+
+
  
 }
 
@@ -277,11 +298,14 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
     v_dR.push_back(dR);
   }
 
-  double dR_min = *(min_element(v_dR.begin(), v_dR.end()));
+  if (genJets ->size()>0)
+  {
+    double dR_min = *(min_element(v_dR.begin(), v_dR.end()));
+    //std::cout << "dR_min" << dR_min << std::endl;
+    h_dR_  -> Fill(dR_min);
+    if (dR_min < 0.4) isMatched = true;
+  }
 
-  h_dR_  -> Fill(dR_min);
-
-  if (dR_min < 0.4) isMatched = true;
   return isMatched;
 }
 
@@ -292,17 +316,18 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
 void 
 JetAnalyzer::endJob() {
   outputFile_->cd();
+  outputFile_->Write();
 
 
-  h_nPUVertices_              -> Write();
-  h_PFCFromPUOverTOT_         -> Write();
-  h_PFCFromPVOverTOT_         -> Write();
-  h_neutralJetsOverTot_       -> Write();
-  h_jetFromPVOverGenJet_      -> Write();
-  h_nConstituents_            -> Write(); 
-  h_PFCFromPUOverTOTVsnConst_ -> Write();
-  h_dR_                       -> Write();
-  h_jetsFromPVMatchedOverJetsFromPV_ -> Write();
+//  h_nPUVertices_              -> Write();
+//  h_PFCFromPUOverTOT_         -> Write();
+//  h_PFCFromPVOverTOT_         -> Write();
+//  h_neutralJetsOverTot_       -> Write();
+//  h_jetFromPVOverGenJet_      -> Write();
+//  h_nConstituents_            -> Write(); 
+//  h_PFCFromPUOverTOTVsnConst_ -> Write();
+//  h_dR_                       -> Write();
+//  h_jetsFromPVMatchedOverJetsFromPV_ -> Write();
 }
 
 //Write this as a plug-in
