@@ -12,8 +12,8 @@
 */
 //
 // Original Author:  "Lucie Gauthier"
-//         Created:  Fri Feb 11 03:43:43 CST 2011
-// $Id: JetAnalyzer.h,v 1.14 2011/04/14 13:54:00 lucieg Exp $
+//        
+// $Id: JetAnalyzer.h,v 1.1 2011/04/18 18:03:01 lucieg Exp $
 //
 //
 
@@ -92,12 +92,10 @@ class JetAnalyzer : public edm::EDAnalyzer {
   TH1D                *h_PFCFromPUOverTOT_;
   TH1D                *h_neutralJetsOverTot_; 
   TH1D                *h_jetFromPVOverGenJet_;
-  TH1D                *h_sumEtFromPU_;
-  TH1D                *h_sumEtFromPV_;
   TH1D                *h_nConstituents_ ;
   TH1D                *h_dR_;
-  TH2D                *h_sumEtPUOverPVVsFracPV_; 
-  TH2D                *h_sumEtPUOverPVVsFracPU_; 
+  TH1D                *h_jetsFromPVMatchedOverJetsFromPV_;
+
   TH2D                *h_PFCFromPUOverTOTVsnConst_;
 
 };

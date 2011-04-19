@@ -5,15 +5,15 @@
 // 
 /**\class JetAnalyzer JetAnalyzer.cc Jet/JetAnalyzer/src/JetAnalyzer.cc
 
- Description: [one line class summary]
+Description: [one line class summary]
 
- Implementation:
-     [Notes on implementation]
+Implementation:
+[Notes on implementation]
 */
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.25 2011/04/14 13:54:00 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.1 2011/04/18 18:03:00 lucieg Exp $
 //
 //
 
@@ -62,20 +62,17 @@ JetAnalyzer::beginJob()
   outputFile_ = new TFile( fOutputFileName_.c_str(), "RECREATE" );
 
   //histograms definition
-    /**vertices distributions**/
-    h_nPUVertices_                = new TH1D("h_nPUVertices", "nr of PU vertices", 50, 0, 50);
+  /**vertices distributions**/
+  h_nPUVertices_                     = new TH1D("h_nPUVertices", "nr of PU vertices", 50, 0, 50);
 
-    h_PFCFromPUOverTOT_           = new TH1D("h_PFCFromPUOverTOT", "charged hadrons from PU over tot charged hadrons", 110, 0., 1.1);
-    h_PFCFromPVOverTOT_           = new TH1D("h_PFCFromPVOverTOT", "charged hadrons from PV over tot charged hadrons", 110, 0., 1.1);
-    h_sumEtFromPU_                = new TH1D("h_sumEtFromPU", "sum Et charged hadrons from PU over sumEt charged hadrons", 110, 0., 1.1);
-    h_sumEtFromPV_                = new TH1D("h_sumEtFromPV", "sum Et charged hadrons from PV over sumEt charged hadrons", 110, 0., 1.1);
-    h_sumEtPUOverPVVsFracPU_      = new TH2D("h_sumEtPUOverPVVsFracPU", "sumEt from PU over sumEt from PV vs frac of PU candidates",110, 0., 1.1, 500, 0., 5. );
-    h_sumEtPUOverPVVsFracPV_      = new TH2D("h_sumEtPUOverPVVsFracPV", "sumEt from PU over sumEt from PV vs frac of ~PV candidates",110, 0., 1.1, 500, 0., 5. );
-    h_neutralJetsOverTot_         = new TH1D("h_neutralJetsOverTOT", "neutral jets fraction", 110, 0., 1.1);
-    h_jetFromPVOverGenJet_        = new TH1D("h_jetFromPVOverGenJet", "#jet from PV over # genJet", 110, 0., 1.1);
-    h_nConstituents_              = new TH1D("h_nConstituents","nr of charged hadrons in jets", 75, 0., 75.);
-    h_PFCFromPUOverTOTVsnConst_   = new TH2D("h_PFCFromPUOverTOTVsnConst", "charged hadrons from PU over tot charged hadrons vs nr of charged constituents", 75, 0., 75., 110, 0., 1.1 );
-    h_dR_                          = new TH1D("deltaR","dR",200, 0., 2.);
+  h_PFCFromPUOverTOT_                = new TH1D("h_PFCFromPUOverTOT", "charged hadrons from PU over tot charged hadrons", 110, 0., 1.1);
+  h_PFCFromPVOverTOT_                = new TH1D("h_PFCFromPVOverTOT", "charged hadrons from PV over tot charged hadrons", 110, 0., 1.1);
+  h_neutralJetsOverTot_              = new TH1D("h_neutralJetsOverTOT", "neutral jets fraction", 110, 0., 1.1);
+  h_jetFromPVOverGenJet_             = new TH1D("h_jetFromPVOverGenJet", "#jet from PV over # genJet", 110, 0., 1.1);
+  h_nConstituents_                   = new TH1D("h_nConstituents","nr of charged hadrons in jets", 75, 0., 75.);
+  h_PFCFromPUOverTOTVsnConst_        = new TH2D("h_PFCFromPUOverTOTVsnConst", "charged hadrons from PU over tot charged hadrons vs nr of charged constituents", 75, 0., 75., 110, 0., 1.1 );
+  h_dR_                              = new TH1D("deltaR","dR",200, 0., 2.);
+  h_jetsFromPVMatchedOverJetsFromPV_ = new TH1D("h_jetsFromPVMatchedOverJetsFromPV", "fraction of jets from PV matched", 500, 0., 5.);
 
 }
 
@@ -86,19 +83,22 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 
   /*****get Vertices collections and fill vertices (only) histograms******/
 
-  //PU vertices
+  //PU vertices -not  needed so far....
   int nPUVertices = 0;
 
   Handle<std::vector< PileupSummaryInfo > >  PupInfo;
-    iEvent.getByLabel("addPileupInfo", PupInfo);
+  iEvent.getByLabel("addPileupInfo", PupInfo);
 
-    std::vector<PileupSummaryInfo>::const_iterator PVI;
+  std::vector<PileupSummaryInfo>::const_iterator PVI;
 
-    for(PVI = PupInfo->begin(); PVI != PupInfo->end(); ++PVI) {
-      nPUVertices += PVI->getPU_NumInteractions();
-    }
-    h_nPUVertices_    -> Fill(nPUVertices);
+  for(PVI = PupInfo->begin(); PVI != PupInfo->end(); ++PVI) {
+    nPUVertices += PVI->getPU_NumInteractions();
+  }
+  h_nPUVertices_    -> Fill(nPUVertices);
     
+  /*******************************************/
+  /*get vertices collection(for jet matching)*/
+  /*******************************************/
   Handle<VertexCollection> vertexColl;
   iEvent.getByLabel(inputTagVertices_, vertexColl);
 
@@ -106,21 +106,21 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   /*******************************/
   /*****get Jet collections ******/
   /*******************************/
-  //get genJets info
+  //get genJets 
   Handle<GenJetCollection> genJetColl;
-  iEvent.getByLabel(inputTagGenJet_, genJetColl);
-  
+  iEvent.getByLabel(inputTagGenJet_, genJetColl);  
   double nGenJet = genJetColl -> size();
   
-  //reco Jets
+  //get recoJets
   Handle<PFJetCollection> jetColl;
   iEvent.getByLabel(inputTagJet_, jetColl);
 
   PFJetCollection::const_iterator jet = jetColl -> begin();
-  int jetIndex        = 0;
-  double nNeutralJets = 0.;
-  double nJetsFromPV  = 0.;
-
+  int jetIndex               = 0;
+  double nNeutralJets        = 0.;
+  double nJetsFromPV         = 0.;
+  double nJetsFromPVMatched  = 0.;
+ 
   for(; jet != jetColl -> end(); jet++, jetIndex++){
 
     //cout <<"chargedMultiplicity "<<jet -> chargedMultiplicity()<<endl;
@@ -139,11 +139,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     double nPFCandFromPV      = 0.;
     double nPFCandFromPU      = 0.;
     double nPFNoChargedHadron = 0.;
-    double nJetsFromPV        = 0.;
-    double sumEtFromPV        = 0.;
-    double sumEtFromPU        = 0.;
-    double sumEtC             = 0.;
-
+  
     vector <PFCandidatePtr> constituents = jet -> getPFConstituents ();
 
     nPFCand = constituents.size ();
@@ -157,8 +153,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
       case PFCandidate::h:
 	//cout <<"found a charged hadron\n";
         nPFCCand++;
-	sumEtC += constituents[ic]->et();
-   	vertexref = chargedHadronVertex( vertexColl, constituents[ic] );
+	vertexref = chargedHadronVertex( vertexColl, constituents[ic] );
 	break;
       default:
 	//cout <<"not a charged hadron\n";
@@ -168,15 +163,14 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     
       // no associated vertex, or primary vertex
       // not pile-up
-      if( vertexref.isNull() ||  vertexref.key()==0 )  {
+      // if( vertexref.isNull() ||  vertexref.key()==0 )  {
+      if(  vertexref.key()==0 )  {
 	nPFCandFromPV++;
-	sumEtFromPV += constituents[ic]->et();
 	//cout<<"increased PV"<<endl;
       }
       else {
 	//	cout <<"no PV increase"<<endl;
 	nPFCandFromPU++;
-	sumEtFromPU += constituents[ic]->et();
       }
      
     }//end loop over consituents
@@ -184,16 +178,15 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    
     h_PFCFromPUOverTOT_         -> Fill(nPFCandFromPU / nPFCCand);
     h_PFCFromPVOverTOT_         -> Fill(nPFCandFromPV / nPFCCand);
-    h_sumEtFromPU_              -> Fill(sumEtFromPU/sumEtC);
-    h_sumEtFromPV_              -> Fill(sumEtFromPV/sumEtC);
     h_nConstituents_            -> Fill(nPFCCand);
     h_PFCFromPUOverTOTVsnConst_ -> Fill(nPFCCand, nPFCandFromPU / nPFCCand);
     
-    h_sumEtPUOverPVVsFracPU_    -> Fill(nPFCandFromPU / nPFCCand,sumEtFromPU/sumEtFromPV);
-    h_sumEtPUOverPVVsFracPV_    -> Fill(nPFCandFromPV / nPFCCand,sumEtFromPU/sumEtFromPV);
-
-    if ((nPFCandFromPV / nPFCCand) > 0.99) nJetsFromPV++;
-    cout <<nPFCandFromPV / nPFCCand<<" "<<nJetsFromPV<<endl;
+    if ((nPFCCand>0) &&(nPFCandFromPV / nPFCCand) > 0.99) {
+      nJetsFromPV++;
+      if (matchedJet){
+	nJetsFromPVMatched++;
+      }
+    }
     //     cout << "from PV "<< nPFCandFromPV <<endl;
     //     cout << "from PU "<< nPFCandFromPU <<endl;
     //     cout << "tot N "<< nPFNoChargedHadron <<endl;
@@ -203,17 +196,16 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   
   }// end loop over jets
 
-
-
-  h_jetFromPVOverGenJet_ -> Fill(nJetsFromPV/nGenJet);
-  
+  h_jetFromPVOverGenJet_             -> Fill(nJetsFromPV/nGenJet);
+  h_jetsFromPVMatchedOverJetsFromPV_ -> Fill(nJetsFromPVMatched/nJetsFromPV);
+  //cout <<nJetsFromPVMatched/nJetsFromPV<<endl;
   h_neutralJetsOverTot_  -> Fill(nNeutralJets/(jetColl -> size()));
 
  
  
 }
 
-
+/****take a pfCandidate and a collection of vertices, loop through the vertices, try to associate to the pfCand. Copy-paste from PFPileUp.cc*****/
 VertexRef 
 JetAnalyzer::chargedHadronVertex( const Handle<VertexCollection>& vertices, const PFCandidate& pfcand ) const {
 
@@ -264,7 +256,7 @@ JetAnalyzer::chargedHadronVertex( const Handle<VertexCollection>& vertices, cons
 
 
 
-
+/****take a pf Jet, a GenJet collection, loop through the genJets, calculate deltaR and find the min. If this min < 0.4, the pf jet is matched***/
 bool 
 JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const reco::PFJet& pfjet){
 
@@ -307,13 +299,10 @@ JetAnalyzer::endJob() {
   h_PFCFromPVOverTOT_         -> Write();
   h_neutralJetsOverTot_       -> Write();
   h_jetFromPVOverGenJet_      -> Write();
-  h_sumEtFromPU_              -> Write();
-  h_sumEtFromPV_              -> Write();
-  h_sumEtPUOverPVVsFracPU_    -> Write();
-  h_sumEtPUOverPVVsFracPV_    -> Write();
   h_nConstituents_            -> Write(); 
   h_PFCFromPUOverTOTVsnConst_ -> Write();
-  h_dR_                        -> Write();
+  h_dR_                       -> Write();
+  h_jetsFromPVMatchedOverJetsFromPV_ -> Write();
 }
 
 //Write this as a plug-in
