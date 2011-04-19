@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.3 2011/04/19 15:17:57 lacroix Exp $
+// $Id: JetAnalyzer.cc,v 1.4 2011/04/19 18:12:06 lucieg Exp $
 //
 //
 
@@ -89,7 +89,6 @@ JetAnalyzer::beginJob()
 void
 JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-
   /*****get Vertices collections and fill vertices (only) histograms******/
 
   int nPUVertices         = 0; //PU vertices -not  needed so far....
@@ -114,7 +113,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   for(PVI = PupInfo->begin(); PVI != PupInfo->end(); ++PVI) {
     nPUVertices += PVI->getPU_NumInteractions();
   }
-  h_nPUVertices_    -> Fill(nPUVertices);
+  
     
   /*******************************************/
   /*get vertices collection(for jet matching)*/
