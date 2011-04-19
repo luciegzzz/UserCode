@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //        
-// $Id: JetAnalyzer.h,v 1.2 2011/04/19 12:50:48 lucieg Exp $
+// $Id: JetAnalyzer.h,v 1.3 2011/04/19 15:18:04 lacroix Exp $
 //
 //
 
@@ -95,22 +95,25 @@ class JetAnalyzer : public edm::EDAnalyzer {
   TTree* METTree_;
   double nPFCFromPV_;
   double nPFCFromPU_;
+  double nPFCNotAssociated_;
+  double nChargedConstituents_;
   double nConstituents_;
-  bool isMatched_;
+  double nMuons_; 
+  double nElectrons_;
+  double sumPtFromPV_;
+  double sumPtFromPU_;
+  double sumPtNotAssociated_;
+  double ptRecoJet_;
+  double etaRecoJet_;
+  double phiRecoJet_;
+  int    chargedMultiplicity_;
+  double ptGenJet_;
+  double etaGenJet_;
+  double phiGenJet_;
+  double dR_;
+  bool   isMatched_;
+ 
 
-  //Nr vertices
-  TH1D                *h_nPUVertices_;
-
-  //jet 
-  TH1D                *h_PFCFromPVOverTOT_;
-  TH1D                *h_PFCFromPUOverTOT_;
-  TH1D                *h_neutralJetsOverTot_; 
-  TH1D                *h_jetFromPVOverGenJet_;
-  TH1D                *h_nConstituents_ ;
-  TH1D                *h_dR_;
-  TH1D                *h_jetsFromPVMatchedOverJetsFromPV_;
-
-  TH2D                *h_PFCFromPUOverTOTVsnConst_;
 
 };
 
