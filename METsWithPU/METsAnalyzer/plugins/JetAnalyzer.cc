@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.7 2011/04/19 18:57:39 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.8 2011/04/19 19:33:14 lucieg Exp $
 //
 //
 
@@ -30,15 +30,21 @@ using namespace reco;
 JetAnalyzer::JetAnalyzer(const edm::ParameterSet& iConfig)
 
 {
-  
+  inputTagVertices_ 
+    = iConfig.getParameter<InputTag>("vertices");
+
   inputTagJet_ 
     = iConfig.getParameter<InputTag>("jets");
 
   inputTagGenJet_ 
     = iConfig.getParameter<InputTag>("genJets");
  
-  inputTagVertices_ 
-    = iConfig.getParameter<InputTag>("vertices");
+  inputTagPFMET_ 
+    = iConfig.getParameter<InputTag>("pfmet");
+
+  inputTagPFCand_ 
+    = iConfig.getParameter<InputTag>("pfCandidates");
+
  
   fOutputFileName_ = iConfig.getUntrackedParameter<string>("HistOutFile");
 
@@ -61,37 +67,44 @@ JetAnalyzer::beginJob()
   //Create output file                                                                                                                                                     
   outputFile_ = new TFile( fOutputFileName_.c_str(), "RECREATE" );
 
-  METTree_ = new TTree("METTree", "METTree");
-  METTree_ -> Branch("nPFCFromPV",&nPFCFromPV_,"nPFCFromPV/D");
-  METTree_ -> Branch("nPFCFromPU",&nPFCFromPU_,"nPFCFromPU/D");
-  METTree_ -> Branch("nPFCNotAssociated",&nPFCNotAssociated_,"nPFCNotAssociated/D");
-  METTree_ -> Branch("nChargedConstituents",&nChargedConstituents_,"nChargedConstituents/D");
-  METTree_ -> Branch("nConstituents",&nConstituents_,"nConstituents/D");
-  METTree_ -> Branch("nMuons",&nMuons_,"nMuons/D");
-  METTree_ -> Branch("nElectrons",&nElectrons_,"nElectrons/D");
-  METTree_ -> Branch("ptRecoJet",&ptRecoJet_,"ptRecoJet/D");
-  METTree_ -> Branch("etaRecoJet",&etaRecoJet_,"etaRecoJet/D");
-  METTree_ -> Branch("phiRecoJet",&phiRecoJet_,"phiRecoJet/D");
-  METTree_ -> Branch("chargedMultiplicity",&chargedMultiplicity_,"chargedMultiplicity/I");
-  METTree_ -> Branch("sumPtFromPV",&sumPtFromPV_,"sumPtFromPV/D");
-  METTree_ -> Branch("sumPtFromPU",&sumPtFromPU_,"sumPtFromPU/D");
-  METTree_ -> Branch("sumPtNotAssociated",&sumPtNotAssociated_,"sumPtNotAssociated/D");
-  METTree_ -> Branch("ptGenJet",&ptGenJet_,"ptGenJet/D");
-  METTree_ -> Branch("etaGenJet",&etaGenJet_,"etaGenJet/D");
-  METTree_ -> Branch("phiGenJet",&phiGenJet_,"phiGenJet/D");
-  METTree_ -> Branch("dR",&dR_,"dR/D");
-
-  METTree_ -> Branch("isMatched",&isMatched_,"isMatched/O");
+  //JetsTree
+  JetsTree_ = new TTree("JetsTree", "JetsTree");
+  JetsTree_ -> Branch("nPFCFromPV",&nPFCFromPV_,"nPFCFromPV/D");
+  JetsTree_ -> Branch("nPFCFromPU",&nPFCFromPU_,"nPFCFromPU/D");
+  JetsTree_ -> Branch("nPFCNotAssociated",&nPFCNotAssociated_,"nPFCNotAssociated/D");
+  JetsTree_ -> Branch("nChargedConstituents",&nChargedConstituents_,"nChargedConstituents/D");
+  JetsTree_ -> Branch("nConstituents",&nConstituents_,"nConstituents/D");
+  JetsTree_ -> Branch("nMuons",&nMuons_,"nMuons/D");
+  JetsTree_ -> Branch("nElectrons",&nElectrons_,"nElectrons/D");
+  JetsTree_ -> Branch("ptRecoJet",&ptRecoJet_,"ptRecoJet/D");
+  JetsTree_ -> Branch("etaRecoJet",&etaRecoJet_,"etaRecoJet/D");
+  JetsTree_ -> Branch("phiRecoJet",&phiRecoJet_,"phiRecoJet/D");
+  JetsTree_ -> Branch("chargedMultiplicity",&chargedMultiplicity_,"chargedMultiplicity/I");
+  JetsTree_ -> Branch("sumPtFromPV",&sumPtFromPV_,"sumPtFromPV/D");
+  JetsTree_ -> Branch("sumPtFromPU",&sumPtFromPU_,"sumPtFromPU/D");
+  JetsTree_ -> Branch("sumPtNotAssociated",&sumPtNotAssociated_,"sumPtNotAssociated/D");
+  JetsTree_ -> Branch("ptGenJet",&ptGenJet_,"ptGenJet/D");
+  JetsTree_ -> Branch("etaGenJet",&etaGenJet_,"etaGenJet/D");
+  JetsTree_ -> Branch("phiGenJet",&phiGenJet_,"phiGenJet/D");
+  JetsTree_ -> Branch("dR",&dR_,"dR/D");
+  JetsTree_ -> Branch("isMatched",&isMatched_,"isMatched/O");
+  JetsTree_ -> Branch("nGenJets",&nGenJets_,"nGenJets/D");
  
+  //METTree
+  METTree_  = new TTree("METTree", "METTree");
+  METTree_  -> Branch("met", &met_, "met/D");
+  METTree_  -> Branch("mpt", &mpt_, "mpt/D"); 
+  METTree_  -> Branch("stdPFMET", &stdPFMET_, "stdPFMET/D");
+
 }
 
 // ------------ method called to for each event  ------------
 void
 JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-  /*****get Vertices collections and fill vertices (only) histograms******/
-
-  int nPUVertices         = 0; //PU vertices -not  needed so far....
+  
+  /*****Tree variables initialization******/
+  //JetsTree
   nPFCFromPV_             = -999.;
   nPFCFromPU_             = -999.;
   nPFCNotAssociated_      = -999.;
@@ -111,11 +124,19 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   chargedMultiplicity_    = -999; 
   dR_                     = 999.;
   isMatched_              = false;
+  nGenJets_               = -999.;
 
-  Handle<std::vector< PileupSummaryInfo > >  PupInfo;
+  //METTree
+  met_                    = -999.;
+  mpt_                    = -999.;
+
+  /*****PU info - not  needed so far....*****/
+  int nPUVertices         = 0; 
+
+  Handle<vector< PileupSummaryInfo > >  PupInfo;
   iEvent.getByLabel("addPileupInfo", PupInfo);
 
-  std::vector<PileupSummaryInfo>::const_iterator PVI;
+  vector<PileupSummaryInfo>::const_iterator PVI;
 
   for(PVI = PupInfo->begin(); PVI != PupInfo->end(); ++PVI) {
     nPUVertices += PVI->getPU_NumInteractions();
@@ -144,16 +165,6 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   int jetIndex               = 0;
  
   for(; jet != jetColl -> end(); jet++, jetIndex++){
-
-  
-    //  //cout <<"chargedMultiplicity "<<jet -> chargedMultiplicity()<<endl;
-         if (jet -> chargedMultiplicity() == 0){
-    //       nNeutralJets++;
-           continue;
-         }
-
-    //genJet matching
-    bool matchedJet = isMatched( genJetColl, *jet );
 
     //bookkeeping variables
     double nPFCand            = 0.;
@@ -191,15 +202,15 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	continue;
       } 
     
-      if( vertexref.key()==0 )  {//PV associated
+      if( vertexref.key()==0 )  {//hadron associated to the primary vertex
 	nPFCandFromPV++;
 	sumPtFromPV += constituents[ic]-> pt();
       }
-      else if(vertexref.isNull()){//no vertex associated
+      else if(vertexref.isNull()){//hadron not associated to any vertex
 	nPFCandNotAssd++;
 	sumPtNotAssd += constituents[ic]-> pt();
       }
-      else {//PU associated
+      else {//hadron associated to a secondary vertex
 	nPFCandFromPU++;
 	sumPtFromPU += constituents[ic]-> pt();
       }
@@ -211,6 +222,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     etaRecoJet_            = jet -> eta();
     phiRecoJet_            = jet -> phi();
     chargedMultiplicity_   = jet -> chargedMultiplicity();
+    isMatched_             = isMatched( genJetColl, *jet );
 
     nPFCFromPV_            = nPFCandFromPV;
     nPFCFromPU_            = nPFCandFromPU;
@@ -222,12 +234,45 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     sumPtFromPV_           = sumPtFromPV;
     sumPtFromPU_           = sumPtFromPU;
     sumPtNotAssociated_    = sumPtNotAssd;
+   
     
-    isMatched_             = matchedJet;
-    
-    METTree_ -> Fill();
+    JetsTree_ -> Fill();
     
   }// end loop over jets
+
+  /***********************/
+  /*****recompute MET****/
+  /**********************/
+  //get standard met for consistency check
+  Handle<PFMETCollection> pfMETColl;
+  iEvent.getByLabel(inputTagPFMET_, pfMETColl);
+  PFMETCollection::const_iterator pfmet = pfMETColl -> begin();
+  stdPFMET_ = pfmet -> et(); 
+
+  //get pfCandidates
+  Handle<PFCandidateCollection> pfCandColl;
+  iEvent.getByLabel(inputTagPFCand_, pfCandColl);
+
+  if (pfCandColl -> size() > 0){
+    PFCandidateCollection::const_iterator pfCand = pfCandColl -> begin();
+    double metx = 0.;
+    double mety = 0.;
+    double mpx = 0.;
+    double mpy = 0.;
+  
+    for(; pfCand != pfCandColl -> end(); pfCand++){
+      mpx += pfCand -> px();
+      mpy += pfCand -> py();
+      double et = pfCand -> et();
+      double phi = pfCand -> phi();
+      metx += et * cos(phi); // e*sin(theta) gives the same distribution (e, theta = pfCand -> energy(), theta())
+      mety += et * sin(phi);
+    }
+    mpt_ = sqrt( mpx * mpx + mpy * mpy );
+    met_ = sqrt( metx * metx + mety * mety );
+  }
+
+  METTree_ ->Fill();
 
 }
 
@@ -287,7 +332,9 @@ bool
 JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const reco::PFJet& pfjet){
 
   bool isMatched = false;
- 
+
+  nGenJets_ =  genJets ->size();
+
   if (genJets ->size()>0) {
 
     GenJetCollection::const_iterator genJet = genJets -> begin();
@@ -299,9 +346,8 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
     double etaGenJetMin = 999.;
     double phiGenJetMin = 999.;
     double ptGenJetMin  = 9999.;
-    int jetIndex = 0;
- 
-    for(; genJet != genJets -> end(); genJet++, jetIndex++){
+   
+    for(; genJet != genJets -> end(); genJet++){
     
       double etaGenJet = genJet -> eta();
       double phiGenJet = genJet -> phi();
@@ -315,22 +361,18 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
 	phiGenJetMin = phiGenJet ;
 	ptGenJetMin  = ptGenJet ;
       }
-
     }
 
     dR_        = dRmin;
 
     if (dRmin < 0.4) {
-
       isMatched = true;
-      
+      //fill JetTree variables
       etaGenJet_ = etaGenJetMin;
       phiGenJet_ = phiGenJetMin;
       ptGenJet_  = ptGenJetMin;
-
     }
   }
-
  
   return isMatched;
 }
@@ -341,8 +383,9 @@ JetAnalyzer::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const
 // ------------ method called once each job just after ending the event loop  ------------
 void 
 JetAnalyzer::endJob() {
-  outputFile_->cd();
-  outputFile_->Write();
+
+  outputFile_ -> cd();
+  outputFile_ -> Write();
 
 }
 

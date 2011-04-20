@@ -2,7 +2,7 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("ANALYSIS")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
 process.options = cms.untracked.PSet(
     SkipEvent = cms.untracked.vstring('ProductNotFound'),
     )

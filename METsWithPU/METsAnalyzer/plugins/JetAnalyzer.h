@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //        
-// $Id: JetAnalyzer.h,v 1.3 2011/04/19 15:18:04 lacroix Exp $
+// $Id: JetAnalyzer.h,v 1.4 2011/04/19 18:12:06 lucieg Exp $
 //
 //
 
@@ -46,6 +46,8 @@
 #include "DataFormats/JetReco/interface/PFJet.h"
 #include "DataFormats/JetReco/interface/GenJetCollection.h"
 #include "DataFormats/JetReco/interface/GenJet.h"
+#include "DataFormats/METReco/interface/PFMET.h"
+#include "DataFormats/METReco/interface/PFMETCollection.h"
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/VertexReco/interface/VertexFwd.h"
 #include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
@@ -77,9 +79,11 @@ class JetAnalyzer : public edm::EDAnalyzer {
   bool isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const reco::PFJet& pfjet);
 
   // ----------member data ---------------------------                                                                                                                                                                                  
+  edm::InputTag       inputTagVertices_;
   edm::InputTag       inputTagJet_;
   edm::InputTag       inputTagGenJet_;
-  edm::InputTag       inputTagVertices_;
+  edm::InputTag       inputTagPFMET_;
+  edm::InputTag       inputTagPFCand_;
  
   //output 
   TFile               *outputFile_;
@@ -91,8 +95,8 @@ class JetAnalyzer : public edm::EDAnalyzer {
   //int nPUVertices_;
   //double neutralJets_;
 
-  // jet
-  TTree* METTree_;
+  // jet tree
+  TTree* JetsTree_;
   double nPFCFromPV_;
   double nPFCFromPU_;
   double nPFCNotAssociated_;
@@ -112,8 +116,13 @@ class JetAnalyzer : public edm::EDAnalyzer {
   double phiGenJet_;
   double dR_;
   bool   isMatched_;
+  double nGenJets_;
  
-
+  //met tree
+  TTree* METTree_;
+  double stdPFMET_;
+  double met_;
+  double mpt_;
 
 };
 

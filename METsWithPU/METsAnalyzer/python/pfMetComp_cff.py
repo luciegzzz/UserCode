@@ -25,10 +25,10 @@ pfAllChargedHadronsFromAllPFC.src = 'particleFlow'
 pfMetAllChargedHadrons            = pfMET.clone(alias = 'pfMetAllChargedHadrons')
 pfMetAllChargedHadrons.src        = 'pfAllChargedHadronsFromAllPFC' 
 
-pfAllChargedHadronsFromAllPFCCompl= ~pfAllChargedHadronsFromAllPFC
-pfMetAllChargedHadronsCompl       = pfMET.clone(alias = 'pfMetAllChargedHadrons')
-pfMetAllChargedHadronsCompl       = pfMET.clone(alias = 'pfMetAllChargedHadrons')
-pfMetAllChargedHadronsCompl.src   = 'pfAllChargedHadronsFromAllPFC' 
+pfAllChargedHadronsFromAllPFCCompl        = pfAllChargedHadronsFromAllPFC.clone()
+pfAllChargedHadronsFromAllPFCCompl.pdgId != cms.vint32(211,-211,321,-321,999211,2212,-2212)
+pfMetAllChargedHadronsCompl               = pfMET.clone(alias = 'pfMetAllChargedHadronsCompl')
+pfMetAllChargedHadronsCompl.src           = 'pfAllChargedHadronsFromAllPFCCompl' 
 
 
 pfMetCompSequence = cms.Sequence(

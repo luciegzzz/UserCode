@@ -1,8 +1,10 @@
 import FWCore.ParameterSet.Config as cms
 
 analysis = cms.EDAnalyzer('JetAnalyzer',
+                          vertices     = cms.InputTag("offlinePrimaryVerticesDA"),
                           jets         = cms.InputTag("ak5PFJets"),
                           genJets      = cms.InputTag("ak5GenJets"),
-                          vertices     = cms.InputTag("offlinePrimaryVerticesDA"),
+                          pfmet        = cms.InputTag("pfMet"),
+                          pfCandidates = cms.InputTag("particleFlow"),
                           HistOutFile  = cms.untracked.string('histosJets.root')
 )
