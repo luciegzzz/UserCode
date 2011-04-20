@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.9 2011/04/20 12:49:54 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.10 2011/04/20 14:10:46 lucieg Exp $
 //
 //
 
@@ -72,6 +72,7 @@ JetAnalyzer::beginJob()
   JetsTree_ -> Branch("nPFCFromPV",&nPFCFromPV_,"nPFCFromPV/D");
   JetsTree_ -> Branch("nPFCFromPU",&nPFCFromPU_,"nPFCFromPU/D");
   JetsTree_ -> Branch("nPFCNotAssociated",&nPFCNotAssociated_,"nPFCNotAssociated/D");
+  JetsTree_ -> Branch("nNeutralConstituents",&nNeutralConstituents_,"nNeutralConstituents/D");
   JetsTree_ -> Branch("nChargedConstituents",&nChargedConstituents_,"nChargedConstituents/D");
   JetsTree_ -> Branch("nConstituents",&nConstituents_,"nConstituents/D");
   JetsTree_ -> Branch("nMuons",&nMuons_,"nMuons/D");
@@ -117,6 +118,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   nPFCNotAssociated_      = -999.;
   nMuons_                 = -999.;
   nElectrons_             = -999.;
+  nNeutralConstituents_   = -999.;
   nChargedConstituents_   = -999.;
   nConstituents_          = -999.;
   etaRecoJet_             = -999.;
@@ -191,6 +193,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     //bookkeeping variables
     double nPFCand            = 0.;
     double nPFCCand           = 0.; 
+    double nPFNCand           = 0.; 
     double nPFCandFromPV      = 0.;
     double nPFCandFromPU      = 0.;
     double nPFCandNotAssd     = 0.;
@@ -219,6 +222,12 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	continue;
       case PFCandidate::e:
 	nElectrons++;
+	continue;
+      case PFCandidate::h0: 
+	nPFNCand++;
+	continue;
+      case PFCandidate::gamma:
+	nPFNCand++;
 	continue;
       default:
 	nPFNoChargedHadron++;
@@ -258,6 +267,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     nPFCNotAssociated_     = nPFCandNotAssd;
     nMuons_                = nMuons;
     nElectrons_            = nElectrons;
+    nNeutralConstituents_  = nPFNCand;
     nChargedConstituents_  = nPFCCand;
     nConstituents_         = nPFCand;
     sumPtFromPV_           = sumPtFromPV;

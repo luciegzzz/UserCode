@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //        
-// $Id: JetAnalyzer.h,v 1.5 2011/04/20 12:49:54 lucieg Exp $
+// $Id: JetAnalyzer.h,v 1.6 2011/04/20 14:10:46 lucieg Exp $
 //
 //
 
@@ -99,6 +99,7 @@ class JetAnalyzer : public edm::EDAnalyzer {
   double nPFCFromPV_;
   double nPFCFromPU_;
   double nPFCNotAssociated_;
+  double nNeutralConstituents_;
   double nChargedConstituents_;
   double nConstituents_;
   double nMuons_; 
