@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.8 2011/04/19 19:33:14 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.9 2011/04/20 12:49:54 lucieg Exp $
 //
 //
 
@@ -92,9 +92,16 @@ JetAnalyzer::beginJob()
  
   //METTree
   METTree_  = new TTree("METTree", "METTree");
-  METTree_  -> Branch("met", &met_, "met/D");
-  METTree_  -> Branch("mpt", &mpt_, "mpt/D"); 
+  METTree_  -> Branch("nPUVertices", &nPUVertices_, "nPUVertices/I");
   METTree_  -> Branch("stdPFMET", &stdPFMET_, "stdPFMET/D");
+  METTree_  -> Branch("stdPFMETx", &stdPFMETx_, "stdPFMETx/D");
+  METTree_  -> Branch("stdPFMETy", &stdPFMETy_, "stdPFMETy/D");
+  METTree_  -> Branch("stdSumEt", &stdSumEt_, "stdSumEt/D");
+  METTree_  -> Branch("met", &met_, "met/D");
+  METTree_  -> Branch("metx", &metx_, "metx/D");
+  METTree_  -> Branch("mety", &mety_, "mety/D");
+  METTree_  -> Branch("sumEt", &sumEt_, "sumEt/D");
+  METTree_  -> Branch("mpt", &mpt_, "mpt/D"); 
 
 }
 
@@ -127,7 +134,15 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   nGenJets_               = -999.;
 
   //METTree
+  nPUVertices_            = -999;
+  stdPFMET_               = -999.;
+  stdPFMETx_              = -999.;
+  stdPFMETy_              = -999.;
+  stdSumEt_               = -999.;
   met_                    = -999.;
+  metx_                   = -999.;
+  mety_                   = -999.;
+  sumEt_                  = -999.;
   mpt_                    = -999.;
 
   /*****PU info - not  needed so far....*****/
@@ -142,6 +157,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     nPUVertices += PVI->getPU_NumInteractions();
   }
   
+  nPUVertices_ = nPUVertices;
     
   /*******************************************/
   /*get vertices collection(for jet matching)*/
@@ -153,6 +169,12 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   /*******************************/
   /*****get Jet collections ******/
   /*******************************/
+  // define met < PU variables
+  double metxPU             = 0.;
+  double metyPU             = 0.;
+  double mptxPU             = 0.;
+  double mptyPU             = 0.;
+
   //get genJets 
   Handle<GenJetCollection> genJetColl;
   iEvent.getByLabel(inputTagGenJet_, genJetColl);  
@@ -178,6 +200,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     double sumPtFromPV        = 0.;
     double sumPtFromPU        = 0.;
     double sumPtNotAssd       = 0.;
+   
    
     vector <PFCandidatePtr> constituents = jet -> getPFConstituents ();
     nPFCand = constituents.size ();
@@ -213,6 +236,12 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
       else {//hadron associated to a secondary vertex
 	nPFCandFromPU++;
 	sumPtFromPU += constituents[ic]-> pt();
+	double et = constituents[ic]-> et();
+	double phi = constituents[ic]-> phi();
+	metxPU += et * cos(phi);
+	metyPU += et * sin(phi);
+	mptxPU += constituents[ic]-> px();
+	mptyPU += constituents[ic]-> py();
       }
      
     }//end loop over consituents
@@ -247,7 +276,10 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   Handle<PFMETCollection> pfMETColl;
   iEvent.getByLabel(inputTagPFMET_, pfMETColl);
   PFMETCollection::const_iterator pfmet = pfMETColl -> begin();
-  stdPFMET_ = pfmet -> et(); 
+  stdPFMET_  = pfmet -> et(); 
+  stdPFMETx_ = pfmet -> px(); 
+  stdPFMETy_ = pfmet -> py(); 
+  stdSumEt_  = pfmet -> sumEt(); 
 
   //get pfCandidates
   Handle<PFCandidateCollection> pfCandColl;
@@ -267,9 +299,12 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
       double phi = pfCand -> phi();
       metx += et * cos(phi); // e*sin(theta) gives the same distribution (e, theta = pfCand -> energy(), theta())
       mety += et * sin(phi);
+      sumEt_ += et;
     }
-    mpt_ = sqrt( mpx * mpx + mpy * mpy );
-    met_ = sqrt( metx * metx + mety * mety );
+    mpt_  = sqrt( mpx * mpx + mpy * mpy ) -  sqrt(mptxPU * mptxPU + mptyPU * mptyPU) ;
+    met_  = sqrt( metx * metx + mety * mety ) - sqrt(metxPU * metxPU + metyPU * metyPU) ;
+    metx_ = metx - metxPU;
+    mety_ = mety - metyPU;
   }
 
   METTree_ ->Fill();

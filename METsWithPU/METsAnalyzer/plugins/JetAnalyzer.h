@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //        
-// $Id: JetAnalyzer.h,v 1.4 2011/04/19 18:12:06 lucieg Exp $
+// $Id: JetAnalyzer.h,v 1.5 2011/04/20 12:49:54 lucieg Exp $
 //
 //
 
@@ -92,8 +92,7 @@ class JetAnalyzer : public edm::EDAnalyzer {
 
   // tree variables
   // event
-  //int nPUVertices_;
-  //double neutralJets_;
+   //double neutralJets_;
 
   // jet tree
   TTree* JetsTree_;
@@ -120,9 +119,17 @@ class JetAnalyzer : public edm::EDAnalyzer {
  
   //met tree
   TTree* METTree_;
+  int    nPUVertices_;
   double stdPFMET_;
+  double stdPFMETx_;
+  double stdPFMETy_;
+  double stdSumEt_;
   double met_;
+  double metx_;
+  double mety_;
+  double sumEt_;
   double mpt_;
+ 
 
 };
 
