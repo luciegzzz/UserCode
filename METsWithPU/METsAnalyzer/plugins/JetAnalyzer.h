@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //        
-// $Id: JetAnalyzer.h,v 1.6 2011/04/20 14:10:46 lucieg Exp $
+// $Id: JetAnalyzer.h,v 1.7 2011/04/20 19:07:10 lucieg Exp $
 //
 //
 
@@ -117,6 +117,7 @@ class JetAnalyzer : public edm::EDAnalyzer {
   double dR_;
   bool   isMatched_;
   double nGenJets_;
+  int     nPUVerticesForJets_;
  
   //met tree
   TTree* METTree_;

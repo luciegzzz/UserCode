@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.10 2011/04/20 14:10:46 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.11 2011/04/20 19:07:10 lucieg Exp $
 //
 //
 
@@ -90,6 +90,7 @@ JetAnalyzer::beginJob()
   JetsTree_ -> Branch("dR",&dR_,"dR/D");
   JetsTree_ -> Branch("isMatched",&isMatched_,"isMatched/O");
   JetsTree_ -> Branch("nGenJets",&nGenJets_,"nGenJets/D");
+  JetsTree_ -> Branch("nPUVerticesForJets", &nPUVerticesForJets_, "nPUVerticesForJets/I");
  
   //METTree
   METTree_  = new TTree("METTree", "METTree");
@@ -134,6 +135,7 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   dR_                     = 999.;
   isMatched_              = false;
   nGenJets_               = -999.;
+  nPUVerticesForJets_     = -999;
 
   //METTree
   nPUVertices_            = -999;
@@ -159,7 +161,8 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     nPUVertices += PVI->getPU_NumInteractions();
   }
   
-  nPUVertices_ = nPUVertices;
+  nPUVertices_        = nPUVertices;
+  nPUVerticesForJets_ = nPUVertices;
     
   /*******************************************/
   /*get vertices collection(for jet matching)*/
