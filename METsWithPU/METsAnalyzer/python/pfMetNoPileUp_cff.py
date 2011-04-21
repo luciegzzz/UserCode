@@ -1,22 +1,23 @@
 import FWCore.ParameterSet.Config as cms
 
 from METsWithPU.METsAnalyzer.pfMET_cfi import *
+from METsWithPU.METsAnalyzer.pfNoPileUpJetsCand_cff import *
 from CommonTools.ParticleFlow.pfNoPileUp_cff import *
 
 #produce pf pile up candidates with offlinePrimaryVerticesDA
-pfPileUpOldVtces = pfPileUp.clone()
-pfPileUpOldVtces.Vertices = cms.InputTag('offlinePrimaryVertices')
+pfPileUp.Vertices = cms.InputTag('offlinePrimaryVerticesDA')
+pfPileUp.src      = cms.InputTag('pfNoPileUpJetsCand')
 
-#replace the top collection used by pfNoPileUp 
-pfNoPileUpOldVtces = pfNoPileUp.clone()
-pfNoPileUpOldVtces.topCollection = 'pfPileUpOldVtces'
 
-pfNoPileUpOldVtcesSequence = cms.Sequence(
-    pfPileUpOldVtces +
-    pfNoPileUpOldVtces 
-    )
 
 #produce pfMetNoPileUp with the pfNoPileUpDA 
 pfMetNoPileUp     = pfMET.clone()
-pfMetNoPileUp.src = 'pfNoPileUpOldVtces'
+pfMetNoPileUp.src = 'pfNoPileUp'
+
+
+pfMetNoPileUpSequence = cms.Sequence(
+    pfNoPileUpJetsCandSequence +
+    pfNoPileUpSequence +
+    pfMetNoPileUp
+    )
 

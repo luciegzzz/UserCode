@@ -6,5 +6,5 @@ analysis = cms.EDAnalyzer('JetAnalyzer',
                           genJets      = cms.InputTag("ak5GenJets"),
                           pfmet        = cms.InputTag("pfMet"),
                           pfCandidates = cms.InputTag("particleFlow"),
-                          HistOutFile  = cms.untracked.string('histosJets.root')
+                          HistOutFile  = cms.untracked.string('histosJetsak7.root')
 )
