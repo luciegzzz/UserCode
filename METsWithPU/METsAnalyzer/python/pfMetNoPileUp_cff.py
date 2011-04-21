@@ -9,7 +9,6 @@ pfPileUp.Vertices = cms.InputTag('offlinePrimaryVerticesDA')
 pfPileUp.src      = cms.InputTag('pfNoPileUpJetsCand')
 
 
-
 #produce pfMetNoPileUp with the pfNoPileUpDA 
 pfMetNoPileUp     = pfMET.clone()
 pfMetNoPileUp.src = 'pfNoPileUp'
