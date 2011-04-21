@@ -2,7 +2,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         
-// $Id: PFPileUpJetsCand.cc,v 1.25 2011/04/18 13:54:00 lucieg Exp $
+// $Id: PFPileUpJets.cc,v 1.1 2011/04/21 13:43:35 lucieg Exp $
 //
 //
 
@@ -100,7 +100,10 @@ PFPileUpJets::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
     }//end loop over consituents
     
-    if ((nPFCandFromPU / nPFCCand) > 0.8){//cut to decide whether PU jet or not
+    if (nPFCandFromPV ==0){//cut to decide whether PU jet or not
+      //if ((nPFCandFromPV ==0) && (nPFCandFromPU > 0)){//cut to decide whether PU jet or not
+      //if (nPFCandFromPV > nPFCandFromPU){//cut to decide whether PU jet or not
+      //if (nPFCandFromPU/nChargedConstituents > 0.8){//cut to decide whether PU jet or not
       PFJet pileUpJet = (*jetColl)[jetIndex];
       pOutput -> push_back(pileUpJet);
     }

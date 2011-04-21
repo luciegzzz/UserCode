@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: JetAnalyzer.cc,v 1.11 2011/04/20 19:07:10 lucieg Exp $
+// $Id: JetAnalyzer.cc,v 1.12 2011/04/21 12:15:14 lucieg Exp $
 //
 //
 
@@ -314,10 +314,10 @@ JetAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
       mety += et * sin(phi);
       sumEt_ += et;
     }
-    mpt_  = sqrt( mpx * mpx + mpy * mpy ) -  sqrt(mptxPU * mptxPU + mptyPU * mptyPU) ;
-    met_  = sqrt( metx * metx + mety * mety ) - sqrt(metxPU * metxPU + metyPU * metyPU) ;
-    metx_ = metx - metxPU;
-    mety_ = mety - metyPU;
+    mpt_  = sqrt( mpx * mpx + mpy * mpy ) ;//-  sqrt(mptxPU * mptxPU + mptyPU * mptyPU) ;
+    met_  = sqrt( metx * metx + mety * mety );// - sqrt(metxPU * metxPU + metyPU * metyPU) ;
+    metx_ = metx ;//- metxPU;
+    mety_ = mety ;//- metyPU;
   }
 
   METTree_ ->Fill();

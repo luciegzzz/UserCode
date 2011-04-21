@@ -51,10 +51,10 @@ process.load("METsWithPU.METsAnalyzer.pfMetNoPileUp_cff")
 #---------Vertices-------------#
 ################################
 #Vertices with Deterministic Annealing (...) -from V01-04-04 RecoVertex/PrimaryVertexProducer 3111 looks outdated
-process.load("RecoVertex.Configuration.RecoVertex_cff")
-from RecoVertex.PrimaryVertexProducer.OfflinePrimaryVertices_cfi import *
-process.load("RecoVertex.PrimaryVertexProducer.OfflinePrimaryVertices_cfi")
-process.offlinePrimaryVerticesDA = process.offlinePrimaryVertices.clone()
+## process.load("RecoVertex.Configuration.RecoVertex_cff")
+## from RecoVertex.PrimaryVertexProducer.OfflinePrimaryVertices_cfi import *
+## process.load("RecoVertex.PrimaryVertexProducer.OfflinePrimaryVertices_cfi")
+## process.offlinePrimaryVerticesDA = process.offlinePrimaryVertices.clone()
 
 
 #debugging
@@ -62,17 +62,17 @@ process.dump = cms.EDAnalyzer("EventContentAnalyzer")
 
 
 process.makeMET = cms.Path(
-   # process.dump +
-    process.offlinePrimaryVerticesDA +
-  #  process.pfPileUpJets #+
-   # process.pfNoPileUpJetsCandSequence# +
+   # process.offlinePrimaryVerticesDA +
     process.pfMetNoPileUpSequence # +
    # process.dump
 )
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('/tmp/lucieg/METsNoPileUp.root'),
+                               fileName = cms.untracked.string('METsNoPileUpNoPVLink.root'),
+                               fileName = cms.untracked.string('METsNoPileUpNoPVLinkAL1PU.root'),
+                               fileName = cms.untracked.string('METsNoPileUpnPUgtnPV.root'),
+                               fileName = cms.untracked.string('METsNoPileUpfPUgt0p8.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoPFMETs_*_*_*',
                                                    'keep recoPFCandidates_*_*_*',
