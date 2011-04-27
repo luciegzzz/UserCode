@@ -35,10 +35,27 @@ process.source = cms.Source("PoolSource",
 ##  'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_NoPVLinkAL1PU/METsNoPileUpNoPVLinkAL1PU_8_1_Cfy.root',
 ##  'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_NoPVLinkAL1PU/METsNoPileUpNoPVLinkAL1PU_9_1_sT0.root'
 
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_10_1_hau.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_11_1_z6I.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_1_1_MW7.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_2_1_bEL.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_3_1_Atl.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_4_1_wbh.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_5_1_thY.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_6_1_tYK.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_7_1_aza.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_8_1_Yhw.root',
+## 'rfio:/castor/cern.ch/user/l/lucieg/METNoPileUp/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_nPUgtnPV/METsNoPileUpnPUgtnPV_9_1_FTd.root'
+
+
     )
 )
 
-process.load("METsWithPU.METsAnalyzer.jetanalyzer_cfi")
+process.load("METsWithPU.METsAnalyzer.mettreeanalyzer_cfi")
+process.analysis.pfmetNoPileUp = cms.InputTag('pfMetPileUp')
+process.analysis.HistOutFile = cms.untracked.string('metTreeNoPVLinkPfMetPileUp.root')
+#process.analysis.HistOutFile = cms.untracked.string('metTreeNoPVLinkAl1PU.root')
+#process.analysis.HistOutFile = cms.untracked.string('metTreenPUgtnPV.root')
 
 process.p = cms.Path(process.analysis)
 
