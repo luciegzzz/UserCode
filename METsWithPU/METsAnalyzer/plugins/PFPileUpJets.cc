@@ -2,7 +2,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         
-// $Id: PFPileUpJets.cc,v 1.1 2011/04/21 13:43:35 lucieg Exp $
+// $Id: PFPileUpJets.cc,v 1.2 2011/04/21 20:17:58 lucieg Exp $
 //
 //
 
@@ -25,6 +25,11 @@ PFPileUpJets::PFPileUpJets(const edm::ParameterSet& iConfig)
  
   inputTagVertices_ 
     = iConfig.getParameter<InputTag>("vertices");
+
+
+  inputTagGenJet_ 
+    = iConfig.getParameter<InputTag>("genJets");
+
 
   produces<reco::PFJetCollection>();
 
@@ -63,7 +68,11 @@ PFPileUpJets::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   iEvent.getByLabel(inputTagVertices_, vertexColl);  
   
   /*****get Jet collection ******/
+  //get genJets 
+  Handle<GenJetCollection> genJetColl;
+  iEvent.getByLabel(inputTagGenJet_, genJetColl);  
 
+  //get recoJets
   Handle< View<PFJet> > jetColl;
   iEvent.getByLabel(inputTagJets_, jetColl);
 
@@ -100,11 +109,13 @@ PFPileUpJets::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
     }//end loop over consituents
     
-    if (nPFCandFromPV ==0){//cut to decide whether PU jet or not
+    //if (nPFCandFromPV ==0){//cut to decide whether PU jet or not
       //if ((nPFCandFromPV ==0) && (nPFCandFromPU > 0)){//cut to decide whether PU jet or not
       //if (nPFCandFromPV > nPFCandFromPU){//cut to decide whether PU jet or not
       //if (nPFCandFromPU/nChargedConstituents > 0.8){//cut to decide whether PU jet or not
+
       PFJet pileUpJet = (*jetColl)[jetIndex];
+      if(!isMatched(genJetColl, pileUpJet)){
       pOutput -> push_back(pileUpJet);
     }
   
@@ -163,6 +174,44 @@ PFPileUpJets::chargedHadronVertex( const Handle<VertexCollection>& vertices, con
 
   return VertexRef();
 }
+
+
+/****take a pf Jet, a GenJet collection, loop through the genJets, calculate deltaR and find the min. If this min < 0.4, the pf jet is matched***/
+bool 
+PFPileUpJets::isMatched(const edm::Handle<reco::GenJetCollection>& genJets, const reco::PFJet& pfjet){
+
+  bool isMatched = false;
+
+  if (genJets ->size()>0) {
+
+    GenJetCollection::const_iterator genJet = genJets -> begin();
+  
+    double etaPfJet     = pfjet.eta();
+    double phiPfJet     = pfjet.phi();
+    double dRmin        = 9999.;
+
+    for(; genJet != genJets -> end(); genJet++){
+    
+      double etaGenJet = genJet -> eta();
+      double phiGenJet = genJet -> phi();
+    
+      double dR = deltaR(etaPfJet, phiPfJet, etaGenJet, phiGenJet);
+     
+      if (dR < dRmin) {
+	dRmin = dR;
+     }
+    }
+
+ 
+    if (dRmin < 0.4) {
+      isMatched = true;
+    }
+  }
+ 
+  return isMatched;
+}
+
+
 
 
 //Write this as a plug-in
