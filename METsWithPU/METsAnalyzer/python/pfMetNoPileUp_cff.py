@@ -8,6 +8,9 @@ from CommonTools.ParticleFlow.pfNoPileUp_cff import *
 pfPileUp.Vertices = cms.InputTag('offlinePrimaryVerticesDA')
 pfPileUp.src      = cms.InputTag('pfNoPileUpJetsCand')
 
+#produce pfMetNoPileUp with the pfNoPileUpDA
+pfMetNoPileUpJets     = pfMET.clone()
+pfMetNoPileUpJets.src = 'pfNoPileUpJetsCand'
 
 #produce pfMetNoPileUp with the pfNoPileUpDA 
 pfMetNoPileUp     = pfMET.clone()
@@ -17,6 +20,7 @@ pfMetNoPileUp.src = 'pfNoPileUp'
 pfMetNoPileUpSequence = cms.Sequence(
     pfNoPileUpJetsCandSequence +
     pfNoPileUpSequence +
+    pfMetNoPileUpJets +
     pfMetNoPileUp
     )
 

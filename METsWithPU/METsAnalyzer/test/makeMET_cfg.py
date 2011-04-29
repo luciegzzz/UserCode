@@ -107,17 +107,17 @@ process.makeMET = cms.Path(
     process.pfMetNoPileUp  +
     process.PF2PAT  + #includes pfMetNoPileUpDA - named pfMET
     process.pfNoNeutralJetsCandSequence +
-    process.pfMetFancy +
-    process.kt6PFJets +# needed for L1FastJet corrections
-    process.ak5PFJetsC + # jet clustering after neutral jets removal
-    process.ak5PFJetsL2L3+ # compute JEC
-    process.metJESCorAK5PFJet# +
+    process.pfMetFancy# +
+#    process.kt6PFJets +# needed for L1FastJet corrections
+#    process.ak5PFJetsC + # jet clustering after neutral jets removal
+#    process.ak5PFJetsL2L3+ # compute JEC
+#    process.metJESCorAK5PFJet# +
 #     process.dump
 )
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METsNoVtx.root'),
+                               fileName = cms.untracked.string('METs.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoGenMETs_*_*_*',
                                                    'keep recoPFMETs_*_*_*',
@@ -130,6 +130,7 @@ process.out = cms.OutputModule("PoolOutputModule",
                                                    'keep _addPileupInfo_*_*',         
                                                    'keep recoTracks_*_*_*',
                                                    'keep recoPFJets_*_*_*',
+                                                   'keep recoGenJets_*_*_*',                   
                                                    'keep *_*_*_REPROD'
                                                                       )
                                )

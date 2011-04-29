@@ -2,7 +2,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         
-// $Id: PFPileUpJets.cc,v 1.2 2011/04/21 20:17:58 lucieg Exp $
+// $Id: PFPileUpJets.cc,v 1.3 2011/04/28 19:18:29 lucieg Exp $
 //
 //
 
@@ -80,10 +80,11 @@ PFPileUpJets::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       
     if ((*jetColl)[jetIndex].chargedMultiplicity() == 0) continue;
 
-    double nPFCCand      = 0.;
-    double nPFCandFromPV = 0.;
-    double nPFCandFromPU = 0.;
-   
+    double nPFCCand            = 0.;
+    double nPFCandFromPV       = 0.;
+    double nPFCandFromPU       = 0.;
+    double nPFCandNotAssd      = 0.;
+
     vector <PFCandidatePtr> constituents = (*jetColl)[jetIndex].getPFConstituents ();
 
     for (unsigned ic = 0; ic < constituents.size(); ++ic) {
@@ -101,8 +102,11 @@ PFPileUpJets::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     
       // no associated vertex, or primary vertex
       // not pile-up
-      if( vertexref.isNull() ||  vertexref.key()==0 )  {
+      if( vertexref.key()==0 )  {
 	nPFCandFromPV++;
+      }
+      else if( vertexref.isNull()){
+	nPFCandNotAssd++;
       }
       else {
 	nPFCandFromPU++;
