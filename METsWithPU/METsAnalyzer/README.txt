@@ -36,12 +36,16 @@ PFPileUpJets
 //------------------------//
 
 vertices modules 
-* good vertices producers/filters 
+* good vertices producers/filters : !isFake && ndof > 4 && abs(z) <= 24 && position.Rho <= 2 (might need to be revised at some point)
+* could merge goodVerticesDA_cff.py and goodVertices_cff.py
 
 config files to drive the analyzers
 * jetanalyzer
 * metsanalyzer (obsolete)
 * mettreeanalyzer
+  Inputs : - vertices
+           - 3 met types (e.g. std met, metNoPileUp, metPileUp)
+  
 
 producers
 * neutral jet removal :
