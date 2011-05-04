@@ -12,16 +12,11 @@ process = cms.Process("PROD")
 process.source =cms.Source("PoolSource",
                                                fileNames = cms.untracked.vstring(
     '/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/PU_S1_START311_V1G1-v1/0002/FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
- #'/store/mc/Spring11/MinBias_TuneZ2_7TeV-pythia6/GEN-SIM-RECODEBUG/START311_V1G1-v2/0016/44FD2E01-2550-E011-B3FB-00261894385A.root'#,
-#'file:/tmp/lucieg/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_GEN-SIM-RECODEBUG_PU_S1_START311_V1G1-v1_FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
- #  'file:/tmp/lucieg/METs.root'
-#    'rfio:/castor/cern.ch/user/l/lucieg/MET/QCD/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_GEN-SIM-RECODEBUG_PU_S1_START311_V1G1-v1_FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
-#   'rfio:/castor/cern.ch/user/l/lucieg/MET/QCD/METs.root'
  )#,
 # skipEvents = cms.untracked.uint32(2000)
                            )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(5) )
 
 ################################
 #------detector conditions-----#
@@ -72,10 +67,7 @@ process.makeMET = cms.Path(
 
 
 process.out = cms.OutputModule("PoolOutputModule",
-                               fileName = cms.untracked.string('METsNoPileUp.root'),
-                             #  fileName = cms.untracked.string('METsNoPileUpNoPVLinkAL1PU.root'),
-                             #  fileName = cms.untracked.string('METsNoPileUpnPUgtnPV.root'),
-                             #  fileName = cms.untracked.string('METsNoPileUpfPUgt0p8.root'),
+                               fileName = cms.untracked.string('METsNoPileUp2.root'),
                                outputCommands = cms.untracked.vstring('drop *',
                                                    'keep recoPFMETs_*_*_*',
                                                    'keep recoPFCandidates_*_*_*',
@@ -95,5 +87,5 @@ process.outpath = cms.EndPath(process.out)
 ###-----log-----------------###
 ###############################
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
-process.MessageLogger.cerr.FwkReport.reportEvery = 1000
+process.MessageLogger.cerr.FwkReport.reportEvery = 1
 process.options   = cms.untracked.PSet( wantSummary = cms.untracked.bool(False))

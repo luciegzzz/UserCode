@@ -2,7 +2,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //         
-// $Id: PFPileUpJets.cc,v 1.3 2011/04/28 19:18:29 lucieg Exp $
+// $Id: PFPileUpJets.cc,v 1.4 2011/04/29 13:43:50 lucieg Exp $
 //
 //
 
@@ -73,12 +73,15 @@ PFPileUpJets::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   iEvent.getByLabel(inputTagGenJet_, genJetColl);  
 
   //get recoJets
-  Handle< View<PFJet> > jetColl;
+  //  Handle< View<PFJet> > jetColl;
+  // iEvent.getByLabel(inputTagJets_, jetColl);
+  Handle<PFJetCollection> jetColl;
   iEvent.getByLabel(inputTagJets_, jetColl);
 
   for(unsigned int jetIndex = 0 ; jetIndex < jetColl ->size();  jetIndex++){
       
-    if ((*jetColl)[jetIndex].chargedMultiplicity() == 0) continue;
+    //    if ((*jetColl)[jetIndex].chargedMultiplicity() == 0) continue;
+    if ((*jetColl)[jetIndex].chargedMultiplicity() == 0 || fabs((*jetColl)[jetIndex].eta()) > 2.4) continue; 
 
     double nPFCCand            = 0.;
     double nPFCandFromPV       = 0.;
