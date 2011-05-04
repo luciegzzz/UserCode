@@ -5,5 +5,5 @@ analysis = cms.EDAnalyzer('METsTreeAnalyzer',
                           pfmet           = cms.InputTag("pfMet"),
                           pfmetRecomputed = cms.InputTag("pfMetNoPileUp"),
                           pfmetDiscarded  = cms.InputTag("pfMetPileUp"),
-                          HistOutFile     = cms.untracked.string('metTree.root')
+                          HistOutFile     = cms.untracked.string('metTreeNoPU.root')
 )
