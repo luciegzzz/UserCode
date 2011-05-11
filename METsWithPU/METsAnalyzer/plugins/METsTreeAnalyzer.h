@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //        
-// $Id: METsTreeAnalyzer.h,v 1.8 2011/04/21 12:15:14 lucieg Exp $
+// $Id: METsTreeAnalyzer.h,v 1.1 2011/04/27 16:57:34 lucieg Exp $
 //
 //
 
@@ -79,8 +79,14 @@ class METsTreeAnalyzer : public edm::EDAnalyzer {
   // ----------member data ---------------------------                                                                                                                                                                                  
   edm::InputTag       inputTagVertices_;
   edm::InputTag       inputTagStdPFMET_;
-  edm::InputTag       inputTagPFMETRecomputed_;
+  edm::InputTag       inputTagPFMET_;
+  edm::InputTag       inputTagPFMETRebalanced_;
   edm::InputTag       inputTagPFMETDiscarded_;
+  edm::InputTag       inputTagPFJets_;
+  edm::InputTag       inputTagPileUpPFJets_;
+  edm::InputTag       inputTagPFCandidates_;
+  edm::InputTag       inputTagPileUpPFCandidates_;
+  edm::InputTag       inputTagNoPileUpPFCandidates_;
  
   //output 
   TFile               *outputFile_;
@@ -94,17 +100,46 @@ class METsTreeAnalyzer : public edm::EDAnalyzer {
   double stdPFMET_;
   double stdPFMETx_;
   double stdPFMETy_;
+  double stdPFMETPhi_;
   double stdSumEt_;
   double met_;
+  double metPhi_;
   double metx_;
   double mety_;
   double sumEt_;
   double metDiscarded_;
-  double metxDiscarded_;
-  double metyDiscarded_;
+  double metDiscardedPhi_;
+  double metDiscardedx_;
+  double metDiscardedy_;
   double sumEtDiscarded_;
+  double metRebalanced_;
+  double metRebalancedx_;
+  double metRebalancedy_;
+  double metRebalancedPhi_;
+  double sumEtRebalanced_;
   double dPhi_;
- 
+
+
+  //jets tree 
+  TTree* ObjectTree_;
+  double jetsPt_;
+  double jetsEta_;
+  double jetsPhi_;
+  double pileUpJetsPt_;
+  double pileUpJetsEta_;
+  double pileUpJetsPhi_;
+
+  //pfCands tree
+  double pfCandsPt_;
+  double pfCandsEta_;
+  double pfCandsPhi_;
+  double pileUpPfCandsPt_;
+  double pileUpPfCandsEta_;
+  double pileUpPfCandsPhi_;
+  double noPileUpPfCandsPt_;
+  double noPileUpPfCandsEta_;
+  double noPileUpPfCandsPhi_;
+
 
 };
 

@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: METsTreeAnalyzer.cc,v 1.13 2011/04/21 20:17:58 lucieg Exp $
+// $Id: METsTreeAnalyzer.cc,v 1.1 2011/04/27 16:57:34 lucieg Exp $
 //
 //
 
@@ -34,13 +34,31 @@ METsTreeAnalyzer::METsTreeAnalyzer(const edm::ParameterSet& iConfig)
     = iConfig.getParameter<InputTag>("vertices");
 
   inputTagStdPFMET_ 
-    = iConfig.getParameter<InputTag>("pfmet");
+    = iConfig.getParameter<InputTag>("pfMet");
 
-  inputTagPFMETRecomputed_ 
-    = iConfig.getParameter<InputTag>("pfmetRecomputed");
+  inputTagPFMET_ 
+    = iConfig.getParameter<InputTag>("pfMetNoPileUp");
+
+  inputTagPFMETRebalanced_ 
+    = iConfig.getParameter<InputTag>("pfMetRebalanced");
 
   inputTagPFMETDiscarded_ 
-    = iConfig.getParameter<InputTag>("pfmetDiscarded");
+    = iConfig.getParameter<InputTag>("pfMetDiscarded");
+
+  inputTagPFJets_ 
+    = iConfig.getParameter<InputTag>("pfJets");
+
+  inputTagPileUpPFJets_ 
+    = iConfig.getParameter<InputTag>("pfPileUpJets");
+
+  inputTagPFCandidates_ 
+    = iConfig.getParameter<InputTag>("pfCands");
+
+  inputTagPileUpPFCandidates_ 
+    = iConfig.getParameter<InputTag>("pfPileUpCands");
+
+  inputTagNoPileUpPFCandidates_ 
+    = iConfig.getParameter<InputTag>("pfNoPileUpCands");
 
   fOutputFileName_ = iConfig.getUntrackedParameter<string>("HistOutFile");
 
@@ -73,12 +91,37 @@ METsTreeAnalyzer::beginJob()
   METTree_  -> Branch("met", &met_, "met/D");
   METTree_  -> Branch("metx", &metx_, "metx/D");
   METTree_  -> Branch("mety", &mety_, "mety/D");
+  METTree_  -> Branch("metPhi", &metPhi_, "metPhi/D");
   METTree_  -> Branch("sumEt", &sumEt_, "sumEt/D");
   METTree_  -> Branch("metDiscarded", &metDiscarded_, "metDiscarded/D");
-  METTree_  -> Branch("metxDiscarded", &metxDiscarded_, "metxDiscarded/D");
-  METTree_  -> Branch("metyDiscarded", &metyDiscarded_, "metyDiscarded/D");
+  METTree_  -> Branch("metDiscardedx", &metDiscardedx_, "metDiscardedx/D");
+  METTree_  -> Branch("metDiscardedy", &metDiscardedy_, "metDiscardedy/D");
+  METTree_  -> Branch("metDiscardedPhi", &metDiscardedPhi_, "metDiscardedPhi/D");
   METTree_  -> Branch("sumEtDiscarded", &sumEtDiscarded_, "sumEtDiscarded/D");
+  METTree_  -> Branch("metRebalanced", &metRebalanced_, "metRebalanced/D");
+  METTree_  -> Branch("metRebalancedx", &metRebalancedx_, "metRebalancedx/D");
+  METTree_  -> Branch("metRebalancedy", &metRebalancedy_, "metRebalancedy/D");
+  METTree_  -> Branch("metRebalancedPhi", &metRebalancedPhi_, "metRebalancedPhi/D");
+  METTree_  -> Branch("sumEtRebalanced", &sumEtRebalanced_, "sumEtRebalanced/D");
   METTree_  -> Branch("dPhi", &dPhi_, "dPhi/D");
+
+  //ObjectTree
+  ObjectTree_  = new TTree("ObjectTree", "ObjectTree");
+  ObjectTree_  -> Branch("jetsPt", &jetsPt_, "jetPt/D");
+  ObjectTree_  -> Branch("jetsEta", &jetsEta_, "jetEta/D");
+  ObjectTree_  -> Branch("jetsPtPhi", &jetsPhi_, "jetsPhi/D");
+  ObjectTree_  -> Branch("pileUpJetsPt", &pileUpJetsPt_, "jetPt/D");
+  ObjectTree_  -> Branch("pileUpJetsEta", &pileUpJetsEta_, "jetEta/D");
+  ObjectTree_  -> Branch("pileUpJetsPtPhi", &pileUpJetsPhi_, "pileUpJetsPhi/D");
+  ObjectTree_  -> Branch("pfCandsPt", &pfCandsPt_, "jetPt/D");
+  ObjectTree_  -> Branch("pfCandsEta", &pfCandsEta_, "jetEta/D");
+  ObjectTree_  -> Branch("pfCandsPtPhi", &pfCandsPhi_, "pfCandsPhi/D");
+  ObjectTree_  -> Branch("pileUpPfCandsPt", &pileUpPfCandsPt_, "jetPt/D");
+  ObjectTree_  -> Branch("pileUpPfCandsEta", &pileUpPfCandsEta_, "jetEta/D");
+  ObjectTree_  -> Branch("pileUpPfCandsPtPhi", &pileUpPfCandsPhi_, "pileUpPfCandsPhi/D");
+  ObjectTree_  -> Branch("noPileUpPfCandsPt", &noPileUpPfCandsPt_, "jetPt/D");
+  ObjectTree_  -> Branch("noPileUpPfCandsEta", &noPileUpPfCandsEta_, "jetEta/D");
+  ObjectTree_  -> Branch("noPileUpPfCandsPtPhi", &noPileUpPfCandsPhi_, "noPileUpPfCandsPhi/D");
 
 }
 
@@ -93,16 +136,41 @@ METsTreeAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetu
   stdPFMET_               = -999.;
   stdPFMETx_              = -999.;
   stdPFMETy_              = -999.;
+  stdPFMETPhi_            = -999.;
   stdSumEt_               = -999.;
   met_                    = -999.;
   metx_                   = -999.;
   mety_                   = -999.;
+  metPhi_                 = -999.;
   sumEt_                  = -999.;
   metDiscarded_           = -999.;
-  metxDiscarded_          = -999.;
-  metyDiscarded_          = -999.;
+  metDiscardedx_          = -999.;
+  metDiscardedy_          = -999.;
+  metDiscardedPhi_        = -999.;
   sumEtDiscarded_         = -999.;
+  metRebalanced_          = -999.;
+  metRebalancedx_         = -999.;
+  metRebalancedy_         = -999.;
+  metRebalancedPhi_       = -999.;
+  sumEtRebalanced_        = -999.;
   dPhi_                   = -999.;
+
+  //ObjectTree
+  jetsPt_              = -999.;
+  jetsEta_             = -999.;
+  jetsPhi_             = -999.;
+  pileUpJetsPt_        = -999.;
+  pileUpJetsEta_       = -999.;
+  pileUpJetsPhi_       = -999.;
+  pfCandsPt_           = -999.;
+  pfCandsEta_          = -999.;
+  pfCandsPhi_          = -999.;
+  pileUpPfCandsPt_     = -999.;
+  pileUpPfCandsEta_    = -999.;
+  pileUpPfCandsPhi_    = -999.;
+  noPileUpPfCandsPt_   = -999.;
+  noPileUpPfCandsEta_  = -999.;
+  noPileUpPfCandsPhi_  = -999.;
  
   /*****PU info - not  needed so far....*****/
   int nPUVertices         = 0; 
@@ -119,35 +187,68 @@ METsTreeAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetu
   nPUVertices_        = nPUVertices;
  
   //get standard met
+  Handle<PFMETCollection> stdPfMETColl;
+  iEvent.getByLabel(inputTagStdPFMET_, stdPfMETColl);
+  PFMETCollection::const_iterator stdPfmet = stdPfMETColl -> begin();
+  stdPFMET_    = stdPfmet -> pt(); 
+  stdPFMETx_   = stdPfmet -> px(); 
+  stdPFMETy_   = stdPfmet -> py(); 
+  stdPFMETPhi_ = stdPfmet -> phi(); 
+  stdSumEt_    = stdPfmet -> sumEt(); 
+
+  //get "new" pfMet (e.g. pfMetNoPileUp)
   Handle<PFMETCollection> pfMETColl;
-  iEvent.getByLabel(inputTagStdPFMET_, pfMETColl);
+  iEvent.getByLabel(inputTagPFMET_, pfMETColl);
   PFMETCollection::const_iterator pfmet = pfMETColl -> begin();
-  stdPFMET_  = pfmet -> pt(); 
-  stdPFMETx_ = pfmet -> px(); 
-  stdPFMETy_ = pfmet -> py(); 
-  stdSumEt_  = pfmet -> sumEt(); 
-
-  Handle<PFMETCollection> pfMETRecomputedColl;
-  iEvent.getByLabel(inputTagPFMETRecomputed_, pfMETRecomputedColl);
-  PFMETCollection::const_iterator pfmetRecomputed = pfMETRecomputedColl -> begin();
  
-  met_       = pfmetRecomputed -> pt(); 
-  metx_      = pfmetRecomputed -> px(); 
-  mety_      = pfmetRecomputed -> py(); ;
-  sumEt_     = pfmetRecomputed -> sumEt(); 
+  met_       = pfmet -> pt(); 
+  metx_      = pfmet -> px(); 
+  mety_      = pfmet -> py(); 
+  metPhi_    = pfmet -> phi(); 
+  sumEt_     = pfmet -> sumEt(); 
 
+  //get what has been removed
   Handle<PFMETCollection> pfMETDiscardedColl;
   iEvent.getByLabel(inputTagPFMETDiscarded_, pfMETDiscardedColl);
   PFMETCollection::const_iterator pfmetDiscarded = pfMETDiscardedColl -> begin();
  
   metDiscarded_       = pfmetDiscarded -> pt(); 
-  metxDiscarded_      = pfmetDiscarded -> px(); 
-  metyDiscarded_      = pfmetDiscarded -> py(); ;
+  metDiscardedx_      = pfmetDiscarded -> px(); 
+  metDiscardedy_      = pfmetDiscarded -> py(); 
+  metDiscardedPhi_    = pfmetDiscarded -> phi(); 
   sumEtDiscarded_     = pfmetDiscarded -> sumEt(); 
 
-  dPhi_       = deltaPhi(pfmetRecomputed -> phi(), pfmetDiscarded -> phi()) ; 
-   
+  dPhi_       = deltaPhi(pfmet -> phi(), pfmetDiscarded -> phi()) ; 
+
+  //substract the complementary of what has been removed
+  metRebalancedx_      = metx_ - metDiscardedx_ ; 
+  metRebalancedy_      = mety_ - metDiscardedy_ ; 
+  metRebalanced_       = sqrt( metRebalancedx_ * metRebalancedx_ +  metRebalancedy_ * metRebalancedy_ );
+  
+  sumEtRebalanced_     = sumEt_ + sumEtDiscarded_ ; 
+
   METTree_ -> Fill();
+
+
+  //jets
+ //  Handle<PFJetsCollection> pfJetsColl;
+//   iEvent.getByLabel(inputTagPFJets_, pfJetsColl);
+
+//   Handle<PFJetsCollection> pileUpPfJetsColl;
+//   iEvent.getByLabel(inputTagPileUpPFJets_, pileUpPfJetsColl);
+  
+//   for(unsigned int jetIndex = 0 ; jetIndex < jetColl ->size();  jetIndex++){
+   
+//     jetPt_  = (*pfJetsColl)[jetIndex]pt();
+//     jetEta_ = (*pfJetsColl)[jetIndex]eta();
+//     jetPhi_ = (*pfJetsColl)[jetIndex]phi();
+//     if (jetIndex < pileUpPfJetsColl.size() ){
+//       pileUpJetsPt_  = (*pfPileUpJetsColl)[jetIndex]pt();
+//       pileUpJetsEta_ = (*pfPileUpJetsColl)[jetIndex]eta();
+//       pileUpJetsPhi_ = (*pfPileUpJetsColl)[jetIndex]phi();
+//     }
+
+//   }
 
 }
 
