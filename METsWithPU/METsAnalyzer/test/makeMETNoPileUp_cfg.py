@@ -2,21 +2,24 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("PROD")
 
+process.load("FWCore.Framework.test.cmsExceptionsFatal_cff")
+
 ################################
 #---------source---------------#
 ################################    
-##FastSim samples
-#process.load("METsWithPU.METsAnalyzer.source_QCD_15_500_7TeV_MCStartup_cff")
-
 ##QCD official MC sample
-process.source =cms.Source("PoolSource",
+process.source = cms.Source("PoolSource",
                                                fileNames = cms.untracked.vstring(
     '/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/PU_S1_START311_V1G1-v1/0002/FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
  )#,
 # skipEvents = cms.untracked.uint32(2000)
                            )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(5) )
+process.options = cms.untracked.PSet(
+    SkipEvent = cms.untracked.vstring('ProductNotFound')
+)
+
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(50) )
 
 ################################
 #------detector conditions-----#
@@ -33,8 +36,7 @@ process.load("Configuration.StandardSequences.Geometry_cff")
 ################################
 #------jet stuff --------------#
 ################################ 
-process.load("METsWithPU.METsAnalyzer.pfPileUpJets_cfi")
-process.load("METsWithPU.METsAnalyzer.pfNoPileUpJetsCand_cfi")
+
 
 
 ################################
@@ -42,7 +44,6 @@ process.load("METsWithPU.METsAnalyzer.pfNoPileUpJetsCand_cfi")
 ################################
 process.load("METsWithPU.METsAnalyzer.pfMetNoPileUp_cff")
 process.load("METsWithPU.METsAnalyzer.pfMetPileUp_cff")
-
 
 ################################
 #---------Vertices-------------#
@@ -55,7 +56,7 @@ process.offlinePrimaryVerticesDA = process.offlinePrimaryVertices.clone()
 
 
 #debugging
-process.dump = cms.EDAnalyzer("EventContentAnalyzer")
+#process.dump = cms.EDAnalyzer("EventContentAnalyzer")
 
 
 process.makeMET = cms.Path(
