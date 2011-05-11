@@ -13,7 +13,7 @@
 //
 // Original Author:  "Lucie Gauthier"
 //        
-// $Id: METsTreeAnalyzer.h,v 1.1 2011/04/27 16:57:34 lucieg Exp $
+// $Id: METsTreeAnalyzer.h,v 1.2 2011/05/11 19:06:32 lucieg Exp $
 //
 //
 
@@ -80,7 +80,6 @@ class METsTreeAnalyzer : public edm::EDAnalyzer {
   edm::InputTag       inputTagVertices_;
   edm::InputTag       inputTagStdPFMET_;
   edm::InputTag       inputTagPFMET_;
-  edm::InputTag       inputTagPFMETRebalanced_;
   edm::InputTag       inputTagPFMETDiscarded_;
   edm::InputTag       inputTagPFJets_;
   edm::InputTag       inputTagPileUpPFJets_;
@@ -121,15 +120,19 @@ class METsTreeAnalyzer : public edm::EDAnalyzer {
 
 
   //jets tree 
-  TTree* ObjectTree_;
+  TTree* JetsTree_;
   double jetsPt_;
   double jetsEta_;
   double jetsPhi_;
+
+  //pileUpJets tree
+  TTree* PileUpJetsTree_;
   double pileUpJetsPt_;
   double pileUpJetsEta_;
   double pileUpJetsPhi_;
 
   //pfCands tree
+  TTree* PfCandsTree_;
   double pfCandsPt_;
   double pfCandsEta_;
   double pfCandsPhi_;
