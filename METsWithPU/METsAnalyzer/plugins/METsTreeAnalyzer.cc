@@ -13,7 +13,7 @@ Implementation:
 //
 // Original Author:  "Lucie Gauthier"
 //         Created:  Fri Ap 14  2011
-// $Id: METsTreeAnalyzer.cc,v 1.1 2011/04/27 16:57:34 lucieg Exp $
+// $Id: METsTreeAnalyzer.cc,v 1.3 2011/05/11 19:54:42 lucieg Exp $
 //
 //
 
@@ -103,28 +103,28 @@ METsTreeAnalyzer::beginJob()
   METTree_  -> Branch("dPhi", &dPhi_, "dPhi/D");
 
   //Jets Tree
-  JetsTree_  = new TTree("JetsTree", "JetsTree");
-  JetsTree_  -> Branch("jetsPt", &jetsPt_, "jetPt/D");
-  JetsTree_  -> Branch("jetsEta", &jetsEta_, "jetEta/D");
-  JetsTree_  -> Branch("jetsPtPhi", &jetsPhi_, "jetsPhi/D");
+//   JetsTree_  = new TTree("JetsTree", "JetsTree");
+//   JetsTree_  -> Branch("jetsPt", &jetsPt_, "jetPt/D");
+//   JetsTree_  -> Branch("jetsEta", &jetsEta_, "jetEta/D");
+//   JetsTree_  -> Branch("jetsPtPhi", &jetsPhi_, "jetsPhi/D");
 
-  //Pile-Up Jets Tree
-  PileUpJetsTree_  = new TTree("PileUpJetsTree", "PileUpJetsTree");
-  PileUpJetsTree_  -> Branch("pileUpJetsPt", &pileUpJetsPt_, "jetPt/D");
-  PileUpJetsTree_  -> Branch("pileUpJetsEta", &pileUpJetsEta_, "jetEta/D");
-  PileUpJetsTree_  -> Branch("pileUpJetsPtPhi", &pileUpJetsPhi_, "pileUpJetsPhi/D");
+//   //Pile-Up Jets Tree
+//   PileUpJetsTree_  = new TTree("PileUpJetsTree", "PileUpJetsTree");
+//   PileUpJetsTree_  -> Branch("pileUpJetsPt", &pileUpJetsPt_, "jetPt/D");
+//   PileUpJetsTree_  -> Branch("pileUpJetsEta", &pileUpJetsEta_, "jetEta/D");
+//   PileUpJetsTree_  -> Branch("pileUpJetsPtPhi", &pileUpJetsPhi_, "pileUpJetsPhi/D");
  
-  //pfCands Tree
-  PfCandsTree_  = new TTree("PfCandsTree", "PfCandsTree");
-  PfCandsTree_  -> Branch("pfCandsPt", &pfCandsPt_, "pfCandsPt/D");
-  PfCandsTree_  -> Branch("pfCandsEta", &pfCandsEta_, "pfCandsEta/D");
-  PfCandsTree_  -> Branch("pfCandsPtPhi", &pfCandsPhi_, "pfCandsPhi/D");
-  PfCandsTree_  -> Branch("pileUpPfCandsPt", &pileUpPfCandsPt_, "pileUpPfCandsPt/D");
-  PfCandsTree_  -> Branch("pileUpPfCandsEta", &pileUpPfCandsEta_, "pileUpPfCandsEta/D");
-  PfCandsTree_  -> Branch("pileUpPfCandsPtPhi", &pileUpPfCandsPhi_, "pileUpPfCandsPhi/D");
-  PfCandsTree_  -> Branch("noPileUpPfCandsPt", &noPileUpPfCandsPt_, "noPileUpPfCandsPt/D");
-  PfCandsTree_  -> Branch("noPileUpPfCandsEta", &noPileUpPfCandsEta_, "noPileUpPfCandsEta/D");
-  PfCandsTree_  -> Branch("noPileUpPfCandsPtPhi", &noPileUpPfCandsPhi_, "noPileUpPfCandsPhi/D");
+//   //pfCands Tree
+//   PfCandsTree_  = new TTree("PfCandsTree", "PfCandsTree");
+//   PfCandsTree_  -> Branch("pfCandsPt", &pfCandsPt_, "pfCandsPt/D");
+//   PfCandsTree_  -> Branch("pfCandsEta", &pfCandsEta_, "pfCandsEta/D");
+//   PfCandsTree_  -> Branch("pfCandsPtPhi", &pfCandsPhi_, "pfCandsPhi/D");
+//   PfCandsTree_  -> Branch("pileUpPfCandsPt", &pileUpPfCandsPt_, "pileUpPfCandsPt/D");
+//   PfCandsTree_  -> Branch("pileUpPfCandsEta", &pileUpPfCandsEta_, "pileUpPfCandsEta/D");
+//   PfCandsTree_  -> Branch("pileUpPfCandsPtPhi", &pileUpPfCandsPhi_, "pileUpPfCandsPhi/D");
+//   PfCandsTree_  -> Branch("noPileUpPfCandsPt", &noPileUpPfCandsPt_, "noPileUpPfCandsPt/D");
+//   PfCandsTree_  -> Branch("noPileUpPfCandsEta", &noPileUpPfCandsEta_, "noPileUpPfCandsEta/D");
+//   PfCandsTree_  -> Branch("noPileUpPfCandsPtPhi", &noPileUpPfCandsPhi_, "noPileUpPfCandsPhi/D");
 
 }
 
@@ -158,22 +158,22 @@ METsTreeAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetu
   sumEtRebalanced_        = -999.;
   dPhi_                   = -999.;
 
-  //"other" Trees
-  jetsPt_              = -999.;
-  jetsEta_             = -999.;
-  jetsPhi_             = -999.;
-  pileUpJetsPt_        = -999.;
-  pileUpJetsEta_       = -999.;
-  pileUpJetsPhi_       = -999.;
-  pfCandsPt_           = -999.;
-  pfCandsEta_          = -999.;
-  pfCandsPhi_          = -999.;
-  pileUpPfCandsPt_     = -999.;
-  pileUpPfCandsEta_    = -999.;
-  pileUpPfCandsPhi_    = -999.;
-  noPileUpPfCandsPt_   = -999.;
-  noPileUpPfCandsEta_  = -999.;
-  noPileUpPfCandsPhi_  = -999.;
+//   //"other" Trees
+//   jetsPt_              = -999.;
+//   jetsEta_             = -999.;
+//   jetsPhi_             = -999.;
+//   pileUpJetsPt_        = -999.;
+//   pileUpJetsEta_       = -999.;
+//   pileUpJetsPhi_       = -999.;
+//   pfCandsPt_           = -999.;
+//   pfCandsEta_          = -999.;
+//   pfCandsPhi_          = -999.;
+//   pileUpPfCandsPt_     = -999.;
+//   pileUpPfCandsEta_    = -999.;
+//   pileUpPfCandsPhi_    = -999.;
+//   noPileUpPfCandsPt_   = -999.;
+//   noPileUpPfCandsEta_  = -999.;
+//   noPileUpPfCandsPhi_  = -999.;
  
   /*****PU info - not  needed so far....*****/
   int nPUVertices         = 0; 
@@ -233,60 +233,60 @@ METsTreeAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetu
   METTree_ -> Fill();
 
   //pf candidates
-  Handle<PFCandidateCollection> pfCandidateColl;
-  iEvent.getByLabel(inputTagPFCandidates_, pfCandidateColl);
+//   Handle<PFCandidateCollection> pfCandidateColl;
+//   iEvent.getByLabel(inputTagPFCandidates_, pfCandidateColl);
  
-  Handle<PFCandidateCollection> pileUpPfCandidateColl;
-  iEvent.getByLabel(inputTagPileUpPFCandidates_, pileUpPfCandidateColl);
+//   Handle<PFCandidateCollection> pileUpPfCandidateColl;
+//   iEvent.getByLabel(inputTagPileUpPFCandidates_, pileUpPfCandidateColl);
   
-  Handle<PFCandidateCollection> noPileUpPfCandidateColl;
-  iEvent.getByLabel(inputTagNoPileUpPFCandidates_, noPileUpPfCandidateColl);
+//   Handle<PFCandidateCollection> noPileUpPfCandidateColl;
+//   iEvent.getByLabel(inputTagNoPileUpPFCandidates_, noPileUpPfCandidateColl);
  
-  for(unsigned int pfc = 0 ; pfc < pfCandidateColl -> size(); pfc++){
+//   for(unsigned int pfc = 0 ; pfc < pfCandidateColl -> size(); pfc++){
 
-    pfCandsPt_  = (*pfCandidateColl)[pfc].pt();
-    pfCandsEta_ = (*pfCandidateColl)[pfc].eta();
-    pfCandsPhi_ = (*pfCandidateColl)[pfc].phi();
+//     pfCandsPt_  = (*pfCandidateColl)[pfc].pt();
+//     pfCandsEta_ = (*pfCandidateColl)[pfc].eta();
+//     pfCandsPhi_ = (*pfCandidateColl)[pfc].phi();
 
-    if(pfc < pileUpPfCandidateColl -> size()){
-      pileUpPfCandsPt_  = (*pileUpPfCandidateColl)[pfc].pt();
-      pileUpPfCandsEta_ = (*pileUpPfCandidateColl)[pfc].eta();
-      pileUpPfCandsPhi_ = (*pileUpPfCandidateColl)[pfc].phi();
-    }
+//     if(pfc < pileUpPfCandidateColl -> size()){
+//       pileUpPfCandsPt_  = (*pileUpPfCandidateColl)[pfc].pt();
+//       pileUpPfCandsEta_ = (*pileUpPfCandidateColl)[pfc].eta();
+//       pileUpPfCandsPhi_ = (*pileUpPfCandidateColl)[pfc].phi();
+//     }
 
-    if(pfc < noPileUpPfCandidateColl -> size()){
-      noPileUpPfCandsPt_  = (*noPileUpPfCandidateColl)[pfc].pt();
-      noPileUpPfCandsEta_ = (*noPileUpPfCandidateColl)[pfc].eta();
-      noPileUpPfCandsPhi_ = (*noPileUpPfCandidateColl)[pfc].phi();
-    }
+//     if(pfc < noPileUpPfCandidateColl -> size()){
+//       noPileUpPfCandsPt_  = (*noPileUpPfCandidateColl)[pfc].pt();
+//       noPileUpPfCandsEta_ = (*noPileUpPfCandidateColl)[pfc].eta();
+//       noPileUpPfCandsPhi_ = (*noPileUpPfCandidateColl)[pfc].phi();
+//     }
 
-    PfCandsTree_ -> Fill();
-  }
+//     PfCandsTree_ -> Fill();
+//   }
 
-  //jets
-  Handle<PFJetCollection> pfJetsColl;
-  iEvent.getByLabel(inputTagPFJets_, pfJetsColl);
-  PFJetCollection::const_iterator jet = pfJetsColl -> begin();
-  int jetIndex               = 0;
+//   //jets
+//   Handle<PFJetCollection> pfJetsColl;
+//   iEvent.getByLabel(inputTagPFJets_, pfJetsColl);
+//   PFJetCollection::const_iterator jet = pfJetsColl -> begin();
+//   int jetIndex               = 0;
 
-  for(; jet != pfJetsColl -> end(); jet++, jetIndex++){
-    jetsPt_    = jet -> pt();
-    jetsEta_   = jet -> eta();
-    jetsPhi_   = jet -> phi();
-    JetsTree_ -> Fill();
-  }
+//   for(; jet != pfJetsColl -> end(); jet++, jetIndex++){
+//     jetsPt_    = jet -> pt();
+//     jetsEta_   = jet -> eta();
+//     jetsPhi_   = jet -> phi();
+//     JetsTree_ -> Fill();
+//   }
 
-   Handle<PFJetCollection> pileUpPfJetsColl;
-   iEvent.getByLabel(inputTagPileUpPFJets_, pileUpPfJetsColl);
-   PFJetCollection::const_iterator puJet = pileUpPfJetsColl -> begin();
-   int puJetIndex               = 0;
+//    Handle<PFJetCollection> pileUpPfJetsColl;
+//    iEvent.getByLabel(inputTagPileUpPFJets_, pileUpPfJetsColl);
+//    PFJetCollection::const_iterator puJet = pileUpPfJetsColl -> begin();
+//    int puJetIndex               = 0;
 
-   for(; puJet != pileUpPfJetsColl -> end(); puJet++, puJetIndex++){
-     pileUpJetsPt_  = puJet -> pt();
-     pileUpJetsEta_ = puJet -> eta(); 
-     pileUpJetsPhi_ = puJet -> phi();
-     PileUpJetsTree_ -> Fill();
-   }
+//    for(; puJet != pileUpPfJetsColl -> end(); puJet++, puJetIndex++){
+//      pileUpJetsPt_  = puJet -> pt();
+//      pileUpJetsEta_ = puJet -> eta(); 
+//      pileUpJetsPhi_ = puJet -> phi();
+//      PileUpJetsTree_ -> Fill();
+//    }
 
 
 }
