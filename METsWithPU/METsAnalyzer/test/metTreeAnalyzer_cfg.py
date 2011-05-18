@@ -12,18 +12,14 @@ process.load("METsWithPU.METsAnalyzer.Sources.source_QCD_Pt_15to3000_TuneZ2_Flat
 #process.source = cms.Source("PoolSource",
 #                            fileNames = cms.untracked.vstring(
 #'dcache:/pnfs/cms/WAX/resilient/lucieg/MET/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_Spring11-PU_S1_START311_V1G1-v1_unmatched/METsNoPileUp_26_1_Cqa.root'
+#    'file:METsNoPileUp2.root'
 #    )
 #)
 
 process.load("METsWithPU.METsAnalyzer.mettreeanalyzer_cfi")
 
-#process.analysis.HistOutFile = cms.untracked.string('metTreeNoPVLinkPfMetPileUp.root')
-#process.analysis.HistOutFile = cms.untracked.string('metTreeNoPVLinkAl1PU.root')
-#process.analysis.HistOutFile = cms.untracked.string('metTreenPUgtnPV.root')
-process.analysis.HistOutFile = cms.untracked.string('metTree.root')
-#process.analysis.HistOutFile = cms.untracked.string('metTreePfNoPileUpNNC.root') 
+process.analysis.HistOutFile = cms.untracked.string('metTree500kNOPU.root')
 process.p = cms.Path(process.analysis)
-
 
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
 process.MessageLogger.cerr.FwkReport.reportEvery = 1000

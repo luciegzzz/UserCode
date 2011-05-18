@@ -55,8 +55,8 @@ PFCandSplitByVtx::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     cout << "Event -------------------- " << iEvent.id().event() << endl;
 
   /******output collection***********/
-  std::auto_ptr<std::vector<reco::PFCandidateCollection> >
-    pOutput( new std::vector<reco::PFCandidateCollection> ); 
+  std::auto_ptr<std::vector<reco::PFCandidateCollection > >
+    pOutput( new std::vector<reco::PFCandidateCollection > ); 
 
   /*****get Vertices collection******/
 

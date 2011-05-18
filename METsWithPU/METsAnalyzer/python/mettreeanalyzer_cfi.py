@@ -2,13 +2,13 @@ import FWCore.ParameterSet.Config as cms
 
 analysis = cms.EDAnalyzer('METsTreeAnalyzer',
                           vertices        = cms.InputTag("offlinePrimaryVerticesDA"),
-                          stdPfMet        = cms.InputTag("stdPfMet"),
-                          pfMet           = cms.InputTag("pfMetNoPileUpJets"),
-                          pfmetDiscarded  = cms.InputTag("pfMetPileUpJets"),
+                          stdPfMet        = cms.InputTag("pfMet"),
+                          pfMet           = cms.InputTag("pfMetNoPileUp"),
+                          pfMetDiscarded  = cms.InputTag("pfMetPileUp"),
                           pfJets          = cms.InputTag("ak5PFJets"),
-                          pileUpPfJets    = cms.InputTag("PileUpJets"),
-                          pfCands         = cms.InputTag("pfCands"),
-                          pfPileUpCands   = cms.InputTag("pfPileUpJetsCands"),
-                          pfNoPileUpCands = cms.InputTag("pfNoPileUpJetsCands"),
+                          pileUpPfJets    = cms.InputTag("pfPileUpJets"),
+                          pfCands         = cms.InputTag("particleFlow"),
+                          pfPileUpCands   = cms.InputTag("pfPileUpJetsCand"),
+                          pfNoPileUpCands = cms.InputTag("pfNoPileUpJetsCand"),
                           HistOutFile     = cms.untracked.string('metTreeNoPUJets.root')
 )

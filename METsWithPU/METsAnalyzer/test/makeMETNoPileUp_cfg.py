@@ -78,7 +78,8 @@ process.out = cms.OutputModule("PoolOutputModule",
                                                    'keep _addPileupInfo_*_*',         
                                                    'keep recoPFJets_*_*_*',
                                                    'keep *_*_*_REPROD',
-                                                   'keep *_*_*_PROD'
+                                                   'keep *_*_*_PROD',
+                                                   'keep *_ak5GenJets_*_*'
                                                                       )
                                )
 
