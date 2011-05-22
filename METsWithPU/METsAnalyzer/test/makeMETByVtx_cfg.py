@@ -10,8 +10,8 @@ process.load("FWCore.Framework.test.cmsExceptionsFatal_cff")
 ##QCD official MC sample
 process.source = cms.Source("PoolSource",
                                                fileNames = cms.untracked.vstring(
-    '/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/PU_S1_START311_V1G1-v1/0002/FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
-#    'rfio:/castor/cern.ch/user/l/lucieg/MET/QCD/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_GEN-SIM-RECODEBUG_PU_S1_START311_V1G1-v1_FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
+  #  '/store/mc/Spring11/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/GEN-SIM-RECODEBUG/PU_S1_START311_V1G1-v1/0002/FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
+   'rfio:/castor/cern.ch/user/l/lucieg/MET/QCD/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6_GEN-SIM-RECODEBUG_PU_S1_START311_V1G1-v1_FC5ACFBD-774E-E011-AB6B-00215E21D690.root'
  )#,
 # skipEvents = cms.untracked.uint32(2000)
                            )
@@ -20,7 +20,7 @@ process.options = cms.untracked.PSet(
     SkipEvent = cms.untracked.vstring('ProductNotFound')
 )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(5) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
 
 ################################
 #------detector conditions-----#

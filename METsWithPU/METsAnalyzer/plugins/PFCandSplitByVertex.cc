@@ -24,7 +24,20 @@ PFCandSplitByVtx::PFCandSplitByVtx(const edm::ParameterSet& iConfig)
   outputFileName_ 
     = iConfig.getUntrackedParameter<string>("outfile");
 
-  produces<std::vector<reco::PFCandidateCollection> >();
+  produces<reco::PFCandidateCollection>("pfCandsNotAssociated");
+  produces<reco::PFCandidateCollection>("pfCandsVtx0");
+  produces<reco::PFCandidateCollection>("pfCandsVtx1");
+  produces<reco::PFCandidateCollection>("pfCandsVtx2");
+  produces<reco::PFCandidateCollection>("pfCandsVtx3");
+  produces<reco::PFCandidateCollection>("pfCandsVtx4");
+  produces<reco::PFCandidateCollection>("pfCandsVtx5");
+  produces<reco::PFCandidateCollection>("pfCandsVtx6");
+  produces<reco::PFCandidateCollection>("pfCandsVtx7");
+  produces<reco::PFCandidateCollection>("pfCandsVtx8");
+  produces<reco::PFCandidateCollection>("pfCandsVtx9");
+  produces<reco::PFCandidateCollection>("pfCandsVtx10");
+  produces<reco::PFCandidateCollection>("pfCandsVtx11");
+  produces<reco::PFCandidateCollection>("pfCandsVtx12");
 
 }
 
@@ -54,9 +67,52 @@ PFCandSplitByVtx::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   if( verbose_)
     cout << "Event -------------------- " << iEvent.id().event() << endl;
 
+  const unsigned int nbVtxMax = 13;
+  if( verbose_)
+    cout << "PFCandSplitByVertex set up to handle " << nbVtxMax << " vertices " << endl;
+
   /******output collection***********/
-  std::auto_ptr<std::vector<reco::PFCandidateCollection > >
-    pOutput( new std::vector<reco::PFCandidateCollection > ); 
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsNotAssociated( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx0( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx1( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx2( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx3( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx4( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx5( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx6( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx7( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx8( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx9( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx10( new reco::PFCandidateCollection ); 
+
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx11( new reco::PFCandidateCollection ); 
+ 
+  auto_ptr< reco::PFCandidateCollection > 
+    pfCandsVtx12( new reco::PFCandidateCollection ); 
 
   /*****get Vertices collection******/
 
@@ -66,10 +122,12 @@ PFCandSplitByVtx::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   if( verbose_)
   cout <<"number of vertices "<< vertices -> size() << endl;
 
-  for (unsigned int vtx = 0; vtx < vertices -> size(); vtx++){
-    reco::PFCandidateCollection  dummy;
-    pOutput -> push_back(dummy);
-  }
+  if(vertices -> size() < nbVtxMax) {
+ 
+ //  for (unsigned int vtx = 0; vtx < vertices -> size(); vtx++){
+//     reco::PFCandidateCollection  dummy;
+//     pfCansVtx -> push_back(dummy);
+//   }
   
   /*****get PFCandidates collection ******/
   //get pfCandidates
@@ -87,35 +145,63 @@ PFCandSplitByVtx::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     
     if ( candptr -> particleId() ==  ( PFCandidate::h || PFCandidate::mu || PFCandidate::e )){
       if( verbose_)
-	cout <<"pfCandidates nr "<< i << "is charged" <<endl;
+	cout <<"pfCandidates nr "<< i << " is charged with type " << candptr -> particleId() << " pt "<< candptr -> pt() << " eta " << candptr -> eta() <<endl;
       vertexref = chargedVertex( vertices, *candptr );
     }
     
+    else if( verbose_)
+	cout <<"pfCandidates nr "<< i << " is neutral with type " << candptr -> particleId() << " pt "<< candptr -> pt() << " eta " << candptr -> eta() <<endl;
+
     // no associated vertex, or neutral
     if(vertexref.isNull()){
       if( verbose_)
 	cout <<"pfCandidates nr "<< i << " : no vertex associated" <<endl;
-      (*pOutput)[0].push_back(PFCandidate(candptr));
+      pfCandsNotAssociated -> push_back(PFCandidate(candptr));
     }
     
     //charged pfCands, associated to a vertex
     else {
       if( verbose_)
 	cout <<"pfCandidates nr "<< i << " is associated to vertex " << vertexref.key()   <<endl;
-      (*pOutput)[vertexref.key()].push_back(PFCandidate(candptr));
+      if (vertexref.key() == 0)       pfCandsVtx0 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 1)  pfCandsVtx1 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 2)  pfCandsVtx2 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 3)  pfCandsVtx3 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 4)  pfCandsVtx4 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 5)  pfCandsVtx5 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 6)  pfCandsVtx6 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 7)  pfCandsVtx7 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 8)  pfCandsVtx8 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 9)  pfCandsVtx9 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 10) pfCandsVtx10 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 11) pfCandsVtx11 -> push_back(PFCandidate(candptr));
+      else if (vertexref.key() == 12) pfCandsVtx12 -> push_back(PFCandidate(candptr));
     }
 
   }
 
-  if (verbose_){
-    for (unsigned int coll = 0 ; coll < pOutput -> size() ; coll++){
-      cout << "size of the pfCandidate collection associated to vertex "<< coll <<" " << (*pOutput)[coll].size()<<endl;
-    }
-  }
+ //  if (verbose_){
+//     for (unsigned int coll = 0 ; coll < pfCandsVtx -> size() ; coll++){
+//       cout << "size of the pfCandidate collection associated to vertex "<< coll <<" " << (*pfCandsVtx)[coll].size()<<endl;
+//     }
+//   }
 
   
-  iEvent.put(pOutput);
-  
+  iEvent.put( pfCandsNotAssociated, "pfCandsNotAssociated" );
+  iEvent.put( pfCandsVtx0, "pfCandsVtx0" );
+  iEvent.put( pfCandsVtx1, "pfCandsVtx1" );
+  iEvent.put( pfCandsVtx2, "pfCandsVtx2" );
+  iEvent.put( pfCandsVtx3, "pfCandsVtx3" );
+  iEvent.put( pfCandsVtx4, "pfCandsVtx4" );
+  iEvent.put( pfCandsVtx5, "pfCandsVtx5" );
+  iEvent.put( pfCandsVtx6, "pfCandsVtx6" );
+  iEvent.put( pfCandsVtx7, "pfCandsVtx7" );
+  iEvent.put( pfCandsVtx8, "pfCandsVtx8" );
+  iEvent.put( pfCandsVtx9, "pfCandsVtx9" );
+  iEvent.put( pfCandsVtx10, "pfCandsVtx10" );
+  iEvent.put( pfCandsVtx11, "pfCandsVtx11" );
+  iEvent.put( pfCandsVtx12, "pfCandsVtx12" );
+  }
 }
 
 
