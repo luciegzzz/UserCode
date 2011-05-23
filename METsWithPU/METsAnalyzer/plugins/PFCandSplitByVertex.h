@@ -59,6 +59,7 @@ class PFCandSplitByVtx : public edm::EDProducer {
  
   bool verbose_;
   std::string outputFileName_;
+  unsigned int vtxIndex_;
 
 };
 

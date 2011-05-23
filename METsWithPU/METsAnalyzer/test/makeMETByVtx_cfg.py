@@ -34,17 +34,32 @@ process.GlobalTag.globaltag = autoCond['startup']
 process.load("Configuration.StandardSequences.MagneticField_38T_cff")
 process.load("Configuration.StandardSequences.Geometry_cff")
 
-################################
-#------jet stuff --------------#
-################################ 
 
 
 
 ################################
 #------MET stuff --------------#
 ################################
+from METsWithPU.METsAnalyzer.pfCandsSplitByVertex_cfi import *
 process.load("METsWithPU.METsAnalyzer.pfCandsSplitByVertex_cfi")
 
+
+################################
+#------jet stuff --------------#
+################################
+## from PhysicsTools.PatAlgos.patTemplate_cfg import *
+
+## from PhysicsTools.PatAlgos.patTemplate_cfg import *
+## from PhysicsTools.PatAlgos.tools.pfTools import *
+from CommonTools.ParticleFlow.PF2PAT_cff import *
+process.load("CommonTools.ParticleFlow.PF2PAT_cff")
+
+#postfix = 'vtx0'
+
+PF2PAT.replace(pfNoPileUp,pfCandsSplitByVertex)
+#usePF2PAT(process,runPF2PAT=True, jetAlgo=jetAlgo, runOnMC=True, postfix=postfix) 
+
+#process.PF2PATSeq = cms.Sequence(PF2PAT0)
 
 ################################
 #---------Vertices-------------#
@@ -62,7 +77,8 @@ process.offlinePrimaryVerticesDA = process.offlinePrimaryVertices.clone()
 
 process.makeMET = cms.Path(
     process.offlinePrimaryVerticesDA +
-    process.pfCandsSplitByVertex  #+
+    process.pfCandsSplitByVertex # +
+    #process.PF2PAT
     # process.dump
 )
 
