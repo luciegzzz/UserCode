@@ -15,7 +15,7 @@ files = ["/data/lucieg/RelValZEE423/tree_CMG_0.root","/data/lucieg/RelValZEE423/
 #get objects
 events = Events (files)
 
-handleGenLeptons  = Handle ('std::vector<reco::GenParticle>')
+handleGenLeptons    = Handle ('std::vector<reco::GenParticle>')
 handleCmgElectrons  = Handle ('std::vector<cmg::Electron>')
 
 cmgElectrons = ("cmgElectronSel")
@@ -33,7 +33,7 @@ dPtRel             = ROOT.TH1F("dPtRel", "dPtRel", 100, 0., 1.)
 ##efficiency plots##
 ####################
 #binning
-binsLowEdges                 = array('d',[0., 5., 10., 15., 20., 25., 30., 35., 40., 45., 50., 60.])
+binsLowEdges                    = array('d',[0., 5., 10., 15., 20., 25., 30., 35., 40., 45., 50., 60.])
 
 #denominator histo
 genLeptonPt                     = ROOT.TH1F("genLeptonPt", "pt", len(binsLowEdges)-1, binsLowEdges )
@@ -99,7 +99,7 @@ for event in events:
             if (index == -1) :
                 continue
 
-            RA2IDCut = (cmgElectrons[index].sourcePtr().gsfTrack().trackerExpectedHitsInner().numberOfLostHits() < 2)
+         #   RA2IDCut = (cmgElectrons[index].sourcePtr().gsfTrack().trackerExpectedHitsInner().numberOfLostHits() < 2)
 
        ##      RA2VtxCut = (vertices.size() >0) && (cmgLeptons[index].sourcePtr().gsfTrack().dxy(vtxpos) < maxEleD0)  && (cmgLeptons[index].vz() - vtxpos.z() >=1)) 
 
@@ -110,22 +110,22 @@ for event in events:
                 genLeptonPtMatched.Fill(genLepton.pt())
                 cut = 1
                 while (cut < len( histosToCompareVBTFID ) ):
-                    if (cmgLeptons[index].getSelection(cutsVBTFID[cut])):
+                    if (cmgEles[index].getSelection(cutsVBTFID[cut])):
                         histosToCompareVBTFID[cut].Fill(genLepton.pt())
                     cut +=1
                 cut = 1
                 while (cut < len( histosToCompareVBTFIDandCR ) ):
-                    if (cmgLeptons[index].getSelection(cutsVBTFID[cut]) and cmgLeptons[index].getSelection(cutsVBTFCR[cut])):
+                    if (cmgEles[index].getSelection(cutsVBTFID[cut]) and cmgEles[index].getSelection(cutsVBTFCR[cut])):
                         histosToCompareVBTFIDandCR[cut].Fill(genLepton.pt())
                     cut +=1
                 cut = 1       
                 while (cut < len( histosToCompareCiCID ) ):
-                    if (cmgLeptons[index].getSelection(cutsCiCID[cut])):
+                    if (cmgEles[index].getSelection(cutsCiCID[cut])):
                         histosToCompareCiCID[cut].Fill(genLepton.pt())
                     cut +=1
                 cut = 1
                 while (cut < len( histosToCompareCiCIDandCR ) ):
-                    if (cmgLeptons[index].getSelection(cutsCiCID[cut]) and cmgLeptons[index].getSelection(cutsCiCCR[cut])):
+                    if (cmgEles[index].getSelection(cutsCiCID[cut]) and cmgEles[index].getSelection(cutsCiCCR[cut])):
                         histosToCompareCiCIDandCR[cut].Fill(genLepton.pt())
                     cut +=1
            
