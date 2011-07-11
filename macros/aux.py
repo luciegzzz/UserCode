@@ -19,6 +19,7 @@ def deltaRmin(obj0, coll):
     dRmin = 9999.
     index = -1 # will remain = -1 if coll is empty
     dPt   = -1
+    diffCharge = -10
     it = 0
     for obj1 in coll :
         dR = deltaR(obj0.phi(), obj0.eta(), obj1.phi(), obj1.eta())
@@ -26,14 +27,15 @@ def deltaRmin(obj0, coll):
             dRmin = dR
             index = it
             dPt   = abs(obj0.pt() - obj1.pt()) / obj0.pt()
+            diffCharge = obj0.charge() - obj1.charge()
             it += 1
       
     if (dRmin == 9999.) :
         dRmin = -1.
 
-    return dRmin, dPt, index
+    return dRmin, dPt, diffCharge, index
 
 
-def matched(dRmin, dPt, dRmatched, dPtMatched):
-    
-    return (dRmin < dRmatched) and (dPt < dPtMatched)
+def matched(dRmin, dPt, diffCharge, dRmatched, dPtMatched):
+
+    return ((dRmin < dRmatched) and (dPt < dPtMatched) and (diffCharge == 0))
