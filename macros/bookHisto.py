@@ -6,5 +6,5 @@ def bookHisto(cuts, bins, histos) :
         if (cut == ""):
             continue 
         else :
-            histos.append(ROOT.TH1F(("h"+cut), "pt",len(bins)-1, bins))
+            histos.append(ROOT.TH1F(("h"+str(cut)), "pt",len(bins)-1, bins))
 
