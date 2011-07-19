@@ -32,10 +32,15 @@ def deltaRmin(obj0, coll):
       
     if (dRmin == 9999.) :
         dRmin = -1.
-
+   
     return dRmin, dPt, diffCharge, index
 
 
-def matched(dRmin, dPt, diffCharge, dRmatched, dPtMatched):
+def matched(dRmin, dPt, diffCharge, dRmatched, dPtMatched, index, indices):
 
-    return ((dRmin < dRmatched) and (dPt < dPtMatched) and (diffCharge == 0))
+    alreadyUsed = (indices.count(index) > 0) 
+    indices.append(index)
+    if ((dRmin < dRmatched) and (dPt < dPtMatched) and (diffCharge == 0) and alreadyUsed):
+        print 'too bad. Matched but already used :('
+
+    return ((dRmin < dRmatched) and (dPt < dPtMatched) and (diffCharge == 0) and (not(alreadyUsed)))

@@ -18,26 +18,29 @@ ROOT.gStyle.SetPalette(1)
 #------inputs------#
 ####################
 
-####   PARAMETERS TO MODIFY    #######
-files = []
+#path = '/data/lucieg/RelValZEE425/'
+path  = '/data/lucieg/WJetsToLNu_TuneZ2_7TeV_madgraph_tauola/'
 #path = '/data/lucieg/QCD_Pt-30to80_BCtoE_TuneZ2_7TeV-pythia6/'
-path = '/data/lucieg/RelValZEE425/'
+#postfix            = 'QCDbce'
+postfix            = 'Wjets'
+maxEvents          = 500000
+pdgId              = 11 #for electrons
+numberOfPileUpInt  = 0 # select number of pile-up ( extend to range ?)
+effFileName        = 'efficiencies' + postfix
+effFileRA2IsolName = 'RA2Isol' + postfix
+variable           = 'pt' # trying to make the macro generic enough to easily switch from pt to eta
+dRMatching         = 0.15
+dPtRelMatching     = 0.5
+histoFileName      = 'histo'+postfix+'.root'
+
+# ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- #
+files = []
 listFiles = os.listdir(path)
 for infile in listFiles :
     files.append(path + infile)
-
 #pdb.set_trace() #for the record & debugging purposes
 
-maxEvents         = 10000000
-pdgId             = 11 #for electrons
-numberOfPileUpInt = 0 # select number of pile-up ( extend to range ?)
-effFileName       = 'QCDbce'
-histoFileName     = 'histo.root'
-variable          = 'pt' # trying to make the macro generic enough to easily switch from pt to eta
-dRMatching        = 0.15
-dPtRelMatching    = 0.5
 
-# ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- #
 #get objects
 events = Events (files)
 
@@ -95,6 +98,7 @@ bookHisto(cuts,binsLowEdges, histosToCompare )
 ########################################
 
 ratioEleSel   = array('d', (0.,)*len(cuts)) 
+errRatioEleSel   = array('d', (0.,)*len(cuts)) 
 nrEvWithGenLeptons = 0
 
 i = 0 # event counter
@@ -124,8 +128,8 @@ for event in events:
     nrOfVtces      = vtces.size()
     nrOfPUvertices = puvtces[1].getPU_NumInteractions() # 0 = BC -1, 1 = BC, 2 = BC +1
 
-    if (nrOfPUvertices != numberOfPileUpInt) :
-        continue
+   ##  if (nrOfPUvertices != numberOfPileUpInt) :
+##         continue
           
     for genLepton in genLeps :
 
@@ -163,17 +167,18 @@ for event in events:
                 nrEleSel[0]   += 1
                 genLeptonXMatched.Fill(genLepton.pt()) 
          
-                fillHistoPredefCutsPassed(histosToCompare, nrEleSel, cuts, cmgEles, index, genLepton.pt())
+                fillHistoPredefCutsPassed(histosToCompare[nrOfPUvertices], nrEleSel[nrOfPUvertices], cuts, cmgEles, index, genLepton.pt())
                            
                
-    if (nrGenLeptons > 0) :
-        nrEvWithGenLeptons += 1
+    if (nrGenLeptons[nrOfPUvertices] > 0) :
+        nrEvWithGenLeptons[nrOfPUvertices] += 1
         cut = 0
         while (cut  < len(cuts)) :
-            ratioEleSel[cut]   += nrEleSel[cut] / nrGenLeptons
+            ratioEleSel[nrOfPUvertices][cut]   += nrEleSel[nrOfPUvertices][cut] / nrGenLeptons[nrOfPUvertices]
+            errRatioEleSel[nrOfPUvertices][cut]     += ((nrEleSel[nrOfPUvertices][cut] / nrGenLeptons[nrOfPUvertices]) * (nrEleSel[nrOfPUvertices][cut] / nrGenLeptons[nrOfPUvertices]))
             cut += 1
 
-calculateAveEff(cuts, ratioEleSel, nrEvWithGenLeptons, effFile)
+calculateAveEffPU(cuts, ratioEleSel, errRatioEleSel, nrEvWithGenLeptons, effFile)
 
 #######################################           
 #---------plots-----------------------#
