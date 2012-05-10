@@ -69,76 +69,36 @@ HLTPFJetsAnalyzer<T, U>::analyze(const edm::Event& iEvent, const edm::EventSetup
   double recoleadeta = 0.;
   double recoleadphi = 0.;
 
-  //hlt
-  if (nHltJets > 0) {
-      
-    hltleadpt  = hltjets -> begin() -> pt();
-    hltleadeta = hltjets -> begin() -> eta();
-    hltleadphi = hltjets -> begin() -> phi();
-      
-    h_hltleadpt_  -> Fill( hltleadpt );
-    h_hltleadeta_ -> Fill( hltleadeta );  
-  
-    for ( typename TCollection::const_iterator itHltJet = hltjets -> begin() ; itHltJet != hltjets -> end() ; itHltJet++ ){
-      h_hltpt_  -> Fill( itHltJet -> pt() );
-      h_hlteta_ -> Fill( itHltJet -> eta() );
-    }
-    h_hltJetMultiplicity_ -> Fill( nHltJets );
-  }
-
-  //reco
-  if (nRecoJets > 0) {
- 
-    recoleadpt  = recojets -> begin() -> pt();
-    recoleadeta = recojets -> begin() -> eta();
-    recoleadphi = recojets -> begin() -> phi();
-    
-    h_recoleadpt_  -> Fill( recoleadpt );
-    h_recoleadeta_ -> Fill( recoleadeta );  
-
-    for ( typename UCollection::const_iterator itRecoJet = recojets -> begin() ; itRecoJet != recojets -> end() ; itRecoJet++ ){
-      h_recopt_  -> Fill( itRecoJet -> pt() );
-      h_recoeta_ -> Fill( itRecoJet -> eta() );
-    }
-    h_recoJetMultiplicity_ -> Fill( nRecoJets );
-  }
-
   // hlt & reco
   if ( nHltJets > 0 && nRecoJets > 0 ){
  
-    //matching
-    double dR = 1000.;
-    double ptMatched = 10000.;
-    double etaMatched = 100.;
-    for ( typename UCollection::const_iterator itRecoJet = recojets -> begin() ; itRecoJet != recojets -> end() ; itRecoJet++ ){
-      double tmpDr = dR;
-      dR = min(dR, deltaR( hltleadeta, hltleadphi,itRecoJet -> eta(), itRecoJet -> phi() ));
-      if ( dR < tmpDr ){
-	ptMatched  = itRecoJet -> pt();
-	etaMatched = itRecoJet -> eta();
-      }
-    }
+    hltleadpt  = hltjets -> begin() -> pt();
+    hltleadeta = hltjets -> begin() -> eta();
+    hltleadphi = hltjets -> begin() -> phi();      
 
-    h_dR_ -> Fill(dR);
-    if ( dR < dRMatched_ ){
-      h_deltaPtOverPt_    -> Fill( (ptMatched - hltleadpt) / ptMatched );
-      h_deltaPt_          -> Fill( (ptMatched - hltleadpt)  );
-      h_deltaEtaOverEta_  -> Fill( (etaMatched - hltleadeta) / etaMatched );
-      h_deltaEta_         -> Fill( (etaMatched - hltleadeta)  );
+    recoleadpt  = recojets -> begin() -> pt();
+    recoleadeta = recojets -> begin() -> eta();
+    recoleadphi = recojets -> begin() -> phi();
 
-      //eta binned
-      unsigned int binToFillRespEta = ( etaMatched + etamax ) / binWidthEta_ ; 
-      unsigned int binToFillRespPt = abs( ptMatched  ) / binWidthPt_ ;
+    double dR  = min(dR, deltaR( hltleadeta, hltleadphi, recoleadeta, recoleadphi ));       
 
-      if ( binToFillRespPt > 9 ) // could be made generic !!
-	binToFillRespPt = 9;
+    h_deltaPtOverPt_    -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
+    h_deltaPt_          -> Fill( (recoleadpt - hltleadpt)  );
+    h_deltaEtaOverEta_  -> Fill( (recoleadeta - hltleadeta) / recoleadeta );
+    h_deltaEta_         -> Fill( (recoleadeta - hltleadeta)  );
 
-      h_deltaPtOverPtEtaBinned_[ binToFillRespEta ] -> Fill( (ptMatched - hltleadpt) / ptMatched );
-      h_deltaPtOverPtPtBinned_[ binToFillRespPt ]   -> Fill( (ptMatched - hltleadpt) / ptMatched );
-    
+    //eta binned
+    unsigned int binToFillRespEta = ( recoleadeta + etamax ) / binWidthEta_ ; 
+    cout << " binToFillRespEta " << binToFillRespEta << " recoleadeta " << recoleadeta << endl;
+    unsigned int binToFillRespPt = abs( recoleadpt  ) / binWidthPt_ ;
 
+    if ( binToFillRespPt > 9 ) // could be made generic !!
+      binToFillRespPt = 9;
 
-    }
+    h_deltaPtOverPtEtaBinned_[ binToFillRespEta ] -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
+    h_deltaPtOverPtPtBinned_[ binToFillRespPt ]   -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
+
+ 
     /*******************/
     /* turn on curves  */
     /*******************/
@@ -169,6 +129,10 @@ HLTPFJetsAnalyzer<T, U>::analyze(const edm::Event& iEvent, const edm::EventSetup
       cout << "dR " << dR << endl;
     }
   }// end ( nHltJets > 0 && nRecoJets > 0 )
+
+  else {
+    cout << 'weird numbers of jets : hlt ' << nHltJets << ' reco ' << nRecoJets << endl;
+  }
 
 }//end analyze
 

@@ -6,18 +6,24 @@ from CMGTools.RootTools.Style import *
 gROOT.Macro( os.path.expanduser( '~/rootlogon.C' ) )
 gStyle.SetOptStat(0)
 
-dir = '/data/lucieg/HltPfJetsAnalyzer/'
+dir = '/data/lucieg/HltPfJetsAnalyzerNoMatching/'
 
 ##fileHLTToReco          = TFile(dir+'analyzerHLTReco.root')
-fileHLTToReco          = TFile(dir+'analyzerHLTCMG.root')
+#fileHLTToReco          = TFile(dir+'analyzerHLTCMG.root')
 ## fileHLTToReco          = TFile(dir+'analyzerHLTCMGCHS.root')
 
 ## fileHLTToReco          = TFile(dir+'analyzerL1L2L3Reco.root')
 ## fileHLTToReco          = TFile(dir+'analyzerL1L2L3CMG.root')
 ##fileHLTToReco          = TFile(dir+'analyzerHLTPFNoPUL1L2L3CMGCHS.root')
 
-## fileHLTToReco          = TFile(dir+'analyzerCHSL1L2L3Reco.root')
-## fileHLTToReco          = TFile(dir+'analyzerCHSL1L2L3CMG.root')
+ext = 'ak5PFJetsToCMGCHS'
+fileHLTToReco          = TFile(dir+'analyzerHLTCMGCHS.root')
+## ext = 'ak5PFJetsPFNoPUToCMGCHS'
+## fileHLTToReco          = TFile(dir+'analyzerHLTPFNoPUCMGCHS.root')
+## ext = 'ak5PFJetsL1L2L3ToCMGCHS'
+## fileHLTToReco          = TFile(dir+'analyzerHLTL1L2L3CMGCHS.root')
+
+
 ## fileHLTToReco          = TFile(dir+'analyzerCHSL1L2L3CMGCHS.root')
 
 
@@ -27,6 +33,7 @@ numPt0 = ROOT.TH1F(fileHLTToReco.Get('h_turnOnPtEtalt0'))
 denPt0 = ROOT.TH1F(fileHLTToReco.Get('h_turnOnPtEtalt0Den'))
 numPt0.Sumw2()
 numPt0.Divide(denPt0)
+numPt0.SetAxisRange(0., 200.)
 numPt0.SetMinimum(0.1)
 numPt0.SetMaximum(1.)
 sBlue.formatHisto( numPt0 )
@@ -73,10 +80,10 @@ sBlack.formatHisto( numPt4 )
 numPt4.Draw("SAMES")
 
 
-legturnons = TLegend(0.7,0.7,0.9,0.9)
-legturnons.SetHeader("turn on for hlt ak5 pf jet> 30 GeV, |eta| < 2.6, ak5pfjets offline")
+legturnons = TLegend(0.4,0.1,0.9,0.5)
+#legturnons.SetHeader("turn on for hlt ak5 pf jet> 30 GeV, |eta| < 2.6, ak5pfjets offline")
 #legturnons.SetHeader("turn on for hlt ak5 pf jet > 30 GeV, |eta| < 2.6, L1L2L3 offline ")
-#legturnons.SetHeader("turn on for hlt ak5 pf jet > 30 GeV, |eta| < 2.6, chsL1L2L3 offline")
+legturnons.SetHeader("turn on for hlt ak5 pf jet > 30 GeV, |eta| < 2.6, chsL1L2L3 offline")
 #legturnons.SetHeader("turn on for hlt ak5 pfnopu jet> 30 GeV, |eta| < 2.6, ak5pfjets offline")
 #legturnons.SetHeader("turn on for hlt ak5 pfnopu jet > 30 GeV, |eta| < 2.6, L1L2L3 offline ")
 #legturnons.SetHeader("turn on for hlt ak5 pfnopu jet > 30 GeV, |eta| < 2.6, chsL1L2L3 offline")
@@ -89,3 +96,6 @@ legturnons.AddEntry(numPt2, "recojet |eta| < 1.5")
 legturnons.AddEntry(numPt3, "recojet |eta| < 2.")
 legturnons.AddEntry(numPt4, "recojet |eta| < 2.5")
 legturnons.Draw("SAMES")
+
+c_turnons.SaveAs('turnOnEtaBinned'+ext+'.png')
+

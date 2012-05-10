@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms
 
-dir = '/data/lucieg/HltPfJetsAnalyzer/'
+dir = '/data/lucieg/HltPfJetsAnalyzerNoMatching/'
 #dir = ''
 ##various HLT
 ####various reco

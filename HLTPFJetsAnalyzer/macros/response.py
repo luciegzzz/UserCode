@@ -4,70 +4,70 @@ import ROOT
 from CMGTools.RootTools.Style import *
 
 gROOT.Macro( os.path.expanduser( '~/rootlogon.C' ) )
-gStyle.SetOptStat("oumen")
+gStyle.SetOptStat("n")
 
 dir = '/data/lucieg/HltPfJetsAnalyzer/'
 
-ext = 'HLTReco'
-file = TFile('analyzerHLTReco.root')
+## ext = 'HLTReco'
+## file = TFile(dir+'analyzerHLTReco.root')
 ## ext = 'HLTPFNoPUReco'
-## file = TFile('analyzerHLTPFNoPUReco.root')
+## file = TFile(dir+'analyzerHLTPFNoPUReco.root')
 ## ext = 'HLTL1L2L3Reco'
-## file = TFile('analyzerHLTL1L2L3Reco.root')
+## file = TFile(dir+'analyzerHLTL1L2L3Reco.root')
 ## ext = 'HLTPFNoPUL1L2L3Reco'
-## file = TFile('analyzerHLTPFNoPUL1L2L3Reco.root')
+## file = TFile(dir+'analyzerHLTPFNoPUL1L2L3Reco.root')
 
 ## ext = 'HLTCMGCHS'
-## file = TFile('analyzerHLTCMGCHS.root') ##
-## ext = 'HLTPFNoPUCMGCHS'
-## file = TFile('analyzerHLTPFNoPUCMGCHS.root')
+## file = TFile(dir+'analyzerHLTCMGCHS.root') ##
+ext = 'HLTPFNoPUCMGCHS'
+file = TFile(dir+'analyzerHLTPFNoPUCMGCHS.root')
 ## ext = 'HLTL1L2L3CMGCHS'
-## file = TFile('analyzerHLTL1L2L3CMGCHS.root')
+## file = TFile(dir+'analyzerHLTL1L2L3CMGCHS.root')
 ## ext = 'HLTPFNoPUL1L2L3CMGCHS'
-## file = TFile('analyzerHLTPFNoPUL1L2L3CMGCHS.root')## 
+## file = TFile(dir+'analyzerHLTPFNoPUL1L2L3CMGCHS.root')## 
 
 ## ext = 'HLTCMG'
-## file = TFile('analyzerHLTCMG.root') ##
+## file = TFile(dir+'analyzerHLTCMG.root') ##
 ## ext = 'HLTPFNoPUCMG'
-## file = TFile('analyzerHLTPFNoPUCMG.root')
+## file = TFile(dir+'analyzerHLTPFNoPUCMG.root')
 ## ext = 'HLTL1L2L3CMG'
-## file = TFile('analyzerHLTL1L2L3CMG.root')
+## file = TFile(dir+'analyzerHLTL1L2L3CMG.root')
 ## ext = 'HLTPFNoPUL1L2L3CMG'
-## file = TFile('analyzerHLTPFNoPUL1L2L3CMG.root')## 
+## file = TFile(dir+'analyzerHLTPFNoPUL1L2L3CMG.root')## 
 
 
 
 file.ls()
 
-#lead pt
-c_leadpt = TCanvas("c_leadpt")
-hltleadpt  = file.Get('h_hltleadpt')
-recoleadpt = file.Get('h_recoleadpt')
-sBlue.formatHisto( hltleadpt )
-sRed.formatHisto( recoleadpt )
-hltleadpt.Draw()
-recoleadpt.Draw("SAMES")
+## #lead pt
+## c_leadpt = TCanvas("c_leadpt")
+## hltleadpt  = file.Get('h_hltleadpt')
+## recoleadpt = file.Get('h_recoleadpt')
+## sBlue.formatHisto( hltleadpt )
+## sRed.formatHisto( recoleadpt )
+## hltleadpt.Draw()
+## recoleadpt.Draw("SAMES")
 
-legpt = TLegend(0.7,0.7,0.9,0.9)
-legpt.SetHeader("leading jet pt")
-legpt.AddEntry(hltleadpt, "hlt")
-legpt.AddEntry(recoleadpt, "reco")
-legpt.Draw("SAMES")
+## legpt = TLegend(0.7,0.7,0.9,0.9)
+## legpt.SetHeader("leading jet pt")
+## legpt.AddEntry(hltleadpt, "hlt")
+## legpt.AddEntry(recoleadpt, "reco")
+## legpt.Draw("SAMES")
 
-#lead eta
-c_leadeta = TCanvas("c_leadeta")
-hltleadeta  = file.Get('h_hltleadeta')
-recoleadeta = file.Get('h_recoleadeta')
-sBlue.formatHisto( hltleadeta )
-sRed.formatHisto( recoleadeta )
-recoleadeta.Draw()
-hltleadeta.Draw("SAMES")
+## #lead eta
+## c_leadeta = TCanvas("c_leadeta")
+## hltleadeta  = file.Get('h_hltleadeta')
+## recoleadeta = file.Get('h_recoleadeta')
+## sBlue.formatHisto( hltleadeta )
+## sRed.formatHisto( recoleadeta )
+## recoleadeta.Draw()
+## hltleadeta.Draw("SAMES")
 
-legeta = TLegend(0.7,0.7,0.9,0.9)
-legeta.SetHeader("leading jet eta")
-legeta.AddEntry(hltleadeta, "hlt")
-legeta.AddEntry(recoleadeta, "reco")
-legeta.Draw("SAME")
+## legeta = TLegend(0.7,0.7,0.9,0.9)
+## legeta.SetHeader("leading jet eta")
+## legeta.AddEntry(hltleadeta, "hlt")
+## legeta.AddEntry(recoleadeta, "reco")
+## legeta.Draw("SAME")
 
 #response
 c_responses = TCanvas("c_responses")
@@ -161,12 +161,12 @@ c_responsesPt.SaveAs('responsesPt'+ext+'.png')
 c_response = TCanvas("c_response")
 c_response.Divide(2,1)
 c_response.cd(1)
-respEta = ROOT.TH1F(file.Get(h_responseEta_))
+respEta = ROOT.TH2F(file.Get('h_responseEta_'))
 sBlue.formatHisto( respEta )
 respEta.Draw()
 
 c_response.cd(2)
-respPt  = ROOT.TH1F(file.Get(h_responsePt_))
+respPt  = ROOT.TH2F(file.Get('h_responsePt_'))
 sBlue.formatHisto( respPt )
 respPt.Draw()
-c_response.SaveAs('response'+ext'.png')
+c_response.SaveAs('response'+ext+'.png')
