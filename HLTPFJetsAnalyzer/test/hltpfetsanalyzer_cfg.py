@@ -14,10 +14,10 @@ from CMGTools.Production.datasetToSource import *
 process.source = datasetToSource(
    'lucieg',
 #   '/DoubleMu/PAT_CMG/191718/HLT/'   
-   '/DoubleMu/PAT_CMG/191718_191810/HLT/'   
+   '/DoubleMu/PAT_CMG/191718_191810/HLTMay10/'   
    )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32( -1 ) )
 #process.source.duplicateCheckMode = cms.untracked.string('checkEachFile')
 
 process.load('Lucie.HLTPFJetsAnalyzer.selectZevents_cfi')
@@ -32,17 +32,17 @@ process.out = cms.OutputModule("PoolOutputModule",
                                )
 process.p = cms.Path(
     process.selectZevents         +
-    process.HltCaloRecoPfJetsAnalyzer +
+   # process.HltCaloRecoPfJetsAnalyzer +
     process.HltRecoPfJetsAnalyzer +
     process.HltPFNoPURecoPfJetsAnalyzer +
     process.HltPFNoPUL1L2L3RecoPfJetsAnalyzer +
     process.HltL1L2L3RecoPfJetsAnalyzer +
-    process.HltCaloCmgPfJetsAnalyzer +
+   # process.HltCaloCmgPfJetsAnalyzer +
     process.HltCmgPfJetsAnalyzer +
     process.HltPFNoPUCmgPfJetsAnalyzer +
     process.HltPFNoPUL1L2L3CmgPfJetsAnalyzer +
     process.HltL1L2L3CmgPfJetsAnalyzer + 
-    process.HltCaloCmgCHSPfJetsAnalyzer + 
+   # process.HltCaloCmgCHSPfJetsAnalyzer + 
     process.HltCmgCHSPfJetsAnalyzer + 
     process.HltPFNoPUCmgchsPfJetsAnalyzer + 
     process.HltPFNoPUL1L2L3CmgchsPfJetsAnalyzer +

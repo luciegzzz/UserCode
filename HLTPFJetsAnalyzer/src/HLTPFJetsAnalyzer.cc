@@ -28,111 +28,142 @@ HLTPFJetsAnalyzer<T, U>::analyze(const edm::Event& iEvent, const edm::EventSetup
   int EvtInfo_Run   = iEvent.id().run();
   int EvtInfo_Event = iEvent.id().event();
 
- 
-  /*******************/
-  /*get inputs - jets*/
-  /*******************/
-  edm::Handle< TCollection > hltjets;
-  int nHltJets  = -10;
-  edm::Handle< UCollection > recojets;
-  int nRecoJets = -10;
-  
-  //hlt                                       
-  try {
-    iEvent.getByLabel( hltjets_, hltjets);
-    nHltJets = hltjets -> size();
-  }
-  catch (exception &e)
-    {
-      cout << "no hlt jet found " << hltjets_ << endl;
-    }
-  //reco
-  try {
-    iEvent.getByLabel( recojets_, recojets);
-    nRecoJets = recojets -> size();
-  }   
-  catch (exception &e)
-    {
-      cout << "no reco jet found " << recojets_ << endl ;
-    }
+  edm::Handle< bool > ecalDeadCell ;
+  iEvent.getByLabel( "ecalDeadCellTPfilter", ecalDeadCell );
 
-  /*******************/
-  /* end inputs      */
-  /*******************/
+  edm::Handle< bool > HBHE ;
+  iEvent.getByLabel("HBHENoiseFilterResultProducer2011NonIsoRecommended", "HBHENoiseFilterResult", HBHE  );
+
+  edm::Handle< bool > eeNoiseFilter ;
+  iEvent.getByLabel( "eeNoiseFilter", "Result", eeNoiseFilter );
+
+  edm::Handle< bool > goodPV ;
+  iEvent.getByLabel( "goodPrimaryVertexFilter",  "Result", goodPV  );
+
+  edm::Handle< bool > greedyMuonsTagging ;
+  iEvent.getByLabel( "greedyMuonsTagging",  "Result", greedyMuonsTagging );
+ 
+  edm::Handle< bool > inconsistentMuonsTagging ;
+  iEvent.getByLabel( "inconsistentMuonsTagging", "Result", inconsistentMuonsTagging  );
+ 
+  edm::Handle< bool > recovRecHitFilter ;
+  iEvent.getByLabel( "recovRecHitFilter", "Result", recovRecHitFilter  );
+
+  edm::Handle< bool > scrapingFilter ;
+  iEvent.getByLabel( "scrapingFilter", "Result",  scrapingFilter );
+
+  bool filter = *ecalDeadCell && *HBHE && *eeNoiseFilter && *goodPV && *greedyMuonsTagging && *inconsistentMuonsTagging && *recovRecHitFilter && *scrapingFilter ;
+ 
+  if (filter) {
+
+    /*******************/
+    /*get inputs - jets*/
+    /*******************/
+    edm::Handle< TCollection > hltjets;
+    int nHltJets  = -10;
+    edm::Handle< UCollection > recojets;
+    int nRecoJets = -10;
+  
+    //hlt                                       
+    try {
+      iEvent.getByLabel( hltjets_, hltjets);
+      nHltJets = hltjets -> size();
+    }
+    catch (exception &e)
+      {
+	cout << "no hlt jet found " << hltjets_ << endl;
+      }
+    //reco
+    try {
+      iEvent.getByLabel( recojets_, recojets);
+      nRecoJets = recojets -> size();
+    }   
+    catch (exception &e)
+      {
+	cout << "no reco jet found " << recojets_ << endl ;
+      }
+
+    /*******************/
+    /* end inputs      */
+    /*******************/
     
-  //playtime
-  double hltleadpt  = 0.;
-  double hltleadeta = 0.;
-  double hltleadphi = 0.;
+    //playtime
+    double hltleadpt  = 0.;
+    double hltleadeta = 0.;
+    double hltleadphi = 0.;
 
-  double recoleadpt  = 0.;
-  double recoleadeta = 0.;
-  double recoleadphi = 0.;
+    double recoleadpt  = 0.;
+    double recoleadeta = 0.;
+    double recoleadphi = 0.;
 
-  // hlt & reco
-  if ( nHltJets > 0 && nRecoJets > 0 ){
+    // hlt & reco
+    if ( nHltJets > 0 && nRecoJets > 0 ){
  
-    hltleadpt  = hltjets -> begin() -> pt();
-    hltleadeta = hltjets -> begin() -> eta();
-    hltleadphi = hltjets -> begin() -> phi();      
+      hltleadpt  = hltjets -> begin() -> pt();
+      hltleadeta = hltjets -> begin() -> eta();
+      hltleadphi = hltjets -> begin() -> phi();      
 
-    recoleadpt  = recojets -> begin() -> pt();
-    recoleadeta = recojets -> begin() -> eta();
-    recoleadphi = recojets -> begin() -> phi();
+      recoleadpt  = recojets -> begin() -> pt();
+      recoleadeta = recojets -> begin() -> eta();
+      recoleadphi = recojets -> begin() -> phi();
 
-    double dR  = min(dR, deltaR( hltleadeta, hltleadphi, recoleadeta, recoleadphi ));       
+      double dR  = min(dR, deltaR( hltleadeta, hltleadphi, recoleadeta, recoleadphi ));       
 
-    h_deltaPtOverPt_    -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
-    h_deltaPt_          -> Fill( (recoleadpt - hltleadpt)  );
-    h_deltaEtaOverEta_  -> Fill( (recoleadeta - hltleadeta) / recoleadeta );
-    h_deltaEta_         -> Fill( (recoleadeta - hltleadeta)  );
+      h_deltaPtOverPt_    -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
+      h_deltaPt_          -> Fill( (recoleadpt - hltleadpt)  );
+      h_deltaEtaOverEta_  -> Fill( (recoleadeta - hltleadeta) / recoleadeta );
+      h_deltaEta_         -> Fill( (recoleadeta - hltleadeta)  );
 
-    //eta binned
-    unsigned int binToFillRespEta = ( recoleadeta + etamax ) / binWidthEta_ ; 
-    cout << " binToFillRespEta " << binToFillRespEta << " recoleadeta " << recoleadeta << endl;
-    unsigned int binToFillRespPt = abs( recoleadpt  ) / binWidthPt_ ;
+      //eta binned
+      unsigned int binToFillRespEta = ( recoleadeta + etamax ) / binWidthEta_ ; 
+      // cout << " binToFillRespEta " << binToFillRespEta << " recoleadeta " << recoleadeta << endl;
+      unsigned int binToFillRespPt = abs( recoleadpt  ) / binWidthPt_ ;
 
-    if ( binToFillRespPt > 9 ) // could be made generic !!
-      binToFillRespPt = 9;
+      if ( binToFillRespPt > 9 ) // could be made generic !!
+	binToFillRespPt = 9;
 
-    h_deltaPtOverPtEtaBinned_[ binToFillRespEta ] -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
-    h_deltaPtOverPtPtBinned_[ binToFillRespPt ]   -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
+      h_deltaPtOverPtEtaBinned_[ binToFillRespEta ] -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
+      h_deltaPtOverPtPtBinned_[ binToFillRespPt ]   -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
 
  
-    /*******************/
-    /* turn on curves  */
-    /*******************/
-    //eta binned
-    double binWidth = 6. / etaBinning_ ;
-    unsigned int binToFill = abs( recoleadeta ) / binWidth ;
-    if (  abs( recoleadeta ) <  (binToFill + 1.)* binWidth ) {
+      /*******************/
+      /* turn on curves  */
+      /*******************/
+      //eta binned
+      double binWidth = 6. / etaBinning_ ;
+      unsigned int binToFill = abs( recoleadeta ) / binWidth ;
+      if (  abs( recoleadeta ) <  (binToFill + 1.)* binWidth ) {
      
-      h_turnOnPtEtaBinnedDen_[ binToFill ] -> Fill( recoleadpt );
-      if ( hltleadpt > 30. && abs( hltleadeta ) < 2.6 ){
-	h_turnOnPtEtaBinned_[ binToFill ]    -> Fill( recoleadpt );
+	h_turnOnPtEtaBinnedDen_[ binToFill ] -> Fill( recoleadpt );
+	if ( hltleadpt > 30. && abs( hltleadeta ) < 2.6 ){
+	  h_turnOnPtEtaBinned_[ binToFill ]    -> Fill( recoleadpt );
   
-      }  
-    }
-    // overall
-    if ( abs( recoleadeta ) < 2.4) {
-      h_turnOnPtDen_                          -> Fill( recoleadpt );
-      if ( hltleadpt > 30. && abs( hltleadeta ) < 2.6 ){
-	h_turnOnPt_                           -> Fill( recoleadpt );
-      }  
+	}  
+      }
+      // overall
+      if ( abs( recoleadeta ) < 2.4) {
+	h_turnOnPtDen_                          -> Fill( recoleadpt );
+	if ( hltleadpt > 30. && abs( hltleadeta ) < 2.6 ){
+	  h_turnOnPt_                           -> Fill( recoleadpt );
+	}  
+      }
+
+      //debugging
+      if ( recoleadpt > 60 &&  abs( recoleadeta ) < 2.4 && !( hltleadpt > 30. && abs( hltleadeta ) < 2.6)){
+	cout << "run number " << EvtInfo_Run << " event number " << EvtInfo_Event << endl; 
+	cout << recojets_ << " recoleadpt " << recoleadpt << " recoleadeta " << recoleadeta << endl;
+	cout << hltjets_ << " hltleadpt " << hltleadpt << " hltleadeta " << hltleadeta << endl;
+	cout << "dR " << dR << endl;
+      }
+    }// end ( nHltJets > 0 && nRecoJets > 0 )
+
+    else {
+      cout << "weird numbers of jets : \n hlt " << hltjets_ << " " << nHltJets << " reco " <<  recojets_ << " " << nRecoJets << endl;
     }
 
-    //debugging
-    if ( recoleadpt > 80 &&  abs( recoleadeta ) < 2.4 && !( hltleadpt > 30. && abs( hltleadeta ) < 2.6)){
-      cout << "run number " << EvtInfo_Run << " event number " << EvtInfo_Event << endl; 
-      cout << recojets_ << " recoleadpt " << recoleadpt << " recoleadeta " << recoleadeta << endl;
-      cout << hltjets_ << " hltleadpt " << hltleadpt << " hltleadeta " << hltleadeta << endl;
-      cout << "dR " << dR << endl;
-    }
-  }// end ( nHltJets > 0 && nRecoJets > 0 )
-
-  else {
-    cout << 'weird numbers of jets : hlt ' << nHltJets << ' reco ' << nRecoJets << endl;
   }
+  else 
+    cout << "failed  filters " << endl;
 
 }//end analyze
 
@@ -191,8 +222,8 @@ HLTPFJetsAnalyzer<T, U>::beginJob()
     h_deltaPtOverPtPtBinned_. push_back(h_dummy);
   }
 
-  h_responseEta_           = new TH2F("h_responseEta_", "response wrt eta", 120, -6., 6., 100, -0.5, 0.5);   
-  h_responsePt_            = new TH2F("h_responsePt_", "response wrt pt", 10, 0, 200., 120, -1., 0.2);   
+  //   h_responseEta_           = new TH2F("h_responseEta_", "response wrt eta", 120, -6., 6., 100, -0.5, 0.5);   
+  //   h_responsePt_            = new TH2F("h_responsePt_", "response wrt pt", 10, 0, 200., 120, -1., 0.2);   
 
   
 }
@@ -231,7 +262,7 @@ HLTPFJetsAnalyzer<T, U>::endJob()
     h_turnOnPtEtaBinnedDen_[i] -> Write();
   }
 
-  for ( unsigned int i = 0 ; i < 10 ; i++){
+  for ( unsigned int i = 0 ; i < 12 ; i++){
     h_deltaPtOverPtEtaBinned_[i] -> Write();
   }
 
@@ -240,12 +271,30 @@ HLTPFJetsAnalyzer<T, U>::endJob()
   }
 
 
+  Double_t xEta[12]   = {-5.5, -4.5, -3.5, -2.5, -1.5, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5};
+  Double_t yEta[12]   = {0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.};
+  Double_t exEta[12]  = {0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.};
+  Double_t eyEta[12]  = {0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.};
+
   for ( unsigned int i = 0 ; i < 12 ; i++){
-    double meanEtaResp = h_deltaPtOverPtEtaBinned_[i] -> GetMean();
-    h_responseEta_ -> Fill( -6. + i, meanEtaResp) ;
-    double meanPtResp = h_deltaPtOverPtEtaBinned_[i] -> GetMean();
-    h_responsePt_ -> Fill( 20*i, meanPtResp) ;
+    yEta[i]  = h_deltaPtOverPtEtaBinned_[i] -> GetMean();
+    eyEta[i] = h_deltaPtOverPtEtaBinned_[i] -> GetRMS();
   }
+
+  Double_t xPt[10]   = {10., 30., 50., 70., 90., 110., 130., 150., 170., 190.};
+  Double_t yPt[10]   = {0.,0.,0.,0.,0.,0.,0.,0.,0.,0.};
+  Double_t exPt[10]  = {0.,0.,0.,0.,0.,0.,0.,0.,0.,0.};
+  Double_t eyPt[10]  = {0.,0.,0.,0.,0.,0.,0.,0.,0.,0.};
+
+  for ( unsigned int i = 0 ; i < 10 ; i++){
+    yPt[i]  = h_deltaPtOverPtPtBinned_[i] -> GetMean();
+    eyPt[i] = h_deltaPtOverPtPtBinned_[i] -> GetRMS();
+  }
+
+  h_responseEta_ = new TGraphErrors(12, xEta, yEta, exEta, eyEta);
+  h_responseEta_ -> SetName("gr_responseEta");
+  h_responsePt_  = new TGraphErrors(10, xPt, yPt, exPt, eyPt);
+  h_responsePt_ -> SetName("gr_responsePt");
 
   h_responseEta_ -> Write();
   h_responsePt_  -> Write();

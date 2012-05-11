@@ -6,7 +6,8 @@ from CMGTools.RootTools.Style import *
 gROOT.Macro( os.path.expanduser( '~/rootlogon.C' ) )
 gStyle.SetOptStat(0)
 
-dir = '/data/lucieg/HltPfJetsAnalyzer/'
+#dir = '/data/lucieg/HltPfJetsAnalyzer/'
+dir = '/data/lucieg/HltPfJetsAnalyzerNoMatchingHLTMay10/'
 
 ## ext = 'HLT2Reco'
 ## fileCaloToReco               = TFile(dir+'analyzerHLTCaloReco.root')

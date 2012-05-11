@@ -25,6 +25,7 @@
 #include "TH1F.h"
 #include "TH2F.h"
 #include "TH1D.h"
+#include "TGraphErrors.h"
 #include "TFile.h"
 #include <string>
 #include <vector>
@@ -93,8 +94,8 @@ private:
   std::vector< TH1F* > h_deltaPtOverPtEtaBinned_ ;
   std::vector< TH1F* > h_deltaPtOverPtPtBinned_  ;
     
-  TH2F *h_responseEta_           ;
-  TH2F *h_responsePt_            ;
+  TGraphErrors *h_responseEta_           ;
+  TGraphErrors *h_responsePt_            ;
 
   /* turn-on curves*/
   //overall

@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms
 
-dir = '/data/lucieg/HltPfJetsAnalyzerNoMatching/'
+dir = '/data/lucieg/HltPfJetsAnalyzerNoMatchingHLTMay10/'
 #dir = ''
 ##various HLT
 ####various reco
@@ -26,7 +26,7 @@ HltPFNoPURecoPfJetsAnalyzer = cms.EDAnalyzer('HLTrecoPFJetsAnalyzer',
 )
 
 HltPFNoPUL1L2L3RecoPfJetsAnalyzer = cms.EDAnalyzer('HLTrecoPFJetsAnalyzer',
-                                       hltjets         = cms.InputTag('hltAK5PFJetCHSL1FastL2L3Corrected'),
+                                       hltjets         = cms.InputTag('hltAK5PFJetNoPUL1FastL2L3Corrected'),
                                        recojets        = cms.InputTag('ak5PFJets'),
                                        dRMatched       = cms.untracked.double( 0.3 ),
                                        etaBinning      = cms.untracked.uint32( 12 ),
@@ -78,7 +78,7 @@ HltPFNoPUCmgPfJetsAnalyzer = cms.EDAnalyzer('HLTcmgPFJetsAnalyzer',
 )
 
 HltPFNoPUL1L2L3CmgPfJetsAnalyzer = cms.EDAnalyzer('HLTcmgPFJetsAnalyzer',
-                                       hltjets         = cms.InputTag('hltAK5PFJetCHSL1FastL2L3Corrected'),
+                                       hltjets         = cms.InputTag('hltAK5PFJetNoPUL1FastL2L3Corrected'),
                                        recojets        = cms.InputTag('cmgPFJetSel'),
                                        dRMatched       = cms.untracked.double( 0.3 ),
                                        etaBinning      = cms.untracked.uint32( 12 ),
@@ -130,7 +130,7 @@ HltPFNoPUCmgchsPfJetsAnalyzer = cms.EDAnalyzer('HLTcmgPFJetsAnalyzer',
 )
 
 HltPFNoPUL1L2L3CmgchsPfJetsAnalyzer = cms.EDAnalyzer('HLTcmgPFJetsAnalyzer',
-                                       hltjets         = cms.InputTag('hltAK5PFJetCHSL1FastL2L3Corrected'),
+                                       hltjets         = cms.InputTag('hltAK5PFJetNoPUL1FastL2L3Corrected'),
                                        recojets        = cms.InputTag('cmgPFJetSelCHS'),
                                        dRMatched       = cms.untracked.double( 0.3 ),
                                        etaBinning      = cms.untracked.uint32( 12 ),
