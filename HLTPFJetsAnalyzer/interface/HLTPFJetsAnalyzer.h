@@ -22,6 +22,7 @@
 #include <DataFormats/JetReco/interface/PFJet.h>
 #include <DataFormats/JetReco/interface/CaloJet.h>
 #include "AnalysisDataFormats/CMGTools/interface/PFJet.h"
+#include "AnalysisDataFormats/CMGTools/interface/Muon.h"
 #include "TH1F.h"
 #include "TH2F.h"
 #include "TH1D.h"
@@ -46,6 +47,7 @@ public:
 
   //helpers
   typedef std::vector< reco::PFJet > HLTJetCollection;
+  typedef std::vector< cmg::Muon > MuonCollection;
   typedef std::vector< T > TCollection;
   typedef std::vector< U > UCollection;
  
@@ -55,6 +57,7 @@ private:
   /*inputs*/
   edm::InputTag hltjets_         ;
   edm::InputTag recojets_        ;
+  edm::InputTag muons_        ;
   double dRMatched_              ;
   unsigned etaBinning_           ;
   double binWidthEta_            ;
@@ -73,6 +76,7 @@ private:
   /*online - offline comparison*/
   // for jet matching
   TH1F* h_dR_                    ; 
+  TH1F* h_dRjm_                    ; 
   //distributions
   TH1F* h_hltpt_                 ; 
   TH1F* h_hlteta_                ; 

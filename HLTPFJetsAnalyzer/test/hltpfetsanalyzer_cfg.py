@@ -32,17 +32,17 @@ process.out = cms.OutputModule("PoolOutputModule",
                                )
 process.p = cms.Path(
     process.selectZevents         +
-   # process.HltCaloRecoPfJetsAnalyzer +
+    process.HltCaloRecoPfJetsAnalyzer +
     process.HltRecoPfJetsAnalyzer +
     process.HltPFNoPURecoPfJetsAnalyzer +
     process.HltPFNoPUL1L2L3RecoPfJetsAnalyzer +
     process.HltL1L2L3RecoPfJetsAnalyzer +
-   # process.HltCaloCmgPfJetsAnalyzer +
+    process.HltCaloCmgPfJetsAnalyzer +
     process.HltCmgPfJetsAnalyzer +
     process.HltPFNoPUCmgPfJetsAnalyzer +
     process.HltPFNoPUL1L2L3CmgPfJetsAnalyzer +
     process.HltL1L2L3CmgPfJetsAnalyzer + 
-   # process.HltCaloCmgCHSPfJetsAnalyzer + 
+    process.HltCaloCmgCHSPfJetsAnalyzer + 
     process.HltCmgCHSPfJetsAnalyzer + 
     process.HltPFNoPUCmgchsPfJetsAnalyzer + 
     process.HltPFNoPUL1L2L3CmgchsPfJetsAnalyzer +

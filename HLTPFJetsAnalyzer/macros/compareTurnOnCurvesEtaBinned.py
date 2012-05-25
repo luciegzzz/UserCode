@@ -6,7 +6,7 @@ from CMGTools.RootTools.Style import *
 gROOT.Macro( os.path.expanduser( '~/rootlogon.C' ) )
 gStyle.SetOptStat(0)
 
-dir = '/data/lucieg/HltPfJetsAnalyzerNoMatching/'
+dir = '/data/lucieg/HltPfJetsAnalyzerNoMatchingHLTMay10/'
 
 ##fileHLTToReco          = TFile(dir+'analyzerHLTReco.root')
 #fileHLTToReco          = TFile(dir+'analyzerHLTCMG.root')
@@ -16,12 +16,12 @@ dir = '/data/lucieg/HltPfJetsAnalyzerNoMatching/'
 ## fileHLTToReco          = TFile(dir+'analyzerL1L2L3CMG.root')
 ##fileHLTToReco          = TFile(dir+'analyzerHLTPFNoPUL1L2L3CMGCHS.root')
 
-ext = 'ak5PFJetsToCMGCHS'
-fileHLTToReco          = TFile(dir+'analyzerHLTCMGCHS.root')
+## ext = 'ak5PFJetsToCMGCHS'
+## fileHLTToReco          = TFile(dir+'analyzerHLTCMGCHS.root')
 ## ext = 'ak5PFJetsPFNoPUToCMGCHS'
 ## fileHLTToReco          = TFile(dir+'analyzerHLTPFNoPUCMGCHS.root')
-## ext = 'ak5PFJetsL1L2L3ToCMGCHS'
-## fileHLTToReco          = TFile(dir+'analyzerHLTL1L2L3CMGCHS.root')
+ext = 'ak5PFJetsL1L2L3ToCMGCHS'
+fileHLTToReco          = TFile(dir+'analyzerHLTL1L2L3CMGCHS.root')
 
 
 ## fileHLTToReco          = TFile(dir+'analyzerCHSL1L2L3CMGCHS.root')

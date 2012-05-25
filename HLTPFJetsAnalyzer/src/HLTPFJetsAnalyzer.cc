@@ -6,6 +6,7 @@ template<typename T, typename U>
 HLTPFJetsAnalyzer<T, U>::HLTPFJetsAnalyzer(const edm::ParameterSet& iConfig):
   hltjets_(iConfig.getParameter< edm::InputTag >("hltjets") ),
   recojets_(iConfig.getParameter< edm::InputTag >("recojets") ),
+  muons_(iConfig.getParameter< edm::InputTag >("muons") ),
   dRMatched_(iConfig.getUntrackedParameter<double>("dRMatched") ),
   etaBinning_(iConfig.getUntrackedParameter<uint>("etaBinning") ),
   binWidthEta_(iConfig.getUntrackedParameter<double>("etaBinningResp") ),
@@ -57,8 +58,9 @@ HLTPFJetsAnalyzer<T, U>::analyze(const edm::Event& iEvent, const edm::EventSetup
   if (filter) {
 
     /*******************/
-    /*get inputs - jets*/
+    /*get inputs       */
     /*******************/
+    //jets
     edm::Handle< TCollection > hltjets;
     int nHltJets  = -10;
     edm::Handle< UCollection > recojets;
@@ -83,6 +85,18 @@ HLTPFJetsAnalyzer<T, U>::analyze(const edm::Event& iEvent, const edm::EventSetup
 	cout << "no reco jet found " << recojets_ << endl ;
       }
 
+    //muons
+    edm::Handle< MuonCollection > muons;
+    int nMuons = -10;
+    try {
+      iEvent.getByLabel( muons_, muons);
+      nMuons = muons -> size();
+    }
+    catch (exception &e)
+      {
+	cout << "no muons found " << muons_ << endl;
+      }
+
     /*******************/
     /* end inputs      */
     /*******************/
@@ -92,20 +106,52 @@ HLTPFJetsAnalyzer<T, U>::analyze(const edm::Event& iEvent, const edm::EventSetup
     double hltleadeta = 0.;
     double hltleadphi = 0.;
 
-    double recoleadpt  = 0.;
+    double hltleadcentralpt  = -100.;
+    double hltleadcentraleta = -100.;
+    double hltleadcentralphi = -100.;
+
+    double recoleadpt  = -10.;
     double recoleadeta = 0.;
     double recoleadphi = 0.;
+
+    //jets or muons ?
+    unsigned int rank = 0 ;
+    for( typename UCollection::const_iterator itrecojet = recojets -> begin(); itrecojet != recojets -> end(); itrecojet++){
+      double dRjm = 1000.;
+      for( MuonCollection::const_iterator itmuon = muons -> begin() ; itmuon != muons -> end() ; itmuon++ ){
+	dRjm = min(dRjm, deltaR( itmuon -> eta() , itmuon -> phi(), itrecojet -> eta() , itrecojet -> phi() ) );
+      }
+      h_dRjm_ -> Fill( dRjm );
+     //  if ( nRecoJets > 60 ) {
+// 	cout << dRjm << endl;
+// 	cout << itrecojet -> eta() << endl;
+//     	cout << itrecojet -> phi() << endl;
+//     	cout << itrecojet -> pt() << endl;
+//       }
+      if ( dRjm > 0.5 && recoleadpt == -10.){
+	recoleadeta = itrecojet -> eta() ;
+	recoleadphi = itrecojet -> phi() ;
+	recoleadpt  = itrecojet -> pt() ;
+	break;
+      }
+      rank++;
+     }
+   //  if ( recoleadpt == -10. ){
+//       cout <<"found no real jet " << endl;
+//       cout << "rank "<< rank << " n jets "<< nRecoJets  << endl;
+
+//     }
 
     // hlt & reco
     if ( nHltJets > 0 && nRecoJets > 0 ){
  
       hltleadpt  = hltjets -> begin() -> pt();
       hltleadeta = hltjets -> begin() -> eta();
-      hltleadphi = hltjets -> begin() -> phi();      
+      hltleadphi = hltjets -> begin() -> phi();   
 
-      recoleadpt  = recojets -> begin() -> pt();
-      recoleadeta = recojets -> begin() -> eta();
-      recoleadphi = recojets -> begin() -> phi();
+     //  recoleadpt  = recojets -> begin() -> pt();
+//       recoleadeta = recojets -> begin() -> eta();
+//       recoleadphi = recojets -> begin() -> phi();
 
       double dR  = min(dR, deltaR( hltleadeta, hltleadphi, recoleadeta, recoleadphi ));       
 
@@ -116,7 +162,6 @@ HLTPFJetsAnalyzer<T, U>::analyze(const edm::Event& iEvent, const edm::EventSetup
 
       //eta binned
       unsigned int binToFillRespEta = ( recoleadeta + etamax ) / binWidthEta_ ; 
-      // cout << " binToFillRespEta " << binToFillRespEta << " recoleadeta " << recoleadeta << endl;
       unsigned int binToFillRespPt = abs( recoleadpt  ) / binWidthPt_ ;
 
       if ( binToFillRespPt > 9 ) // could be made generic !!
@@ -125,36 +170,68 @@ HLTPFJetsAnalyzer<T, U>::analyze(const edm::Event& iEvent, const edm::EventSetup
       h_deltaPtOverPtEtaBinned_[ binToFillRespEta ] -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
       h_deltaPtOverPtPtBinned_[ binToFillRespPt ]   -> Fill( (recoleadpt - hltleadpt) / recoleadpt );
 
- 
+      //matching
+      double minDr      = 1000.;
+      double ptMatched  = -10.;
+      double etaMatched = -20.;
+      for( typename TCollection::const_iterator ithltjet = hltjets -> begin() ; ithltjet != hltjets -> end() ; ithltjet++ ){
+
+	double dRhltjm = 1000.;
+	for( MuonCollection::const_iterator itmuon = muons -> begin() ; itmuon != muons -> end() ; itmuon++ ){
+	  dRhltjm = min(dRhltjm, deltaR( itmuon -> eta() , itmuon -> phi(), ithltjet -> eta() , ithltjet -> phi() ) );
+	}
+
+	if (hltleadcentralpt == -100. && abs( ithltjet -> eta() ) < 2.6 && dRhltjm > 0.5 ){
+	  hltleadcentralpt  = ithltjet -> pt();
+	  hltleadcentraleta = ithltjet -> eta();
+	  hltleadcentralphi = ithltjet -> phi();
+	}
+
+	double tmpDr = minDr;
+	minDr = min(minDr, deltaR( ithltjet -> eta() , ithltjet -> phi(), recoleadeta, recoleadphi ));
+	if (minDr != tmpDr){
+	  ptMatched  = ithltjet -> pt();
+	  etaMatched = ithltjet -> eta();
+	}
+      }
+
+    
       /*******************/
       /* turn on curves  */
       /*******************/
-      //eta binned
-      double binWidth = 6. / etaBinning_ ;
-      unsigned int binToFill = abs( recoleadeta ) / binWidth ;
-      if (  abs( recoleadeta ) <  (binToFill + 1.)* binWidth ) {
-     
-	h_turnOnPtEtaBinnedDen_[ binToFill ] -> Fill( recoleadpt );
-	if ( hltleadpt > 30. && abs( hltleadeta ) < 2.6 ){
-	  h_turnOnPtEtaBinned_[ binToFill ]    -> Fill( recoleadpt );
-  
-	}  
-      }
-      // overall
-      if ( abs( recoleadeta ) < 2.4) {
-	h_turnOnPtDen_                          -> Fill( recoleadpt );
-	if ( hltleadpt > 30. && abs( hltleadeta ) < 2.6 ){
-	  h_turnOnPt_                           -> Fill( recoleadpt );
-	}  
-      }
 
-      //debugging
-      if ( recoleadpt > 60 &&  abs( recoleadeta ) < 2.4 && !( hltleadpt > 30. && abs( hltleadeta ) < 2.6)){
-	cout << "run number " << EvtInfo_Run << " event number " << EvtInfo_Event << endl; 
-	cout << recojets_ << " recoleadpt " << recoleadpt << " recoleadeta " << recoleadeta << endl;
-	cout << hltjets_ << " hltleadpt " << hltleadpt << " hltleadeta " << hltleadeta << endl;
-	cout << "dR " << dR << endl;
+      if (dRMatched_ != 1000 && minDr < dRMatched_ && (abs(ptMatched - recoleadpt)/ recoleadpt) < 0.2){
+	hltleadpt  = ptMatched;
+	hltleadeta = etaMatched;
+	dR = minDr;
       }
+	//eta binned
+	double binWidth = 6. / etaBinning_ ;
+	unsigned int binToFill = abs( recoleadeta ) / binWidth ;
+	if (  abs( recoleadeta ) <  (binToFill + 1.)* binWidth ) {
+     
+	  h_turnOnPtEtaBinnedDen_[ binToFill ] -> Fill( recoleadpt );
+	  if ( hltleadcentralpt > 30. ){
+	    h_turnOnPtEtaBinned_[ binToFill ]    -> Fill( recoleadpt );
+  
+	  }  
+	}
+	// overall
+	if ( abs( recoleadeta ) < 2.4) {
+	  h_turnOnPtDen_                          -> Fill( recoleadpt );
+	  if ( hltleadcentralpt > 30. ){
+	    h_turnOnPt_                           -> Fill( recoleadpt );
+	  }  
+	}
+
+	//debugging
+	if ( recoleadpt > 60 &&  abs( recoleadeta ) < 2.4 && !( hltleadpt > 30. && abs( hltleadeta ) < 2.6)){
+	  cout << "run number " << EvtInfo_Run << " event number " << EvtInfo_Event << endl; 
+	  cout << recojets_ << " recoleadpt " << recoleadpt << " recoleadeta " << recoleadeta << endl;
+	  cout << hltjets_ << " hltleadpt " << hltleadpt << " hltleadeta " << hltleadeta << endl;
+	  cout << "dR " << dR << endl;
+	}
+      
     }// end ( nHltJets > 0 && nRecoJets > 0 )
 
     else {
@@ -180,6 +257,7 @@ HLTPFJetsAnalyzer<T, U>::beginJob()
   outputFile_              = new TFile( fOutputFileName_.c_str(), "RECREATE" );
 
   h_dR_                    = new TH1F("h_dR", "dR(lead hlt jet, reco jet)", 100, 0., 1.);
+  h_dRjm_                  = new TH1F("h_dRjm", "min dR(muon, reco jet)", 500, 0., 5.);
 
   h_hltpt_                 = new TH1F("h_hltpt", "hlt pt, GeV", 100, 0., 500.);    
   h_hlteta_                = new TH1F("h_hlteta", "hlt eta", 120, -6., 6.);    
@@ -196,8 +274,8 @@ HLTPFJetsAnalyzer<T, U>::beginJob()
   h_deltaEtaOverEta_       = new TH1F("h_deltaEtaOverEta_", "response in eta", 120, -6, 6.);   
   h_deltaEta_              = new TH1F("h_deltaEta_", "responseRel in eta", 100, -1, 1.);   
 
-  h_turnOnPt_              = new TH1F("h_turnOnPt_", "turn on curve, full coverage in eta", 100, 0., 500.);   
-  h_turnOnPtDen_           = new TH1F("h_turnOnPtDen_", "turn on curve, full coverage in eta", 100, 0., 500.);   
+  h_turnOnPt_              = new TH1F("h_turnOnPt_", "turn on curve, |eta| up to 2.4", 100, 0., 500.);   
+  h_turnOnPtDen_           = new TH1F("h_turnOnPtDen_", "turn on curve, |eta| up to 2.4", 100, 0., 500.);   
 
   for ( unsigned int i = 0 ; i < etaBinning_ ; i++){
     double binWidth = 6. / etaBinning_ ;
@@ -237,6 +315,7 @@ HLTPFJetsAnalyzer<T, U>::endJob()
   outputFile_->cd();
   //distributions
   h_dR_                  -> Write();
+  h_dRjm_                -> Write();
   h_hltpt_               -> Write();
   h_hlteta_              -> Write();
   h_recopt_              -> Write();

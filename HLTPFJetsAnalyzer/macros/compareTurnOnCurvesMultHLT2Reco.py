@@ -7,7 +7,11 @@ gROOT.Macro( os.path.expanduser( '~/rootlogon.C' ) )
 gStyle.SetOptStat(0)
 
 #dir = '/data/lucieg/HltPfJetsAnalyzer/'
-dir = '/data/lucieg/HltPfJetsAnalyzerNoMatchingHLTMay10/'
+#dir = '/data/lucieg/HltPfJetsAnalyzerNoMatchingHLTMay10/'
+## dir0 = '/data/lucieg/HltPfJetsAnalyzerMatchingRestoredHLTMay10/'
+## dir1 = '/data/lucieg/HltPfJetsAnalyzerNoMatchingMuonDisentangledHLTMay16/'
+dir = '/data/lucieg/HltPfJetsAnalyzerNoMatchingMuonDisentangledEvenAtHLTHLTMay16/'
+#dir = '../test/'
 
 ## ext = 'HLT2Reco'
 ## fileCaloToReco               = TFile(dir+'analyzerHLTCaloReco.root')
@@ -25,7 +29,7 @@ dir = '/data/lucieg/HltPfJetsAnalyzerNoMatchingHLTMay10/'
 ## fileAK5L1L2L3ToReco          = TFile(dir+'analyzerHLTL1L2L3CMG.root')
 ## file = TFile('test.root')
 
-ext = 'HLT2CMGCHS'
+ext = 'HLT2CMGCHSFullyNoMu'
 fileAK5ToReco                = TFile(dir+'analyzerHLTCMGCHS.root')
 fileAK5PFNoPUToReco          = TFile(dir+'analyzerHLTPFNoPUCMGCHS.root')
 fileAK5PFNoPUL1L2L3ToReco    = TFile(dir+'analyzerHLTPFNoPUL1L2L3CMGCHS.root')
@@ -60,6 +64,7 @@ numPt2.Sumw2()
 numPt2.Divide(denPt2)
 numPt2.SetMinimum(0.)
 numPt2.SetMaximum(1.)
+sBlack.markerStyle = 23
 sBlack.formatHisto( numPt2 )
 numPt2.Draw("SAMES")
 
@@ -69,6 +74,7 @@ numPt3.Sumw2()
 numPt3.Divide(denPt3)
 numPt3.SetMinimum(0.)
 numPt3.SetMaximum(1.)
+sGreen.markerStyle = 24
 sGreen.formatHisto( numPt3 )
 numPt3.Draw("SAMES")
 
@@ -78,6 +84,7 @@ numPt4.Sumw2()
 numPt4.Divide(denPt4)
 numPt4.SetMinimum(0.)
 numPt4.SetMaximum(1.)
+sYellow.markerStyle = 31
 sYellow.formatHisto( numPt4 )
 #numPt4.Draw()
 numPt4.Draw("SAMES")
@@ -102,16 +109,16 @@ numPt4.Draw("SAMES")
 ## leg.AddEntry(numPt4, "ak5 calo jet > 30 GeV, |eta| < 2.6, to ak5 pfjets L1L2L3")
 ## leg.Draw("SAMES")
 
-## leg = TLegend(0.4,0.1,0.9,0.5)
-## leg.SetHeader("turn on")
-## leg.AddEntry(numPt0, "ak5 pf jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
-## leg.AddEntry(numPt1, "ak5 pfnopu pf jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
-## leg.AddEntry(numPt2, "ak5 pfnopu L1L2L3 pf jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
-## leg.AddEntry(numPt3, "ak5  L1L2L3 pf jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
-## leg.AddEntry(numPt4, "ak5 calo jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
-## leg.Draw("SAMES")
+leg = TLegend(0.4,0.1,0.9,0.5)
+leg.SetHeader("turn on")
+leg.AddEntry(numPt0, "ak5 pf jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
+leg.AddEntry(numPt1, "ak5 pfnopu pf jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
+leg.AddEntry(numPt2, "ak5 pfnopu L1L2L3 pf jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
+leg.AddEntry(numPt3, "ak5  L1L2L3 pf jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
+leg.AddEntry(numPt4, "ak5 calo jet > 30 GeV, |eta| < 2.6, to ak5 pfjets chsL1L2L3")
+leg.Draw("SAMES")
 
-## c_turnon.SaveAs('MultHLT2Reco'+ext+'.png')
+c_turnon.SaveAs('MultHLT2Reco'+ext+'.png')
 
 
 
