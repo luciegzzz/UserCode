@@ -1,0 +1,2268 @@
+11-May-2012 10:38:24 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_0.root
+120511 10:38:24 001 Xrd: GoToAnotherServer: Going to: lxfsrg27a08.cern.ch:1095
+11-May-2012 10:38:27 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_0.root
+Begin processing the 1st record. Run 191718, Event 124431835, LumiSection 106 at 11-May-2012 10:38:31.484 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  78 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  134 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  132 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  132 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  134 reco InputTag:  label = cmgPFJetSel, instance =  0
+run number 191718 event number 127001901
+InputTag:  label = ak5PFJets, instance =  recoleadpt 85.0181 recoleadeta -0.663194
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.1681 hltleadeta -1.77607
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = ak5PFJets, instance =  recoleadpt 91.1279 recoleadeta 1.07356
+InputTag:  label = hltAntiKT5PFJets, instance =  hltleadpt 92.7551 hltleadeta -2.63491
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = ak5PFJets, instance =  recoleadpt 91.1279 recoleadeta 1.07356
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 91.9457 hltleadeta -2.63648
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = ak5PFJets, instance =  recoleadpt 91.1279 recoleadeta 1.07356
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 89.169 hltleadeta -2.63648
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = ak5PFJets, instance =  recoleadpt 91.1279 recoleadeta 1.07356
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 100.863 hltleadeta -2.63491
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.7379 recoleadeta 1.07356
+InputTag:  label = hltAntiKT5PFJets, instance =  hltleadpt 92.7551 hltleadeta -2.63491
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.7379 recoleadeta 1.07356
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 91.9457 hltleadeta -2.63648
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.7379 recoleadeta 1.07356
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 89.169 hltleadeta -2.63648
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.7379 recoleadeta 1.07356
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 100.863 hltleadeta -2.63491
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 85.142 recoleadeta 1.04898
+InputTag:  label = hltAntiKT5PFJets, instance =  hltleadpt 92.7551 hltleadeta -2.63491
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 85.142 recoleadeta 1.04898
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 91.9457 hltleadeta -2.63648
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 85.142 recoleadeta 1.04898
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 89.169 hltleadeta -2.63648
+dR 0
+run number 191718 event number 130136172
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 85.142 recoleadeta 1.04898
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 100.863 hltleadeta -2.63491
+dR 0
+Begin processing the 2001st record. Run 191718, Event 131503644, LumiSection 111 at 11-May-2012 10:38:36.366 CEST
+run number 191718 event number 149089454
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 80.3192 recoleadeta -1.22785
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 85.3706 hltleadeta -3.24517
+dR 0
+run number 191718 event number 149089454
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 80.3192 recoleadeta -1.22785
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 85.2108 hltleadeta -3.24517
+dR 0
+run number 191718 event number 149089454
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 81.1038 recoleadeta -1.22109
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 85.3706 hltleadeta -3.24517
+dR 0
+run number 191718 event number 149089454
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 81.1038 recoleadeta -1.22109
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 85.2108 hltleadeta -3.24517
+dR 0
+Begin processing the 11001st record. Run 191718, Event 226647355, LumiSection 183 at 11-May-2012 10:38:53.458 CEST
+11-May-2012 10:38:53 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_0.root
+11-May-2012 10:38:53 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_1.root
+120511 10:38:53 001 Xrd: GoToAnotherServer: Going to: lxfsrg17a06.cern.ch:1095
+11-May-2012 10:38:53 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_1.root
+Begin processing the 13001st record. Run 191720, Event 6844125, LumiSection 10 at 11-May-2012 10:38:58.578 CEST
+Begin processing the 14001st record. Run 191720, Event 10207945, LumiSection 13 at 11-May-2012 10:38:59.852 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  58 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  124 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  119 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  119 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  58 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  119 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  119 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 17001st record. Run 191720, Event 22626972, LumiSection 24 at 11-May-2012 10:39:04.822 CEST
+run number 191720 event number 26600084
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.5049 recoleadeta -1.24882
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.2144 hltleadeta 0.799704
+dR 0
+Begin processing the 18001st record. Run 191720, Event 25799056, LumiSection 27 at 11-May-2012 10:39:06.628 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  38 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  38 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  38 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  38 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 19001st record. Run 191720, Event 28914598, LumiSection 30 at 11-May-2012 10:39:07.915 CEST
+run number 191720 event number 31117891
+InputTag:  label = ak5PFJets, instance =  recoleadpt 132.431 recoleadeta 0.555227
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 81.2561 hltleadeta -3.12992
+dR 0
+run number 191720 event number 31117891
+InputTag:  label = ak5PFJets, instance =  recoleadpt 132.431 recoleadeta 0.555227
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 97.9408 hltleadeta -3.12992
+dR 0
+run number 191720 event number 31117891
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 126.738 recoleadeta 0.555227
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 81.2561 hltleadeta -3.12992
+dR 0
+run number 191720 event number 31117891
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 126.738 recoleadeta 0.555227
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 97.9408 hltleadeta -3.12992
+dR 0
+Begin processing the 20001st record. Run 191720, Event 33118644, LumiSection 33 at 11-May-2012 10:39:09.780 CEST
+Begin processing the 21001st record. Run 191720, Event 37589188, LumiSection 38 at 11-May-2012 10:39:11.638 CEST
+Begin processing the 22001st record. Run 191720, Event 42409832, LumiSection 42 at 11-May-2012 10:39:12.855 CEST
+11-May-2012 10:39:25 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_10.root
+11-May-2012 10:39:25 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_11.root
+120511 10:39:25 001 Xrd: GoToAnotherServer: Going to: lxfsra08a04.cern.ch:1095
+11-May-2012 10:39:26 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_11.root
+Begin processing the 28001st record. Run 191718, Event 84810713, LumiSection 78 at 11-May-2012 10:39:27.174 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  91 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  126 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  129 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  129 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  126 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  91 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  126 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  129 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  129 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  126 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191718 event number 86193365
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.9299 recoleadeta 0.546708
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.8249 hltleadeta 1.41083
+dR 0
+run number 191718 event number 87198151
+InputTag:  label = ak5PFJets, instance =  recoleadpt 95.8277 recoleadeta -1.09429
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.474 hltleadeta -1.38698
+dR 0
+run number 191718 event number 87198151
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.889 recoleadeta -1.09429
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.474 hltleadeta -1.38698
+dR 0
+Begin processing the 29001st record. Run 191718, Event 87699633, LumiSection 80 at 11-May-2012 10:39:29.595 CEST
+run number 191718 event number 88464231
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.762 recoleadeta -1.92061
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 16.1177 hltleadeta -0.827975
+dR 0
+run number 191718 event number 88464231
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 85.2275 recoleadeta -1.92061
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 16.1177 hltleadeta -0.827975
+dR 0
+run number 191718 event number 88464231
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 87.2377 recoleadeta -1.91002
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 16.1177 hltleadeta -0.827975
+dR 0
+run number 191718 event number 89973336
+InputTag:  label = ak5PFJets, instance =  recoleadpt 87.2632 recoleadeta 1.06342
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.9561 hltleadeta -0.186671
+dR 0
+run number 191718 event number 89973336
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 80.6528 recoleadeta 1.06342
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.9561 hltleadeta -0.186671
+dR 0
+Begin processing the 30001st record. Run 191718, Event 91284873, LumiSection 82 at 11-May-2012 10:39:31.842 CEST
+Begin processing the 31001st record. Run 191718, Event 94958446, LumiSection 85 at 11-May-2012 10:39:34.086 CEST
+run number 191718 event number 94471186
+InputTag:  label = ak5PFJets, instance =  recoleadpt 86.4276 recoleadeta -0.816881
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.9362 hltleadeta -2.64789
+dR 0
+run number 191718 event number 94471186
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 88.3256 recoleadeta -0.816881
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.9362 hltleadeta -2.64789
+dR 0
+run number 191718 event number 94471186
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 89.5209 recoleadeta -0.817979
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.9362 hltleadeta -2.64789
+dR 0
+Begin processing the 32001st record. Run 191718, Event 99403566, LumiSection 88 at 11-May-2012 10:39:35.586 CEST
+run number 191718 event number 102850303
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.4689 recoleadeta -1.88331
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 15.6151 hltleadeta 3.73012
+dR 0
+Begin processing the 33001st record. Run 191718, Event 103412384, LumiSection 91 at 11-May-2012 10:39:37.891 CEST
+run number 191718 event number 104845256
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.3884 recoleadeta -0.315124
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.7525 hltleadeta -1.23148
+dR 0
+run number 191718 event number 107035593
+InputTag:  label = ak5PFJets, instance =  recoleadpt 100.075 recoleadeta -0.511587
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 42.8016 hltleadeta -2.7194
+dR 0
+run number 191718 event number 107035593
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 95.3472 recoleadeta -0.511587
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 42.8016 hltleadeta -2.7194
+dR 0
+run number 191718 event number 107035593
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 95.5971 recoleadeta -0.495804
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 42.8016 hltleadeta -2.7194
+dR 0
+Begin processing the 34001st record. Run 191718, Event 106617641, LumiSection 93 at 11-May-2012 10:39:40.091 CEST
+run number 191718 event number 109783409
+InputTag:  label = ak5PFJets, instance =  recoleadpt 91.4625 recoleadeta 0.509793
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.0399 hltleadeta 1.0936
+dR 0
+run number 191718 event number 109783409
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 81.8656 recoleadeta 0.509793
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.0399 hltleadeta 1.0936
+dR 0
+Begin processing the 35001st record. Run 191718, Event 113712480, LumiSection 98 at 11-May-2012 10:39:42.362 CEST
+run number 191718 event number 114447371
+InputTag:  label = ak5PFJets, instance =  recoleadpt 95.6637 recoleadeta -1.49862
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.0906 hltleadeta -1.89048
+dR 0
+run number 191718 event number 114447371
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 86.844 recoleadeta -1.49862
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.0906 hltleadeta -1.89048
+dR 0
+run number 191718 event number 114447371
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 89.172 recoleadeta -1.50185
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.0906 hltleadeta -1.89048
+dR 0
+run number 191718 event number 116864464
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.7462 recoleadeta -0.27927
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.5868 hltleadeta 0.278568
+dR 0
+run number 191718 event number 116864464
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.8916 recoleadeta -0.275385
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.5868 hltleadeta 0.278568
+dR 0
+Begin processing the 36001st record. Run 191718, Event 117026017, LumiSection 100 at 11-May-2012 10:39:43.791 CEST
+run number 191718 event number 119030256
+InputTag:  label = ak5PFJets, instance =  recoleadpt 133.36 recoleadeta -0.975617
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.05 hltleadeta -1.13091
+dR 0
+run number 191718 event number 119030256
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 128.134 recoleadeta -0.975617
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.05 hltleadeta -1.13091
+dR 0
+run number 191718 event number 119030256
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 131 recoleadeta -0.970933
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.05 hltleadeta -1.13091
+dR 0
+Begin processing the 37001st record. Run 191718, Event 120462189, LumiSection 103 at 11-May-2012 10:39:46.089 CEST
+run number 191718 event number 122503286
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.8638 recoleadeta 0.753455
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 21.8263 hltleadeta -0.160414
+dR 0
+11-May-2012 10:39:47 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_11.root
+11-May-2012 10:39:47 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_12.root
+120511 10:39:47 001 Xrd: GoToAnotherServer: Going to: lxfsre09a02.cern.ch:1095
+11-May-2012 10:39:47 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_12.root
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  60 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  126 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  127 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  127 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  126 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  60 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  126 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  127 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  127 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  126 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191718 event number 153354546
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.7245 recoleadeta -1.09992
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.3371 hltleadeta 0.537413
+dR 0
+run number 191718 event number 153354546
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 83.7455 recoleadeta -1.09992
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.3371 hltleadeta 0.537413
+dR 0
+Begin processing the 39001st record. Run 191718, Event 195951171, LumiSection 159 at 11-May-2012 10:39:53.996 CEST
+run number 191718 event number 197831281
+InputTag:  label = ak5PFJets, instance =  recoleadpt 91.9657 recoleadeta 1.38159
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 18.17 hltleadeta 0.874095
+dR 0
+run number 191718 event number 197831281
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 92.2712 recoleadeta 1.38159
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 18.17 hltleadeta 0.874095
+dR 0
+run number 191718 event number 197831281
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 93.3211 recoleadeta 1.37053
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 18.17 hltleadeta 0.874095
+dR 0
+run number 191718 event number 197199066
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.0796 recoleadeta -1.68064
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 21.3945 hltleadeta -1.87994
+dR 0
+Begin processing the 40001st record. Run 191718, Event 208435644, LumiSection 168 at 11-May-2012 10:39:56.018 CEST
+run number 191718 event number 210610969
+InputTag:  label = ak5PFJets, instance =  recoleadpt 88.1258 recoleadeta 1.04413
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.6686 hltleadeta 1.07025
+dR 0
+run number 191718 event number 210610969
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 81.7715 recoleadeta 1.04413
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.6686 hltleadeta 1.07025
+dR 0
+Begin processing the 41001st record. Run 191718, Event 210196170, LumiSection 170 at 11-May-2012 10:39:58.632 CEST
+run number 191718 event number 212773302
+InputTag:  label = ak5PFJets, instance =  recoleadpt 83.1407 recoleadeta 0.133518
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.4974 hltleadeta -0.788531
+dR 0
+run number 191718 event number 216987289
+InputTag:  label = ak5PFJets, instance =  recoleadpt 89.1257 recoleadeta -0.176229
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.642 hltleadeta 0.43994
+dR 0
+run number 191718 event number 216987289
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 82.9016 recoleadeta -0.176229
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.642 hltleadeta 0.43994
+dR 0
+Begin processing the 42001st record. Run 191718, Event 217232855, LumiSection 175 at 11-May-2012 10:40:01.159 CEST
+Begin processing the 43001st record. Run 191718, Event 224180755, LumiSection 181 at 11-May-2012 10:40:03.064 CEST
+run number 191718 event number 228111962
+InputTag:  label = ak5PFJets, instance =  recoleadpt 85.8438 recoleadeta -1.10192
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 9.13688 hltleadeta -2.29135
+dR 0
+run number 191718 event number 228111962
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 86.7216 recoleadeta -1.10192
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 9.13688 hltleadeta -2.29135
+dR 0
+run number 191718 event number 228111962
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 88.3512 recoleadeta -1.09277
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 9.13688 hltleadeta -2.29135
+dR 0
+Begin processing the 44001st record. Run 191718, Event 231426059, LumiSection 186 at 11-May-2012 10:40:05.533 CEST
+run number 191718 event number 230759678
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 80.8943 recoleadeta 0.954694
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 42.3025 hltleadeta 2.81619
+dR 0
+run number 191718 event number 230759678
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 82.9936 recoleadeta 0.952965
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 42.3025 hltleadeta 2.81619
+dR 0
+run number 191718 event number 231312926
+InputTag:  label = ak5PFJets, instance =  recoleadpt 90.0959 recoleadeta -1.18331
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 45.2573 hltleadeta 2.98392
+dR 0
+run number 191718 event number 231312926
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 88.6107 recoleadeta -1.18331
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 45.2573 hltleadeta 2.98392
+dR 0
+run number 191718 event number 231312926
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 88.2703 recoleadeta -1.19053
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 45.2573 hltleadeta 2.98392
+dR 0
+Begin processing the 45001st record. Run 191718, Event 234697810, LumiSection 189 at 11-May-2012 10:40:08.061 CEST
+run number 191718 event number 234101277
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.769 recoleadeta 1.26139
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.3178 hltleadeta 0.135654
+dR 0
+run number 191718 event number 234653585
+InputTag:  label = ak5PFJets, instance =  recoleadpt 88.2242 recoleadeta -0.415545
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.6606 hltleadeta -2.58169
+dR 0
+run number 191718 event number 234653585
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 82.0204 recoleadeta -0.415545
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.6606 hltleadeta -2.58169
+dR 0
+run number 191718 event number 234653585
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 86.4729 recoleadeta -0.413089
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.6606 hltleadeta -2.58169
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  98 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  134 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  129 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  129 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  134 reco InputTag:  label = cmgPFJetSel, instance =  0
+Begin processing the 46001st record. Run 191718, Event 238205569, LumiSection 192 at 11-May-2012 10:40:09.854 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  43 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  43 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  43 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  43 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  43 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  43 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  43 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  43 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  43 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  43 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  43 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  43 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 47001st record. Run 191718, Event 240752653, LumiSection 194 at 11-May-2012 10:40:12.401 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  67 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  67 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191718 event number 247300496
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.2447 recoleadeta -0.67797
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 21.0971 hltleadeta 0.125545
+dR 0
+Begin processing the 48001st record. Run 191718, Event 246622640, LumiSection 199 at 11-May-2012 10:40:14.956 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  56 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  56 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  56 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  56 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  56 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  56 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  56 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  56 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  56 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  56 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  56 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  56 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191718 event number 253100633
+InputTag:  label = ak5PFJets, instance =  recoleadpt 87.8141 recoleadeta -1.73636
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.6259 hltleadeta -0.40188
+dR 0
+run number 191718 event number 253100633
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 87.9495 recoleadeta -1.73636
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.6259 hltleadeta -0.40188
+dR 0
+run number 191718 event number 253100633
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 89.6942 recoleadeta -1.7302
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.6259 hltleadeta -0.40188
+dR 0
+Begin processing the 49001st record. Run 191718, Event 252746943, LumiSection 204 at 11-May-2012 10:40:16.663 CEST
+run number 191718 event number 254171825
+InputTag:  label = ak5PFJets, instance =  recoleadpt 91.3067 recoleadeta 1.49158
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 47.1126 hltleadeta 2.66409
+dR 0
+run number 191718 event number 254171825
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 90.2873 recoleadeta 1.49158
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 47.1126 hltleadeta 2.66409
+dR 0
+run number 191718 event number 254171825
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 91.3549 recoleadeta 1.48028
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 47.1126 hltleadeta 2.66409
+dR 0
+run number 191718 event number 253820695
+InputTag:  label = ak5PFJets, instance =  recoleadpt 87.7155 recoleadeta -1.31219
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.5752 hltleadeta 0.227838
+dR 0
+run number 191718 event number 253820695
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 86.6268 recoleadeta -1.31219
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.5752 hltleadeta 0.227838
+dR 0
+run number 191718 event number 253820695
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 85.4249 recoleadeta -1.32496
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.5752 hltleadeta 0.227838
+dR 0
+11-May-2012 10:40:17 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_12.root
+11-May-2012 10:40:17 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_13.root
+120511 10:40:17 001 Xrd: GoToAnotherServer: Going to: lxfsre07a05.cern.ch:1095
+11-May-2012 10:40:17 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_13.root
+Begin processing the 50001st record. Run 191718, Event 144536559, LumiSection 120 at 11-May-2012 10:40:20.621 CEST
+Begin processing the 51001st record. Run 191718, Event 198762120, LumiSection 161 at 11-May-2012 10:40:22.107 CEST
+Begin processing the 52001st record. Run 191718, Event 243642761, LumiSection 196 at 11-May-2012 10:40:24.501 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  62 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  125 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  120 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  120 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  125 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  62 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  125 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  120 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  120 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  125 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  55 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  119 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  118 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  118 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  119 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  55 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  119 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  118 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  118 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  119 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191718 event number 255451655
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.3162 recoleadeta 0.137993
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 21.5285 hltleadeta 1.76673
+dR 0
+Begin processing the 53001st record. Run 191718, Event 254760625, LumiSection 206 at 11-May-2012 10:40:26.765 CEST
+run number 191718 event number 256471579
+InputTag:  label = ak5PFJets, instance =  recoleadpt 83.7314 recoleadeta -0.783104
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.9035 hltleadeta -0.657535
+dR 0
+11-May-2012 10:40:27 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_13.root
+11-May-2012 10:40:27 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_14.root
+120511 10:40:27 001 Xrd: GoToAnotherServer: Going to: lxfsre11a06.cern.ch:1095
+11-May-2012 10:40:27 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_14.root
+run number 191718 event number 32278723
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.7413 recoleadeta -0.928069
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.0618 hltleadeta -1.51731
+dR 0
+Begin processing the 54001st record. Run 191718, Event 43545339, LumiSection 51 at 11-May-2012 10:40:29.988 CEST
+Begin processing the 55001st record. Run 191718, Event 53712257, LumiSection 57 at 11-May-2012 10:40:31.470 CEST
+run number 191718 event number 56421942
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.4513 recoleadeta -0.932697
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.1062 hltleadeta -1.04864
+dR 0
+Begin processing the 56001st record. Run 191718, Event 57560058, LumiSection 60 at 11-May-2012 10:40:33.521 CEST
+run number 191718 event number 57412411
+InputTag:  label = ak5PFJets, instance =  recoleadpt 93.0753 recoleadeta -0.157306
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.6769 hltleadeta -2.04422
+dR 0
+run number 191718 event number 57412411
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 82.6306 recoleadeta -0.144012
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.6769 hltleadeta -2.04422
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  80 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  134 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  130 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  130 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  134 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  80 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  134 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  134 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191718 event number 58701628
+InputTag:  label = ak5PFJets, instance =  recoleadpt 182.417 recoleadeta 1.69869
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 148.611 hltleadeta 2.62788
+dR 0
+run number 191718 event number 58701628
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 182.926 recoleadeta 1.69869
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 148.611 hltleadeta 2.62788
+dR 0
+run number 191718 event number 58701628
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 184.328 recoleadeta 1.69631
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 148.611 hltleadeta 2.62788
+dR 0
+Begin processing the 57001st record. Run 191718, Event 60434408, LumiSection 62 at 11-May-2012 10:40:35.577 CEST
+run number 191718 event number 61334533
+InputTag:  label = ak5PFJets, instance =  recoleadpt 110.194 recoleadeta -0.711438
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 68.1159 hltleadeta -2.89385
+dR 0
+run number 191718 event number 61334533
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 106.275 recoleadeta -0.711438
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 68.1159 hltleadeta -2.89385
+dR 0
+run number 191718 event number 61334533
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 111.114 recoleadeta -0.707127
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 68.1159 hltleadeta -2.89385
+dR 0
+run number 191718 event number 63136689
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.6111 recoleadeta 1.58081
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.9832 hltleadeta 1.5405
+dR 0
+Begin processing the 58001st record. Run 191718, Event 63823378, LumiSection 64 at 11-May-2012 10:40:37.661 CEST
+run number 191718 event number 66226233
+InputTag:  label = ak5PFJets, instance =  recoleadpt 99.0586 recoleadeta -0.992483
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.5364 hltleadeta 0.980555
+dR 0
+run number 191718 event number 66226233
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 87.1093 recoleadeta -0.992483
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.5364 hltleadeta 0.980555
+dR 0
+run number 191718 event number 66226233
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 86.2094 recoleadeta -0.999517
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.5364 hltleadeta 0.980555
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  99 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  128 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  128 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 59001st record. Run 191718, Event 68927048, LumiSection 67 at 11-May-2012 10:40:39.183 CEST
+run number 191718 event number 72070917
+InputTag:  label = ak5PFJets, instance =  recoleadpt 83.487 recoleadeta -0.679416
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 33.5568 hltleadeta 3.35884
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  83 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  127 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  124 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  127 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  83 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  127 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  127 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 60001st record. Run 191718, Event 71118408, LumiSection 69 at 11-May-2012 10:40:41.372 CEST
+run number 191718 event number 74032312
+InputTag:  label = ak5PFJets, instance =  recoleadpt 108.802 recoleadeta -2.05567
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 94.5721 hltleadeta -3.10667
+dR 0
+run number 191718 event number 74032312
+InputTag:  label = ak5PFJets, instance =  recoleadpt 108.802 recoleadeta -2.05567
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 113.289 hltleadeta -3.12896
+dR 0
+run number 191718 event number 74032312
+InputTag:  label = ak5PFJets, instance =  recoleadpt 108.802 recoleadeta -2.05567
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 120.232 hltleadeta -3.12896
+dR 0
+run number 191718 event number 74032312
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 113.463 recoleadeta -2.05567
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 94.5721 hltleadeta -3.10667
+dR 0
+run number 191718 event number 74032312
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 113.463 recoleadeta -2.05567
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 113.289 hltleadeta -3.12896
+dR 0
+run number 191718 event number 74032312
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 113.463 recoleadeta -2.05567
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 120.232 hltleadeta -3.12896
+dR 0
+run number 191718 event number 75114756
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.42 recoleadeta -1.2168
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.2906 hltleadeta -0.587877
+dR 0
+run number 191718 event number 73941626
+InputTag:  label = ak5PFJets, instance =  recoleadpt 95.5682 recoleadeta -0.594243
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.9004 hltleadeta -3.58202
+dR 0
+run number 191718 event number 73941626
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 83.6325 recoleadeta -0.593051
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.9004 hltleadeta -3.58202
+dR 0
+Begin processing the 61001st record. Run 191718, Event 75613380, LumiSection 72 at 11-May-2012 10:40:43.438 CEST
+run number 191718 event number 75256577
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.532 recoleadeta -0.322918
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 9.87883 hltleadeta -3.41734
+dR 0
+run number 191718 event number 77669006
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.5972 recoleadeta -0.964951
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.234 hltleadeta -0.779687
+dR 0
+Begin processing the 62001st record. Run 191718, Event 78810190, LumiSection 74 at 11-May-2012 10:40:45.509 CEST
+run number 191718 event number 80414040
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 83.1337 recoleadeta 1.20977
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.1394 hltleadeta 2.16768
+dR 0
+run number 191718 event number 81938831
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.9473 recoleadeta 1.98663
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.317 hltleadeta -3.2205
+dR 0
+Begin processing the 63001st record. Run 191718, Event 82909405, LumiSection 77 at 11-May-2012 10:40:46.887 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  62 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  123 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  123 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  62 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  123 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  123 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+11-May-2012 10:40:47 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_14.root
+11-May-2012 10:40:47 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_15.root
+120511 10:40:47 001 Xrd: GoToAnotherServer: Going to: lxfsre09a01.cern.ch:1095
+11-May-2012 10:40:47 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_15.root
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = ak5PFJets, instance =  2
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 64001st record. Run 191720, Event 95253162, LumiSection 99 at 11-May-2012 10:40:51.140 CEST
+Begin processing the 65001st record. Run 191720, Event 98393159, LumiSection 103 at 11-May-2012 10:40:52.581 CEST
+run number 191720 event number 101438906
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.5007 recoleadeta 0.488226
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.0248 hltleadeta 1.4505
+dR 0
+Begin processing the 66001st record. Run 191720, Event 101969496, LumiSection 107 at 11-May-2012 10:40:54.673 CEST
+run number 191720 event number 103399140
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.1742 recoleadeta 1.77719
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.4237 hltleadeta 1.9156
+dR 0
+Begin processing the 67001st record. Run 191720, Event 105667642, LumiSection 111 at 11-May-2012 10:40:56.337 CEST
+Begin processing the 68001st record. Run 191720, Event 109359422, LumiSection 115 at 11-May-2012 10:40:58.592 CEST
+Begin processing the 69001st record. Run 191720, Event 112285466, LumiSection 119 at 11-May-2012 10:41:00.026 CEST
+run number 191720 event number 114542759
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.8913 recoleadeta 1.33893
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 55.4686 hltleadeta 3.07193
+dR 0
+run number 191720 event number 114542759
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 83.7861 recoleadeta 1.33893
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 55.4686 hltleadeta 3.07193
+dR 0
+run number 191720 event number 114884541
+InputTag:  label = ak5PFJets, instance =  recoleadpt 111.091 recoleadeta 2.32759
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 70.3336 hltleadeta 2.62801
+dR 0
+run number 191720 event number 114884541
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 118.665 recoleadeta 2.32759
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 70.3336 hltleadeta 2.62801
+dR 0
+run number 191720 event number 114884541
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 117.767 recoleadeta 2.33148
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 70.3336 hltleadeta 2.62801
+dR 0
+Begin processing the 70001st record. Run 191720, Event 115966657, LumiSection 123 at 11-May-2012 10:41:02.498 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  47 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  115 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  108 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  108 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  115 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  47 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  115 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  108 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  108 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  115 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 71001st record. Run 191720, Event 120555206, LumiSection 128 at 11-May-2012 10:41:04.081 CEST
+Begin processing the 72001st record. Run 191720, Event 123662215, LumiSection 132 at 11-May-2012 10:41:06.314 CEST
+run number 191720 event number 124482566
+InputTag:  label = ak5PFJets, instance =  recoleadpt 86.989 recoleadeta 0.256064
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.025 hltleadeta 0.123874
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  29 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  29 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  29 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  29 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  29 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  29 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  29 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  29 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  29 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  29 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  29 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  29 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 73001st record. Run 191720, Event 127197768, LumiSection 136 at 11-May-2012 10:41:07.772 CEST
+Begin processing the 74001st record. Run 191720, Event 130856289, LumiSection 140 at 11-May-2012 10:41:09.951 CEST
+run number 191720 event number 132025966
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.5241 recoleadeta 1.07799
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.8987 hltleadeta -0.661003
+dR 0
+run number 191720 event number 132180320
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.9235 recoleadeta 0.0412207
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.9669 hltleadeta -2.61617
+dR 0
+Begin processing the 75001st record. Run 191720, Event 134049108, LumiSection 144 at 11-May-2012 10:41:11.390 CEST
+run number 191720 event number 134660166
+InputTag:  label = ak5PFJets, instance =  recoleadpt 106.39 recoleadeta 2.16172
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 55.3085 hltleadeta 2.81422
+dR 0
+run number 191720 event number 134660166
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 108.311 recoleadeta 2.16172
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 55.3085 hltleadeta 2.81422
+dR 0
+run number 191720 event number 134660166
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 108.609 recoleadeta 2.15678
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 55.3085 hltleadeta 2.81422
+dR 0
+Begin processing the 76001st record. Run 191720, Event 137904955, LumiSection 149 at 11-May-2012 10:41:13.619 CEST
+run number 191720 event number 146235952
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.3399 recoleadeta 1.04205
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.5923 hltleadeta 2.39653
+dR 0
+run number 191720 event number 146235952
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 81.3161 recoleadeta 1.04205
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.5923 hltleadeta 2.39653
+dR 0
+run number 191720 event number 146235952
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 81.3475 recoleadeta 1.04426
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.5923 hltleadeta 2.39653
+dR 0
+run number 191720 event number 146407286
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.126 recoleadeta 1.35635
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.921 hltleadeta -1.14161
+dR 0
+run number 191720 event number 146407286
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.1027 recoleadeta 1.35785
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.921 hltleadeta -1.14161
+dR 0
+Begin processing the 77001st record. Run 191720, Event 146959516, LumiSection 160 at 11-May-2012 10:41:15.118 CEST
+11-May-2012 10:41:15 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_15.root
+11-May-2012 10:41:15 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_16.root
+120511 10:41:15 001 Xrd: GoToAnotherServer: Going to: lxfsre15a08.cern.ch:1095
+11-May-2012 10:41:15 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_16.root
+Begin processing the 78001st record. Run 191720, Event 83621791, LumiSection 87 at 11-May-2012 10:41:18.814 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  59 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  123 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  123 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  59 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  123 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  123 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 79001st record. Run 191720, Event 142015745, LumiSection 154 at 11-May-2012 10:41:20.103 CEST
+run number 191720 event number 143357132
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 80.7827 recoleadeta 1.33809
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.4541 hltleadeta -0.910005
+dR 0
+run number 191720 event number 143357132
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 81.3366 recoleadeta 1.33962
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.4541 hltleadeta -0.910005
+dR 0
+run number 191720 event number 143756610
+InputTag:  label = ak5PFJets, instance =  recoleadpt 99.0346 recoleadeta -0.306147
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.8281 hltleadeta 1.88235
+dR 0
+run number 191720 event number 143756610
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 94.782 recoleadeta -0.306147
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.8281 hltleadeta 1.88235
+dR 0
+run number 191720 event number 143756610
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 88.4205 recoleadeta -0.292307
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.8281 hltleadeta 1.88235
+dR 0
+Begin processing the 80001st record. Run 191720, Event 145383026, LumiSection 158 at 11-May-2012 10:41:22.002 CEST
+Begin processing the 81001st record. Run 191720, Event 150806889, LumiSection 171 at 11-May-2012 10:41:23.900 CEST
+Begin processing the 82001st record. Run 191720, Event 154434289, LumiSection 180 at 11-May-2012 10:41:25.005 CEST
+11-May-2012 10:41:25 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_16.root
+11-May-2012 10:41:25 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_17.root
+120511 10:41:25 001 Xrd: GoToAnotherServer: Going to: lxfsre07a08.cern.ch:1095
+11-May-2012 10:41:25 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_17.root
+run number 191720 event number 40053046
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.9656 recoleadeta 0.463296
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.3303 hltleadeta 0.560551
+dR 0
+run number 191720 event number 40053046
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 81.6031 recoleadeta 0.463296
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.3303 hltleadeta 0.560551
+dR 0
+Begin processing the 83001st record. Run 191720, Event 47099980, LumiSection 47 at 11-May-2012 10:41:29.306 CEST
+run number 191720 event number 48894689
+InputTag:  label = ak5PFJets, instance =  recoleadpt 97.1615 recoleadeta 1.89845
+InputTag:  label = hltAntiKT5PFJets, instance =  hltleadpt 94.6719 hltleadeta 3.69538
+dR 0
+run number 191720 event number 48894689
+InputTag:  label = ak5PFJets, instance =  recoleadpt 97.1615 recoleadeta 1.89845
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 94.6719 hltleadeta 3.69538
+dR 0
+run number 191720 event number 48894689
+InputTag:  label = ak5PFJets, instance =  recoleadpt 97.1615 recoleadeta 1.89845
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 101.112 hltleadeta 3.69538
+dR 0
+run number 191720 event number 48894689
+InputTag:  label = ak5PFJets, instance =  recoleadpt 97.1615 recoleadeta 1.89845
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 102.156 hltleadeta 3.69538
+dR 0
+run number 191720 event number 48894689
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 97.0542 recoleadeta 1.86267
+InputTag:  label = hltAntiKT5PFJets, instance =  hltleadpt 94.6719 hltleadeta 3.69538
+dR 0
+run number 191720 event number 48894689
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 97.0542 recoleadeta 1.86267
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 94.6719 hltleadeta 3.69538
+dR 0
+run number 191720 event number 48894689
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 97.0542 recoleadeta 1.86267
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 101.112 hltleadeta 3.69538
+dR 0
+run number 191720 event number 48894689
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 97.0542 recoleadeta 1.86267
+InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  hltleadpt 102.156 hltleadeta 3.69538
+dR 0
+Begin processing the 84001st record. Run 191720, Event 50551427, LumiSection 50 at 11-May-2012 10:41:31.653 CEST
+run number 191720 event number 51754613
+InputTag:  label = ak5PFJets, instance =  recoleadpt 87.1349 recoleadeta 1.67499
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.2447 hltleadeta 1.79823
+dR 0
+run number 191720 event number 51754613
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 86.105 recoleadeta 1.67499
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.2447 hltleadeta 1.79823
+dR 0
+run number 191720 event number 51754613
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 87.9439 recoleadeta 1.67
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.2447 hltleadeta 1.79823
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  1 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  48 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  48 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  48 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  48 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  1 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  48 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  48 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  48 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  48 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 85001st record. Run 191720, Event 53976608, LumiSection 54 at 11-May-2012 10:41:33.341 CEST
+run number 191720 event number 55959596
+InputTag:  label = ak5PFJets, instance =  recoleadpt 83.4674 recoleadeta 1.64656
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 39.7008 hltleadeta -2.66472
+dR 0
+run number 191720 event number 55959596
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.2643 recoleadeta 1.64656
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 39.7008 hltleadeta -2.66472
+dR 0
+run number 191720 event number 55959596
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 82.2948 recoleadeta 1.65131
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 39.7008 hltleadeta -2.66472
+dR 0
+Begin processing the 86001st record. Run 191720, Event 57827070, LumiSection 57 at 11-May-2012 10:41:35.741 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  28 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  28 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  28 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  28 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  28 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  28 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  28 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  28 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  28 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  28 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  28 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  28 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191720 event number 60562921
+InputTag:  label = ak5PFJets, instance =  recoleadpt 87.4047 recoleadeta -1.3285
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 55.2562 hltleadeta -2.87037
+dR 0
+run number 191720 event number 60562921
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 85.187 recoleadeta -1.3285
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 55.2562 hltleadeta -2.87037
+dR 0
+run number 191720 event number 60562921
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 89.6049 recoleadeta -1.31773
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 55.2562 hltleadeta -2.87037
+dR 0
+Begin processing the 87001st record. Run 191720, Event 61715344, LumiSection 61 at 11-May-2012 10:41:37.303 CEST
+Begin processing the 88001st record. Run 191720, Event 64384511, LumiSection 64 at 11-May-2012 10:41:39.700 CEST
+Begin processing the 89001st record. Run 191720, Event 67959178, LumiSection 68 at 11-May-2012 10:41:41.339 CEST
+run number 191720 event number 68272930
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.8672 recoleadeta 1.82563
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.609 hltleadeta 1.98245
+dR 0
+run number 191720 event number 68272930
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 85.8771 recoleadeta 1.82563
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.609 hltleadeta 1.98245
+dR 0
+run number 191720 event number 68272930
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 85.5795 recoleadeta 1.82585
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.609 hltleadeta 1.98245
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  65 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  131 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  130 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  130 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  131 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  65 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  131 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  131 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  20 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  105 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  105 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  105 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  105 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  20 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  105 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  105 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  105 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  105 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 90001st record. Run 191720, Event 71134277, LumiSection 74 at 11-May-2012 10:41:43.742 CEST
+run number 191720 event number 73054264
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.8199 recoleadeta -0.810965
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.1028 hltleadeta 1.12322
+dR 0
+run number 191720 event number 73054264
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 82.5947 recoleadeta -0.810965
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.1028 hltleadeta 1.12322
+dR 0
+run number 191720 event number 73054264
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 86.5972 recoleadeta -0.810596
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.1028 hltleadeta 1.12322
+dR 0
+Begin processing the 91001st record. Run 191720, Event 74829709, LumiSection 78 at 11-May-2012 10:41:45.980 CEST
+run number 191720 event number 79231016
+InputTag:  label = ak5PFJets, instance =  recoleadpt 86.237 recoleadeta -0.24661
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.9068 hltleadeta -0.284178
+dR 0
+Begin processing the 92001st record. Run 191720, Event 78702122, LumiSection 82 at 11-May-2012 10:41:47.544 CEST
+run number 191720 event number 82886713
+InputTag:  label = ak5PFJets, instance =  recoleadpt 109.909 recoleadeta -1.33088
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 59.7351 hltleadeta -2.63906
+dR 0
+run number 191720 event number 82886713
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 114.246 recoleadeta -1.33088
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 59.7351 hltleadeta -2.63906
+dR 0
+run number 191720 event number 82886713
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 114.909 recoleadeta -1.32257
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 59.7351 hltleadeta -2.63906
+dR 0
+Begin processing the 93001st record. Run 191720, Event 84609335, LumiSection 88 at 11-May-2012 10:41:50.109 CEST
+Begin processing the 94001st record. Run 191720, Event 89611984, LumiSection 93 at 11-May-2012 10:41:51.574 CEST
+Begin processing the 95001st record. Run 191720, Event 92430312, LumiSection 96 at 11-May-2012 10:41:53.828 CEST
+11-May-2012 10:41:54 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_17.root
+11-May-2012 10:41:54 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_2.root
+120511 10:41:54 001 Xrd: GoToAnotherServer: Going to: lxfsre09a04.cern.ch:1095
+11-May-2012 10:41:54 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_2.root
+run number 191721 event number 2037569
+InputTag:  label = ak5PFJets, instance =  recoleadpt 86.2962 recoleadeta 1.6747
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.3161 hltleadeta -2.48564
+dR 0
+run number 191721 event number 2037569
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.2504 recoleadeta 1.6747
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.3161 hltleadeta -2.48564
+dR 0
+Begin processing the 96001st record. Run 191721, Event 2529625, LumiSection 7 at 11-May-2012 10:41:57.723 CEST
+run number 191721 event number 4888062
+InputTag:  label = ak5PFJets, instance =  recoleadpt 90.3387 recoleadeta -1.6477
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.6645 hltleadeta -2.07898
+dR 0
+run number 191721 event number 4888062
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 92.463 recoleadeta -1.6477
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.6645 hltleadeta -2.07898
+dR 0
+run number 191721 event number 4888062
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 93.3064 recoleadeta -1.64347
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.6645 hltleadeta -2.07898
+dR 0
+run number 191721 event number 5230468
+InputTag:  label = ak5PFJets, instance =  recoleadpt 86.9334 recoleadeta 1.81823
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.2511 hltleadeta 3.79185
+dR 0
+run number 191721 event number 5230468
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 87.0048 recoleadeta 1.81823
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.2511 hltleadeta 3.79185
+dR 0
+run number 191721 event number 5230468
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 87.8925 recoleadeta 1.80578
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.2511 hltleadeta 3.79185
+dR 0
+run number 191721 event number 6407509
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.2033 recoleadeta -0.462838
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.1491 hltleadeta -0.566312
+dR 0
+Begin processing the 97001st record. Run 191721, Event 6262620, LumiSection 12 at 11-May-2012 10:41:59.068 CEST
+Begin processing the 98001st record. Run 191721, Event 9630320, LumiSection 16 at 11-May-2012 10:42:00.433 CEST
+Begin processing the 99001st record. Run 191721, Event 13277364, LumiSection 21 at 11-May-2012 10:42:02.505 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  50 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  125 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  123 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  123 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  125 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191721 event number 14131924
+InputTag:  label = ak5PFJets, instance =  recoleadpt 92.946 recoleadeta -0.86551
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 65.514 hltleadeta -3.26984
+dR 0
+run number 191721 event number 14131924
+InputTag:  label = ak5PFJets, instance =  recoleadpt 92.946 recoleadeta -0.86551
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 78.7321 hltleadeta -3.26984
+dR 0
+run number 191721 event number 14131924
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 88.6047 recoleadeta -0.86551
+InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  hltleadpt 65.514 hltleadeta -3.26984
+dR 0
+run number 191721 event number 14131924
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 88.6047 recoleadeta -0.86551
+InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  hltleadpt 78.7321 hltleadeta -3.26984
+dR 0
+run number 191721 event number 16118550
+InputTag:  label = ak5PFJets, instance =  recoleadpt 96.4163 recoleadeta 1.21674
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.5837 hltleadeta 1.27849
+dR 0
+run number 191721 event number 16118550
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 100.086 recoleadeta 1.21674
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.5837 hltleadeta 1.27849
+dR 0
+run number 191721 event number 16118550
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 97.6251 recoleadeta 1.222
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.5837 hltleadeta 1.27849
+dR 0
+Begin processing the 100001st record. Run 191721, Event 17190983, LumiSection 26 at 11-May-2012 10:42:03.908 CEST
+run number 191721 event number 16619071
+InputTag:  label = ak5PFJets, instance =  recoleadpt 117.778 recoleadeta -0.892803
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 77.4258 hltleadeta -2.95335
+dR 0
+run number 191721 event number 16619071
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 120.604 recoleadeta -0.892803
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 77.4258 hltleadeta -2.95335
+dR 0
+run number 191721 event number 16619071
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 121.883 recoleadeta -0.892878
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 77.4258 hltleadeta -2.95335
+dR 0
+run number 191721 event number 19731712
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.2896 recoleadeta 0.778456
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 33.6019 hltleadeta 3.29039
+dR 0
+Begin processing the 101001st record. Run 191721, Event 19897711, LumiSection 30 at 11-May-2012 10:42:06.077 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  53 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  118 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  115 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  115 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  118 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  53 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  118 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  115 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  115 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  118 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 102001st record. Run 191721, Event 24218469, LumiSection 36 at 11-May-2012 10:42:07.420 CEST
+run number 191721 event number 26798345
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 82.9982 recoleadeta 1.23809
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.5001 hltleadeta 1.29216
+dR 0
+run number 191721 event number 26798345
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 83.5657 recoleadeta 1.23299
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.5001 hltleadeta 1.29216
+dR 0
+run number 191721 event number 28184811
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.6247 recoleadeta 0.44713
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.3661 hltleadeta 0.859234
+dR 0
+Begin processing the 103001st record. Run 191721, Event 27666949, LumiSection 41 at 11-May-2012 10:42:09.549 CEST
+run number 191721 event number 30041413
+InputTag:  label = ak5PFJets, instance =  recoleadpt 89.9921 recoleadeta 0.627118
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.8411 hltleadeta -0.126003
+dR 0
+run number 191721 event number 30041413
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 87.859 recoleadeta 0.627118
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.8411 hltleadeta -0.126003
+dR 0
+run number 191721 event number 30041413
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 87.1713 recoleadeta 0.618116
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.8411 hltleadeta -0.126003
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = ak5PFJets, instance =  1
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  31 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  31 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  31 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  31 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  0 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  31 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  31 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  31 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  31 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  51 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  126 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  123 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  123 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  126 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  51 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  126 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  123 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  123 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  126 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 104001st record. Run 191721, Event 31225907, LumiSection 46 at 11-May-2012 10:42:11.011 CEST
+run number 191721 event number 32444839
+InputTag:  label = ak5PFJets, instance =  recoleadpt 100.723 recoleadeta 0.977123
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 39.28 hltleadeta -3.18882
+dR 0
+run number 191721 event number 32444839
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 101.808 recoleadeta 0.977123
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 39.28 hltleadeta -3.18882
+dR 0
+run number 191721 event number 32444839
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 100.483 recoleadeta 0.975554
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 39.28 hltleadeta -3.18882
+dR 0
+Begin processing the 105001st record. Run 191721, Event 35112729, LumiSection 51 at 11-May-2012 10:42:12.345 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  43 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  114 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  109 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  109 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  114 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  43 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  114 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  109 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  109 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  114 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191721 event number 38180876
+InputTag:  label = ak5PFJets, instance =  recoleadpt 87.254 recoleadeta -2.0793
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 53.7748 hltleadeta -2.79906
+dR 0
+run number 191721 event number 38180876
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 86.3549 recoleadeta -2.0793
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 53.7748 hltleadeta -2.79906
+dR 0
+run number 191721 event number 38180876
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 86.6897 recoleadeta -2.08958
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 53.7748 hltleadeta -2.79906
+dR 0
+Begin processing the 106001st record. Run 191721, Event 38881925, LumiSection 56 at 11-May-2012 10:42:14.446 CEST
+run number 191721 event number 39931658
+InputTag:  label = ak5PFJets, instance =  recoleadpt 89.9655 recoleadeta -1.29637
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 34.8401 hltleadeta -3.71338
+dR 0
+run number 191721 event number 39931658
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 95.16 recoleadeta -1.29637
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 34.8401 hltleadeta -3.71338
+dR 0
+run number 191721 event number 39931658
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 94.863 recoleadeta -1.29428
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 34.8401 hltleadeta -3.71338
+dR 0
+run number 191721 event number 40244518
+InputTag:  label = ak5PFJets, instance =  recoleadpt 83.8976 recoleadeta -0.980533
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.7141 hltleadeta -2.73006
+dR 0
+run number 191721 event number 40244518
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 81.8932 recoleadeta -0.980533
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.7141 hltleadeta -2.73006
+dR 0
+run number 191721 event number 40244518
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 84.6507 recoleadeta -0.982369
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.7141 hltleadeta -2.73006
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  41 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  111 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  111 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  111 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  111 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  41 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  111 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  111 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  111 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  111 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 107001st record. Run 191721, Event 42501453, LumiSection 62 at 11-May-2012 10:42:15.781 CEST
+Begin processing the 108001st record. Run 191721, Event 46483109, LumiSection 67 at 11-May-2012 10:42:17.762 CEST
+run number 191721 event number 48749701
+InputTag:  label = ak5PFJets, instance =  recoleadpt 85.0816 recoleadeta -0.627202
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.7766 hltleadeta -2.23075
+dR 0
+run number 191721 event number 48749701
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.6349 recoleadeta -0.627202
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.7766 hltleadeta -2.23075
+dR 0
+run number 191721 event number 48749701
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 84.6329 recoleadeta -0.622991
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.7766 hltleadeta -2.23075
+dR 0
+Begin processing the 109001st record. Run 191721, Event 49952954, LumiSection 72 at 11-May-2012 10:42:19.150 CEST
+Begin processing the 110001st record. Run 191721, Event 52919917, LumiSection 77 at 11-May-2012 10:42:20.881 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  62 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  125 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  125 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  62 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  125 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  125 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+11-May-2012 10:42:21 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_2.root
+11-May-2012 10:42:21 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_3.root
+120511 10:42:21 001 Xrd: GoToAnotherServer: Going to: lxfsre09a04.cern.ch:1095
+11-May-2012 10:42:21 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_3.root
+run number 191721 event number 55442118
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 82.2106 recoleadeta -0.864085
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.6343 hltleadeta -0.153736
+dR 0
+run number 191721 event number 55442118
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 82.4305 recoleadeta -0.861004
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.6343 hltleadeta -0.153736
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  34 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  112 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  110 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  110 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  112 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  34 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  112 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  110 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  110 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  112 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 111001st record. Run 191721, Event 56925135, LumiSection 82 at 11-May-2012 10:42:23.800 CEST
+run number 191721 event number 57443910
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.659 recoleadeta -1.82053
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.6715 hltleadeta -1.64542
+dR 0
+run number 191721 event number 57443910
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 87.1905 recoleadeta -1.82053
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.6715 hltleadeta -1.64542
+dR 0
+run number 191721 event number 57443910
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 89.2128 recoleadeta -1.81626
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.6715 hltleadeta -1.64542
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  54 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  124 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  124 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  54 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191721 event number 58537727
+InputTag:  label = ak5PFJets, instance =  recoleadpt 110.548 recoleadeta 1.99076
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 71.8326 hltleadeta 3.20196
+dR 0
+run number 191721 event number 58537727
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 114.363 recoleadeta 1.99076
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 71.8326 hltleadeta 3.20196
+dR 0
+run number 191721 event number 58537727
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 114.362 recoleadeta 1.99416
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 71.8326 hltleadeta 3.20196
+dR 0
+Begin processing the 112001st record. Run 191721, Event 60362553, LumiSection 87 at 11-May-2012 10:42:25.882 CEST
+run number 191721 event number 60418715
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 80.114 recoleadeta 1.14485
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.3151 hltleadeta -2.0361
+dR 0
+run number 191721 event number 60418715
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 84.404 recoleadeta 1.14485
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.3151 hltleadeta -2.0361
+dR 0
+run number 191721 event number 62046979
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.9895 recoleadeta -1.49356
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.8229 hltleadeta -1.46833
+dR 0
+run number 191721 event number 62046979
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 81.1667 recoleadeta -1.49356
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.8229 hltleadeta -1.46833
+dR 0
+run number 191721 event number 62046979
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 82.8747 recoleadeta -1.4843
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.8229 hltleadeta -1.46833
+dR 0
+Begin processing the 113001st record. Run 191721, Event 63100783, LumiSection 92 at 11-May-2012 10:42:27.272 CEST
+Begin processing the 114001st record. Run 191721, Event 67569195, LumiSection 98 at 11-May-2012 10:42:29.322 CEST
+run number 191721 event number 69009603
+InputTag:  label = ak5PFJets, instance =  recoleadpt 90.4739 recoleadeta 1.01625
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.5583 hltleadeta 2.76696
+dR 0
+run number 191721 event number 69009603
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 89.2732 recoleadeta 1.01625
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.5583 hltleadeta 2.76696
+dR 0
+run number 191721 event number 69009603
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 89.5687 recoleadeta 1.01312
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.5583 hltleadeta 2.76696
+dR 0
+Begin processing the 115001st record. Run 191721, Event 71079913, LumiSection 103 at 11-May-2012 10:42:30.650 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  3 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  65 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  65 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  65 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  65 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  3 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  65 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  65 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  65 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  65 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  3 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  65 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  65 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  65 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  65 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 116001st record. Run 191721, Event 74342167, LumiSection 108 at 11-May-2012 10:42:31.912 CEST
+run number 191721 event number 75456088
+InputTag:  label = ak5PFJets, instance =  recoleadpt 93.1889 recoleadeta -0.432652
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.0324 hltleadeta 2.18764
+dR 0
+run number 191721 event number 75456088
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 93.2506 recoleadeta -0.432652
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.0324 hltleadeta 2.18764
+dR 0
+run number 191721 event number 75456088
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 95.5321 recoleadeta -0.432652
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.0324 hltleadeta 2.18764
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  68 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  129 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  125 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  125 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  129 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  68 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  129 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  125 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  125 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  129 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  93 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  126 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  126 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 117001st record. Run 191721, Event 77967453, LumiSection 114 at 11-May-2012 10:42:33.956 CEST
+run number 191721 event number 79508226
+InputTag:  label = ak5PFJets, instance =  recoleadpt 88.2296 recoleadeta -1.80631
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 44.5995 hltleadeta -2.69997
+dR 0
+run number 191721 event number 79508226
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 91.9586 recoleadeta -1.80631
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 44.5995 hltleadeta -2.69997
+dR 0
+run number 191721 event number 79508226
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 92.6864 recoleadeta -1.80323
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 44.5995 hltleadeta -2.69997
+dR 0
+Begin processing the 118001st record. Run 191721, Event 81448487, LumiSection 119 at 11-May-2012 10:42:35.325 CEST
+run number 191721 event number 84190083
+InputTag:  label = ak5PFJets, instance =  recoleadpt 92.1495 recoleadeta -0.108025
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.4241 hltleadeta -0.4184
+dR 0
+run number 191721 event number 84190083
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 93.4686 recoleadeta -0.108025
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.4241 hltleadeta -0.4184
+dR 0
+run number 191721 event number 84190083
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 94.4172 recoleadeta -0.108025
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 29.4241 hltleadeta -0.4184
+dR 0
+Begin processing the 119001st record. Run 191721, Event 85291894, LumiSection 125 at 11-May-2012 10:42:37.296 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  38 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  115 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  113 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  113 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  115 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  38 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  115 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  113 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  113 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  115 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191721 event number 87555715
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.0818 recoleadeta 0.764694
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 63.6053 hltleadeta -3.8416
+dR 0
+run number 191721 event number 87555715
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 85.8854 recoleadeta 0.764694
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 63.6053 hltleadeta -3.8416
+dR 0
+run number 191721 event number 87555715
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 86.2949 recoleadeta 0.762317
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 63.6053 hltleadeta -3.8416
+dR 0
+Begin processing the 120001st record. Run 191721, Event 88683785, LumiSection 130 at 11-May-2012 10:42:38.614 CEST
+Begin processing the 121001st record. Run 191721, Event 92453507, LumiSection 136 at 11-May-2012 10:42:39.900 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  14 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  100 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  100 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  100 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  100 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  14 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  100 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  100 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  100 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  100 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 122001st record. Run 191721, Event 95568674, LumiSection 141 at 11-May-2012 10:42:42.030 CEST
+Begin processing the 123001st record. Run 191721, Event 98860972, LumiSection 147 at 11-May-2012 10:42:43.339 CEST
+Begin processing the 124001st record. Run 191721, Event 102860554, LumiSection 153 at 11-May-2012 10:42:45.298 CEST
+Begin processing the 125001st record. Run 191721, Event 106059847, LumiSection 158 at 11-May-2012 10:42:46.586 CEST
+Begin processing the 126001st record. Run 191721, Event 109610604, LumiSection 164 at 11-May-2012 10:42:47.924 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  57 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  134 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  130 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  130 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  134 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  57 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  134 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  130 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  134 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+11-May-2012 10:42:48 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_3.root
+11-May-2012 10:42:48 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_4.root
+120511 10:42:48 001 Xrd: GoToAnotherServer: Going to: lxfsre09a01.cern.ch:1095
+11-May-2012 10:42:49 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_4.root
+Begin processing the 127001st record. Run 191721, Event 113277837, LumiSection 170 at 11-May-2012 10:42:51.366 CEST
+run number 191721 event number 114172856
+InputTag:  label = ak5PFJets, instance =  recoleadpt 90.7853 recoleadeta 0.682111
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.9084 hltleadeta -0.383316
+dR 0
+run number 191721 event number 114172856
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 90.57 recoleadeta 0.682111
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.9084 hltleadeta -0.383316
+dR 0
+run number 191721 event number 114172856
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 91.4501 recoleadeta 0.683217
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.9084 hltleadeta -0.383316
+dR 0
+Begin processing the 128001st record. Run 191721, Event 116752105, LumiSection 176 at 11-May-2012 10:42:53.599 CEST
+run number 191721 event number 118141113
+InputTag:  label = ak5PFJets, instance =  recoleadpt 408.876 recoleadeta 0.30467
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.0221 hltleadeta -0.353504
+dR 0
+run number 191721 event number 118141113
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 432.663 recoleadeta 0.30467
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.0221 hltleadeta -0.353504
+dR 0
+run number 191721 event number 118141113
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 430.507 recoleadeta 0.30467
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.0221 hltleadeta -0.353504
+dR 0
+run number 191721 event number 119685965
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.3826 recoleadeta 1.08203
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 21.7776 hltleadeta 1.53265
+dR 0
+Begin processing the 129001st record. Run 191721, Event 120343413, LumiSection 182 at 11-May-2012 10:42:54.892 CEST
+run number 191721 event number 123585419
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 84.2569 recoleadeta 1.00838
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 13.3362 hltleadeta 0.69884
+dR 0
+11-May-2012 10:42:55 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_4.root
+11-May-2012 10:42:55 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_5.root
+120511 10:42:55 001 Xrd: GoToAnotherServer: Going to: lxfsre07a08.cern.ch:1095
+11-May-2012 10:42:56 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_5.root
+Begin processing the 130001st record. Run 191726, Event 299785, LumiSection 1 at 11-May-2012 10:42:57.946 CEST
+Begin processing the 131001st record. Run 191726, Event 4686316, LumiSection 10 at 11-May-2012 10:42:59.501 CEST
+11-May-2012 10:43:00 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_5.root
+11-May-2012 10:43:00 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_6.root
+120511 10:43:00 001 Xrd: GoToAnotherServer: Going to: lxfsre09a02.cern.ch:1095
+11-May-2012 10:43:00 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_6.root
+Begin processing the 132001st record. Run 191810, Event 86489792, LumiSection 55 at 11-May-2012 10:43:02.539 CEST
+run number 191810 event number 85587031
+InputTag:  label = ak5PFJets, instance =  recoleadpt 101.087 recoleadeta -0.626221
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.6332 hltleadeta 0.283399
+dR 0
+run number 191810 event number 85587031
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 94.8556 recoleadeta -0.626221
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.6332 hltleadeta 0.283399
+dR 0
+run number 191810 event number 85587031
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 99.0598 recoleadeta -0.626893
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.6332 hltleadeta 0.283399
+dR 0
+Begin processing the 133001st record. Run 191810, Event 89312148, LumiSection 57 at 11-May-2012 10:43:04.819 CEST
+Begin processing the 134001st record. Run 191810, Event 93481024, LumiSection 59 at 11-May-2012 10:43:06.727 CEST
+run number 191810 event number 94477776
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.3158 recoleadeta 1.44532
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.9593 hltleadeta -0.528454
+dR 0
+run number 191810 event number 96082015
+InputTag:  label = ak5PFJets, instance =  recoleadpt 87.4338 recoleadeta 1.19909
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 14.874 hltleadeta 1.22899
+dR 0
+run number 191810 event number 96082015
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 80.4065 recoleadeta 1.19909
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 14.874 hltleadeta 1.22899
+dR 0
+run number 191810 event number 96082015
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.231 recoleadeta 1.18316
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 14.874 hltleadeta 1.22899
+dR 0
+Begin processing the 135001st record. Run 191810, Event 98717300, LumiSection 62 at 11-May-2012 10:43:08.774 CEST
+Begin processing the 136001st record. Run 191810, Event 100921053, LumiSection 64 at 11-May-2012 10:43:10.179 CEST
+run number 191810 event number 102520421
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.7303 recoleadeta 0.790701
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 27.6533 hltleadeta 0.176973
+dR 0
+run number 191810 event number 104374565
+InputTag:  label = ak5PFJets, instance =  recoleadpt 100.265 recoleadeta -1.27971
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 41.1192 hltleadeta -3.83128
+dR 0
+run number 191810 event number 104374565
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 98.9288 recoleadeta -1.27971
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 41.1192 hltleadeta -3.83128
+dR 0
+Begin processing the 137001st record. Run 191810, Event 104258950, LumiSection 66 at 11-May-2012 10:43:12.366 CEST
+run number 191810 event number 106033195
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.9733 recoleadeta 0.146334
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.5034 hltleadeta 0.818673
+dR 0
+run number 191810 event number 106732489
+InputTag:  label = ak5PFJets, instance =  recoleadpt 84.0256 recoleadeta -0.791986
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.887 hltleadeta -0.177665
+dR 0
+run number 191810 event number 108744198
+InputTag:  label = ak5PFJets, instance =  recoleadpt 85.9041 recoleadeta -1.49357
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 46.516 hltleadeta -3.79144
+dR 0
+run number 191810 event number 108744198
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 81.8289 recoleadeta -1.49357
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 46.516 hltleadeta -3.79144
+dR 0
+run number 191810 event number 108744198
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.2481 recoleadeta -1.49821
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 46.516 hltleadeta -3.79144
+dR 0
+Begin processing the 138001st record. Run 191810, Event 109492042, LumiSection 69 at 11-May-2012 10:43:14.526 CEST
+run number 191810 event number 109950679
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.4825 recoleadeta -1.09073
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 20.0645 hltleadeta 0.319755
+dR 0
+run number 191810 event number 109950679
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 81.3833 recoleadeta -1.09242
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 20.0645 hltleadeta 0.319755
+dR 0
+Begin processing the 139001st record. Run 191810, Event 113005033, LumiSection 71 at 11-May-2012 10:43:16.528 CEST
+Begin processing the 140001st record. Run 191810, Event 117597164, LumiSection 74 at 11-May-2012 10:43:17.882 CEST
+run number 191810 event number 118070863
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.8088 recoleadeta -0.317238
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 57.9137 hltleadeta 3.10574
+dR 0
+run number 191810 event number 118381005
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.0255 recoleadeta -1.28233
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.6162 hltleadeta 0.0204714
+dR 0
+Begin processing the 141001st record. Run 191810, Event 121178355, LumiSection 76 at 11-May-2012 10:43:19.935 CEST
+run number 191810 event number 122767459
+InputTag:  label = ak5PFJets, instance =  recoleadpt 106.541 recoleadeta 2.05391
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.567 hltleadeta 1.23701
+dR 0
+run number 191810 event number 122767459
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 105.624 recoleadeta 2.05391
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.567 hltleadeta 1.23701
+dR 0
+run number 191810 event number 122767459
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 110.844 recoleadeta 2.05699
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.567 hltleadeta 1.23701
+dR 0
+Begin processing the 142001st record. Run 191810, Event 123877880, LumiSection 78 at 11-May-2012 10:43:21.554 CEST
+11-May-2012 10:43:21 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_6.root
+11-May-2012 10:43:21 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_7.root
+120511 10:43:21 001 Xrd: GoToAnotherServer: Going to: lxfsre15a09.cern.ch:1095
+11-May-2012 10:43:22 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_7.root
+Begin processing the 143001st record. Run 191810, Event 127039117, LumiSection 80 at 11-May-2012 10:43:25.065 CEST
+run number 191810 event number 127851770
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.2762 recoleadeta 0.282358
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.3323 hltleadeta -3.52226
+dR 0
+run number 191810 event number 129616161
+InputTag:  label = ak5PFJets, instance =  recoleadpt 83.7855 recoleadeta 0.0451486
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.422 hltleadeta -0.550945
+dR 0
+Begin processing the 144001st record. Run 191810, Event 130672320, LumiSection 82 at 11-May-2012 10:43:26.917 CEST
+run number 191810 event number 134030345
+InputTag:  label = ak5PFJets, instance =  recoleadpt 92.9951 recoleadeta -1.54436
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.3713 hltleadeta 0.859792
+dR 0
+run number 191810 event number 134030345
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 85.3105 recoleadeta -1.54436
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 22.3713 hltleadeta 0.859792
+dR 0
+run number 191810 event number 134375334
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.4994 recoleadeta 0.35115
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 20.7601 hltleadeta 1.64496
+dR 0
+Begin processing the 145001st record. Run 191810, Event 133499380, LumiSection 84 at 11-May-2012 10:43:28.910 CEST
+run number 191810 event number 138956982
+InputTag:  label = ak5PFJets, instance =  recoleadpt 83.57 recoleadeta -0.727643
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.5789 hltleadeta -4.245
+dR 0
+run number 191810 event number 138956982
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.2334 recoleadeta -0.719568
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 23.5789 hltleadeta -4.245
+dR 0
+Begin processing the 146001st record. Run 191810, Event 138644588, LumiSection 87 at 11-May-2012 10:43:30.231 CEST
+Begin processing the 147001st record. Run 191810, Event 141516443, LumiSection 89 at 11-May-2012 10:43:32.105 CEST
+Begin processing the 148001st record. Run 191810, Event 146389305, LumiSection 92 at 11-May-2012 10:43:33.934 CEST
+11-May-2012 10:43:34 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_7.root
+11-May-2012 10:43:34 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_8.root
+120511 10:43:34 001 Xrd: GoToAnotherServer: Going to: lxfsre13a06.cern.ch:1095
+11-May-2012 10:43:34 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_8.root
+run number 191810 event number 44975163
+InputTag:  label = ak5PFJets, instance =  recoleadpt 83.5057 recoleadeta 1.84859
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.0749 hltleadeta 3.44203
+dR 0
+run number 191810 event number 44975163
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 81.5915 recoleadeta 1.84859
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.0749 hltleadeta 3.44203
+dR 0
+run number 191810 event number 44975163
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.6305 recoleadeta 1.83395
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.0749 hltleadeta 3.44203
+dR 0
+Begin processing the 149001st record. Run 191810, Event 45164526, LumiSection 31 at 11-May-2012 10:43:37.695 CEST
+Begin processing the 150001st record. Run 191810, Event 49748082, LumiSection 34 at 11-May-2012 10:43:40.086 CEST
+Begin processing the 151001st record. Run 191810, Event 53425695, LumiSection 36 at 11-May-2012 10:43:41.535 CEST
+run number 191810 event number 54719381
+InputTag:  label = ak5PFJets, instance =  recoleadpt 103.346 recoleadeta 1.50114
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.7547 hltleadeta 3.3796
+dR 0
+run number 191810 event number 54719381
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 91.6695 recoleadeta 1.50114
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.7547 hltleadeta 3.3796
+dR 0
+run number 191810 event number 54719381
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 96.9481 recoleadeta 1.49106
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.7547 hltleadeta 3.3796
+dR 0
+run number 191810 event number 55321504
+InputTag:  label = ak5PFJets, instance =  recoleadpt 86.5972 recoleadeta -0.966639
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 18.959 hltleadeta -2.29507
+dR 0
+run number 191810 event number 55807914
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.8359 recoleadeta -2.21933
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 19.8151 hltleadeta -1.29315
+dR 0
+Begin processing the 152001st record. Run 191810, Event 56944439, LumiSection 38 at 11-May-2012 10:43:43.722 CEST
+run number 191810 event number 58435066
+InputTag:  label = ak5PFJets, instance =  recoleadpt 86.8419 recoleadeta 0.260356
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.0781 hltleadeta 2.00864
+dR 0
+run number 191810 event number 58435066
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 81.1497 recoleadeta 0.25968
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.0781 hltleadeta 2.00864
+dR 0
+Begin processing the 153001st record. Run 191810, Event 60806337, LumiSection 40 at 11-May-2012 10:43:45.779 CEST
+run number 191810 event number 61699855
+InputTag:  label = ak5PFJets, instance =  recoleadpt 99.6566 recoleadeta -0.234928
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.6171 hltleadeta -0.0260255
+dR 0
+run number 191810 event number 61699855
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 88.0973 recoleadeta -0.234928
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.6171 hltleadeta -0.0260255
+dR 0
+run number 191810 event number 61699855
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 87.6917 recoleadeta -0.232716
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.6171 hltleadeta -0.0260255
+dR 0
+run number 191810 event number 64288658
+InputTag:  label = ak5PFJets, instance =  recoleadpt 88.7272 recoleadeta 1.12195
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.9333 hltleadeta 0.693738
+dR 0
+Begin processing the 154001st record. Run 191810, Event 65591007, LumiSection 43 at 11-May-2012 10:43:47.901 CEST
+Begin processing the 155001st record. Run 191810, Event 69247240, LumiSection 45 at 11-May-2012 10:43:49.301 CEST
+run number 191810 event number 70243895
+InputTag:  label = ak5PFJets, instance =  recoleadpt 82.2273 recoleadeta -0.499043
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 17.6286 hltleadeta -0.234094
+dR 0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  81 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  124 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  121 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+Begin processing the 156001st record. Run 191810, Event 72324101, LumiSection 47 at 11-May-2012 10:43:51.400 CEST
+run number 191810 event number 74241816
+InputTag:  label = ak5PFJets, instance =  recoleadpt 92.358 recoleadeta -0.593417
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.058 hltleadeta -2.01781
+dR 0
+run number 191810 event number 74241816
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 87.0171 recoleadeta -0.593417
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.058 hltleadeta -2.01781
+dR 0
+run number 191810 event number 74241816
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 80.0567 recoleadeta -0.565163
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 26.058 hltleadeta -2.01781
+dR 0
+run number 191810 event number 74350782
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.233 recoleadeta -0.979165
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 25.8221 hltleadeta -1.65779
+dR 0
+run number 191810 event number 75764540
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.8356 recoleadeta -1.8753
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.5641 hltleadeta 1.31515
+dR 0
+run number 191810 event number 75972037
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.6468 recoleadeta 0.689653
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 33.0639 hltleadeta 2.79225
+dR 0
+Begin processing the 157001st record. Run 191810, Event 80604921, LumiSection 52 at 11-May-2012 10:43:53.468 CEST
+11-May-2012 10:43:53 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_8.root
+11-May-2012 10:43:53 CEST  Initiating request to open file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_9.root
+120511 10:43:53 001 Xrd: GoToAnotherServer: Going to: lxfsre15a08.cern.ch:1095
+11-May-2012 10:43:54 CEST  Successfully opened file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_9.root
+run number 191810 event number 18273787
+InputTag:  label = ak5PFJets, instance =  recoleadpt 85.6402 recoleadeta 2.06429
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.3883 hltleadeta 2.10333
+dR 0
+run number 191810 event number 18273787
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 86.2859 recoleadeta 2.05951
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 24.3883 hltleadeta 2.10333
+dR 0
+run number 191810 event number 18366704
+InputTag:  label = ak5PFJets, instance =  recoleadpt 108.343 recoleadeta -0.26033
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 46.6063 hltleadeta -2.72518
+dR 0
+run number 191810 event number 18366704
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 94.9558 recoleadeta -0.26033
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 46.6063 hltleadeta -2.72518
+dR 0
+run number 191810 event number 18366704
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 96.8544 recoleadeta -0.253779
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 46.6063 hltleadeta -2.72518
+dR 0
+Begin processing the 158001st record. Run 191810, Event 29914917, LumiSection 22 at 11-May-2012 10:43:55.887 CEST
+run number 191810 event number 31178046
+InputTag:  label = ak5PFJets, instance =  recoleadpt 101.726 recoleadeta -0.620884
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 48.9525 hltleadeta -3.50592
+dR 0
+run number 191810 event number 31178046
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 87.231 recoleadeta -0.620884
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 48.9525 hltleadeta -3.50592
+dR 0
+run number 191810 event number 31178046
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 82.5286 recoleadeta -0.613988
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 48.9525 hltleadeta -3.50592
+dR 0
+run number 191810 event number 33246454
+InputTag:  label = ak5PFJets, instance =  recoleadpt 81.8194 recoleadeta 2.26543
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.8338 hltleadeta 1.22889
+dR 0
+run number 191810 event number 33246454
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 82.0917 recoleadeta 2.26543
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.8338 hltleadeta 1.22889
+dR 0
+run number 191810 event number 33246454
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 82.422 recoleadeta 2.27336
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 28.8338 hltleadeta 1.22889
+dR 0
+Begin processing the 159001st record. Run 191810, Event 32974693, LumiSection 24 at 11-May-2012 10:43:58.166 CEST
+run number 191810 event number 34872363
+InputTag:  label = ak5PFJets, instance =  recoleadpt 80.1045 recoleadeta -0.523633
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 33.0877 hltleadeta -3.5051
+dR 0
+Begin processing the 160001st record. Run 191810, Event 37034428, LumiSection 26 at 11-May-2012 10:44:00.242 CEST
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  1 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  45 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  45 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  45 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  45 reco InputTag:  label = ak5PFJets, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  1 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  45 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  45 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  45 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  45 reco InputTag:  label = cmgPFJetSel, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  1 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJets, instance =  45 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAntiKT5PFJetsNoPU, instance =  45 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetNoPUL1FastL2L3Corrected, instance =  45 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+weird numbers of jets : 
+ hlt InputTag:  label = hltAK5PFJetL1FastL2L3Corrected, instance =  45 reco InputTag:  label = cmgPFJetSelCHS, instance =  0
+run number 191810 event number 39043193
+InputTag:  label = ak5PFJets, instance =  recoleadpt 91.7577 recoleadeta 0.948747
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 34.999 hltleadeta 3.31747
+dR 0
+run number 191810 event number 39043193
+InputTag:  label = cmgPFJetSel, instance =  recoleadpt 86.5304 recoleadeta 0.948747
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 34.999 hltleadeta 3.31747
+dR 0
+run number 191810 event number 39043193
+InputTag:  label = cmgPFJetSelCHS, instance =  recoleadpt 88.4545 recoleadeta 0.947137
+InputTag:  label = hltCaloJetL1FastJetCorrected, instance =  hltleadpt 34.999 hltleadeta 3.31747
+dR 0
+Begin processing the 161001st record. Run 191810, Event 41953107, LumiSection 29 at 11-May-2012 10:44:02.212 CEST
+11-May-2012 10:44:02 CEST  Closed file root://eoscms//eos/cms/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLTMay10/hlt_9.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 fileAction           -s file_close                            18       18
+    2 fileAction           -s file_open                             36       36
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 fileAction           PostProcessEvent PostProcessEvent PostEndRun
+    2 fileAction           pre-events       pre-events       PostProcessEvent
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+System                 54                  54

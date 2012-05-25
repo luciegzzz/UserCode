@@ -1,0 +1,7 @@
+----- Begin Fatal Exception 16-May-2012 10:50:51 CEST-----------------------
+An exception of category 'ConfigFileReadError' occurred while
+   [0] Processing the python configuration file named hltpfetsanalyzer_cfg.py
+Exception Message:
+python encountered the error: <type 'exceptions.IOError'>
+[Errno 2] No such file or directory: 'hltpfetsanalyzer_cfg.py'
+----- End Fatal Exception -------------------------------------------------
