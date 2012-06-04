@@ -1,0 +1,16 @@
+<use name="FWCore/Framework"/>
+<use name="FWCore/ParameterSet"/>
+<use name="FWCore/FWLite"/>
+<use name="FWCore/Common"/>
+<use name="DataFormats/Common"/>
+<use name="DataFormats/JetReco"/>
+<use name="DataFormats/Math"/>
+<use name="DataFormats/METReco"/>
+<use name="DataFormats/MuonReco"/>
+
+<use name="root"/>
+
+<flags EDM_PLUGIN="1"/>
+<export>
+  <lib   name="1"/>
+</export>
