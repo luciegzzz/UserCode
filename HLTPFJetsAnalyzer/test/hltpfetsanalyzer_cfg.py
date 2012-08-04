@@ -7,14 +7,14 @@ process.load("FWCore.MessageService.MessageLogger_cfi")
 ## process.source = cms.Source("PoolSource",
 ##                             # replace 'myfile.root',' with the source file you want to use
 ##                          #   fileNames = cms.untracked.vstring('file:test.root')
-##                             fileNames = cms.untracked.vstring('/store/cmst3/user/lucieg/CMG/DoubleMu/PAT_CMG/191718_191810/HLT/hlt_2.root')
+##                             fileNames = cms.untracked.vstring('/store/cmst3/user/lucieg/CMG/HLT/PFJets/hlt_15.root')## ,
+## ##                             eventsToProcess = cms.untracked.VEventRange('191721:88639503')
 ##                            )
 
 from CMGTools.Production.datasetToSource import *
 process.source = datasetToSource(
    'lucieg',
-#   '/DoubleMu/PAT_CMG/191718/HLT/'   
-   '/DoubleMu/PAT_CMG/191718_191810/HLTMay10/'   
+   '/HLT/PFJets/'
    )
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32( -1 ) )
@@ -29,24 +29,37 @@ process.out = cms.OutputModule("PoolOutputModule",
                                SelectEvents   = cms.untracked.PSet( SelectEvents = cms.vstring('p') ),
                                outputCommands = cms.untracked.vstring('drop *',
                                                                       'keep *_Zevents_*_*')
+                                                                      
                                )
+
+import HLTrigger.HLTfilters.hltHighLevel_cfi as hlt
+process.cleaningfilter = hlt.hltHighLevel.clone(
+    TriggerResultsTag = cms.InputTag("TriggerResults","","PAT"),
+    HLTPaths = ['EcalDeadCellBoundaryEnergyFilterPath',
+                'simpleDRfilterPath',
+                'EcalDeadCellTriggerPrimitiveFilterPath',
+                'greedyMuonPFCandidateFilterPath',
+                'hcalLaserEventFilterPath',
+                'inconsistentMuonPFCandidateFilterPath',
+                'trackingFailureFilterPath',
+                'CSCTightHaloFilterPath',
+                'HBHENoiseFilterPath',
+                'primaryVertexFilterPath',
+                'noscrapingFilterPath',
+                'hcalLaserFilterFromAODPath'
+                ],
+    andOr = False
+	)
+
 process.p = cms.Path(
-    process.selectZevents         +
-    process.HltCaloRecoPfJetsAnalyzer +
-    process.HltRecoPfJetsAnalyzer +
-    process.HltPFNoPURecoPfJetsAnalyzer +
-    process.HltPFNoPUL1L2L3RecoPfJetsAnalyzer +
-    process.HltL1L2L3RecoPfJetsAnalyzer +
-    process.HltCaloCmgPfJetsAnalyzer +
+    process.cleaningfilter +
+    process.selectZeventsFromMu         +
+   # process.HltCaloCmgPfJetsAnalyzer +
     process.HltCmgPfJetsAnalyzer +
     process.HltPFNoPUCmgPfJetsAnalyzer +
-    process.HltPFNoPUL1L2L3CmgPfJetsAnalyzer +
-    process.HltL1L2L3CmgPfJetsAnalyzer + 
-    process.HltCaloCmgCHSPfJetsAnalyzer + 
+  #  process.HltCaloCmgCHSPfJetsAnalyzer + 
     process.HltCmgCHSPfJetsAnalyzer + 
-    process.HltPFNoPUCmgchsPfJetsAnalyzer + 
-    process.HltPFNoPUL1L2L3CmgchsPfJetsAnalyzer +
-    process.HltL1L2L3CmgchsPfJetsAnalyzer 
+    process.HltPFNoPUCmgchsPfJetsAnalyzer  
     )
 
 
