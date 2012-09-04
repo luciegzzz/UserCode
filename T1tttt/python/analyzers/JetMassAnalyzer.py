@@ -5,7 +5,7 @@ from Lucie.T1tttt.analyzers.TopTupleReader import TopTupleReader
 from CMGTools.RootTools.statistics.Counter import Counter, Counters
 from CMGTools.RootTools.fwlite.AutoHandle import AutoHandle
 from CMGTools.RootTools.utils.DeltaR import deltaR
-from CMGTools.RootTools.physicsobjects.PhysicsObjects import GenJet, Jet, RecoJet
+from Lucie.T1tttt.physicsobjects.PhysicsObjects import GenJet, Jet, RecoJet
 from CMGTools.RootTools.physicsobjects.PileUpSummaryInfo import PileUpSummaryInfo
 from ROOT import TH1F, TH2F, TH1I, TFile, TF1, TFitResultPtr, TGraphErrors
 from math import sqrt

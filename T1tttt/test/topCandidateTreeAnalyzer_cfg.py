@@ -8,8 +8,8 @@ ana = cfg.Analyzer(
     'TopCandidateTreeAnalyzer',
     verbose = False,
  #   jetMassParametersFile = 'JetMassAnalyzer300_400/TTJets/JetMassAnalyzer/fitParameters.txt',
- #   jetMassParametersFile = 'JetMassAnalyzer600_700/TTJets/JetMassAnalyzer/fitParameters.txt',
-    jetMassParametersFile = 'JetMassAnalyzer900_1000/TTJets/JetMassAnalyzer/fitParameters.txt',
+    jetMassParametersFile = 'JetMassAnalyzer600_700/TTJets/JetMassAnalyzer/fitParameters.txt',
+ #   jetMassParametersFile = 'JetMassAnalyzer900_1000/TTJets/JetMassAnalyzer/fitParameters.txt',
     jetCollections = {
     'aktRecluster1p0Hadronic':0.8,
     },
@@ -31,7 +31,7 @@ ana = cfg.Analyzer(
 ##private sample
 TTJets = cfg.MCComponent(
     name = 'TTJets',
-    files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic600_700.root',
+    files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic900_1000.root',
     xSection = 1., 
     nGenEvents = 1,
     triggers = [],
@@ -45,6 +45,14 @@ QCD600_700 = cfg.MCComponent(
     triggers = [],
     effCorrFactor = 1 ) 
 
+QCD900_1000 = cfg.MCComponent(
+    name = 'QCD600_700',
+    files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_900_1000.root',
+    xSection = 1., 
+    nGenEvents = 1,
+    triggers = [],
+    effCorrFactor = 1 ) 
+
 QCD15_3000 = cfg.MCComponent(
     name = 'QCD15_3000',
     files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_15_3000.root',
@@ -53,7 +61,7 @@ QCD15_3000 = cfg.MCComponent(
     triggers = [],
     effCorrFactor = 1 ) 
 
-selectedComponents =  [TTJets, QCD600_700, QCD15_3000]
+selectedComponents =  [TTJets,  QCD900_1000, QCD15_3000]
 
 sequence = cfg.Sequence( [
     ana   
@@ -63,7 +71,7 @@ config = cfg.Config( components = selectedComponents,
                      sequence = sequence )
 
 TTJets.splitFactor = 1
-QCD600_700.splitFactor = 1
+QCD900_1000.splitFactor = 1
 QCD15_3000.splitFactor = 1
 
 

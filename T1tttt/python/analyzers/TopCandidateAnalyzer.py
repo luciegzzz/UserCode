@@ -5,7 +5,7 @@ from Lucie.T1tttt.analyzers.TopTupleReader import TopTupleReader
 from CMGTools.RootTools.statistics.Counter import Counter, Counters
 from CMGTools.RootTools.fwlite.AutoHandle import AutoHandle
 from CMGTools.RootTools.utils.DeltaR import deltaR
-from CMGTools.RootTools.physicsobjects.PhysicsObjects import GenJet, Jet, RecoJet
+from Lucie.T1tttt.physicsobjects.PhysicsObjects import GenJet, Jet, RecoJet
 from CMGTools.RootTools.physicsobjects.PileUpSummaryInfo import PileUpSummaryInfo
 from ROOT import TH1F, TH2F, TH1I, TH2I, TFile, TF1, TFitResultPtr, TGraphErrors
 from math import sqrt
@@ -42,14 +42,14 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
         
        
         self.histos = [
-      #QCD      self.gentop_pt,
-      #QCD       self.gentop_eta,
+            self.gentop_pt,
+            self.gentop_eta,
             self.numberOfTopCandidatesRAW,
             self.numberOfTopCandidatesPerEvent,
             self.numberOfTopCandidatesPerEventMatched,
-            self.numberOfTopCandidates#,
-      #QCD       self.numberOfBTags,
-      #QCD       self.numberOfBTagsPerEvent
+            self.numberOfTopCandidates,
+            self.numberOfBTags,
+            self.numberOfBTagsPerEvent
             ]
         
         self.histosdRjetGenTop                    = {}
@@ -72,8 +72,28 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
         self.hepInvMass2DPlot                     = {}
         self.twoMOverPt                           = {}
         self.massOfConstituentsMatchedBTagged     = {}
+        self.histosdRGenTops2Cand                 = {}
+        self.histosdRGenTops1Cand                 = {}
+        self.histosdRGenTops0Cand                 = {}
+        self.histosPt2FoundTops                   = {}
+        self.histosPtFoundTop1VsFoundTop0         = {}
+        self.histosPt1MissedTop                   = {}
+        self.histosPt1FoundTop                    = {}
+        self.histosPt1MissedTopVs1FoundTop        = {}
+        self.histosPt2MissedTops                  = {}
+        self.histosPtMissedTop1VsMissedTop0       = {}
+       
         
         for jetColl in self.listOfJetCollections :           
+            self.histosdRGenTops2Cand[jetColl]\
+            = TH1F( jetColl + '_dRGenTops2Cand', jetColl + 'dR between gen top when 2 candidates', 100, 0., 10. )
+
+            self.histosdRGenTops1Cand[jetColl]\
+            = TH1F( jetColl + '_dRGenTops1Cand', jetColl + 'dR between gen top when <2 candidates', 100, 0., 10. )
+
+            self.histosdRGenTops0Cand[jetColl]\
+            = TH1F( jetColl + '_dRGenTops0Cand', jetColl + 'dR between gen top when <2 candidates', 100, 0., 10. )
+
             self.histosdRjetGenTop[jetColl]\
             = TH1F( jetColl + '_dRjetGenTop', jetColl + 'dR(top candidate, gen tops)', 100, 0., 10. )
 
@@ -100,6 +120,28 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
 
             self.twoMOverPt[jetColl]\
             = TH1F(jetColl + '2mOverPt', '2m / pt, '+ jetColl, 200, 0., 2.)
+
+            self.histosPtFoundTop1VsFoundTop0[jetColl]\
+            = TH2F(jetColl + 'PtFoundTop1VsFoundTop0', 'pt of top 1 vs top 0 when 2 tops found(matched cnadidates)', 100, 0., 1000., 100, 0., 1000.)
+
+            self.histosPt1MissedTopVs1FoundTop[jetColl]\
+            = TH2F(jetColl + 'Pt1MissedTopVs1FoundTop', 'pt missing top vs found top when 1 top found(matched cnadidates)', 100, 0., 1000., 100, 0., 1000.)
+
+            self.histosPtMissedTop1VsMissedTop0[jetColl]\
+            = TH2F(jetColl + 'PtMissedTop1VsMissedTop0', 'pt of top 1 vs top 0 when 2 missing tops (no matched cnadidates)', 100, 0., 1000., 100, 0., 1000.)
+
+            self.histosPt2FoundTops[jetColl]\
+            = TH1F(jetColl + 'Pt2FoundTops', 'tops\' pt when 2 tops found(matched candidates)', 100, 0., 1000.)
+    
+            self.histosPt1FoundTop[jetColl]\
+            = TH1F(jetColl + 'Pt1FoundTop1', 'found top pt when 1 top found(matched candidate)', 100, 0., 1000.)
+    
+            self.histosPt1MissedTop[jetColl]\
+            = TH1F(jetColl + 'Pt1MissedTop1', 'missing top pt when 1 top found(matched candidate)', 100, 0., 1000.)
+    
+            self.histosPt2MissedTops[jetColl]\
+            = TH1F(jetColl + 'Pt2MissedTops', 'tops\' pt when 2 tops missing(no matched cnadidates)', 100, 0., 1000.)
+    
             
             for tagger in self.listOfBTagsAlgos :
 
@@ -130,6 +172,7 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
                 self.dRTopCandidatesBTags[jetColl+'_'+tagger]\
                  = TH1F(  jetColl+'_' +tagger + '_dRTopCandBTag', tagger + ', dR reco top btag ,' + jetColl, 100 , 0., 10.  )
 
+
         self.histosdRBTagGenTop                    = {}    
         for tagger in self.listOfBTagsAlgos :
           
@@ -147,10 +190,26 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
          #print '******************** reading event', event.iEv, '****************************'
 
         ##getting gen level info
+        ptTop0  = -10.
+        etaTop0 = -10.
+        phiTop0 = -10.
+        ptTop1  = -10.
+        etaTop1 = -10.
+        phiTop1 = -10.
+        
         for gen in event.genParticles :
             if (abs( gen.pdgId() ) == 6):
                 self.gentop_pt.Fill( gen.pt() )
                 self.gentop_eta.Fill( gen.eta() )
+                if etaTop0 == -10. :
+                    ptTop0  = gen.pt()
+                    etaTop0 = gen.eta()
+                    phiTop0 = gen.phi()
+                else :
+                    ptTop1  = gen.pt()
+                    etaTop1 = gen.eta()
+                    phiTop1 = gen.phi()
+           
 
         #grab jets collections, or prepare for it
         event.jetsAlgos       = {}
@@ -162,7 +221,10 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
         #counters
         jetCollBin            = 0
         nTopCandidates        = dict.fromkeys(self.listOfJetCollections,0)
-     
+        ptTopCands            = dict.fromkeys(self.listOfJetCollections,[])
+        etaTopCands           = dict.fromkeys(self.listOfJetCollections,[])
+        phiTopCands           = dict.fromkeys(self.listOfJetCollections,[])
+         
         for jetColl in self.listOfJetCollections :
             #grab jet collection with label jetColl
             event.jetsAlgos[jetColl] = self.buildTopJets( self.mchandles[jetColl].product(), event )
@@ -179,10 +241,10 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
             self.numberOfTopCandidatesPerEventMatched.GetXaxis().SetBinLabel(jetCollBin+1, jetColl)
             self.numberOfTopCandidates.GetXaxis().SetBinLabel(jetCollBin+1, jetColl)
            
-            self.numberOfTopCandidatesPerEvent.SetMaximum(400)
-            self.numberOfTopCandidatesPerEventMatched.SetMaximum(400)
+            #self.numberOfTopCandidatesPerEvent.SetMaximum(400)
+            #self.numberOfTopCandidatesPerEventMatched.SetMaximum(400)
             nTopCands = 0
-
+          
             ###analyze top candidates
             for jet in event.jetsAlgos[jetColl] :
                 ## DEBUG
@@ -208,16 +270,19 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
                                     matchedPt = gen.pt()
                     
                     self.histosRecoPtVsMatchedPt[jetColl].Fill(  jet.pt(), matchedPt )
-                    if ( dRjetGenTop < 10000 ):##FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD 
+                    if ( dRjetGenTop < 0.4 ): 
                         self.histosPtRatioVsPtGen[jetColl].Fill( matchedPt,  jet.pt()  /  matchedPt  )
                         self.numberOfTopCandidates.Fill( jetCollBin )
                         nTopCandidates[jetColl]+=1
                         self.twoMOverPt[jetColl].Fill( 2* jet.mass() / jet.pt() )
-
+                        ptTopCands[jetColl].append( jet.pt() )
+                        etaTopCands[jetColl].append( jet.eta() )
+                        phiTopCands[jetColl].append( jet.phi() )
+                      
                     #analyze constituents of matched candidates
                     nConstituents = len(jet.getJetConstituents())
 
-                    if( dRjetGenTop < 10000. ):##FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD FOR QCD 
+                    if( dRjetGenTop < 0.4 ) :
                         self.nConstituentsInTopCandidates[jetColl].Fill( nConstituents )
 
                         p4 = []
@@ -270,7 +335,30 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
             self.numberOfTopCandidatesPerEvent.Fill( jetCollBin, nTopCands )
             self.numberOfTopCandidatesPerEventMatched.Fill( jetCollBin, nTopCandidates[jetColl] )
             jetCollBin+=1
-            
+            if ( nTopCandidates[jetColl] == 2 ) :
+                self.histosdRGenTops2Cand[jetColl].Fill( deltaR(etaTop0, phiTop0, etaTop1, phiTop1) )
+                self.histosPt2FoundTops[jetColl].Fill( ptTop0 )
+                self.histosPt2FoundTops[jetColl].Fill( ptTop1 )
+                self.histosPtFoundTop1VsFoundTop0[jetColl].Fill( ptTop0, ptTop1)
+                
+            elif ( nTopCandidates[jetColl] == 1 )  :
+                self.histosdRGenTops1Cand[jetColl].Fill( deltaR(etaTop0, phiTop0, etaTop1, phiTop1) )
+                if ( deltaR( etaTop0, phiTop0, etaTopCands[jetColl][0], phiTopCands[jetColl][0] < 0.4 ) ) : #top 0 has been found
+                    self.histosPt1MissedTop[jetColl].Fill( ptTop1 )
+                    self.histosPt1FoundTop[jetColl].Fill( ptTop0 )
+                    self.histosPt1MissedTopVs1FoundTop[jetColl].Fill(ptTop0, ptTop1)
+                else :
+                    self.histosPt1MissedTop[jetColl].Fill( ptTop0 )
+                    self.histosPt1FoundTop[jetColl].Fill( ptTop1 )
+                    self.histosPt1MissedTopVs1FoundTop[jetColl].Fill(ptTop1, ptTop0)
+                
+            else :
+                self.histosdRGenTops0Cand[jetColl].Fill( deltaR(etaTop0, phiTop0, etaTop1, phiTop1) )
+                self.histosPt2MissedTops[jetColl].Fill(ptTop0)
+                self.histosPt2MissedTops[jetColl].Fill(ptTop1)
+                self.histosPtMissedTop1VsMissedTop0[jetColl].Fill(ptTop1, ptTop0)
+
+     
         ################################################
 ##         ##LOOP OVER BTAGGERS FOR BTAGS / Gen TOP      ##
 ##         ################################################
@@ -349,28 +437,39 @@ class TopCandidateAnalyzer( TopTupleReader ): # maybe could inherit from reclust
             histo.Write( histo.GetName() )
             
         for jetColl in self.listOfJetCollections :           
-     #QCD       self.histosPtRatioVsPtGen[jetColl].Write()
-     #QCD       self.histosRecoPtVsMatchedPt[jetColl].Write()
-     #QCD       self.histosdRjetGenTop[jetColl].Write()
+            self.histosPtRatioVsPtGen[jetColl].Write()
+            self.histosRecoPtVsMatchedPt[jetColl].Write()
+            self.histosdRjetGenTop[jetColl].Write()
             self.nConstituentsInTopCandidates[jetColl].Write()
             self.massOfConstituents[jetColl].Write()
             self.ptOfConstituents[jetColl].Write()
             self.invMassClosestToW[jetColl].Write()
             self.hepInvMass2DPlot[jetColl].Write()
             self.twoMOverPt[jetColl].Write()
+            self.histosdRGenTops2Cand[jetColl].Write()
+            self.histosdRGenTops1Cand[jetColl].Write()
+            self.histosdRGenTops0Cand[jetColl].Write()
+            self.histosPt2FoundTops[jetColl].Write()
+            self.histosPtFoundTop1VsFoundTop0[jetColl].Write()
+            self.histosPt1MissedTop[jetColl].Write()            
+            self.histosPt1FoundTop[jetColl].Write()             
+            self.histosPt1MissedTopVs1FoundTop[jetColl].Write() 
+            self.histosPt2MissedTops[jetColl].Write()           
+            self.histosPtMissedTop1VsMissedTop0[jetColl].Write()
+            
             
             for tagger in self.listOfBTagsAlgos :
-    #QCD            self.numberOfTopMatchedVsBTagNotTopMatchedLargedR[jetColl +'_'+ tagger].Write()
-    #QCD            self.numberOfTopMatchedVsBTagNotTopMatchedSmalldR[jetColl +'_'+ tagger].Write()
+                self.numberOfTopMatchedVsBTagNotTopMatchedLargedR[jetColl +'_'+ tagger].Write()
+                self.numberOfTopMatchedVsBTagNotTopMatchedSmalldR[jetColl +'_'+ tagger].Write()
                 self.massOfConstituentsBTagged[jetColl +'_'+ tagger].Write()
                 self.ptOfConstituentsBTagged[jetColl +'_'+ tagger].Write()
-    #QCD            self.dRBTaggedInTopGenB[jetColl+'_'+tagger].Write()
-    #QCD            self.ptBTaggedInTopVsGenB[jetColl+'_'+tagger].Write()
-    #QCD            self.massOfConstituentsMatchedBTagged[jetColl+'_'+tagger].Write()
-    #QCD            self.dRTopCandidatesBTags[jetColl+'_'+tagger].Write()
+                self.dRBTaggedInTopGenB[jetColl+'_'+tagger].Write()
+                self.ptBTaggedInTopVsGenB[jetColl+'_'+tagger].Write()
+                self.massOfConstituentsMatchedBTagged[jetColl+'_'+tagger].Write()
+                self.dRTopCandidatesBTags[jetColl+'_'+tagger].Write()
         
         for tagger in self.listOfBTagsAlgos :
-          #QCD  self.histosdRBTagGenTop[tagger].Write()
+            self.histosdRBTagGenTop[tagger].Write()
             self.numberOfConstituentsBTagged[tagger].Write()
             
     def endLoop(self):#should called before write

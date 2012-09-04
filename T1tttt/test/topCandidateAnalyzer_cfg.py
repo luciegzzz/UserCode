@@ -2,13 +2,18 @@ import copy
 import CMGTools.RootTools.fwlite.Config as cfg
 
 from   CMGTools.H2TauTau.proto.samples.getFiles import getFiles
-files = getFiles('/TTJets_TuneZ2star_8TeV-madgraph-tauola/Summer12-PU_S7_START52_V9-v1/AODSIM/V5/PAT_CMG_V5_4_0_NewType1MET/','cmgtools', 'cmgTuple_.*root')[:1]
+#files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronic_.*root')[:1]
+#files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronicPUIDFullMedium_.*root')[:1]
+#files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronicPUIDSimpleMedium_.*root')[:1]
+#files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronicMatchingToGenJets_.*root')[:1]
+
 
 ana = cfg.Analyzer(
     'TopCandidateAnalyzer',
     verbose = False,
+    jetMassParametersFile = 'JetMassAnalyzerT2tt/T2tt_1/JetMassAnalyzer/fitParameters.txt',
    # jetMassParametersFile = 'JetMassAnalyzer300_400/TTJets/JetMassAnalyzer/fitParameters.txt',
-    jetMassParametersFile = 'JetMassAnalyzer600_700/TTJets/JetMassAnalyzer/fitParameters.txt',
+   # jetMassParametersFile = 'JetMassAnalyzer600_700/TTJets/JetMassAnalyzer/fitParameters.txt',
    # jetMassParametersFile = 'JetMassAnalyzer900_1000/TTJets/JetMassAnalyzer/fitParameters.txt',
     jetCollections = {
     'aktRecluster0p7Hadronic':0.7,
@@ -52,21 +57,38 @@ ana = cfg.Analyzer(
     )
 
 ##private sample
-BoostedTTJets = cfg.MCComponent(
-    name = 'TTJets',
-    # files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic300_400.root',
-    #  files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic600_700.root',
-    #  files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic900_1000.root',
-     files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_15_3000.root',
-    #  files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_600_700.root',
-    #  files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_900_1000.root',
- 
+T2tt = cfg.MCComponent(
+    name = 'T2tt',
+    files = files,
+#    files = '/data/lucieg/boostedTops/topTupleAllHadronic300_400.root',
     xSection = 1., 
     nGenEvents = 1,
     triggers = [],
     effCorrFactor = 1 )
 
-selectedComponents =  [BoostedTTJets]
+## T2ttPUID = cfg.MCComponent(
+##     name = 'T2ttPUID',
+##     files = files2,
+##     xSection = 1., 
+##     nGenEvents = 1,
+##     triggers = [],
+##     effCorrFactor = 1 )
+
+TTJets = cfg.MCComponent(
+    name = 'TTJets',
+    files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_300_400.root',
+    #  files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic600_700.root',
+    #  files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic900_1000.root',
+    # files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_15_3000.root',
+    #  files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_600_700.root',
+    #  files = '/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_900_1000.root',
+    xSection = 1., 
+    nGenEvents = 1,
+    triggers = [],
+    effCorrFactor = 1 )
+
+
+selectedComponents =  [T2tt, TTJets]
 
 sequence = cfg.Sequence( [
     ana
@@ -75,6 +97,7 @@ sequence = cfg.Sequence( [
 config = cfg.Config( components = selectedComponents,
                      sequence = sequence )
 
-BoostedTTJets.splitFactor = 1
+T2tt.splitFactor = 1
+TTJets.splitFactor = 1
 
 

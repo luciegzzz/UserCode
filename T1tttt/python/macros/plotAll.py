@@ -34,7 +34,7 @@ if ( os.path.isdir( outputDirName ) == 0 ):
 
 ##ROOT
 from ROOT import gROOT, TFile,  TLegend, gStyle, TCanvas, TGraphAsymmErrors, TMultiGraph
-import ROOT
+
 from CMGTools.RootTools.Style import *
 
 gROOT.Macro( os.path.expanduser( '~/rootlogon.C' ) )

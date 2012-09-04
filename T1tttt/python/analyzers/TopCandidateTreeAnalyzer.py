@@ -3,7 +3,7 @@ from CMGTools.RootTools.analyzers.TreeAnalyzerNumpy import TreeAnalyzerNumpy
 from CMGTools.RootTools.analyzers.GenParticleAnalyzer import GenParticleAnalyzer
 from Lucie.T1tttt.analyzers.TopTupleReader import TopTupleReader
 from CMGTools.RootTools.fwlite.AutoHandle import AutoHandle
-from CMGTools.RootTools.physicsobjects.PhysicsObjects import GenJet, Jet, RecoJet
+from Lucie.T1tttt.physicsobjects.PhysicsObjects import GenJet, Jet, RecoJet
 from CMGTools.RootTools.physicsobjects.PileUpSummaryInfo import PileUpSummaryInfo
 from CMGTools.H2TauTau.proto.analyzers.ntuple import *
 from CMGTools.RootTools.utils.DeltaR import deltaR
@@ -40,7 +40,7 @@ class TopCandidateTreeAnalyzer( TreeAnalyzerNumpy, GenParticleAnalyzer ): # mayb
         tr = self.tree
         event.jetsAlgos       = {}
 
-        massTopCandidates        = dict.fromkeys(self.listOfJetCollections,[])
+       # massTopCandidates        = dict.fromkeys(self.listOfJetCollections,[])
          
         for jetColl in self.listOfJetCollections :
             

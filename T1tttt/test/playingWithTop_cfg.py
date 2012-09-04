@@ -13,11 +13,11 @@ process.source = datasetToSource(
    )
 
 
-## process.source.fileNames = cms.untracked.vstring('file:/data/lucieg/boostedTops/NoPU/cmgTuple_QCD_300_400.root')
+process.source.fileNames = cms.untracked.vstring('file:/data/lucieg/boostedTops/NoPU/cmgTuple_300_400GeV.root')
 ## process.source.fileNames = cms.untracked.vstring('file:/data/lucieg/boostedTops/NoPU/cmgTuple_QCD_600_700.root')
-process.source.fileNames = cms.untracked.vstring('file:/data/lucieg/boostedTops/NoPU/cmgTuple_QCD_15_3000.root')
-## process.source.fileNames = cms.untracked.vstring('file:/data/lucieg/boostedTops/NoPU/cmgTuple_QCD_15_3000.root')
-#process.source.fileNames = cms.untracked.vstring('file:test.root')
+##process.source.fileNames = cms.untracked.vstring('file:F49547B1-8AE1-E111-9D21-001EC9B215E2.root')
+##process.source.fileNames = cms.untracked.vstring('file:/data/lucieg/boostedTops/NoPU/cmgTuple_QCD_15_3000.root')
+##process.source.fileNames = cms.untracked.vstring('/store/cmst3/user/lucieg/CMG/T2tt/TEST/cmgTuple_0.root')
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
@@ -38,15 +38,16 @@ process.pAllHadronic = cms.Path(
 ########################
 process.outAllHadronic = cms.OutputModule(
     "PoolOutputModule",
-##    fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_300_400.root'),
+    fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_300_400.root'),
 ##    fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_600_700.root'),
 ##     fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_900_1000.root'),
-     fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_15_3000.root'),
+##     fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/topTupleAllHadronic_QCD_15_3000.root'),
+##     fileName = cms.untracked.string('topTupleAllHadronicMatchingToGenJets.root'),
  
     SelectEvents   = cms.untracked.PSet( SelectEvents = cms.vstring('pAllHadronic') ),
     dropMetaData = cms.untracked.string('PRIOR'),
     outputCommands = cms.untracked.vstring(
-    'keep *_*_*_PAT',
+  #  'keep *_*_*_PAT',
     'keep *'
     #'keep recoJets_*_*_*'
     )
