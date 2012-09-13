@@ -2,8 +2,7 @@ import copy
 import CMGTools.RootTools.fwlite.Config as cfg
 
 from   CMGTools.H2TauTau.proto.samples.getFiles import getFiles
-#files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronic_.*root')[:1]
-files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronicPUIDFullMedium_.*root')[:1]
+files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronic_.*root')[:1]
 
 
 ana = cfg.Analyzer(
