@@ -1,8 +1,8 @@
 # Auto generated configuration file
 # using: 
-# Revision: 1.372.2.3 
-# Source: /local/reps/CMSSW.admin/CMSSW/Configuration/PyReleaseValidation/python/ConfigBuilder.py,v 
-# with command line options: TTbar_Tauola_8TeV_cfi.py -s GEN,FASTSIM,HLT:GRun --pileup=2012_Startup_inTimeOnly --geometry DB --conditions=auto:startup --eventcontent=AODSIM --datatier GEN-SIM-DIGI-RECO -n 10 --no_exec
+# Revision: 1.381.2.7 
+# Source: /local/reps/CMSSW/CMSSW/Configuration/PyReleaseValidation/python/ConfigBuilder.py,v 
+# with command line options: TTbar_Tauola_8TeV_cfi.py -s GEN,FASTSIM,HLT:GRun --pileup=NoPileUp --geometry DB --conditions=auto:startup --eventcontent=AODSIM --datatier GEN-SIM-DIGI-RECO -n 10 --no_exec
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process('HLT')
@@ -23,7 +23,7 @@ process.load('HLTrigger.Configuration.HLT_GRun_Famos_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10000)
+    input = cms.untracked.int32(10)
 )
 
 # Input source
@@ -35,8 +35,8 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    version = cms.untracked.string('$Revision: 1.372.2.3 $'),
-    annotation = cms.untracked.string('TTbar_Tauola_8TeV_cfi.py nevts:100'),
+    version = cms.untracked.string('$Revision: 1.381.2.7 $'),
+    annotation = cms.untracked.string('TTbar_Tauola_8TeV_cfi.py nevts:10'),
     name = cms.untracked.string('PyReleaseValidation')
 )
 
@@ -45,9 +45,7 @@ process.configurationMetadata = cms.untracked.PSet(
 process.AODSIMoutput = cms.OutputModule("PoolOutputModule",
     eventAutoFlushCompressedSize = cms.untracked.int32(15728640),
     outputCommands = process.AODSIMEventContent.outputCommands,
-   # fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/TTbar_Tauola_8TeV_cfi_py_GEN_FASTSIM_HLT_NoPU_900_1000GeV.root'),
-  #  fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/TTbar_Tauola_8TeV_cfi_py_GEN_FASTSIM_HLT_NoPU_300_400GeV.root'),
-    fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/TTbar_Tauola_8TeV_cfi_py_GEN_FASTSIM_HLT_NoPU_600_700GeV_10K.root'),
+    fileName = cms.untracked.string('TTbar_Tauola_8TeV_cfi_py_GEN_FASTSIM_HLT.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
         dataTier = cms.untracked.string('GEN-SIM-DIGI-RECO')
@@ -56,9 +54,11 @@ process.AODSIMoutput = cms.OutputModule("PoolOutputModule",
         SelectEvents = cms.vstring('generation_step')
     )
 )
+
 # Additional output definition
 
 # Other statements
+process.genstepfilter.triggerConditions=cms.vstring("generation_step")
 process.famosSimHits.SimulateCalorimetry = True
 process.famosSimHits.SimulateTracking = True
 process.simulation = cms.Sequence(process.simulationWithFamos)
@@ -66,7 +66,8 @@ process.HLTEndSequence = cms.Sequence(process.reconstructionWithFamos)
 process.Realistic8TeVCollisionVtxSmearingParameters.type = cms.string("BetaFunc")
 process.famosSimHits.VertexGenerator = process.Realistic8TeVCollisionVtxSmearingParameters
 process.famosPileUp.VertexGenerator = process.Realistic8TeVCollisionVtxSmearingParameters
-process.GlobalTag.globaltag = 'START52_V9::All'
+from Configuration.AlCa.GlobalTag import GlobalTag
+process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:startup', '')
 
 process.generator = cms.EDFilter("Pythia6GeneratorFilter",
     ExternalDecays = cms.PSet(
@@ -111,9 +112,7 @@ process.generator = cms.EDFilter("Pythia6GeneratorFilter",
             'MSUB(81)  = 1     ! qqbar to QQbar', 
             'MSUB(82)  = 1     ! gg to QQbar', 
             'MSTP(7)   = 6     ! flavour = top', 
-            'PMAS(6,1) = 175.  ! top quark mass',
-	    'CKIN(3)=600.        ! minimum pt hat for hard interactions', ##change this to vary the boost
-            'CKIN(4)=700.        ! maximum pt hat for hard interactions'),
+            'PMAS(6,1) = 175.  ! top quark mass'),
         parameterSets = cms.vstring('pythiaUESettings', 
             'processParameters')
     )
@@ -134,3 +133,12 @@ process.schedule.extend([process.reconstruction,process.AODSIMoutput_step])
 for path in process.paths:
 	getattr(process,path)._seq = process.generator * getattr(process,path)._seq 
 
+# customisation of the process.
+
+# Automatic addition of the customisation function from HLTrigger.Configuration.customizeHLTforMC
+from HLTrigger.Configuration.customizeHLTforMC import customizeHLTforMC 
+
+#call to customisation function customizeHLTforMC imported from HLTrigger.Configuration.customizeHLTforMC
+process = customizeHLTforMC(process)
+
+# End of customisation functions

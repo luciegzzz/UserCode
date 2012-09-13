@@ -43,9 +43,12 @@ cmgPFJetSelCHSMatchedToGen = cms.EDProducer(
     bottomCollection = cms.InputTag("cmgPFJetSelCHS"),
     )
 
-inputJetCollection = 'cmgPFJetSelCHS' 
-#inputJetCollection = 'cmgPFJetSelCHSNoPU' 
-#inputJetCollection = 'cmgPFJetSelCHSMatchedToGen' 
+##################################
+#inputJetCollection = 'cmgPFJetSelCHS' 
+inputJetCollection = 'cmgPFJetSelCHSNoPU' 
+#inputJetCollection = 'cmgPFJetSelCHSMatchedToGen'
+#inputJetCollection = 'genJetSel'
+
 ###############
 ### anti kt ###
 ###############
@@ -147,8 +150,8 @@ caRecluster0p7Hadronic.rParam   = cms.double(0.7)
 
 messingWithJetsHadronicSequence = cms.Sequence(
     deltaRJetGenJet          +
-    cmgPFJetSelCHSMatchedToGen +
-   # cmgPFJetSelCHSNoPU       +
+   # cmgPFJetSelCHSMatchedToGen +
+    cmgPFJetSelCHSNoPU       +
     aktRecluster3p0Hadronic  +
     aktRecluster2p0Hadronic  +
     aktRecluster1p75Hadronic +
