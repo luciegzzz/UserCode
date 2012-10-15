@@ -55,7 +55,7 @@ class MergingTopCandidates : public edm::EDProducer {
   //Inputs
   edm::InputTag  inputTagJets0_    ;
   edm::InputTag  inputTagJets1_    ;
-
+  double         refMass_          ;
 };
 
 #endif
