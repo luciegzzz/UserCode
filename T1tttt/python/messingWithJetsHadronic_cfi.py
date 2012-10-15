@@ -13,9 +13,9 @@ from CMGTools.Common.skims.cmgPFJetSel_cfi import cmgPFJetSel
 ##################################
 
 #########playing with PU ID
-cmgPFJetSelCHSNoPU = cmgPFJetSel.clone(
-    src = 'cmgPFJetSelCHS',
-    cut = 'puId("simple") > 5'#'puId("full") > 5'#passPuJetId("full", PileupJetIdentifier::kMedium )' #does not work
+cmgPFJetSelNoPU = cmgPFJetSel.clone(
+    src = 'cmgPFJetSel',
+    cut = 'puId("full") > 3'#'puId("full") > 5'#passPuJetId("full", PileupJetIdentifier::kMedium )' #does not work
     )
 
 #########playing with gen jet matching
@@ -45,7 +45,7 @@ cmgPFJetSelCHSMatchedToGen = cms.EDProducer(
 
 ##################################
 #inputJetCollection = 'cmgPFJetSelCHS' 
-inputJetCollection = 'cmgPFJetSelCHSNoPU' 
+inputJetCollection = 'cmgPFJetSelNoPU' 
 #inputJetCollection = 'cmgPFJetSelCHSMatchedToGen'
 #inputJetCollection = 'genJetSel'
 
@@ -149,11 +149,11 @@ caRecluster0p7Hadronic          = caRecluster1p0Hadronic.clone()
 caRecluster0p7Hadronic.rParam   = cms.double(0.7)
 
 messingWithJetsHadronicSequence = cms.Sequence(
-    deltaRJetGenJet          +
+   # deltaRJetGenJet          +
    # cmgPFJetSelCHSMatchedToGen +
-    cmgPFJetSelCHSNoPU       +
-    aktRecluster3p0Hadronic  +
-    aktRecluster2p0Hadronic  +
+    cmgPFJetSelNoPU       +
+ ##    aktRecluster3p0Hadronic  +
+##     aktRecluster2p0Hadronic  +
     aktRecluster1p75Hadronic +
     aktRecluster1p5Hadronic  +
     aktRecluster1p25Hadronic +
@@ -161,8 +161,8 @@ messingWithJetsHadronicSequence = cms.Sequence(
     aktRecluster0p9Hadronic  +
     aktRecluster0p8Hadronic  +
     aktRecluster0p7Hadronic  +
-    ktRecluster3p0Hadronic   +
-    ktRecluster2p0Hadronic   +
+ ##    ktRecluster3p0Hadronic   +
+##     ktRecluster2p0Hadronic   +
     ktRecluster1p75Hadronic  +
     ktRecluster1p5Hadronic   +
     ktRecluster1p25Hadronic  +
@@ -170,8 +170,8 @@ messingWithJetsHadronicSequence = cms.Sequence(
     ktRecluster0p9Hadronic   +
     ktRecluster0p8Hadronic   +
     ktRecluster0p7Hadronic   +
-    caRecluster3p0Hadronic   +
-    caRecluster2p0Hadronic   +
+##     caRecluster3p0Hadronic   +
+##     caRecluster2p0Hadronic   +
     caRecluster1p75Hadronic  +
     caRecluster1p5Hadronic   +
     caRecluster1p25Hadronic  +

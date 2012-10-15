@@ -14,13 +14,13 @@ from CMGTools.Production.datasetToSource import *
 ##    )
 process.source = datasetToSource(
    'cmgtools',
-   ## '/TTJets_TuneZ2star_8TeV-madgraph-tauola/Summer12-PU_S7_START52_V9-v1/AODSIM/V5/PAT_CMG_V5_5_1/',
-   
+  # '/TTJets_TuneZ2star_8TeV-madgraph-tauola/Summer12-PU_S7_START52_V9-v1/AODSIM/V5_B/PAT_CMG_V5_6_0_B',
+  # '/QCD_HT-1000ToInf_TuneZ2star_8TeV-madgraph-pythia6/Summer12-PU_S7_START52_V9-v1/AODSIM/V5_B/PAT_CMG_V5_6_0_B/',
+   '/SMS-T2tt_FineBin_Mstop-225to1200_mLSP-0to1000_8TeV-Pythia6Z/Summer12-START52_V9_FSIM-v1/AODSIM/V5_B/PAT_CMG_V5_6_0_B',
    'cmgTuple_.*root'
    )
 
-#process.source.fileNames = cms.untracked.vstring('file:/data/lucieg/boostedTops/NoPU/533/cmgTuple_TTbar_300_400.root')
-
+#process.source.fileNames = process.source.fileNames[1:2]
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 
@@ -30,13 +30,13 @@ process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 process.load('Lucie.T1tttt.playingWithTop_cff')
 process.load('Lucie.T1tttt.skimmingTopTuple_cfi')
-process.load('Lucie.T1tttt.buildTopCandidatesCollection_cfi')
+process.load('Lucie.T1tttt.mergingTopCandidates_cfi')
 
 
 process.pAllHadronic = cms.Path(
-    process.playingWithTopAllHadronic +
-    process.skimmingTopTupleSequence  +
-    process.buildTopCandidatesCollection  
+    process.playingWithTopAllHadronic + #select all hadr + cluster jets
+    process.skimmingTopTupleSequence  + #select top candidates
+    process.mergingTopCandidates  #merge top cands 
     )
 
 
@@ -45,15 +45,19 @@ process.pAllHadronic = cms.Path(
 ########################
 process.outAllHadronic = cms.OutputModule(
     "PoolOutputModule",
- #   fileName = cms.untracked.string('/data/lucieg/boostedTops/NoPU/533/topTupleAllHadronic_T2tt.root'),
-    fileName = cms.untracked.string('test.root'),
+    fileName = cms.untracked.string('topTuple.root'),
+ #   fileName = cms.untracked.string('/data/lucieg/boostedTops/SAMPLES/topTuple_1.root'),
     SelectEvents   = cms.untracked.PSet( SelectEvents = cms.vstring('pAllHadronic') ),
     dropMetaData = cms.untracked.string('PRIOR'),
     outputCommands = cms.untracked.vstring(
     'keep *_*_*_PAT',
-    'keep *_buildTopCandidatesAkt0p71p75_*_*',
-    'keep *_buildTopCandidatesKt0p71p75_*_*',
-    'keep *_buildTopCandidatesCa0p71p75_*_*'
+    'keep *_topCandidatesAkt0p71p75_*_*',
+    'keep *_topCandidatesKt0p71p75_*_*',
+    'keep *_topCandidatesCa0p71p75_*_*',
+    'keep recoBasicJets_aktRecluster*_*_*',
+    'keep recoBasicJets_ktRecluster*_*_*',
+    'keep recoBasicJets_caRecluster*_*_*',
+    'keep cmgPFJets_cmgPFJetSelNoPU_*_*'
     )
     )
 

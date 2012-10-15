@@ -50,9 +50,14 @@ for key in tFile.GetListOfKeys():
     c0 = TCanvas( name )
     c0.cd()
     if ( key.GetClassName() == 'TH2F' ) :
-        tFile.Get( name ).Draw("colz")
+       tFile.Get( name ).Draw("colz")
     elif ( key.GetClassName() == 'TH2I' ) :
-        tFile.Get( name ).Draw("colz,TEXT")
+       tFile.Get( name ).Draw("colz,TEXT")
+    elif ( key.GetClassName() == 'TTree' ) :
+        for leaf in tFile.Get( name ).GetListOfLeaves():
+            nameForFile = leaf.GetName()
+            tFile.Get( name ).Draw( leaf.GetName() )
+            c0.SaveAs( outputDirName + '/' + nameForFile + '.png' )
     else :
         tFile.Get( name ).Draw()
     c0.SaveAs( outputDirName + '/' + name + '.png' )

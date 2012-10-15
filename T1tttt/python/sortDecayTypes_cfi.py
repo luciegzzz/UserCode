@@ -8,19 +8,29 @@ from CMGTools.Common.skims.cmgCandCount_cfi import cmgCandCount
 ##  select hadronic decays     ##
 #################################
 
-genParticlesFromW = cms.EDProducer(
+topDaughters = cms.EDProducer(
    "GenParticlePruner",
    src = cms.InputTag("genParticlesPruned"),
    select = cms.vstring(
        "drop  *  ",
-       "keep++ pdgId =   24",##W direct daughters 
-       "keep++ pdgId =   -24",
+       "keep++ pdgId =   6",##top daughters 
+       "keep++ pdgId =   -6",
+       )
+)
+
+genParticlesFromW = cms.EDProducer(
+   "GenParticlePruner",
+   src = cms.InputTag("topDaughters"),
+   select = cms.vstring(
+       "drop  *  ",
+       "keep+ pdgId =   24",##W  daughters 
+       "keep+ pdgId =   -24",
        )
 )
 
 leptonicDecay = cmgCandSel.clone(
     src = 'genParticlesFromW',
-    cut = 'abs(pdgId()) == 12 || abs(pdgId()) == 14 || abs(pdgId()) == 16 '
+    cut = '(abs(pdgId()) == 12 || abs(pdgId()) == 14 || abs(pdgId()) == 16) '
     )
 
 countLeptonicDecay = cmgCandCount.clone(

@@ -2,8 +2,8 @@ import copy
 import CMGTools.RootTools.fwlite.Config as cfg
 
 from   CMGTools.H2TauTau.proto.samples.getFiles import getFiles
-files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronic_.*root')[:1]
-
+#files = getFiles('/T2tt/TEST/TopTuple/','lucieg', 'topTupleAllHadronic_.*root')#[:1]
+files = '/data/lucieg/boostedTops/SAMPLES/topTuple_1.root'
 
 ana = cfg.Analyzer(
     'JetMassAnalyzer',
@@ -18,8 +18,8 @@ ana = cfg.Analyzer(
     'aktRecluster1p25Hadronic':1.25,
     'aktRecluster1p5Hadronic':1.5,
     'aktRecluster1p75Hadronic':1.75,
-    'aktRecluster2p0Hadronic':2.0,
-    'aktRecluster3p0Hadronic':3.0,
+   ##  'aktRecluster2p0Hadronic':2.0,
+##     'aktRecluster3p0Hadronic':3.0,
     'ktRecluster0p7Hadronic':0.7,
     'ktRecluster0p8Hadronic':0.8,
     'ktRecluster0p9Hadronic':0.9,
@@ -27,8 +27,8 @@ ana = cfg.Analyzer(
     'ktRecluster1p25Hadronic':1.25,
     'ktRecluster1p5Hadronic':1.5,
     'ktRecluster1p75Hadronic':1.75,
-    'ktRecluster2p0Hadronic':2.0,
-    'ktRecluster3p0Hadronic':3.0,
+  ##   'ktRecluster2p0Hadronic':2.0,
+##     'ktRecluster3p0Hadronic':3.0,
     'caRecluster0p7Hadronic':0.7,
     'caRecluster0p8Hadronic':0.8,
     'caRecluster0p9Hadronic':0.9,
@@ -36,8 +36,8 @@ ana = cfg.Analyzer(
     'caRecluster1p25Hadronic':1.25,
     'caRecluster1p5Hadronic':1.5,
     'caRecluster1p75Hadronic':1.75,
-    'caRecluster2p0Hadronic':2.0,
-    'caRecluster3p0Hadronic':3.0
+ ##    'caRecluster2p0Hadronic':2.0,
+##     'caRecluster3p0Hadronic':3.0
             },
     listOfBTagsAlgos = []
     )

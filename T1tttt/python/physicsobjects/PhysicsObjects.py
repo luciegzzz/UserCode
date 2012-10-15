@@ -11,6 +11,7 @@ def printOut(objects):
 from CMGTools.RootTools.physicsobjects.PhysicsObject import PhysicsObject
 from CMGTools.RootTools.physicsobjects.TriggerObject import TriggerObject
 from Lucie.T1tttt.physicsobjects.Jet import Jet, GenJet, RecoJet
+from Lucie.T1tttt.physicsobjects.Met import Met
 from CMGTools.RootTools.physicsobjects.Lepton import Lepton
 from CMGTools.RootTools.physicsobjects.Photon import Photon
 from CMGTools.RootTools.physicsobjects.Muon import Muon
