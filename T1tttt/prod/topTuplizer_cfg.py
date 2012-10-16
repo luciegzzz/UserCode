@@ -50,14 +50,19 @@ process.outAllHadronic = cms.OutputModule(
     SelectEvents   = cms.untracked.PSet( SelectEvents = cms.vstring('pAllHadronic') ),
     dropMetaData = cms.untracked.string('PRIOR'),
     outputCommands = cms.untracked.vstring(
-    'keep *_*_*_PAT',
+    'drop *',
     'keep *_topCandidatesAkt0p71p75_*_*',
     'keep *_topCandidatesKt0p71p75_*_*',
     'keep *_topCandidatesCa0p71p75_*_*',
     'keep recoBasicJets_aktRecluster*_*_*',
-    'keep recoBasicJets_ktRecluster*_*_*',
-    'keep recoBasicJets_caRecluster*_*_*',
-    'keep cmgPFJets_cmgPFJetSelNoPU_*_*'
+    'keep cmgPFJets_*_*_*',
+    'keep *_cmgPFMET*_*_*',
+    'keep *_cmgElectronSel_*_*',
+    'keep *_cmgMuonSel_*_*',
+    'keep *_cmgPhotonSel_*_*',
+    'keep *_genJetSel_*_*',
+    'keep *_cmgTriggerObjectSel_*_*',
+    'keep *_genParticlesPruned_*_*',
     )
     )
 
