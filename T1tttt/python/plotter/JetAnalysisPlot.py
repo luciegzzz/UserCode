@@ -17,7 +17,7 @@ class JetAnalyzerPlot( AnalysisDataMC ):
     def __init__(self, varName, directory, selComps, weights,
                  bins = None, xmin = None, xmax=None, cut = '',
                  weight='1',  treeName=None, analyzerName=None):
-        '''Data/MC plotter adapted to the H->tau tau analysis.
+        '''Data/MC plotter adapted to Jet tau analysis.
         The plotter takes a collection of trees in input. The trees are found according
         to the dictionary of selected components selComps.
         The global weighting information for each component is read from the weights dictionary.

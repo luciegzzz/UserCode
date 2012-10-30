@@ -1,4 +1,4 @@
-import os
+import os, re
 from fnmatch import fnmatch
 import copy
 
@@ -8,6 +8,8 @@ from CMGTools.RootTools.DataMC.AnalysisDataMCPlot import AnalysisDataMC
 from CMGTools.RootTools.fwlite.Weight import Weight
 from CMGTools.RootTools.fwlite.Weight import printWeights
 from CMGTools.RootTools.Style import *
+
+from math import ceil
 
 class MyAnalysisDataMC( AnalysisDataMC ):
 
@@ -36,11 +38,8 @@ class MyAnalysisDataMC( AnalysisDataMC ):
         self.bins = bins
         self.xmin = xmin
         self.xmax = xmax
-                
         super(MyAnalysisDataMC, self).__init__(varName, directory, weights)
-
         self.legendBorders = 0.651, 0.463, 0.895, 0.892
-
 
 
     def _BuildHistogram(self, tree, comp, compName, varName, cut, layer ):
@@ -49,11 +48,14 @@ class MyAnalysisDataMC( AnalysisDataMC ):
         print 'filling', compName
         if not hasattr( comp, 'tree'):
             comp.tree = tree
+        massPoint = self._GetMassPoint(tree)
                     
         histName = '_'.join( [compName, self.varName] )
 
         hist = None
-        hist = TH1F( histName, '', self.bins, self.xmin, self.xmax )
+        hist = TH1F( histName, self.varName , self.bins, self.xmin, self.xmax )
+        hist.SetXTitle(self.varName)
+        hist.SetYTitle("# events, rescaled")
         hist.Sumw2()
         weight = self.eventWeight
         if tree == None:
@@ -62,10 +64,31 @@ class MyAnalysisDataMC( AnalysisDataMC ):
         tree.Project( histName, var, '{cut}'.format(cut=cut) )
         hist.SetStats(0)
         componentName = compName
-        legendLine = compName
+       # legendLine = re.sub('(_[0-9]?)', '_', compName+massPoint)
+        legendLine =  compName+massPoint
         self.AddHistogram( componentName, hist, layer, legendLine)
         self.Hist(componentName).realName = comp.realName
         self.Hist(componentName).stack = False
+
+    def _GetMassPoint(self, tree ):
+        '''Get mass point for T2tt components'''
+
+        massPoint = ""
+     
+        histStop = None
+        histStop = TH1F( "histStop", '', 200, 0., 1000.)
+        stopMass = 0
+        tree.Project( "histStop", "stopMass" )
+
+        histLSP = None
+        histLSP = TH1F( "histLSP", '', 200, 0., 1000.)
+        LSPMass = 0
+        tree.Project( "histLSP", "LSPMass" )
+       
+        if (ceil(histStop.GetMean()) > 0. and ceil(histLSP.GetMean()) > 0.):
+            massPoint = "_"+str( int(ceil(histStop.GetMean()) ))+"_"+ str( int(ceil(histLSP.GetMean())) )
+        return massPoint
+        
 
 
     def _ReadHistograms(self, directory):
@@ -90,11 +113,13 @@ class MyAnalysisDataMC( AnalysisDataMC ):
 
     def _InitPrefs(self):
         '''Definine preferences for each component'''
+        sCyan    = Style(markerColor=7,fillColor=7)
+        styleSet = [sBlack, sBlue, sGreen, sYellow, sViolet, sHTT_QCD, sHTT_DYJets, sHTT_WJets, sHTT_TTJets,  sCyan]
+        
         self.histPref = {}
-        self.histPref['T2tt*'] = {'style':sBlackSquares, 'layer':4}
-        self.histPref['TTJets*'] = {'style':sBlue, 'layer':2} 
-        self.histPref['QCD*'] = {'style':sRed, 'layer':1}
-        self.histPref['WJets*'] = {'style':sYellow, 'layer':3}  
+        for i in range(0, 10):
+            self.histPref['T2tt_'+str(i)] = {'style':nextStyle(styleSet), 'layer':i+1}
+        self.histPref['QCD*'] = {'style':sRed, 'layer':0}
        
 
 def filterComps(comps, filterString=None): 
@@ -176,11 +201,10 @@ if __name__ == '__main__':
 
     selComps, weights = prepareComponents(anaDir, cfg.config)
     filteredComps = filterComps(selComps, options.filter)
-
-    print options.hist
     #can, pad, padr = buildCanvas()
     plot = MyAnalysisDataMC( options.hist, anaDir, filteredComps, weights, NBINS, XMIN, XMAX, options.cut,
                        weight=weight )
     #plot.DrawStack('HIST')
     plot.Draw()
+    #plot.DrawRatio()
     gPad.SaveAs(options.hist + '.png')
