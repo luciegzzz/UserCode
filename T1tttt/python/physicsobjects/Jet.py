@@ -18,3 +18,5 @@ class GenJet( PhysicsObject):
 class RecoJet( PhysicsObject):
     pass
 
+class L1( PhysicsObject):
+    pass

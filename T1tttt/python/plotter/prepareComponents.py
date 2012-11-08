@@ -26,17 +26,17 @@ def prepareComponents(dir, config):
     ## for comp in newSelComps.values() :
 ##         print comp.name,comp.getWeight()
     # attach the corresponding tree to each component
-    def attachTree(comps):
-        for comp in comps.values():
-            fileName = '/'.join([ dir,
-                                  comp.dir,
-                                  'Analysis',
-                                  'Analysis_tree.root'])
-            tree = TChain('Analysis_tree.root')
-            tree.Add(fileName)
-            comp.tree = tree
+  ##   def attachTree(comps):
+##         for comp in comps.values():
+##             fileName = '/'.join([ dir,
+##                                   comp.dir,
+##                                   'Analysis',
+##                                   'Analysis_tree.root'])
+##             tree = TChain('Analysis_tree.root')
+##             tree.Add(fileName)
+##             comp.tree = tree
     
-    attachTree(newSelComps)
+##     attachTree(newSelComps)
 
 
     return newSelComps, weights

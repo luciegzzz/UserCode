@@ -7,6 +7,7 @@ from CMGTools.RootTools.statistics.Counter import Counter, Counters
 from CMGTools.RootTools.fwlite.AutoHandle import AutoHandle
 from CMGTools.RootTools.utils.DeltaR import deltaR
 from CMGTools.RootTools.fwlite.Analyzer import Analyzer
+from CMGTools.RootTools.fwlite.Output import Output
 from Lucie.T1tttt.physicsobjects.PhysicsObjects import GenJet, Jet, RecoJet, Met
 from CMGTools.H2TauTau.proto.analyzers.ntuple import *
 
@@ -15,47 +16,14 @@ from ROOT import TH1F, TH2F, TH1I, TH2I, TFile, TF1, TFitResultPtr, TGraphErrors
 from math import sqrt
 from array import array
 
-class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ): 
+class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer, Output ): 
     '''Makes plots towards analysis.'''
 
     def __init__( self, cfg_ana, cfg_comp, looperName ):
         self.listOfTopCandidates       = cfg_ana.listOfTopCandidates
         self.listOfBtagsAlgos          = cfg_ana.listOfBtagsAlgos
         super(Analysis,self).__init__( cfg_ana, cfg_comp, looperName )
-       
-    def declareVariables(self):
-        tr = self.tree
-        for algo in self.listOfTopCandidates :
-            var( tr, 'numberOfTopCandidates_' + algo,      int )
-        for algoBtag in self.listOfBtagsAlgos :
-            var( tr, 'numberOfBTags_' + algoBtag,          int )
-        for i in range(0, 20) :
-            var( tr, 'jetMultiplicity_' + str(10*i),       int )
-        var( tr, 'met'                     , float )
-        var( tr, 'fourthJetPt'             , float )
-        var( tr, 'secondJetPt'             , float )
-        var( tr, 'genTopHighPt'            , float )
-        var( tr, 'genTopLowPt'             , float )
-        var( tr, 'genTopHighPtMinusLowPt'  , float )
-        var( tr, 'topCandsHighPtMinusLowPt', float )
-        var( tr, 'genTopHighPtPhi'         , float )
-        var( tr, 'genTopHighPtEta'         , float )
-        var( tr, 'genTopLowPtPhi'          , float )
-        var( tr, 'genTopLowPtEta'          , float )
-        var( tr, 'genTopsDeltaPhi'         , float )
-        var( tr, 'genTopsDeltaEta'         , float )
-        var( tr, 'genTopsDeltaR'           , float )
-        var( tr, 'minDeltaPhiMETJets'      , float )
-        var( tr, 'deltaPhiMETHighPtTopCand', float )
-        var( tr, 'deltaPhiMETLowPtTopCand' , float )
-        var( tr, 'topCandsdeltaPhi'        , float )
-        var( tr, 'topCandsdeltaEta'        , float )
-        var( tr, 'topCandsdeltaR'          , float )
-        
-    def beginLoop(self):
-        super(Analysis,self).beginLoop()
-        #self.file = TFile ('/'.join ([self.dirName, 'output.root']),
-        #                         'recreate')
+
         #helpers
         self.nTotEvents = 0
 
@@ -67,11 +35,9 @@ class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ):
        
         #T2tt specific : #jets in stop / LSP mass plane  -- plot requiring full plane...
         self.jetMultiplicityStopLSPMassPlane = \
-        TH2F("jetMultiplicityStopLSPMassPlane","average jet multiplicity (>30GeV) in (stop, LSP) mass plane", 39, 225., 1200., 48, 0., 1200 )
+        TH2F("jetMultiplicityStopLSPMassPlane","average jet multiplicity (>30GeV) in (stop, LSP) mass plane", 80, 0., 800., 80, 0., 800 )
         self.StopLSPMassPlane = \
-        TH2F("StopLSPMassPlane","(stop, LSP) mass plane", 39, 225., 1200., 48, 0., 1200 )
-        self.medianPtStopLSPMassPlane = \
-        TH2F("medianGenTopsPtStopLSPMassPlane","median gen tops pt in (stop, LSP) mass plane", 39, 225., 1200., 48, 0., 1200 )
+        TH2F("StopLSPMassPlane","(stop, LSP) mass plane", 80, 0., 800., 80, 0., 800 )
         
         #jets in MET / sumPt plane
         self.jetMultiplicityMETSumPtPlane = \
@@ -81,12 +47,6 @@ class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ):
         self.METSumPtPlane = \
         TH2F("METSumPtPlane","(MET, sumPt) plane", 50, 0., 1000., 250, 0., 5000.)
        
-        #trigger -- plot requiring full plane...
-        self.effDiJetMet                   =  \
-        TH2F("effDiJetMet","expected efficiency for DiJetMET trigger ", 39, 225., 1200., 48, 0., 1200)
-        self.effQuadJet                    =  \
-        TH2F("effQuadJet","expected efficiency for QuadJet trigger ", 39, 225., 1200., 48, 0., 1200)
-     
         #gen level tops
         self.genTopsLowPtPhiVsHighPtPhi = \
         TH2F("genTopsLowPtPhiVsHighPtPhi", "gen top low pt phi vs gen top high pt phi", 62, -3.2, 3.2, 62, -3.2, 3.2 )
@@ -118,8 +78,6 @@ class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ):
             self.jetMultiplicityMETSumPtPlane,
             self.StopLSPMassPlane,
             self.METSumPtPlane,
-            self.effDiJetMet,
-            self.effQuadJet,
             self.genTopsLowPtPhiVsHighPtPhi,
             self.genTopsLowPtEtaVsHighPtEta,
             self.genTopsHighPtVsLowPt,
@@ -128,6 +86,52 @@ class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ):
             self.histos.append(self.topCandsLowPtPhiVsHighPtPhi[algo])
             self.histos.append(self.topCandsLowPtEtaVsHighPtEta[algo])
             self.histos.append(self.topCandsHighPtVsLowPt[algo])
+    
+       
+    def declareVariables(self):
+        tr = self.tree
+        for algo in self.listOfTopCandidates :
+            var( tr, 'numberOfTopCandidates_' + algo, int )
+            var( tr, 'deltaPhiMETHighPtTopCand'+algo, float )
+            var( tr, 'deltaPhiMETLowPtTopCand'+algo , float )
+            var( tr, 'topCandsHighPtMinusLowPt'+algo, float )
+            var( tr, 'topCandsdeltaPhi'+algo        , float )
+            var( tr, 'topCandsdeltaEta'+algo        , float )
+            var( tr, 'topCandsdeltaR'+algo          , float )
+     
+        for algoBtag in self.listOfBtagsAlgos :
+            var( tr, 'numberOfBTags_' + algoBtag,                  int )
+            for algo in self.listOfTopCandidates :
+                var( tr, 'mindRHighPtTopCandBtag'+algo+algoBtag,     float )
+                var( tr, 'mindRLowPtTopCandBtag'+algo+algoBtag,      float )
+                var( tr, 'highPtTopCandnBtagConst'+algo+algoBtag,    int   )
+                var( tr, 'lowPtTopCandnBtagConst'+algo+algoBtag,     int   )
+        for i in range(0, 20) :
+            var( tr, 'jetMultiplicity_' + str(10*i),       int )
+        var( tr, 'met'                     , float )
+        var( tr, 'sumEtOvernJets'          , float )
+        var( tr, 'fourthJetPt'             , float )
+        var( tr, 'secondJetPt'             , float )
+        var( tr, 'genTopHighPt'            , float )
+        var( tr, 'genTopLowPt'             , float )
+        var( tr, 'genTopHighPtMinusLowPt'  , float )
+        var( tr, 'genTopHighPtPhi'         , float )
+        var( tr, 'genTopHighPtEta'         , float )
+        var( tr, 'genTopLowPtPhi'          , float )
+        var( tr, 'genTopLowPtEta'          , float )
+        var( tr, 'genTopsDeltaPhi'         , float )
+        var( tr, 'genTopsDeltaEta'         , float )
+        var( tr, 'genTopsDeltaR'           , float )
+        var( tr, 'minDeltaPhiMETJets'      , float )
+        var( tr, 'stopMass'                , float )
+        var( tr, 'LSPMass'                 , float )
+        var( tr, 'highestBtaggerValue_csv',            float)
+        var( tr, 'nextToHighestBtaggerValue_csv',      float)
+        var( tr, 'nextToNextToHighestBtaggerValue_csv',float)
+        
+        
+    def beginLoop(self):
+        super(Analysis,self).beginLoop()
             
     def process(self, iEvent, event):
         self.nTotEvents+=1
@@ -150,30 +154,66 @@ class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ):
             topCands = []
             for topCand in event.topCandidates[algo] :
                 topCandCoor = {"pt": topCand.pt(), "eta": topCand.eta(), "phi":topCand.phi()}
+                
+                for tagger in self.listOfBtagsAlgos :
+                    topCandCoor["nBtagConst"+tagger] = 0
+                    for jet in topCand.getJetConstituents():
+                        if jet.getSelection('cuts_'+tagger):
+                            topCandCoor["nBtagConst"+tagger]+=1
+
                 topCands.append( topCandCoor )
+                        
             orderedTops = sorted(topCands, key=operator.itemgetter('pt'),reverse=True)
             #print event.iEv, algo, orderedTops
             if ( len(orderedTops) > 0):
-                fill( tr, 'deltaPhiMETHighPtTopCand', abs(orderedTops[0]["phi"] - event.met[0].phi()) )
+                fill( tr, 'deltaPhiMETHighPtTopCand'+algo, abs(orderedTops[0]["phi"] - event.met[0].phi()) )
+                for tagger in self.listOfBtagsAlgos :
+                    mindRTopBtag = 1000.
+                    for jet in event.stdJets :
+                        if jet.getSelection('cuts_'+tagger) :
+                            mindRTopBtag = min( mindRTopBtag, deltaR(orderedTops[0]["eta"], orderedTops[0]["phi"], jet.eta(), jet.phi()))
+                    fill( tr, 'mindRHighPtTopCandBtag'+algo+tagger, mindRTopBtag)
+                    fill( tr, 'highPtTopCandnBtagConst'+algo+tagger,  orderedTops[0]["nBtagConst"+tagger] )
+                    
                 if ( len(orderedTops) > 1):
-                    fill( tr, 'deltaPhiMETLowPtTopCand',  abs(orderedTops[1]["phi"] - event.met[0].phi()) )
-                    fill( tr, 'topCandsHighPtMinusLowPt', orderedTops[0]["pt"] - orderedTops[1]["pt"] ) 
-                    fill( tr, 'topCandsdeltaPhi', orderedTops[0]["phi"] - orderedTops[1]["phi"] ) 
-                    fill( tr, 'topCandsdeltaEta', orderedTops[0]["eta"] - orderedTops[1]["eta"] ) 
-                    fill( tr, 'topCandsdeltaR', deltaR(orderedTops[0]["eta"], orderedTops[0]["phi"], orderedTops[1]["eta"], orderedTops[1]["phi"] )) 
+                    fill( tr, 'deltaPhiMETLowPtTopCand'+algo,  abs(orderedTops[1]["phi"] - event.met[0].phi()) )
+                    fill( tr, 'topCandsHighPtMinusLowPt'+algo, orderedTops[0]["pt"] - orderedTops[1]["pt"] ) 
+                    fill( tr, 'topCandsdeltaPhi'+algo, orderedTops[0]["phi"] - orderedTops[1]["phi"] ) 
+                    fill( tr, 'topCandsdeltaEta'+algo, orderedTops[0]["eta"] - orderedTops[1]["eta"] ) 
+                    fill( tr, 'topCandsdeltaR'+algo, deltaR(orderedTops[0]["eta"], orderedTops[0]["phi"], orderedTops[1]["eta"], orderedTops[1]["phi"] ))
                     self.topCandsLowPtPhiVsHighPtPhi[algo].Fill( (orderedTops[1])["phi"], (orderedTops[0])["phi"] )
                     self.topCandsLowPtEtaVsHighPtEta[algo].Fill( (orderedTops[1])["eta"], (orderedTops[0])["eta"] )
                     self.topCandsHighPtVsLowPt[algo].Fill( (orderedTops[0])["pt"], (orderedTops[1])["pt"] )
-       
+                    for tagger in self.listOfBtagsAlgos :
+                        mindRTopBtag = 1000.
+                        for jet in event.stdJets :
+                            if jet.getSelection('cuts_'+tagger) :
+                                mindRTopBtag = min( mindRTopBtag, deltaR(orderedTops[1]["eta"], orderedTops[1]["phi"], jet.eta(), jet.phi()))
+                        fill( tr, 'mindRLowPtTopCandBtag'+algo+tagger, mindRTopBtag)
+                        fill( tr, 'lowPtTopCandnBtagConst'+algo+tagger,  orderedTops[1]["nBtagConst"+tagger] )
+                   
       
         #nbtags
         nBtags = dict.fromkeys(self.listOfBtagsAlgos,0)
+        
         for tagger in self.listOfBtagsAlgos :
             for jet in event.stdJets :
                 if jet.getSelection('cuts_'+tagger) :
                     nBtags[tagger]+=1
             fill( tr, 'numberOfBTags_' + tagger, nBtags[tagger]  )
 
+        csvValues = []
+        for jet in event.stdJets :
+            csvValues.append(jet.btag(6))
+        csvValues = sorted(csvValues, reverse = True)
+        if len(csvValues)>0:
+            fill( tr, 'highestBtaggerValue_csv',             csvValues[0])
+        if len(csvValues)>1:
+            fill( tr, 'nextToHighestBtaggerValue_csv' ,      csvValues[1])
+        if len(csvValues)>2:
+            fill( tr, 'nextToNextToHighestBtaggerValue_csv', csvValues[2])
+           
+            
         #get gen-level info 
         mLSP    = 0
         mStop   = 0
@@ -187,6 +227,8 @@ class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ):
                 top = {"pt": gen.pt(), "eta": gen.eta(), "phi":gen.phi()}
                 genTops.append(top)
         orderedGenTops = sorted(genTops, key=operator.itemgetter('pt')) #sort by increasing pt
+        fill( tr, 'stopMass', mStop )
+        fill( tr, 'LSPMass' , mLSP  )
 
         if len(orderedGenTops) > 1 :
             fill( tr, 'genTopHighPt'            , (orderedGenTops[1])["pt"] ) 
@@ -224,7 +266,10 @@ class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ):
                     
             self.jetMultiplicityVsMinPt.Fill(i*10., nJets[i])
             fill( tr, 'jetMultiplicity_' + str(10*i), nJets[i]  )
+        if nJets[3] > 0 :
+            fill( tr, 'sumEtOvernJets'          , sumPt[3]/nJets[3] )
 
+        
         self.jetMultiplicityStopLSPMassPlane.Fill(  mStop, mLSP, nJets[2] )
         self.StopLSPMassPlane.Fill(  mStop, mLSP )
         self.jetMultiplicityMETSumPtPlane.Fill(  met, sumPt[3], nJets[2] )
@@ -234,14 +279,6 @@ class Analysis( TreeAnalyzerNumpy, GenParticleAnalyzer ):
         fill( tr, 'met', met )
         fill( tr, 'minDeltaPhiMETJets'      , minDeltaPhiMETJets )
      
-          
-      
-        # trg / baseline selection efficiency
-        if (nJets[7] > 3):
-            self.effQuadJet.Fill(mStop, mLSP)
-        if (nJets[7] > 1 and met > 0.):
-            self.effDiJetMet.Fill(mStop, mLSP)
-      
         self.tree.tree.Fill()
 
         return True

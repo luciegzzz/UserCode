@@ -9,7 +9,7 @@ from CMGTools.RootTools.fwlite.Weight import Weight
 from CMGTools.RootTools.fwlite.Weight import printWeights
 from CMGTools.RootTools.Style import *
 
-from math import ceil
+from math import ceil, sqrt
 
 class Selection( object ):
     keeper = {}
@@ -45,17 +45,27 @@ class Selection( object ):
             print len(self.cuts)," cuts in the list", self.cuts
             print '----------------------------------------------------------------------------------------------------------'
             for layer, (compName, comp) in enumerate( sorted(self.selComps.iteritems()) ) :
+                filename = os.listdir('/'.join([ directory,
+                                      comp.dir,
+                                      self.treeName
+                                      ] ))
                 fileName = '/'.join([ directory,
                                       comp.dir,
                                       self.treeName,
-                                      '{treeName}_tree.root'.format(treeName=self.treeName)] )
+                                      filename[0]])
+                                     # '{treeName}_tree_([0-9]+)_([0-9]+).root'.format(treeName=self.treeName)] )
 
+                
                 file = self.__class__.keeper[ fileName + str(self.__class__.HINDEX) ] = TFile(fileName) 
                 self.__class__.HINDEX+=1
 
                 tree = file.Get( self.treeName )
 
-                stopMass, LSPMass        = self._GetMassPoint(tree)
+                if not (compName in self.bkg):
+                    stopMass, LSPMass = self._GetMassPoint(filename=filename[0])
+                else :
+                    stopMass, LSPMass = 0,0
+
                 NeventsSelected, Nevents = self._CalculateEventYields(tree)
                 self.Nevents[compName] = {"Nevents":Nevents,
                                           "NeventsSelected" : NeventsSelected,
@@ -108,9 +118,9 @@ class Selection( object ):
     #Compute the var for a given component, for all sets of cuts = selection
     #(via computeVar, which returns a dictionary of results, whose keys are selection) ->
     #the most discriminating variable is the one for which var is the smallest
-    def _FindMostDiscriminatingVar(self, compName):
+    def _FindMostDiscriminatingVar(self, sigCompName):
 
-        result = self._ComputeVar(self.Nevents[compName], self.Nevents[self.bkg[0]])
+        result = self._ComputeVar(sigCompName, True)
         minRes = 100000.
         minSel = ""
         for selection, res in result.iteritems():
@@ -128,35 +138,62 @@ class Selection( object ):
     #remove from the list of cuts the most frequent of most discriminating variables
     def _FindMostDiscriminatingVarOverMassPlane(self):
 
+        ncomp = 0
+        aveMostDiscriminatingVar = 0.
+        nOcc = [0,0,0,0,0]
         for (compName, compNameDico) in self.Nevents.iteritems():
             if not (compName in self.bkg):
+                ncomp+=1
                 varName = self._FindMostDiscriminatingVar(compName)
                 varName = re.sub(" ","",varName)
                 i_varName = (self.initialCuts).index(varName)
-                self.mostDiscriminatingVarHistos["mostDiscriminatingVarIn"+str(len(self.cuts))].Fill( self.Nevents[compName]["stopMass"], \
-                                                                                                      self.Nevents[compName]["LSPMass"], \
-                                                                                                      i_varName+1 )
-                    
-        self.cuts.remove(varName)
+                print varName, i_varName
+                aveMostDiscriminatingVar+=i_varName
+                self.mostDiscriminatingVarHistos["mostDiscriminatingVarIn"+str(len(self.cuts))].Fill( float(self.Nevents[compName]["stopMass"]), \
+                                                                                                      float(self.Nevents[compName]["LSPMass"]), \
+                                                                                                      i_varName +1)
+                nOcc[i_varName]+=1
+        print nOcc, max(nOcc), nOcc.index(max(nOcc))
+        #print 'aveMostDiscriminatingVar', int(aveMostDiscriminatingVar), aveMostDiscriminatingVar, 'ncomp', ncomp,'ratio', aveMostDiscriminatingVar/ncomp
+        #aveMostDiscriminatingVar/=ncomp
+       
+        self.cuts.remove(self.initialCuts[nOcc.index(max(nOcc))])
+       # self.cuts.remove(self.initialCuts[int(round(aveMostDiscriminatingVar))])
+       # self.cuts.remove(varName)
         self.rankedCuts.append(varName)       
         
-
-    def _ComputeVar(self, sigDico, bkgDico):
+    def _ComputeVar(self, sigCompName,printBkgYields):
         result = {}
-        for selection, neventsSelectedS in (sigDico["NeventsSelected"]).iteritems():
+        NeventsBkg = 0
+        for selection, neventsSelectedS in (self.Nevents[sigCompName]["NeventsSelected"]).iteritems():
+            #signal over background
             if self.varName == "SoB":
-                result[selection]= ( neventsSelectedS*sigDico["weight"] ) / ( bkgDico["NeventsSelected"][selection] * bkgDico["weight"] )
+                for bkgName in self.bkg :
+                    NeventsBkg+=(self.Nevents[bkgName]["NeventsSelected"][selection])*(self.Nevents[bkgName]["weight"])
+                result[selection]=(self.Nevents[sigCompName]["NeventsSelected"][selection]*self.Nevents[sigCompName]["weight"])/NeventsBkg
+            #efficiency : % of events selected
             elif self.varName == "efficiency":
-                result[selection] = neventsSelectedS / sigDico["Nevents"]
+                if printBkgYields :
+                    for bkgName in self.bkg :
+                        print self.Nevents[bkgName]["NeventsSelected"][selection]/self.Nevents[bkgName]["Nevents"]
+                result[selection]= self.Nevents[sigCompName]["NeventsSelected"]/self.Nevents[sigCompName]["Nevents"]        
+            #Approx significance S/sqrt(S+B)     
             elif self.varName =="approxSignificance":
-                result[selection] = ( neventsSelectedS*sigDico["weight"] )  / ( neventsSelectedS*sigDico["weight"] + bkgDico["NeventsSelected"][selection] * bkgDico["weight"])
+                for bkgName in self.bkg :
+                    NeventsBkg+=self.Nevents[bkgName]["NeventsSelected"][selection]*self.Nevents[bkgName]["weight"]
+                NeventsSig = self.Nevents[sigCompName]["NeventsSelected"][selection]*self.Nevents[sigCompName]["weight"]
+                result[selection] = NeventsSig / sqrt( NeventsSig + NeventsBkg)
+            #number of expected events
             elif self.varName == "Nexpected":
-                #print "Nevents expected for bkg :", selection, bkgDico["NeventsSelected"][selection]*bkgDico["weight"]
-                result[selection] =  neventsSelectedS*sigDico["weight"]
-        return result 
-       
-    def _GetMassPoint(self, tree ):
-        '''Get mass point for T2tt components'''
+                if printBkgYields :
+                    for bkgName in self.bkg :
+                        print bkgName, self.Nevents[bkgName]["NeventsSelected"][selection]*self.Nevents[bkgName]["weight"]
+                result[selection] = self.Nevents[sigCompName]["NeventsSelected"][selection]*self.Nevents[sigCompName]["weight"]
+        return result
+
+    # get T2tt mass point... Could get it from filename  
+    def _GetMassPoint(self, tree=None ):
+        '''Get mass point for T2tt components from tree leaves'''
 
         massPoint = ""
      
@@ -173,6 +210,14 @@ class Selection( object ):
         LSPMass = ceil(histLSP.GetMean())
         
         return stopMass, LSPMass
+    
+    def _GetMassPoint(self, filename=None ):
+        '''Get mass point for T2tt components from filename'''
+        massPoint = ""
+        stopMass, LSPMass = re.findall("[0-9]+",filename)
+       
+        return stopMass, LSPMass
+        
 
         
     def Draw(self, can, options=""):
@@ -230,15 +275,14 @@ if __name__ == '__main__':
     cuts = re.split(",", options.cuts)
     varName = options.varName
    ## bkg     = options.bkg
-    bkg = ["QCDHT1000Inf"]
+    bkg = ["QCDHT100To250", "QCDHT250To500", "QCDHT500To1000","QCDHT1000Inf","TTJets"]
     anaDir  = args[0].rstrip('/')
         
     cfgFileName = args[1]
     file = open( cfgFileName, 'r' )
 
     cfg = imp.load_source( 'cfg', cfgFileName, file)
-
-
+   
     selComps, weights = prepareComponents(anaDir, cfg.config)
 
     plot = Selection( varName, anaDir, selComps,weights,bkg, cuts )
@@ -246,4 +290,4 @@ if __name__ == '__main__':
     c1 = TCanvas("c1")
     c1.Divide(2,2)
     plot.Draw(c1,"colz")
-    c1.SaveAs( varName+'.png')
+    c1.SaveAs( varName+'StudyVarDiscrPower.png')

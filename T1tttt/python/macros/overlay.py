@@ -18,7 +18,7 @@ ext  = ''
 if len(args)>2:
     parser.print_help()
     print
-    print 'Maximum 2 argument (a root file, an output dir ext)'
+    print 'Maximum 2 argument (a root file, an histoName)'
     sys.exit(1)
 elif len(args)==2:
     file = args[0]

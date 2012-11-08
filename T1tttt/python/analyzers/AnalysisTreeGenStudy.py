@@ -19,31 +19,16 @@ class AnalysisTreeGenStudy( TreeAnalyzerNumpy, GenParticleAnalyzer ):
     '''Makes plots towards analysis.'''
 
     def __init__( self, cfg_ana, cfg_comp, looperName ):
-        self.listOfBtagsAlgos          = cfg_ana.listOfBtagsAlgos
         super(AnalysisTreeGenStudy,self).__init__( cfg_ana, cfg_comp, looperName )
        
     def declareVariables(self):
         super(AnalysisTreeGenStudy,self).declareVariables()
         tr = self.tree
-        for algoBtag in self.listOfBtagsAlgos :
-            var( tr, 'numberOfBTags_' + algoBtag,          int )
         for i in range(0, 20) :
-            var( tr, 'jetMultiplicity_' + str(10*i),       int )
-        var( tr, 'met'                     , float )
+            var( tr, 'genJetMultiplicity_' + str(10*i),       int )
         var( tr, 'fourthJetPt'             , float )
         var( tr, 'secondJetPt'             , float )
-        var( tr, 'genTopHighPt'            , float )
-        var( tr, 'genTopLowPt'             , float )
-        var( tr, 'genTopHighPtMinusLowPt'  , float )
-        var( tr, 'genTopHighPtPhi'         , float )
-        var( tr, 'genTopHighPtEta'         , float )
-        var( tr, 'genTopLowPtPhi'          , float )
-        var( tr, 'genTopLowPtEta'          , float )
-        var( tr, 'genTopsDeltaPhi'         , float )
-        var( tr, 'genTopsDeltaEta'         , float )
-        var( tr, 'genTopsDeltaR'           , float )
-        var( tr, 'minDeltaPhiMETJets'      , float )
-        
+     
     def beginLoop(self):
         super(AnalysisTreeGenStudy,self).beginLoop()
         #self.file = TFile ('/'.join ([self.dirName, 'output.root']),
@@ -59,47 +44,23 @@ class AnalysisTreeGenStudy( TreeAnalyzerNumpy, GenParticleAnalyzer ):
        
         #T2tt specific : #jets in stop / LSP mass plane  -- plot requiring full plane...
         self.jetMultiplicityStopLSPMassPlane = \
-        TH2F("jetMultiplicityStopLSPMassPlane","average jet multiplicity (>30GeV) in (stop, LSP) mass plane", 39, 225., 1200., 48, 0., 1200 )
+        TH2F("jetMultiplicityStopLSPMassPlane","average jet multiplicity (>30GeV) in (stop, LSP) mass plane", 80, 0., 800., 80, 0., 800. )
         self.StopLSPMassPlane = \
-        TH2F("StopLSPMassPlane","(stop, LSP) mass plane", 39, 225., 1200., 48, 0., 1200 )
-        self.medianPtStopLSPMassPlane = \
-        TH2F("medianGenTopsPtStopLSPMassPlane","median gen tops pt in (stop, LSP) mass plane", 39, 225., 1200., 48, 0., 1200 )
+        TH2F("StopLSPMassPlane","(stop, LSP) mass plane", 80, 0., 800., 80, 0., 800. )
         
-        #jets in MET / sumPt plane
-        self.jetMultiplicityMETSumPtPlane = \
-        TH2F("jetMultiplicityMETSumPtPlane","average jet multiplicity (>30GeV)  in (MET, sumPt) plane", 50, 0., 1000., 250, 0., 5000.)
-        self.jetMultiplicityMETSumPtPlane.SetXTitle("MET, GeV")
-        self.jetMultiplicityMETSumPtPlane.SetYTitle("SumPt, GeV")
-        self.METSumPtPlane = \
-        TH2F("METSumPtPlane","(MET, sumPt) plane", 50, 0., 1000., 250, 0., 5000.)
-       
+        
         #trigger -- plot requiring full plane...
         self.effDiJetMet                   =  \
-        TH2F("effDiJetMet","expected efficiency for DiJetMET trigger ", 39, 225., 1200., 48, 0., 1200)
+        TH2F("effDiJetMet","expected efficiency for DiJetMET trigger ", 80, 0., 800., 80, 0., 800.)
         self.effQuadJet                    =  \
-        TH2F("effQuadJet","expected efficiency for QuadJet trigger ", 39, 225., 1200., 48, 0., 1200)
+        TH2F("effQuadJet","expected efficiency for QuadJet trigger ", 80, 0., 800., 80, 0., 800.)
      
-        #gen level tops
-        self.genTopsLowPtPhiVsHighPtPhi = \
-        TH2F("genTopsLowPtPhiVsHighPtPhi", "gen top low pt phi vs gen top high pt phi", 62, -3.2, 3.2, 62, -3.2, 3.2 )
-
-        self.genTopsLowPtEtaVsHighPtEta = \
-        TH2F("genTopsLowPtEtaVsHighPtEta", "gen top low pt eta vs gen top high pt eta", 100, -5., 5., 100, -5., 5. )
-
-        self.genTopsHighPtVsLowPt = \
-        TH2F("genTopsHighPtVsLowPt", "gen top high pt vs gen top low pt", 100, 0., 500., 100, 0., 500. )
-
+      
         self.histos = [
             self.jetMultiplicityVsMinPt,
-            self.jetMultiplicityStopLSPMassPlane,
-            self.jetMultiplicityMETSumPtPlane,
             self.StopLSPMassPlane,
-            self.METSumPtPlane,
             self.effDiJetMet,
             self.effQuadJet,
-            self.genTopsLowPtPhiVsHighPtPhi,
-            self.genTopsLowPtEtaVsHighPtEta,
-            self.genTopsHighPtVsLowPt,
             ]
              
     def process(self, iEvent, event):
@@ -110,20 +71,13 @@ class AnalysisTreeGenStudy( TreeAnalyzerNumpy, GenParticleAnalyzer ):
         tr = self.tree
 
         event.stdJets       = self.buildRecoJets( self.mchandles['stdJets'].product(), event )
+        event.genJets       = self.buildRecoJets( self.mchandles['genJets'].product(), event )
         event.met           = self.buildMet( self.mchandles['met'].product(), event )
         met                 = event.met[0].pt()
         
         #ntops
         event.topCandidates = {}
         algoBin = 0
-
-        #nbtags
-        nBtags = dict.fromkeys(self.listOfBtagsAlgos,0)
-        for tagger in self.listOfBtagsAlgos :
-            for jet in event.stdJets :
-                if jet.getSelection('cuts_'+tagger) :
-                    nBtags[tagger]+=1
-            fill( tr, 'numberOfBTags_' + tagger, nBtags[tagger]  )
 
         #get gen-level info 
         mLSP    = 0
@@ -134,63 +88,32 @@ class AnalysisTreeGenStudy( TreeAnalyzerNumpy, GenParticleAnalyzer ):
                 mStop = gen.mass()
             elif (gen.pdgId() == 1000022):
                 mLSP = gen.mass()
-            elif (abs(gen.pdgId())==6) :
-                top = {"pt": gen.pt(), "eta": gen.eta(), "phi":gen.phi()}
-                genTops.append(top)
-        orderedGenTops = sorted(genTops, key=operator.itemgetter('pt')) #sort by increasing pt
-
-        if len(orderedGenTops) > 1 :
-            fill( tr, 'genTopHighPt'            , (orderedGenTops[1])["pt"] ) 
-            fill( tr, 'genTopLowPt'             , (orderedGenTops[0])["pt"] )
-            fill( tr, 'genTopHighPtMinusLowPt'  , (orderedGenTops[1]["pt"] - orderedGenTops[0]["pt"]) ) 
-            fill( tr, 'genTopHighPtPhi'         , (orderedGenTops[1])["phi"] ) 
-            fill( tr, 'genTopLowPtPhi'          , (orderedGenTops[0])["phi"] ) 
-            fill( tr, 'genTopHighPtEta'         , (orderedGenTops[1])["eta"] ) 
-            fill( tr, 'genTopLowPtEta'          , (orderedGenTops[0])["eta"] ) 
-            self.genTopsLowPtPhiVsHighPtPhi.Fill( (orderedGenTops[0])["phi"], (orderedGenTops[1])["phi"] )
-            self.genTopsLowPtEtaVsHighPtEta.Fill( (orderedGenTops[0])["eta"], (orderedGenTops[1])["eta"] )
-        
-            fill( tr, 'genTopsDeltaPhi'         , (orderedGenTops[1])["phi"] - (orderedGenTops[0])["phi"]) 
-            fill( tr, 'genTopsDeltaEta'         , (orderedGenTops[1])["eta"] - (orderedGenTops[0])["eta"]) 
-            fill( tr, 'genTopsDeltaR'           , deltaR( (orderedGenTops[0])["eta"], (orderedGenTops[0])["phi"], (orderedGenTops[1])["eta"], (orderedGenTops[1])["phi"]  ) )
-
-            self.genTopsHighPtVsLowPt.Fill( orderedGenTops[1]["pt"], orderedGenTops[0]["pt"])
-    
-        #jet multiplicity
-        nJets = array( "d", [0.] * 20 )
-        minDeltaPhiMETJets = 10.
-        sumPt = array( "d", [0.] * 20 )
-        for i in range(0, 20):
-            for jet in event.stdJets :
-                if i == 1 :
-                    fill( tr, 'secondJetPt'             , jet.pt() )
-                if i == 3 :
-                    fill( tr, 'fourthJetPt'             , jet.pt() )
-                if jet.pt() > i*10. and abs(jet.eta()) < 2.4 :
-                    nJets[i]+=1
-                    sumPt[i] += jet.pt()
-                    
-                    if i == 3 :
-                        minDeltaPhiMETJets = min( minDeltaPhiMETJets, abs(jet.phi() - event.met[0].phi()))
-                    
-            self.jetMultiplicityVsMinPt.Fill(i*10., nJets[i])
-            fill( tr, 'jetMultiplicity_' + str(10*i), nJets[i]  )
-
-        self.jetMultiplicityStopLSPMassPlane.Fill(  mStop, mLSP, nJets[2] )
         self.StopLSPMassPlane.Fill(  mStop, mLSP )
-        self.jetMultiplicityMETSumPtPlane.Fill(  met, sumPt[3], nJets[2] )
-        self.METSumPtPlane.Fill(  met, sumPt[3], 1. )
+        
+        #jet multiplicity
+        nGenJets = array( "d", [0.] * 20 )
+        for i in range(0, 20):
+            for genJet in event.genJets :
+                if genJet.pt() > i*10. and abs(genJet.eta()) < 2.4 :
+                    nGenJets[i]+=1
+                                       
+            self.jetMultiplicityVsMinPt.Fill(i*10., nGenJets[i])
+            fill( tr, 'genJetMultiplicity_' + str(10*i), nGenJets[i]  )
 
-        #met
-        fill( tr, 'met', met )
-        fill( tr, 'minDeltaPhiMETJets'      , minDeltaPhiMETJets )
-     
-          
-      
+        
         # trg / baseline selection efficiency
-        if (nJets[8] > 3):
+        nJets = 0
+        for jet in event.stdJets :
+            if jet.pt() > 80. and abs(jet.eta()) < 2.4:
+                nJets+=1
+            if nJets == 2 :
+                fill( tr, 'secondJetPt'             , jet.pt() )
+            if nJets == 4 :
+                fill( tr, 'fourthJetPt'             , jet.pt() )
+       
+        if (nJets > 3):
             self.effQuadJet.Fill(mStop, mLSP)
-        if (nJets[8] > 1 and met > 200.):
+        if (nJets > 1 and met > 200.):
             self.effDiJetMet.Fill(mStop, mLSP)
       
         self.tree.tree.Fill()
@@ -216,7 +139,6 @@ class AnalysisTreeGenStudy( TreeAnalyzerNumpy, GenParticleAnalyzer ):
     def write(self):
         self.file.cd()
         self.jetMultiplicityStopLSPMassPlane.Divide(self.StopLSPMassPlane)
-        self.jetMultiplicityMETSumPtPlane.Divide(self.METSumPtPlane)
         
         for histo in self.histos :
             histo.Write( histo.GetName() )
@@ -238,4 +160,9 @@ class AnalysisTreeGenStudy( TreeAnalyzerNumpy, GenParticleAnalyzer ):
             'std::vector<cmg::BaseMET>'
             )   
 
-       
+        self.mchandles['genJets'] =  AutoHandle(
+            'genJetSel',
+            'std::vector<cmg::PhysicsObjectWithPtr<edm::Ptr<reco::GenJet> > >'
+            )   
+
+              

@@ -1,4 +1,4 @@
-import os, re
+import os, re, pdb
 from fnmatch import fnmatch
 import copy
 
@@ -9,7 +9,7 @@ from CMGTools.RootTools.fwlite.Weight import Weight
 from CMGTools.RootTools.fwlite.Weight import printWeights
 from CMGTools.RootTools.Style import *
 
-from math import ceil
+from math import ceil, sqrt
 
 class SelectionHisto( object ):
     keeper = {}
@@ -29,40 +29,56 @@ class SelectionHisto( object ):
         self._ReadHistograms(directory)
 
     def _BuildHistogram(self):
-        self.outputHisto = TH2F("h_"+varName, varName+", "+self.cuts, 80, 0., 800., 80, 0., 800. )
+        self.outputHisto = TH2F("h_"+varName, varName+", "+str(self.cuts), 80, 0., 800., 80, 0., 800. )
         self.outputHisto.SetXTitle("stop mass")
         self.outputHisto.SetYTitle("LSP mass")
         self.outputHisto.SetStats(0)
-        
+
+        printBkgYields = True
         for (compName, compNameDico) in self.Nevents.iteritems():
             if not (compName in self.bkg):
-                self.outputHisto.Fill( compNameDico["stopMass"], \
-                                       compNameDico["LSPMass"], \
-                                       self._ComputeVar(compNameDico, self.Nevents[self.bkg[0]]))
+                self.outputHisto.Fill( float(compNameDico["stopMass"]), \
+                                       float(compNameDico["LSPMass"]), \
+                                       self._ComputeVar(compName, printBkgYields))
+                printBkgYields = False
+                
         return self.outputHisto
 
     def _ReadHistograms(self, directory):
         '''Build histograms for all components.'''
         for layer, (compName, comp) in enumerate( sorted(self.selComps.iteritems()) ) :
+          ##   fileName = '/'.join([ directory,
+##                                   comp.dir,
+##                                   self.treeName,
+##                                   '{treeName}_tree.root'.format(treeName=self.treeName)] )
+            filename = os.listdir('/'.join([ directory,
+                                             comp.dir,
+                                             self.treeName
+                                             ] ))
             fileName = '/'.join([ directory,
                                   comp.dir,
                                   self.treeName,
-                                  '{treeName}_tree.root'.format(treeName=self.treeName)] )
-
+                                  filename[0]])
+            print 'reading', fileName
             file = self.__class__.keeper[ fileName + str(self.__class__.HINDEX) ] = TFile(fileName) 
             self.__class__.HINDEX+=1
 
             tree = file.Get( self.treeName )
 
-            stopMass, LSPMass = self._GetMassPoint(tree)
+            if not (compName in self.bkg):
+                stopMass, LSPMass = self._GetMassPoint(filename=filename[0])
+            else :
+                stopMass, LSPMass = 0,0
+           
             Nevents, NeventsSelected = self._CalculateEventYield(tree)
+                     
             self.Nevents[compName] = {"Nevents":Nevents,
                                       "NeventsSelected": NeventsSelected,
                                       "weight":(comp.getWeight()).GetWeight(),
                                       "stopMass":stopMass,
                                       "LSPMass":LSPMass}
             file.Close()   
-
+        #after reading all components, build histograms
         self._BuildHistogram()
 
     #calculate number of events selected by the full list of cuts given in option,
@@ -71,16 +87,16 @@ class SelectionHisto( object ):
         
         Nevents         = tree.GetEntries()
         selection = ""
-        for cut in re.split(",", self.cuts):
+        for cut in self.cuts:
             selection+= cut + " && "
         selection = selection.rstrip("&& ")
         NeventsSelected = tree.GetEntries(selection)
         
         return float(Nevents), float(NeventsSelected)
 
-        
-    def _GetMassPoint(self, tree ):
-        '''Get mass point for T2tt components'''
+    # get T2tt mass point... Could get it from filename  
+    def _GetMassPoint(self, tree=None ):
+        '''Get mass point for T2tt components from tree leaves'''
 
         massPoint = ""
      
@@ -97,17 +113,41 @@ class SelectionHisto( object ):
         LSPMass = ceil(histLSP.GetMean())
         
         return stopMass, LSPMass
+    
+    def _GetMassPoint(self, filename=None ):
+        '''Get mass point for T2tt components from filename'''
 
-    def _ComputeVar(self, sigDico, bkgDico):
+        massPoint = ""
+        stopMass, LSPMass = re.findall("[0-9]+",filename)
+       
+        return stopMass, LSPMass
+        
+
+    def _ComputeVar(self, sigCompName ,printBkgYields):
+        NeventsBkg = 0
+        #signal over background
         if self.varName == "SoB":
-            return (sigDico["NeventsSelected"]*sigDico["weight"])/(bkgDico["NeventsSelected"]*bkgDico["weight"])
+            for bkgName in self.bkg :
+                NeventsBkg+=self.Nevents[bkgName]["NeventsSelected"]*self.Nevents[bkgName]["weight"]
+            return (self.Nevents[sigCompName]["NeventsSelected"]*self.Nevents[sigCompName]["weight"])/NeventsBkg
+        #efficiency : % of events selected
         elif self.varName == "efficiency":
-            return sigDico["NeventsSelected"]/sigDico["Nevents"]
+            if printBkgYields :
+                for bkgName in self.bkg :
+                    print self.Nevents[bkgName]["NeventsSelected"]/self.Nevents[bkgName]["Nevents"]
+            return self.Nevents[sigCompName]["NeventsSelected"]/self.Nevents[sigCompName]["Nevents"]
+        #Approx significance S/sqrt(S+B)     
         elif self.varName =="approxSignificance":
-            return  (sigDico["NeventsSelected"]*sigDico["weight"]) / (sigDico["NeventsSelected"]*sigDico["weight"] + bkgDico["NeventsSelected"]*bkgDico["weight"])
+            for bkgName in self.bkg :
+                NeventsBkg+=self.Nevents[bkgName]["NeventsSelected"]*self.Nevents[bkgName]["weight"]
+            NeventsSig = self.Nevents[sigCompName]["NeventsSelected"]*self.Nevents[sigCompName]["weight"]
+            return  NeventsSig / sqrt( NeventsSig + NeventsBkg)
+        #number of expected events
         elif self.varName == "Nexpected":
-            print "Nevents expected for bkg :", bkgDico["NeventsSelected"]*bkgDico["weight"]
-            return sigDico["NeventsSelected"]*sigDico["weight"] 
+            if printBkgYields :
+                for bkgName in self.bkg :
+                    print bkgName, self.Nevents[bkgName]["NeventsSelected"]*self.Nevents[bkgName]["weight"]
+            return self.Nevents[sigCompName]["NeventsSelected"]*self.Nevents[sigCompName]["weight"] 
 
         
     def Draw(self, options=""):
@@ -143,6 +183,10 @@ if __name__ == '__main__':
                                       approxSnificance for S/sqrt(S+B),\
                                       Nexpected for number of events expected(signal -> histo, bkg -> printout)",
                       default='SoB')
+    parser.add_option("-e", "--ext", 
+                      dest="ext", 
+                      help="extension for filename : varName+ext+.png",
+                      default='')
      
   ##   parser.add_option("-b", "--bkg", 
 ##                       dest="bkg", 
@@ -155,12 +199,13 @@ if __name__ == '__main__':
         sys.exit(1)
 
    
-    cuts    = options.cuts
+    cuts = re.split(",", options.cuts)
     varName = options.varName
+    ext     = options.ext
    ## bkg     = options.bkg
-    bkg = ["QCDHT1000Inf"]
+    bkg = ["QCDHT100To250", "QCDHT250To500", "QCDHT500To1000","QCDHT1000Inf","TTJets"]
     anaDir  = args[0].rstrip('/')
-        
+       
     cfgFileName = args[1]
     file = open( cfgFileName, 'r' )
 
@@ -172,4 +217,4 @@ if __name__ == '__main__':
 
     c1 = TCanvas("c1")
     plot.Draw("colz")
-    c1.SaveAs( varName+'.png')
+    c1.SaveAs( varName+str(len(re.split("&&", options.cuts)))+ext+'.png')

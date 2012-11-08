@@ -4,7 +4,7 @@ from CMGTools.Common.skims.cmgPFJetSel_cfi import cmgPFJetSel
 from CMGTools.Common.skims.cmgCandCount_cfi import cmgCandCount
 #####Jet Selection
 cmgPFJetSelPt       = cmgPFJetSel.clone(
-    src = 'cmgPFJetSelCHS',
+    src = 'cmgPFJetSel',
     cut = 'pt > 80. && abs(eta)<2.4')
 
 cmgPFJetSelQuadJet  = cmgCandCount.clone(
