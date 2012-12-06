@@ -23,7 +23,7 @@ class FatJetsTreeAnalyzer( TreeAnalyzerNumpy, GenParticleAnalyzer, Output ):
         super(FatJetsTreeAnalyzer,self).__init__( cfg_ana, cfg_comp, looperName )
         self.nTotEvents = 0
 
-        self.mStopmLSP = TH2F("h_mStopmLSP", "mStopmLSP", 60, 200., 800., 60, 0., 600.)
+        self.mStopmLSP = TH2F("mStopmLSP", "mStopmLSP", 60, 200., 800., 60, 0., 600.)
 
         self.histos = [
             self.mStopmLSP
@@ -52,6 +52,12 @@ class FatJetsTreeAnalyzer( TreeAnalyzerNumpy, GenParticleAnalyzer, Output ):
         var( tr, 'thirdBtag_mass'    , float )            
         var( tr, 'invMassClosestToW' , float )#not yet filled
         var( tr, 'isMatched'         , int )
+        var( tr, 'dR'                , float )
+        var( tr, 'mStop'             , float )
+        var( tr, 'mLSP'              , float )
+        bookParticle( tr, 'W0')
+        bookParticle( tr, 'W1')
+        bookParticle( tr, 'W2')
         
     def beginLoop(self):
         super(FatJetsTreeAnalyzer,self).beginLoop()
@@ -114,6 +120,7 @@ class FatJetsTreeAnalyzer( TreeAnalyzerNumpy, GenParticleAnalyzer, Output ):
                         dR = min(dR, deltaR( topCand.eta(), topCand.phi(), gen.eta(), gen.phi()))
                         if not(dR == dRtmp):
                             matchedMass = gen.mass()
+                    fill( tr, 'dR', dR )
                 if dR < 0.3 and (abs(topCand.mass() - 185.)< 50.):
                     fill( tr, 'isMatched' , 1 )
                 else :
@@ -124,12 +131,22 @@ class FatJetsTreeAnalyzer( TreeAnalyzerNumpy, GenParticleAnalyzer, Output ):
             mLSP  = 0
             mStop = 0
             for gen in event.genParticles:
-                if (self.nTotEvents % 100 == 0):
-                    if abs(gen.pdgId())==1000006 :
-                        mStop = gen.mass()
-                    if abs(gen.pdgId())==1000022 :
-                        mLSP  =  gen.mass()
-            self.mStopmLSP.Fill(mLSP, mStop)
+               # if (self.nTotEvents % 100 == 0):
+               if abs(gen.pdgId())==1000006 :
+                   mStop = gen.mass()
+               if abs(gen.pdgId())==1000022 :
+                   mLSP  =  gen.mass()
+            self.mStopmLSP.Fill(mStop, mLSP)
+            fill( tr, 'mStop'             , mStop )
+            fill( tr, 'mLSP'              , mLSP )
+
+            event.WCandidates = self.buildTopCandidates( self.mchandles['W'].product(), event )
+            if (len(event.WCandidates)):
+                fillParticle(tr, 'W0', event.WCandidates[0] )
+                if (len(event.WCandidates)>1):
+                    fillParticle(tr, 'W1', event.WCandidates[1] )
+                    if (len(event.WCandidates)>2):
+                        fillParticle(tr, 'W2', event.WCandidates[2] )
             
         return True
 
@@ -161,8 +178,13 @@ class FatJetsTreeAnalyzer( TreeAnalyzerNumpy, GenParticleAnalyzer, Output ):
         for algo in self.listOfFatJetAlgos : 
             self.mchandles[ algo ] = AutoHandle(
            # (algo,"topCandidates","TOP"),
-            (algo,"","TOP"),
-             'std::vector<reco::BasicJet>' 
+            (algo,"topJets","TOP"),
+             'std::vector<reco::TopJet>' 
             )
-       
+
+        self.mchandles['W'] =  AutoHandle(
+            ('WCandidatesAkt0p71p75','topCandidates','TOP'),
+            'std::vector<reco::TopJet>'
+            )   
+
        
